@@ -1,0 +1,27 @@
+�иртуальная клавиатура"</string>
+    <string name="select_keyboard_layout_notification_title" msgid="4427643867639774118">"Настройка физической клавиатуры"</string>
+    <string name="select_keyboard_layout_notification_message" msgid="8835158247369158154">"Нажмите, чтобы выбрать язык и раскладку"</string>
+    <string name="fast_scroll_alphabet" msgid="8854435958703888376">" ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="fast_scroll_numeric_alphabet" msgid="2529539945421557329">" 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="alert_windows_notification_channel_group_name" msgid="6063891141815714246">"Поверх других приложений"</string>
+    <string name="alert_windows_notification_channel_name" msgid="3437528564303192620">"<xliff:g id="NAME">%s</xliff:g>: поверх других приложений"</string>
+    <string name="alert_windows_notification_title" msgid="6331662751095228536">"<xliff:g id="NAME">%s</xliff:g>: поверх других приложений"</string>
+    <string name="alert_windows_notification_message" msgid="6538171456970725333">"Чтобы отключить эту функцию для приложения <xliff:g id="NAME">%s</xliff:g>, перейдите в настройки."</string>
+    <string name="alert_windows_notification_turn_off_action" msgid="7805857234839123780">"Отключить"</string>
+    <string name="ext_media_checking_notification_title" msgid="8299199995416510094">"Проверка накопителя (<xliff:g id="NAME">%s</xliff:g>)…"</string>
+    <string name="ext_media_checking_notification_message" msgid="2231566971425375542">"Выполняем проверку контента."</string>
+    <string name="ext_media_new_notification_title" msgid="3517407571407687677">"Новый накопитель: <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="ext_media_new_notification_title" product="automotive" msgid="9085349544984742727">"<xliff:g id="NAME">%s</xliff:g> не работает"</string>
+    <string name="ext_media_new_notification_message" msgid="6095403121990786986">"Нажмите, чтобы настроить."</string>
+    <string name="ext_media_new_notification_message" product="automotive" msgid="5140127881613227162">"Возможно, потребуется отформатировать устройство. Нажмите, чтобы извлечь его."</string>
+    <string name="ext_media_ready_notification_message" msgid="777258143284919261">"Для переноса фотографий и других файлов"</string>
+    <string name="ext_media_unmountable_notification_title" msgid="4895444667278979910">"Проблема с накопителем (<xliff:g id="NAME">%s</xliff:g>)"</string>
+    <string name="ext_media_unmountable_notification_title" product="automotive" msgid="3142723758949023280">"<xliff:g id="NAME">%s</xliff:g> не работает"</string>
+    <string name="ext_media_unmountable_notification_message" msgid="3256290114063126205">"Нажмите здесь, чтобы исправить."</string>
+    <string name="ext_media_unmountable_notification_message" product="tv" msgid="3003611129979934633">"Внешний носитель (<xliff:g id="NAME">%s</xliff:g>) поврежден. Выберите, чтобы исправить."</string>
+    <string name="ext_media_unmountable_notification_message" product="automotive" msgid="2274596120715020680">"Возможно, потребуется отформатировать устройство. Нажмите, чтобы извлечь его."</string>
+    <string name="ext_media_unsupported_notification_title" msgid="4358280700537030333">"<xliff:g id="NAME">%s</xliff:g> не поддерживается"</string>
+    <string name="ext_media_unsupported_notification_title" product="automotive" msgid="6004193172658722381">"<xliff:g id="NAME">%s</xliff:g> не работает"</string>
+    <string name="ext_media_unsupported_notification_message" msgid="917738524888367560">"Устройство не поддерживает этот носитель (<xliff:g id="NAME">%s</xliff:g>). Нажмите, чтобы настроить."</string>
+    <string name="ext_media_unsupported_notification_message" product="tv" msgid="7744945987775645685">"Внешний носитель (<xliff:g id="NAME">%s</xliff:g>) не поддерживается на этом устройстве. Выберите, чтобы изменить формат."</string>
+    <string name="ext_media_unsupported_notification_message" product="auto

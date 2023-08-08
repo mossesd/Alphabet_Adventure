@@ -1,0 +1,128 @@
+s>true if the value of <paramref name="left" /> is equal to the value of <paramref name="right" />; otherwise, false.</returns>
+      <param name="left">A <see cref="T:System.RuntimeMethodHandle" /> to compare to <paramref name="right" />.</param>
+      <param name="right">A <see cref="T:System.RuntimeMethodHandle" /> to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="M:System.RuntimeMethodHandle.op_Inequality(System.RuntimeMethodHandle,System.RuntimeMethodHandle)">
+      <summary>Indicates whether two instances of <see cref="T:System.RuntimeMethodHandle" /> are not equal.</summary>
+      <returns>true if the value of <paramref name="left" /> is unequal to the value of <paramref name="right" />; otherwise, false.</returns>
+      <param name="left">A <see cref="T:System.RuntimeMethodHandle" /> to compare to <paramref name="right" />.</param>
+      <param name="right">A <see cref="T:System.RuntimeMethodHandle" /> to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="P:System.RuntimeMethodHandle.Value">
+      <summary>Gets the value of this instance.</summary>
+      <returns>A <see cref="T:System.RuntimeMethodHandle" /> that is the internal metadata representation of a method.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:System.RuntimeTypeHandle">
+      <summary>Represents a type using an internal metadata token.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.Equals(System.Object)">
+      <summary>Indicates whether the specified object is equal to the current <see cref="T:System.RuntimeTypeHandle" /> structure.</summary>
+      <returns>true if <paramref name="obj" /> is a <see cref="T:System.RuntimeTypeHandle" /> structure and is equal to the value of this instance; otherwise, false.</returns>
+      <param name="obj">An object to compare to the current instance.</param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.Equals(System.RuntimeTypeHandle)">
+      <summary>Indicates whether the specified <see cref="T:System.RuntimeTypeHandle" /> structure is equal to the current <see cref="T:System.RuntimeTypeHandle" /> structure.</summary>
+      <returns>true if the value of <paramref name="handle" /> is equal to the value of this instance; otherwise, false.</returns>
+      <param name="handle">The <see cref="T:System.RuntimeTypeHandle" /> structure to compare to the current instance.</param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.GetHashCode">
+      <summary>Returns the hash code for the current instance.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.GetModuleHandle">
+      <summary>Gets a handle to the module that contains the type represented by the current instance.</summary>
+      <returns>A <see cref="T:System.ModuleHandle" /> structure representing a handle to the module that contains the type represented by the current instance.</returns>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data necessary to deserialize the type represented by the current instance.</summary>
+      <param name="info">The object to be populated with serialization information. </param>
+      <param name="context">(Reserved) The location where serialized data will be stored and retrieved. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="info" /> is null. </exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">
+        <see cref="P:System.RuntimeTypeHandle.Value" /> is invalid. </exception>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.op_Equality(System.Object,System.RuntimeTypeHandle)">
+      <summary>Indicates whether an object and a <see cref="T:System.RuntimeTypeHandle" /> structure are equal.</summary>
+      <returns>true if <paramref name="left" /> is a <see cref="T:System.RuntimeTypeHandle" /> structure and is equal to <paramref name="right" />; otherwise, false.</returns>
+      <param name="left">An object to compare to <paramref name="right" />.</param>
+      <param name="right">A <see cref="T:System.RuntimeTypeHandle" /> structure to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.op_Equality(System.RuntimeTypeHandle,System.Object)">
+      <summary>Indicates whether a <see cref="T:System.RuntimeTypeHandle" /> structure is equal to an object.</summary>
+      <returns>true if <paramref name="right" /> is a <see cref="T:System.RuntimeTypeHandle" /> and is equal to <paramref name="left" />; otherwise, false.</returns>
+      <param name="left">A <see cref="T:System.RuntimeTypeHandle" /> structure to compare to <paramref name="right" />.</param>
+      <param name="right">An object to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.op_Inequality(System.Object,System.RuntimeTypeHandle)">
+      <summary>Indicates whether an object and a <see cref="T:System.RuntimeTypeHandle" /> structure are not equal.</summary>
+      <returns>true if <paramref name="left" /> is a <see cref="T:System.RuntimeTypeHandle" /> and is not equal to <paramref name="right" />; otherwise, false.</returns>
+      <param name="left">An object to compare to <paramref name="right" />.</param>
+      <param name="right">A <see cref="T:System.RuntimeTypeHandle" /> structure to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="M:System.RuntimeTypeHandle.op_Inequality(System.RuntimeTypeHandle,System.Object)">
+      <summary>Indicates whether a <see cref="T:System.RuntimeTypeHandle" /> structure is not equal to an object.</summary>
+      <returns>true if <paramref name="right" /> is a <see cref="T:System.RuntimeTypeHandle" /> structure and is not equal to <paramref name="left" />; otherwise, false.</returns>
+      <param name="left">A <see cref="T:System.RuntimeTypeHandle" /> structure to compare to <paramref name="right" />.</param>
+      <param name="right">An object to compare to <paramref name="left" />.</param>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="P:System.RuntimeTypeHandle.Value">
+      <summary>Gets a handle to the type represented by this instance.</summary>
+      <returns>A handle to the type represented by this instance.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:System.SByte">
+      <summary>Represents an 8-bit signed integer.</summary>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.SByte.CompareTo(System.Object)">
+      <summary>Compares this instance to a specified object and returns an indication of their relative values.</summary>
+      <returns>A signed number indicating the relative values of this instance and <paramref name="obj" />.Return Value Description Less than zero This instance is less than <paramref name="obj" />. Zero This instance is equal to <paramref name="obj" />. Greater than zero This instance is greater than <paramref name="obj" />.-or- <paramref name="obj" /> is null. </returns>
+      <param name="obj">An object to compare, or null. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="obj" /> is not an <see cref="T:System.SByte" />. </exception>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.SByte.CompareTo(System.SByte)">
+      <summary>Compares this instance to a specified 8-bit signed integer and returns an indication of their relative values.</summary>
+      <returns>A signed integer that indicates the relative order of this instance and <paramref name="value" />.Return Value Description Less than zero This instance is less than <paramref name="value" />. Zero This instance is equal to <paramref name="value" />. Greater than zero This instance is greater than <paramref name="value" />. </returns>
+      <param name="value">An 8-bit signed integer to compare. </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.SByte.Equals(System.Object)">
+      <summary>Returns a value indicating whether this instance is equal to a specified object.</summary>
+      <returns>true if <paramref name="obj" /> is an instance of <see cref="T:System.SByte" /> and equals the value of this instance; otherwise, false.</returns>
+      <param name="obj">An object to compare with this instance. </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.SByte.Equals(System.SByte)">
+      <summary>Returns a value indicating whether this instance is equal to a specified <see cref="T:System.SByte" /> value.</summary>
+      <returns>true if <paramref name="obj" /> has the same value as this instance; otherwise, false.</returns>
+      <param name="obj">An <see cref="T:System.SByte" /> value to compare to this instance.</param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.SByte.GetHashCode">
+      <summary>Returns the hash code for this instance.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.SByte.GetTypeCode">
+      <summary>Returns the <see cref="T:System.TypeCode" /> for value type <see cref="T:System.SByte" />.</summary>
+      <returns>The enumerated constant, <see cref="F:System.TypeCode.SByte" />.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="F:System.SByte.MaxValue">
+      <su

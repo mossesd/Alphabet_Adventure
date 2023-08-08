@@ -1,0 +1,503 @@
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
+
+
+namespace UnityEditor.Rendering.HighDefinition
+{
+    [CanEditMultipleObjects]
+    [VolumeComponentEditor(typeof(GlobalIllumination))]
+    class GlobalIlluminatorEditor : VolumeComponentWithQualityEditor
+    {
+        // Shared rasterization / ray tracing parameter
+        SerializedDataParameter m_Enable;
+        SerializedDataParameter m_Tracing;
+        SerializedDataParameter m_RayMiss;
+
+        // Screen space global illumination parameters
+        SerializedDataParameter m_FullResolutionSS;
+        SerializedDataParameter m_DepthBufferThickness;
+        SerializedDataParameter m_RaySteps;
+
+        // Ray tracing generic attributes
+        SerializedDataParameter m_LastBounce;
+        SerializedDataParameter m_AmbientProbeDimmer;
+        SerializedDataParameter m_LayerMask;
+        SerializedDataParameter m_ReceiverMotionRejection;
+        SerializedDataParameter m_TextureLodBias;
+        SerializedDataParameter m_RayLength;
+        SerializedDataParameter m_ClampValue;
+        SerializedDataParameter m_Mode;
+
+        // Mixed
+        SerializedDataParameter m_MaxMixedRaySteps;
+
+        // Performance
+        SerializedDataParameter m_FullResolution;
+
+        // Quality
+        SerializedDataParameter m_SampleCount;
+        SerializedDataParameter m_BounceCount;
+
+        // Filtering RT
+        SerializedDataParameter m_Denoise;
+        SerializedDataParameter m_HalfResolutionDenoiser;
+        SerializedDataParameter m_DenoiserRadius;
+        SerializedDataParameter m_SecondDenoiserPass;
+
+        // Filtering SS
+        SerializedDataParameter m_DenoiseSS;
+        SerializedDataParameter m_HalfResolutionDenoiserSS;
+        SerializedDataParameter m_DenoiserRadiusSS;
+        SerializedDataParameter m_SecondDenoiserPassSS;
+
+        public override bool hasAdditionalProperties => true;
+
+        public override void OnEnable()
+        {
+            var o = new PropertyFetcher<GlobalIllumination>(serializedObject);
+
+            m_Enable = Unpack(o.Find(x => x.enable));
+            m_Tracing = Unpack(o.Find(x => x.tracing));
+            m_RayMiss = Unpack(o.Find(x => x.rayMiss));
+
+            // SSGI Parameters
+            m_FullResolutionSS = Unpack(o.Find(x => x.fullResolutionSS));
+            m_DepthBufferThickness = Unpack(o.Find(x => x.depthBufferThickness));
+            m_RaySteps = Unpack(o.Find(x => x.maxRaySteps));
+
+            // Ray Tracing shared parameters
+            m_LastBounce = Unpack(o.Find(x => x.lastBounceFallbackHierarchy));
+            m_AmbientProbeDimmer = Unpack(o.Find(x => x.ambientProbeDimmer));
+            m_LayerMask = Unpack(o.Find(x => x.layerMask));
+            m_ReceiverMotionRejection = Unpack(o.Find(x => x.receiverMotionRejection));
+            m_TextureLodBias = Unpack(o.Find(x => x.textureLodBias));
+            m_RayLength = Unpack(o.Find(x => x.rayLength));
+            m_ClampValue = Unpack(o.Find(x => x.clampValue));
+            m_Mode = Unpack(o.Find(x => x.mode));
+
+            // Mixed
+            m_MaxMixedRaySteps = Unpack(o.Find(x => x.maxMixedRaySteps));
+
+            // Performance
+            m_FullResolution = Unpack(o.Find(x => x.fullResolution));
+
+            // Quality
+            m_SampleCount = Unpack(o.Find(x => x.sampleCount));
+            m_BounceCount = Unpack(o.Find(x => x.bounceCount));
+
+            // Filtering
+            m_Denoise = Unpack(o.Find(x => x.denoise));
+            m_HalfResolutionDenoiser = Unpack(o.Find(x => x.halfResolutionDenoiser));
+            m_DenoiserRadius = Unpack(o.Find(x => x.denoiserRadius));
+            m_SecondDenoiserPass = Unpack(o.Find(x => x.secondDenoiserPass));
+
+            // Filtering SS
+            m_DenoiseSS = Unpack(o.Find(x => x.denoiseSS));
+            m_HalfResolutionDenoiserSS = Unpack(o.Find(x => x.halfResolutionDenoiserSS));
+            m_DenoiserRadiusSS = Unpack(o.Find(x => x.denoiserRadiusSS));
+            m_SecondDenoiserPassSS = Unpack(o.Find(x => x.secondDenoiserPassSS));
+
+            base.OnEnable();
+        }
+
+        static public readonly GUIContent k_RayLengthText = EditorGUIUtility.TrTextContent("Max Ray Length", "Controls the maximal length of global illumination rays in meters. The higher this value is, the more expensive ray traced global illumination is.");
+        static public readonly GUIContent k_FullResolutionSSText = EditorGUIUtility.TrTextContent("Full Resolution", "Controls if the screen space global illumination should be evaluated at half resolution.");
+        static public readonly GUIContent k_DepthBufferThicknessText = EditorGUIUtility.TrTextContent("Depth Tolerance", "Controls the tolerance when comparing the depth of two pixels.");
+        static public readonly GUIContent k_RayMissFallbackHierarchyText = EditorGUIUtility.TrTextContent("Ray Miss", "Controls the fallback hierarchy for indirect diffuse in case the ray misses.");
+        static public readonly GUIContent k_LastBounceFallbackHierarchyText = EditorGUIUtility.TrTextContent("Last Bounce", "Controls the fallback hierarchy for lighting the last bounce.");
+        static public readonly GUIContent k_MaxMixedRaySteps = EditorGUIUtility.TrTextContent("Max Ray Steps", "Sets the maximum number of steps HDRP uses for mixed tracing.");
+
+        static public readonly GUIContent k_DenoiseText = EditorGUIUtility.TrTextContent("Denoise", "Denoise the screen space GI.");
+        static public readonly GUIContent k_HalfResolutionDenoiserText = EditorGUIUtility.TrTextContent("Half Resolution Denoiser", "Use a half resolution denoiser.");
+        static public readonly GUIContent k_DenoiserRadiusText = EditorGUIUtility.TrTextContent("Denoiser Radius", "Controls the radius of the GI denoiser (First Pass).");
+        static public readonly GUIContent k_SecondDenoiserPassText = EditorGUIUtility.TrTextContent("Second Denoiser Pass", "Enable second denoising pass.");
+
+        public void DenoiserGUI()
+        {
+            PropertyField(m_Denoise);
+
+            using (new IndentLevelScope())
+            {
+                PropertyField(m_HalfResolutionDenoiser);
+                PropertyField(m_DenoiserRadius);
+                PropertyField(m_SecondDenoiserPass);
+            }
+        }
+
+        public void DenoiserSSGUI()
+        {
+            PropertyField(m_DenoiseSS, k_DenoiseText);
+
+            using (new IndentLevelScope())
+            {
+                PropertyField(m_HalfResolutionDenoiserSS, k_HalfResolutionDenoiserText);
+                PropertyField(m_DenoiserRadiusSS, k_DenoiserRadiusText);
+                PropertyField(m_SecondDenoiserPassSS, k_SecondDenoiserPassText);
+            }
+        }
+
+        void RayTracingPerformanceModeGUI(bool mixed)
+        {
+            base.OnInspectorGUI(); // Quality Setting
+            using (new IndentLevelScope())
+            using (new QualityScope(this))
+            {
+                PropertyField(m_RayLength, k_RayLengthText);
+                PropertyField(m_ClampValue);
+                PropertyField(m_FullResolution);
+                if (mixed)
+                    PropertyField(m_MaxMixedRaySteps, k_MaxMixedRaySteps);
+                DenoiserGUI();
+            }
+        }
+
+        void RayTracingQualityModeGUI()
+        {
+            using (new QualityScope(this))
+            {
+                PropertyField(m_RayLength, k_RayLengthText);
+                PropertyField(m_ClampValue);
+                PropertyField(m_SampleCount);
+                PropertyField(m_BounceCount);
+                DenoiserGUI();
+            }
+        }
+
+        public override void OnInspectorGUI()
+        {
+            HDRenderPipelineAsset currentAsset = HDRenderPipeline.currentAsset;
+            if (!currentAsset?.currentPlatformRenderPipelineSettings.supportSSGI ?? false)
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.HelpBox("The current HDRP Asset does not support Screen Space Global illumination.", MessageType.Error, wide: true);
+                return;
+            }
+
+            PropertyField(m_Enable);
+            EditorGUILayout.Space();
+
+            // If ray tracing is supported display the content of the volume component
+            if (HDRenderPipeline.assetSupportsRayTracing)
+                PropertyField(m_Tracing);
+
+            // Flag to track if the ray tracing parameters were displayed
+            RayCastingMode tracingMode = m_Tracing.value.GetEnumValue<RayCastingMode>();
+            bool rayTracingSettingsDisplayed = HDRenderPipeline.assetSupportsRayTracing
+                && m_Tracing.overrideState.boolValue
+                && tracingMode != RayCastingMode.RayMarching;
+
+            using (new IndentLevelScope())
+            {
+                if (rayTracingSettingsDisplayed)
+                {
+                    if (RenderPipelineManager.currentPipeline is not HDRenderPipeline { rayTracingSupported: true })
+                        HDRenderPipelineUI.DisplayRayTracingSupportBox();
+
+                    PropertyField(m_LayerMask);
+                    PropertyField(m_TextureLodBias);
+
+                    if (showAdditionalProperties)
+                    {
+                        using (new IndentLevelScope())
+                        {
+                            EditorGUILayout.LabelField("Fallback", EditorStyles.miniLabel);
+                            PropertyField(m_RayMiss, k_RayMissFallbackHierarchyText);
+                            PropertyField(m_LastBounce, k_LastBounceFallbackHierarchyText);
+                            PropertyField(m_AmbientProbeDimmer);
+                        }
+                    }
+
+                    if (currentAsset.currentPlatformRenderPipelineSettings.supportedRayTracingMode == RenderPipelineSettings.SupportedRayTracingMode.Both)
+                    {
+                        if (tracingMode == RayCastingMode.RayTracing)
+                        {
+                            PropertyField(m_Mode);
+                            using (new IndentLevelScope())
+                            {
+                                switch (m_Mode.value.GetEnumValue<RayTracingMode>())
+                                {
+                                    case RayTracingMode.Performance:
+                                    {
+                                        RayTracingPerformanceModeGUI(false);
+                                    }
+                                    break;
+                                    case RayTracingMode.Quality:
+                                    {
+                                        RayTracingQualityModeGUI();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            RayTracingPerformanceModeGUI(true);
+                        }
+                    }
+                    else if (currentAsset.currentPlatformRenderPipelineSettings.supportedRayTracingMode == RenderPipelineSettings.SupportedRayTracingMode.Quality)
+                    {
+                        if (tracingMode == RayCastingMode.RayTracing)
+                            RayTracingQualityModeGUI();
+                        else
+                            EditorGUILayout.HelpBox("The current HDRP Asset does not support the mixed mode which is only available in performance mode.", MessageType.Error, wide: true);
+                    }
+                    else
+                    {
+                        RayTracingPerformanceModeGUI(tracingMode == RayCastingMode.Mixed);
+                    }
+                    PropertyField(m_ReceiverMotionRejection);
+                }
+                else
+                {
+                    base.OnInspectorGUI(); // Quality Setting
+
+                    using (new IndentLevelScope())
+                    using (new QualityScope(this))
+                    {
+                        PropertyField(m_RaySteps);
+                        DenoiserSSGUI();
+                    }
+                    PropertyField(m_FullResolutionSS, k_FullResolutionSSText);
+                    PropertyField(m_DepthBufferThickness, k_DepthBufferThicknessText);
+                    PropertyField(m_RayMiss, k_RayMissFallbackHierarchyText);
+                }
+            }
+        }
+
+        public override QualitySettingsBlob SaveCustomQualitySettingsAsObject(QualitySettingsBlob settings = null)
+        {
+            if (settings == null)
+                settings = new QualitySettingsBlob();
+
+            // RTGI
+            settings.Save<float>(m_RayLength);
+            settings.Save<float>(m_ClampValue);
+            settings.Save<bool>(m_FullResolution);
+            settings.Save<int>(m_MaxMixedRaySteps);
+            settings.Save<bool>(m_Denoise);
+            settings.Save<bool>(m_HalfResolutionDenoiser);
+            settings.Save<float>(m_DenoiserRadius);
+            settings.Save<bool>(m_SecondDenoiserPass);
+
+            // SSGI
+            settings.Save<int>(m_RaySteps);
+            settings.Save<bool>(m_DenoiseSS);
+            settings.Save<bool>(m_HalfResolutionDenoiserSS);
+            settings.Save<float>(m_DenoiserRadiusSS);
+            settings.Save<bool>(m_SecondDenoiserPassSS);
+
+            return settings;
+        }
+
+        public override void LoadSettingsFromObject(QualitySettingsBlob settings)
+        {
+            if (HDRenderPipeline.assetSupportsRayTracing && m_Tracing.overrideState.boolValue &&
+                m_Tracing.value.GetEnumValue<RayCastingMode>() != RayCastingMode.RayMarching)
+            {
+                // RTGI
+                settings.TryLoad<float>(ref m_RayLength);
+                settings.TryLoad<float>(ref m_ClampValue);
+                settings.TryLoad<bool>(ref m_FullResolution);
+                settings.TryLoad<int>(ref m_MaxMixedRaySteps);
+                settings.TryLoad<bool>(ref m_Denoise);
+                settings.TryLoad<bool>(ref m_HalfResolutionDenoiser);
+                settings.TryLoad<float>(ref m_DenoiserRadius);
+                settings.TryLoad<bool>(ref m_SecondDenoiserPass);
+            }
+            else
+            {
+                // SSGI
+                settings.TryLoad<int>(ref m_RaySteps);
+                settings.TryLoad<bool>(ref m_DenoiseSS);
+                settings.TryLoad<bool>(ref m_HalfResolutionDenoiserSS);
+                settings.TryLoad<float>(ref m_DenoiserRadiusSS);
+                settings.TryLoad<bool>(ref m_SecondDenoiserPassSS);
+            }
+        }
+
+        public override void LoadSettingsFromQualityPreset(RenderPipelineSettings settings, int level)
+        {
+            if (HDRenderPipeline.assetSupportsRayTracing && m_Tracing.overrideState.boolValue &&
+                m_Tracing.value.GetEnumValue<RayCastingMode>() != RayCastingMode.RayMarching)
+            {
+                // RTGI
+                CopySetting(ref m_RayLength, settings.lightingQualitySettings.RTGIRayLength[level]);
+                CopySetting(ref m_ClampValue, settings.lightingQualitySettings.RTGIClampValue[level]);
+                CopySetting(ref m_FullResolution, settings.lightingQualitySettings.RTGIFullResolution[level]);
+                CopySetting(ref m_MaxMixedRaySteps, settings.lightingQualitySettings.RTGIRaySteps[level]);
+                CopySetting(ref m_Denoise, settings.lightingQualitySettings.RTGIDenoise[level]);
+                CopySetting(ref m_HalfResolutionDenoiser, settings.lightingQualitySettings.RTGIHalfResDenoise[level]);
+                CopySetting(ref m_DenoiserRadius, settings.lightingQualitySettings.RTGIDenoiserRadius[level]);
+                CopySetting(ref m_SecondDenoiserPass, settings.lightingQualitySettings.RTGISecondDenoise[level]);
+            }
+            else
+            {
+                // SSGI
+                CopySetting(ref m_RaySteps, settings.lightingQualitySettings.SSGIRaySteps[level]);
+                CopySetting(ref m_DenoiseSS, settings.lightingQualitySettings.SSGIDenoise[level]);
+                CopySetting(ref m_HalfResolutionDenoiserSS, settings.lightingQualitySettings.SSGIHalfResDenoise[level]);
+                CopySetting(ref m_DenoiserRadiusSS, settings.lightingQualitySettings.SSGIDenoiserRadius[level]);
+                CopySetting(ref m_SecondDenoiserPassSS, settings.lightingQualitySettings.SSGISecondDenoise[level]);
+            }
+        }
+
+        public override bool QualityEnabled()
+        {
+            // Quality always used for SSGI
+            if (!HDRenderPipeline.assetSupportsRayTracing || m_Tracing.value.GetEnumValue<RayCastingMode>() == RayCastingMode.RayMarching)
+                return true;
+
+            // Handle the quality usage for RTGI
+            HDRenderPipelineAsset currentAsset = HDRenderPipeline.currentAsset;
+
+            // Define if the asset supports Peformance or Both Mode (Quality && Performance)
+            bool assetSupportsPerf = currentAsset.currentPlatformRenderPipelineSettings.supportedRayTracingMode == RenderPipelineSettings.SupportedRayTracingMode.Performance;
+            bool assetSupportsBoth = currentAsset.currentPlatformRenderPipelineSettings.supportedRayTracingMode == RenderPipelineSettings.SupportedRayTracingMode.Both;
+
+            // Define if the volume is in Peformance or Mixed Mode
+            bool volumeIsInPerfOrMixed = (m_Tracing.value.GetEnumValue<RayCastingMode>() == RayCastingMode.RayTracing && m_Mode.value.GetEnumValue<RayTracingMode>() == RayTracingMode.Performance)
+                || (m_Tracing.value.GetEnumValue<RayCastingMode>() == RayCastingMode.Mixed);
+
+            return (assetSupportsBoth && volumeIsInPerfOrMixed) || (assetSupportsPerf && m_Tracing.value.GetEnumValue<RayCastingMode>() != RayCastingMode.RayMarching);
+        }
+    }
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      fileFormatVersion: 2
+guid: aa0197e8182e0924897ca6c14966b2d0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: No Name
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Circle
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 INDX( 	 4Œ¿           (   È  è         Ù   a             ·¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù @      1              C y l i n d e r . f b x       ¸¹    x d     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       /	              C y l i n d e r . f b x . m e t a     ¸¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       /	              C Y L I N D ~ 1 . M E T       ¹¹    h R     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù °      à¥              D i s c . f b x      º¹    p \     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       ÿ              D i s c . f b x . m e t a     º¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       ÿ              D I S C F B ~ 1 . M E T       »¹    x d     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù à      °Ø              H u m a n E y e M o d e l . f b x     ¼¹    € n     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       9
+              H u m a n E y e M o d e l . f b x . m e t a   »¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚j ©:ãÊ°Ù†Pd+Å°Ù à      °Ø              H U M A N E ~ 1 . F B X       ¼¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       9
+              H U M A N E ~ 1 . M E T       ½¹    € j     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù `      ^              P r o b e D e b u g S p h e r e . f b x       ¾¹   	 ˆ t     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       ‚
+              P r o b e D e b u g S p h e r e . f b x . m e t a     ½¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù `     ^              P R O B E D ~ 1 . F B X       ¾¹   	 p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       ‚
+              P R O B E D ~ 1 . M E T       ¿¹    h R     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù @      ?              Q u a d . f b x       À¹    p \     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       	              Q u a d . f b x . m e t a     À¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù†Pd+Å°Ù       	              Q U A D F B ~ 1 . M E T       Á¹    h V     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù—²f+Å°Ù Ğ      °É              
+S p h e r e . f b x   Â¹    p `     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù—²f+Å°Ù       ÿ              S p h e r e . f b x . m e t a Â¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ù—²f+Å°Ù       ÿ              S P H E R E ~ 1 . M E T       Ã¹    p \     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùş'|+Å°Ù       ğ‘             U n i t y B a l l . f b x     Ä¹    x f     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùş'|+Å°Ù                     U n i t y B  l l . f b x . m e t a   Å¹    x f     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùä‰~+Å°Ù €     w             U n i t y B a l l _ B a s e . f b x  Æ¹    € p     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùä‰~+Å°Ù                      U n i t y B a l l _ B a s e . f b x . m e t a Ã¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùş'|+Å°Ù       ğ‘             U N I T Y B ~ 1 . F B X       Ä¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùş'|+Å°Ù                     U N I T Y B ~ 1 . M E T       Å¹    p Z    ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùä‰~+Å°Ù €     w             U N I T Y B ~ 2 . F B X       Æ¹    p Z     ¶¹     Ë¶‚jÙ Ë¶‚jÙ©:ãÊ°Ùä‰~+Å°Ù                      U N I T Y B ~ 2 . M E T                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Kaydara FBX Binary    è  ~          FBXHeaderExtension\         FBXHeaderVersionIë  x         
+FBXVersionIè  ˜         EncryptionTypeI              CreationTimeStampÏ         VersionIè  å         YearIä  ü         MonthI           DayI   '        HourI   ?        MinuteI9   W        SecondI$   t        MillisecondI¸                ¼     '   CreatorS"   FBX SDK/FBX Plugins version 2019.2q     '   	SceneInfoS   GlobalInfo SceneInfoS   UserData        TypeS   UserData0        VersionId              MetaData^        VersionId   u        TitleS            SubjectS    ¦        AuthorS    À        KeywordsS    Ú        RevisionS    ó        CommentS                 d          Properties70Œ     e   PS   DocumentUrlS   KStringS   UrlS    S7   D:\Unity Projects\EyeTemplateScene\Assets\Model\Eye.fbx     h   PS   SrcDocumentUrlS   KStringS   UrlS    S7   D:\Unity Projects\EyeTemplateScene\Assets\Model\Eye.fbx4     $   PS   OriginalS   CompoundS    S    „     B   PS   Original|ApplicationVendorS   KStringS    S    S   AutodeskÑ     ?   PS   Original|ApplicationNameS   KStringS    S    S   3ds Max     ?   PS   Original|ApplicationVersionS   KStringS    S    S   2020y     M   PS   Original|DateTime_GMTS   DateTimeS    S    S   07/04/2020 14:57:36.181ï     h   PS   Original|FileNameS   KStringS    S    S7   D:\Unity Projects\EyeTemplateScene\Assets\Model\Eye.fbx"     %   PS	   LastSavedS   CompoundS    S    s     C   PS   LastSaved|ApplicationVendorS   KStringS    S    S   AutodeskÁ     @   PS   LastSaved|ApplicationNameS   KStringS    S    S   3ds Max     @   PS   LastSaved|ApplicationVersionS   KStringS    S    S   2020k     N   PS   LastSaved|DateTime_GMTS   DateTimeS    S    S   07/04/2020 14:57:36.181ß     f   PS!   Original|ApplicationActiveProjectS   KStringS    S    S%   C:\Users\sebas\Documents\3ds Max 2020W     j   PS   Original|ApplicationNativeFileS   KStringS    S    S,   D:\Work\Eyes\3dsMax\HumanEyeModelRescale.max                                       ¦        FileIdR   +¶/ë¶"ÊÂ¾Áº)¯-ÿõÛ        CreationTimeS   2020-04-07 16:57:36:184&	     7   CreatorS2   FBX SDK/FBX Plugins version 2019.2 build=71e69bd5d‹          GlobalSettingsZ	        VersionIè  ~          Properties70ª	     )   PS   UpAxisS   intS   IntegerS    I   å	     -   PS
+   UpAxisSignS   intS   IntegerS    I   
+     ,   PS	   FrontAxisS   intS   IntegerS    I   ]
+     0   PS   FrontAxisSignS   intS   IntegerS    I   —
+     ,   PS	   CoordAxisS   intS   IntegerS    I    Õ
+     0   PS   CoordAxisSignS   intS   IntegerS    I        1   PS   OriginalUpAxisS   intS   IntegerS    I   W     5   PS   OriginalUpAxisSignS   intS   IntegerS    I        8   PS   UnitScaleFactorS   doubleS   NumberS    D      ğ?ë     @   PS   OriginalUnitScaleFactorS   doubleS   NumberS    D      ğ?A     H   PS   AmbientColorS   ColorRGBS   ColorS    D        D        D             A   PS   DefaultCameraS   KStringS    S    S   Producer PerspectiveÃ     %   PS   TimeModeS   enumS    S    I   ú     )   PS   TimeProtocolS   enumS    S    I   4     ,   PS   SnapOnFrameModeS   enumS    S    I    u     3   PS   TimeSpanStartS   KTimeS   TimeS    L        µ     2   PS   TimeSpanStopS   KTimeS   TimeS    L y]Ø#   û     8   PS   CustomFrameRateS   doubleS   NumberS    D      ğ¿/     &   PS
+   TimeMarkerS   CompoundS    S    q     4   PS   CurrentTimeMarkerS   intS   IntegerS    Iÿÿÿÿ                          ¸          	Documents¸        CountI   «        DocumentLğ·T  S    S   Scene€          Properties702     &   PS   SourceObjectS   objectS    S    s     3   PS   ActiveAnimStackNameS   KStringS    S    S                      	   RootNodeL                                  Ü          
+References             '=          Definitions        VersionId   $        CountI   r        
+ObjectTypeS   GlobalSettingse        CountI                X        
+ObjectTypeS   AnimationStack³        CountI   K        PropertyTemplateS   FbxAnimStack>          Properties703     +   PS   DescriptionS   KStringS    S    S    q     0   PS
+   LocalStartS   KTimeS   TimeS    L        ®     /   PS	   LocalStopS   KTimeS   TimeS    L        ğ     4   PS   ReferenceStartS   KTimeS   TimeS    L        1     3   PS   ReferenceStopS   KTimeS   TimeS    L                                                       
+ObjectTypeS   AnimationLayer™        CountI           PropertyTemplateS   FbxAnimLayerû          Properties70     *   PS   WeightS   NumberS    S   AD      Y@G     !   PS   MuteS   boolS    S    I    v     !   PS   SoloS   boolS    S    I    ¥     !   PS   LockS   boolS    S    I    ô     A   PS   ColorS   ColorRGBS   ColorS    Dš™™™™™é?Dš™™™™™é?Dš™™™™™é?(     &   PS	   BlendModeS   enumS    S    I    k     5   PS   RotationAccumulationModeS   enumS    S    I    «     2   PS   ScaleAccumulationModeS   enumS    S    I    î     5   PS   BlendModeBypassS	   ULongLongS    S    L                                               ¸(     
+   
+ObjectTypeS   ModelM        CountI   «(        PropertyTemplateS   FbxNode(          Properties70Ï     2   PS   QuaternionInterpolateS   enumS    S    I    (     K   PS   RotationOffsetS   Vector3DS   VectorS    D        D        D        €     J   PS   RotationPivotS   Vector3DS   VectorS    D        D        D        Ø     J   PS   ScalingOffsetS   Vector3DS   VectorS    D        D        D        /     I   PS   ScalingPivotS   Vector3DS   VectorS    D        D        D        k     .   PS   TranslationActiveS   boolS    S    I    Ä     K   PS   TranslationMinS   Vector3DS   VectorS    D        D        D             K   PS   TranslationMaxS   Vector3DS   VectorS    D        D        D        W     ,   PS   TranslationMinXS   boolS    S    I    ‘     ,   PS   TranslationMinYS   boolS    S    I    Ë     ,   PS   TranslationMinZS   boolS    S    I         ,   PS   TranslationMaxXS   boolS    S    I    ?     ,   PS   TranslationMaxYS   boolS    S    I    y     ,   PS   TranslationMaxZS   boolS    S    I    ±     *   PS   RotationOrderS   enumS    S    I    õ     6   PS   RotationSpaceForLimitOnlyS   boolS    S    I    >     ;   PS   RotationStiffnessXS   doubleS   NumberS    D        ‡     ;   PS   RotationStiffnessYS   doubleS   NumberS    D        Ğ     ;   PS   RotationStiffnessZS   doubleS   NumberS    D             0   PS   AxisLenS   doubleS   NumberS    D      $@d     H   PS   PreRotationS   Vector3DS   VectorS    D        D        D        »     I   PS   PostRotationS   Vector3DS   VectorS    D        D        D        ô     +   PS   RotationActiveS   boolS    S    I    J     H   PS   RotationMinS   Vector3DS   VectorS    D        D        D              H   PS   RotationMaxS   Vector3DS   VectorS    D        D        D        ×     )   PS   RotationMinXS   boolS    S    I         )   PS   RotationMinYS   boolS    S    I    E     )   PS   RotationMinZS   boolS    S    I    |     )   PS   RotationMaxXS   boolS    S    I    ³     )   PS   RotationMaxYS   boolS    S    I    ê     )   PS   RotationMaxZS   boolS    S    I          (   PS   InheritTypeS   enumS    S    I    X     *   PS   ScalingActiveS   boolS    S    I    ­     G   PS
+   ScalingMinS   Vector3DS   VectorS    D        D        D             G   PS
+   ScalingMaxS   Vector3DS   VectorS    D      ğ?D      ğ?D      ğ?8     (   PS   ScalingMinXS   boolS    S    I    n     (   PS   ScalingMinYS   boolS    S    I    ¤     (   PS   ScalingMinZS   boolS    S    I    Ú     (   PS   ScalingMaxXS   boolS    S    I          (   PS   ScalingMaxYS   boolS    S    I    F      (   PS   ScalingMaxZS   boolS    S    I    ¥      Q   PS   GeometricTranslationS   Vector3DS   VectorS    D        D        D        !     N   PS   GeometricRotationS   Vector3DS   VectorS    D        D        D        \!     M   PS   GeometricScalingS   Vector3DS   VectorS    D      ğ?D      ğ?D      ğ? !     6   PS   MinDampRangeXS   doubleS   NumberS    D        ä!     6   PS   MinDampRangeYS   doubleS   NumberS    D        ("     6   PS   MinDampRangeZS   doubleS   NumberS    D        l"     6   PS   MaxDampRangeXS   doubleS   NumberS    D        °"     6   PS   MaxDampRangeYS   doubleS   NumberS    D        ô"     6   PS   MaxDampRangeZS   doubleS   NumberS    D        ;#     9   PS   MinDampStrengthXS   doubleS   NumberS    D        ‚#     9   PS   MinDampStrengthYS   doubleS   NumberS    D        É#     9   PS   MinDampStrengthZS   doubleS   NumberS    D        $     9   PS   MaxDampStrengthXS   doubleS   NumberS    D        W$     9   PS   MaxDampStrengthYS   doubleS   NumberS    D        $     9   PS   MaxDampStrengthZS   doubleS   NumberS    D        ã$     7   PS   PreferedAngleXS   doubleS   NumberS    D        (%     7   PS   PreferedAngleYS   doubleS   NumberS    D        m%     7   PS   PreferedAngleZS   doubleS   NumberS    D        £%     (   PS   LookAtPropertyS   objectS    S    Û%     *   PS   UpVectorPropertyS   objectS    S    
+&     !   PS   ShowS   boolS    S    I   P&     8   PS   NegativePercentShapeSupportS   boolS    S    I   –&     8   PS   DefaultAttributeIndexS   intS   IntegerS    IÿÿÿÿÇ&     #   PS   FreezeS   boolS    S    I    ø&     #   PS   LODBoxS   boolS    S    I    T'     N   PS   Lcl TranslationS   Lcl TranslationS    S   AD        D        D        ª'     H   PS   Lcl RotationS   Lcl RotationS    S   AD        D        D        ş'     F   PS   Lcl ScalingS   Lcl ScalingS    S   AD      ğ?D      ğ?D      ğ?>(     2   PS
+   VisibilityS
+   VisibilityS    S   AD      ğ?‘(     E   PS   Visibility InheritanceS   Visibility InheritanceS    S    I                                          ş*        
+ObjectTypeS   Geometryó(        CountI   ñ*        PropertyTemplateS   FbxMeshä*          Properties70„)     A   PS   ColorS   ColorRGBS   ColorS    Dš™™™™™é?Dš™™™™™é?Dš™™™™™é?Ö)     D   PS   BBoxMinS   Vector3DS   VectorS    D        D        D        (*     D   PS   BBoxMaxS   Vector3DS   VectorS    D        D        D        e*     /   PS   Primary VisibilityS   boolS    S    I   *     *   PS   Casts ShadowsS   boolS    S    I   ×*     ,   PS   Receive ShadowsS   boolS    S    I                                           2        
+ObjectTypeS   Material9+        CountI   ó1        PropertyTemplateS   FbxSurfacePhongæ1          Properties70Â+     1   PS   ShadingModelS   KStringS    S    S   Phong÷+     '   PS
+   MultiLayerS   boolS    S    I    G,     B   PS   EmissiveColorS   ColorS    S   AD        D        D        ‡,     2   PS   EmissiveFactorS   NumberS    S   AD      ğ?Ö,     A   PS   AmbientColorS   ColorS    S   ADš™™™™™É?Dš™™™™™É?Dš™™™™™É?-     1   PS   AmbientFactorS   NumberS    S   AD      ğ?d-     A   PS   DiffuseColorS   ColorS    S   ADš™™™™™é?Dš™™™™™é?Dš™™™™™é?£-     1   PS   DiffuseFactorS   NumberS    S   AD      ğ?ò-     A   PS   BumpS   Vector3DS   VectorS    D        D        D        F.     F   PS	   NormalMapS   Vector3DS   VectorS    D        D        D        ‡.     3   PS
+   BumpFactorS   doubleS   NumberS    D      ğ?Ú.     E   PS   TransparentColorS   ColorS    S   AD        D        D        /     6   PS   TransparencyFactorS   NumberS    S   AD        y/     M   PS   DisplacementColorS   ColorRGBS   ColorS    D        D        D        Â/     ;   PS   DisplacementFactorS   doubleS   NumberS    D      ğ?#0     S   PS   VectorDisplacementColorS   ColorRGBS   ColorS    D        D        D        r0     A   PS   VectorDisplacementFactorS   doubleS   NumberS    D      ğ?Â0     B   PS   SpecularColorS   ColorS    S   ADš™™™™™É?Dš™™™™™É?Dš™™™™™É?1     2   PS   SpecularFactorS   NumberS    S   AD      ğ?E1     5   PS   ShininessExponentS   NumberS    S   AD      4@—1     D   PS   ReflectionColorS   ColorS    S   AD        D        D        Ù1     4   PS   ReflectionFactorS   NumberS    S   AD      ğ?                                       ¼6        
+ObjectTypeS   Texture:2        CountI   ¯6        PropertyTemplateS   FbxFileTexture¢6          Properties70¼2     +   PS   TextureTypeUseS   enumS    S    I    û2     1   PS   Texture alphaS   NumberS    S   AD      ğ?83     /   PS   CurrentMappingTypeS   enumS    S    I    l3     &   PS	   WrapModeUS   enumS    S    I     3     &   PS	   WrapModeVS   enumS    S    I    Ñ3     #   PS   UVSwapS   boolS    S    I    4     -   PS   PremultiplyAlphaS   boolS    S    I   [4     A   PS   TranslationS   VectorS    S   AD        D        D        §4     >   PS   RotationS   VectorS    S   AD        D        D        ò4     =   PS   ScalingS   VectorS    S   AD      ğ?D      ğ?D      ğ?Q5     Q   PS   TextureRotationPivotS   Vector3DS   VectorS    D        D        D        ¯5     P   PS   TextureScalingPivotS   Vector3DS   VectorS    D        D        D        ñ5     4   PS   CurrentTextureBlendModeS   enumS    S    I   +6     ,   PS   UVSetS   KStringS    S    S   defaulta6     (   PS   UseMaterialS   boolS    S    I    •6     &   PS	   UseMipMapS   boolS    S    I                                           
+7        
+ObjectTypeS   AnimationCurveı6        CountI                ì7        
+ObjectTypeS   AnimationCurveNodeO7        CountI   ß7        PropertyTemplateS   FbxAnimCurveNodeÒ7          Properties70Å7        PS   dS   CompoundS    S                                           =     
+   
+ObjectTypeS   Video$8        CountI   =        PropertyTemplateS   FbxVideo =          Properties70 8     +   PS   PathS   KStringS   XRefUrlS    S    Ü8     .   PS   RelPathS   KStringS   XRefUrlS    S    +9     A   PS   ColorS   ColorRGBS   ColorS    Dš™™™™™é?Dš™™™™™é?Dš™™™™™é?e9     ,   PS   ClipInS   KTimeS   TimeS    L         9     -   PS   ClipOutS   KTimeS   TimeS    L        Ú9     ,   PS   OffsetS   KTimeS   TimeS    L        :     2   PS	   PlaySpeedS   doubleS   NumberS    D        P:     (   PS   FreeRunningS   boolS    S    I    :     !   PS   LoopS   boolS    S    I    ®:     !   PS   MuteS   boolS    S    I    ã:     '   PS
+   AccessModeS   enumS    S    I    ;     *   PS   ImageSequenceS   boolS    S    I    _;     6   PS   ImageSequenceOffsetS   intS   IntegerS    I    Ÿ;     2   PS	   FrameRateS   doubleS   NumberS    D        Ù;     ,   PS	   LastFrameS   intS   IntegerS    I    <     (   PS   WidthS   intS   IntegerS    I    F<     )   PS   HeightS   intS   IntegerS    I    <     -   PS
+   StartFrameS   intS   IntegerS    I    »<     ,   PS	   StopFrameS   intS   IntegerS    I    ó<     *   PS   InterlaceModeS   enumS    S    I                                                        Õ          Objects›À     !   GeometryL W­ÛT  S
+    GeometryS   Meshæ=          Properties70Ù=     A   PS   ColorS   ColorRGBS   ColorS    Dòñññññá?D<<<<<<ì?DÖÕÕÕÕÕÕ?             „T     ‰  Verticesdæ     |  xe›{ü—E•ÇEA4QYp@‹ÈM!QÀ®/µAÑRCMm2×ìBÒe—Ñò¾©™µe¥“Z›EÚ–’ÊxOSC¥ÕpÏ™s>ßçÙ¿¾¯çı=ß3ŸÏyÎ3ÏÌüÀ/û7÷cìŒ‘ÿ˜FŸé’}§:útßYÑ'Ñ'¸[uéæ~d×¡5÷=4™¹ÙûGcj÷é2‰y¼éè	ÌÃLÉŸo<zóÔ³Ë¤šû÷ühLáŸ}hrÍãˆ®C™‡Õ—Nan> yÌ5+ú8¾şÜ¾S*·_şwöãZñöZñ“IoŸG‰£z'ì#~"émÄß,×y/ù>|XôØ}ÅO.ùÀÓÅêg­Œn¯?ö°óŞ™JzÁƒú±ß®~Ü­ÆÕzeÒëª<ğãn‘zÃ—ÒËñàVıxÒ[ó4Tü$¿ænµø‰—J¿ Oœ{GWî#¯ı¯?ùBÉ~HcÕÏŞ¢<ö?ñzÑÔOì!ß£?s/í·Á’Ü¨w¥ŒnÕ;éª‡¹_ÒA°¿ü£¹ï/Ÿ¯ßĞ/Ñ5¸=£‹ğ.¬¹ëç(ÎöX4¾æîc+ËsN³ô9ò¤…o–ºÛ¯,}­Œ÷X4ódÊÇyÀ­9p$óDã3%Ş¼rC?æşÇsÜŸ·Çvö[ñn‡ø‰šßÒq»ŠÖ›8øâ'’ŞšçErmHoÍİ'ÔÏÎ¾¥>Èãw¨Ÿ-2>xV}±ÿÚ.¥_t\øIo«?åAãóîRäáú³¸—Ô<(zÂb©w‡/ı‘ô:úxê&~é­¹yGüpı™£şéyñc©ş5÷GÛ“ıØV|~Wüä7%?îoê.~ì	¢<¼Gü˜ÓD?úÇ¡ı³»|ÕOØÑWúEû™ëÏúì“2>â;~f^ñûÒ/|ù0‹÷mŸQâÏ;Ù&¾Vî¿ÿ•ÂÓ.=Ê<o>$ñ~á¼£9>™Ù9<^·lº£Kÿòu2ok¼Ûrİæö»Ë¦'úÌÊ-ı¹9}ŞÑ‰>Às—e^³·}eó ññS'[G×æşí…#Ş\Õ³ô&½‰¾öé3ê‡ôÖÜu?ôÖ<í"~X/ó¤yòV¹ïÎ*~ÁüÉîÕ?[Æw=Nıä‰Ê|‰x«~Ü…âñIı„İ¤ˆwê'î*õ·ğ³Mêî^ı™ô:òåÕ—Û)~Xoƒ¿»‡¼×IoÍí2ñ“µ_Pÿ|×á=Ëó¬ı‚ûe.?iäG|Ú]üøkExì*~Ü‹¢ß ^‘k÷Î,éåæ{òûğÏ=J¿ >¨Ÿ¼XÆG?s?±ŸôÀ¿oäşw§.-ù‚™=³ğŸ:(Õü3:¶ğ“ÛàÓ¾psó…Í“\ŸÓk…cî‘¿ç
+çè:ë}Êãe›å½à¾pÇƒç9Œåx³âOÇ&úˆïï>t£kÓeöÌDI¹yõĞÒÿˆÏ÷^ñI/Ç/~ı<ñÃÏqÍÍÕéen5>«ŸğyùœëÌqñ$ÉîÕOüO­§æqêÇmùúîÜ/N9ü„ûÄx¦úsş<_êüNı¸/iı4÷ÇÛ}¥ŞˆûˆŸ¤}aàësâ'^G¿ëğ«ÒËõÌ??4ïI¿à¾|õŠ}Kÿk¿à~™â'N•üñ§êıÕç<¬?qoÑï5>ÁÏ¥ò½Snésu¢äÏêÇİ®õÔx®?û±‹†üû?İğùÒ—iÄOfşşãN«§Oyy\ƒã¹øìŠ²®F¨Ï¾ã"™ç5 ë’óŸrK¿g¾ÈÊWâ¯:+Ñ÷æFÕ9í¸ƒ?ô'î×]\Öÿ¦?Cü ¬æ±^üğûóƒ‡KÄQıàñâÇ\$ßƒ'õæI>§ù½öy8JÆwª/İÚµ{é7êÇÎˆTÖ—?)õ wx..•úYÍ“ÿCü˜;µŞÊİíªÿv™ÿï/?}ø“ÕéuU}üû´Ú/FãÃaû?Ú/àöƒâ'¯ÏúmŞ_ÒËùqßC?ş6ÑÕûŒ|~óêÇŸ$ùÀÍ:o®ãë¸^ı¤¿_úß½z_yîãàñ³‹Ï.·–şÇs‘§wx"àQŸÿ|T—£jğ^<ù‘ÒÿxºæüX·€ú=s«ó¹W=–Æ+\ûÜ¼{KéÿLzı.h¼¹©ëëü<gº/5»ŠÖË<j¼;Züğº¯æaªø±ª?i|˜«~&Ë÷àI×-~šä÷ê'¼}‹Ì'šÇ«Ÿ0î²ÒÿˆOêÇw»µøêÇ#õ ·êÇ9©xş¥ø±ó¤Şànè·È:7Â×$õCz]U?Eü°^æAãÍ[âıoÚuÿ2ÿësá‘Oõóî¬’ÜÎ?ôr~§ñyºøñ'‰şW?n¢|Õ›¬ù4ÛEü„×¥_?˜ÿıààñÑçVçğöüßá­ùœ×ßœó@şÖüZóÔxÛšÿÁ“çÙjÛO§¿qÿcşOšÇµæÿ¬œ6(å}†ùÜ¶æpßšÿÁCkş7C¤íù¼=ÿƒõƒù¼=ÿƒ·çèI­ùÜ¶æpÓšÿÁmkşOZ·<ñ¸ò<ó<Ã÷9*÷Sö)ıï°^P[ó?âÍÂæü¿5ÿwxkş÷ÈßšÿÁÛó?xgşÇúİ~eõÖÿÊyİP¾×õ¿WÎëiæXÿwx{ıü­õ?âskıh¼’ëÍã~vè Â1¿BÏŞRú¿ïi®ÿƒÆç¹Íõ?x¼¼¹şïğÖú?BOkıßá­õ?8ÖaXÿƒãı„õ?xÀ:G×ÿà¶µş­õP¡µşïğÖú¿Ã[ëpÓZÿƒ§Ûf—õ×~Ï­õ¿Gı[ëğÔ^ÿ#¾µşG¼o­ÿÁÿßúuĞu^ĞóóÖYÇ—~¢÷8Z=ÿO:ŸwÎ4>iŸÓs#ç?Èƒóœÿ(·t]òëyI'ëü<ÒyS‰×ù<ºyşc5è·åÙ²şÁz^¹?¿yşƒø¸kóüÜ¶ÎÀ]ëü§Ã[ç?àFŸœÿt8ö?zşÎç)‰êóp¼ŸpşntßóğDç)œÇëù¸ÿkóü<ş³yşÓá;›ç?àæÌæù¸[s·ìµ_êIóü<tkÿ€»İZç?š'·Ï¿}şƒxİçãüù#ÕßQ}Â'—óÿÜë’ù:éú<®ŞøŞD×uKšyhÍ³ÎçiéÃe_€xô9­Ï'5âéÚQ^œ‹">Óï™[_ÁÇë(³¯èÌ_ßøŞÂu}îÇ]÷xéİ·vøõ£ç9àö—â'é9'¸?SüÕ‡ˆŸ°D¿‡}ÎóÏ%âá'\)ãƒ'Õçì^Îÿ;\ıäo‰?p¯ñé©¸ƒŸ³¤~®çœé©7¸$ú#=Ç\?ğ°XüªÍÓOô~ëıïÄ_&~Ğ/àfÆ§Êù§kÇ_'~,ŞÿÚoş!ñè¹äqqßÓrñŠ~p;L®Ó"ù<és¬ı¢ù¾/Ü%Ú/Ê­cy<÷ğòò÷_wãa/ãcúÍMû'ş^yÒõ¹é{öš;:÷äß…nF×œö±å<5ês<ès:ç+ï¯ùm÷£9çã<àù_ÎÂœÇ¯¹Y·iæØw#>­=äWÜÿ¾ŸÔO¢uVÇ«¯ï/äñ¤‡ãŒê¨^§İä{pøqH}À­úÉ«¥àNõ™ë>ö?Si˜×s»^ü=orı¤àIÏaÍR?p£Ÿ°Ë´T¿?CúœßoÆõÊİ.ê—Ö}57½Å¹XÏc4>}Yıh¿ O¼ {ùûW&½u|½ø‰¤·æá ½¿ô÷‡š›½Å!½Ìôësî»h¿(·ú÷ßKò!>©{…ŒßáêÇ¤£ä~‰}Îş“pŞâŞ»wªxĞ}hº²Íéù/ësO}Úàºn	÷êüªùÎçAÿ–”ósåh<^ïsp?leæç®H_áz…øxz¯r?¹V¼›&~l+P?¶¥'¨OS?ü¸>âã:ı½,õÇx~¢ŒçË¾;¥Ë^c½àÉéyË,ñî5ŞŒ”z€[úûH¢ßÇµ´>YÿçèıæªüVßOÖ}5÷û‰Ÿ¬÷ùı ñÃõ¯ãã¡ZOíÄÛ«lù{^$½u¼?Aï—ş=ñn¬øa½u¼í¯ığ³¦şx¿\ÒËñ}EÇäk×_òGÚß1÷Ãd|p{ªèËı~u?÷è>á$³FÎ©â”;wŞ[óézŞ2U|#>ë>Ô]£óæñçÊzÏÓ:%Uyü*y%Z¿×Üé|(_ÍÑç‘Î{|ú;§QŞHç 57¿~øQî'ßŠwÅmåw“Åoé±ßĞ÷ß×šúóWå:¯múÍô÷hÖlÖ‡ÿNÇ<oÖ“ÎI‹îø×{6³^ÔÓî?~†øÏS5~ºÜGpÿSı;ê§õçˆ§õîÄYô[½?àï'½ŸàfœøÁyx:Xüà<.zrG©¿ş}Ü~LüdÒë*¿y¶øÉ¤·æá;2_{Ò[óLëX¾N«ôı¨~íW™GÒËŸ×üBÆc½Ü/à4Ï—óåhF$îÿøÔŠÒÿáÊÿÉ¬ßŒÿÇyÌÍ¹éi~ü„sä}Ö×”y<~qNyŸ™•s&%Š‹%>ô12ŸO}éÈš›O/)ëªğ¥f¼í§yÏÜxDïŸ¿x_§äû8_òÛ+ä÷~‘äÓd¼tî’²>wÊ]ÑUGŞ¼¨¼gÁÓ‹/:–m<ÂÑøğå7‹Cùjnª¯#¤Nˆ7ßx©¬ïÓ”f|<_ôù%­ü/^<ŠóŸ?ÍEZÿ,×öIùõ÷ªÏï'¾Ï÷ƒÿ{M¹¿ö¹óÊ}Ë»üß×´xÇ}üiŞ<8q\\úÊß0ê¾ßànîú]»s7tMÏ[{÷eÇ/ëÄ‡WÀÜ{lïDŸàiİØŞÌİoVPs?rxé×ô·Ş}kn—oèZâOY`ÍÍ·G½1ÍPşg—yùÃÜïË¹Çüf|¼Mü¸Vş¸Bü¤_7õ¤	â'~«©ßÿ›\ûÑM¿ş·òûxN³>á5ñãb³éTÑgzO-ó4ô§çÄO¼Yü[÷çK=Àİ«’?“ú­o¢úsıÀ³úáïknÆˆŸ@õ©¹û”ø	TÏš›kµÏH¿ ¼uÒïyŞóšñá&ñã¶5ó‡óôşj¿ O¢~âñâ5Mı~†·üÒıãø¼´UŸWt¼«[õ„¾MCÊ>)˜&oŞúœ'jŸƒ›3ú¦ûı8<¯^7Œãİ×ô¯¹y`Ğ!ÌíØGË{ñfÌ£ƒ˜»_:$Ñ'¸}dMG×fÍºa‰>ÀóT¿Ÿ£k¿¤ßˆš»³Äg¿¾ÁC÷›_,Ïs+>_ ÷1^İÌg¨Ò[ç?ôÖ<“ë@zk6Èïİ´f}ìZ/’Ş:Ş.?9<û÷ü†SÔéu5W?ôÖ<«OzkÕ'½5wêÇ‘Şšç?¨_ªÍ=Õ?º_4~Íã™ç¢ÁİÁîöãÑ/ÚWş"ísíøµÇˆsSOR?~TS?ü˜ß5ıfê'ÖglÖÇÂÏiÍzfÕç¿6¸ìûÜ›£Ë¼›FŸ ï?ÏÁ£İ^Öñèsğü­Me]w»°¼WÀÃÙ½Æ”z}òÄrN¶KşèO,ûsN¯òïéÀ]×Ë:Á{SÙÇt8İÎãn—èÜçß9¡¼Ÿ;|—§Êß}l+>O”ùÍ´ò›Çä¾GÒ[ç÷İÄO"½¾@®-éeÿ®¾ÔOÜ¨ù”g/Ó÷	âUŸ›üµ²ïC ~â$ÿ4Şi|&½®~2é­¹ƒÒËõÉ§ŠşDzkîw?¬·æ™ú,ñïiüš‡Áúş#½5O}~øîôÆSÄÓ~÷›ôş.oéé.~òü¦~·Pû§‹|~ËêÇüFò'õûêøÚç\OÖí®ók/ÓÏwIüizOrôé†¬*ëpsË5ïcŸSö+àé´™§¥O”>éğñgn·Ş-çšß¿|·ÔwÂãã}o~ ã†%OÈ}Z0bbÍı³cäßĞø5W•÷zèÒ{RÍÍÃmc?¾Ÿ†‰ÛÊo_T?¤·‘ç,ñÃz™ûï‹N·M®-é­¹?B~‘|ˆ·ÅO8HÆïğ[ÕÏÒoq¿€'õ“Gˆ?ğ ~ì_¥à\Ö‘H¯«òxõãIoÍóõCz™£şq±ø1¤·æîiñcHoÍ}?ñãHoÍc¯×Ê:?ßÜŒÏ‡‰£ı‚qıKêçğ¦´\ü¤—D?ú*«Ÿ¼P¿×¾
+êÇ=¥ı¢¼ãç y’ösX.ûì#ÌQº?yF÷7ºïKuò”ì‡oéšı‡Ö~-=-û“ØÚ÷Ù3t?Fû£D¿ÃşÈ=/ÿ_‰óıíÇøÚS¾?K÷‡î®rnŒıšŸ¨y_Ğñ5S}	û!İŸÆıu?©ûWè±dåæ6÷–ü8Ö³lâCüœ¹¹Óz±.sDÿ#}Øÿš^®í<áqù˜§·–sğtìòÒ~ñê²ŞÏ-(ó’qìèD¿ëä~ìhÎí‚òÏ§¯.ë•8syy~Áİ[Ë9€?û	uÿàô^%é­y:ckñÓŠ¿S?­üñ%õÓÒã—ˆGzëüf¤\GÒË<Ì‘ú¸â'>/ùÀí,ñc7ÈøàYõ¥¯øí<ot¸ú1Å8üû-Rp«~2éuUDõO|Mz™£v˜è÷¤·æq¡øÉ”¯æá9õCzü~õ£ıÒÉ¿íúìıî?^û<¼,~Ò€¦°Tüä!MıYıØÓä{ôüä§%8ü¤_ÈøàNı¤ß^´û%íœ6 ±î×î+ë	óö°|.=§pÿÁ›Êú2ÿSã¯İ1ÊQœ{l}Ù_€‡5›Ë<?z×PÎÓá¹k(ÇÇµ›Ë{Üüyı ææ»;Êü ngßÔ—¹ÿÜ9c}‚»íÃzşú}n»=şûq­xÓexñã®kæO?‰ôÖùÍ&ñ“HoÍíñrÍzk¿!¿7¤·ææ{2û»ÔÓ¾#uKª/>ş—mÜ/àQıØ]†à?¤×Q<ê`Õ%½5çú'Šc½5÷ê'’Şš‡?‰ŸHõ¯y)~é­¹}Uü8Ò[ó|{×7Øú:sWñ“b3ú¨øI«[zÔûPSP?öM¿ğcnÕGı¸¤_ĞÏVı„‹?péÇ#ç×[Ï/ëïìî¥5äÿq;o¯Âİæe=kîúhY×¹•õ©yêöØ@G¿7×Ì)Ïòû5s0·{<60Ñ'¸½ü±>ÌÓİàá‰e=Ÿ¿WÙ§€ç#ï5Ìó¶ó<üâÆØkÅÇcÄoå·ÏˆŸØ½©Ç\)~òÚ¦şøM¹N_lúu=ä÷şÉf}ÒÏÄ9ªYÏpŠø±«¾ó4÷|ÅWÔÏñÕ{ZêÕûW©x‚ŸuRopø‰T®xT?†ôÖÜ¨Oã7ødõCõ¯yºìáçØOÒ~A~Oõç8§ıÒáêÇj¿€[õãV7õ[øù|Ó¯W?æñf}Õ‡ÇMãZõd}ÿƒÎ“é#e     €  PolygonVertexIndexiÀ
+     s  x-™e´•U/İİ)ˆ*(İ¥"¨„ İİİİİİ))!!¨4HHww+¡`€Òßßv9kÏpÎõÇ}ŞsÜ.#"""2@FxõúõëHÁßæ|IGæÔ3Á:Jğw8ŸÓQ9õwá-xfÎ§ttN=üGÇ•ó_:&§Ğ±‚¿Çù˜Í©¿ÿĞq‚Àù7—SÏÑñ‚çàü“Ï©èÁ?â|H'äÔsÂt¢à¹8§sê¹á$xÎûtRN=/Ü£“ÏÇy—NÎ©ç‡ßèÁpşJ§äÔÂ:UğBœ·éÔœza¸E§	^„ó&–S/
+7ètÁ‹q^§ÓsêÅáıVğœäkÏP®Ğ>úÇp™v{ı¸DûèŸÂEÚíõRpö9Ğ?ƒó´Ûë¥áís —³´ÛëŸÃÚç@ÿNÓn¯	§hŸ½,œ¤İ^/'hŸ½<§İ^¯ ÇhŸı+8J»½^Ğ>z%8L»½ş5¢}ôÊpv{½
+ }ôª°Ÿv{½ì£}ôêğíözØKûè5aíöz-ØMûèµaíözø™ö9ĞëÂNÚíõz°ƒö9ĞKÀUÚ³>4€m´Ûëa+íöz#ØB»½Ş6Ón¯7M´ÛëMa#íöz3ø‰v{½9üH»½Ş~ İ^o	h·×[ÁzÚíõÖğ=íözXG»½ŞÖÒn¯·ƒ5´Ûëía5íözøv{½#¬¢İ^ï+i·×;Ã
+Úíõ.°œv{½+|K»½Ş–Ñn¯w‡¥´Ûë=`	íözOXL»½ŞÑn¯÷†…´Ûë}àÚíõ¾°€v{½Ì§İ^¯ÛiÏş0 æÒn¯„9´Ûëƒ`6íöú`˜E»½>fÒn¯…´ÛëÃ`:íöúp˜F»½>¦Òn¯„)´Ûë£`2íöúh˜D»½>&Òn¯…	´Ûëã`<íöoÜ“vûñ0ÆÒn¯O„1´Ûë“`4íöúdE»½>FÒn¯O…´ÛëÓ`8íöútF»½>†Òn¯Ï„!´Ûë³`0íöúlD»½>Òn¯Ï…´Ûëó ?íöoÜ“îÏ9@_Úíõo íöúBèM»½¾zÑn¯/†´ÛëK íöúRèN»½¾ºÑn¯]i·×—CÚíõĞ™v{}%t¢İ^_i·×¿ƒ´Ûë«¡=íöúhG»½¾ÚÒn¯¯ƒ6´ÛëßCkÚíõõĞŠv{}´¤İ^ÿZĞn¯ÿÍi·×‚f´Ûë¡)íöú&hB»½¾Ón¯oF´Ûë[¡!íöú6h@»½¾êÓn¯Ï‡~´çØ	ui·×†:´Ûë» 6íöún¨E»½¾jÒn¯ï…´Ûë¿@uÚíõ}Pv{}?T¥İ^? Uh·×BeÚíõCğ5íöúa¨D»½~*Òn¯…¯h·×AÚíõãPv{ı”£İ^?	ei·×OÁ—´Ûë§áÚíõ3ğ9íöúY(C»½~JÓn¯Ÿ‡Ïh·×/@)Úíõ‹ğ)íöú%ø„v{ı2|L»½~JÒn¯_…´Ûë; íy®C1

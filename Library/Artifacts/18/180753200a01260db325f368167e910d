@@ -1,0 +1,261 @@
+resolve the merge operation and, finally, try to push again.
+
+    - Pull: Whenever you pull changesets from a remote branch, they will be
+      correctly linked to their parent changesets. If the changeset you pulled
+      is not a child of the last changeset in the branch, then a multi-headed
+      scenario will appear. The branch will have more than one 'head', or last
+      changeset on the branch. You will need to merge the two 'heads' before
+      being able to push again.
+
+    Push can work in two modes:
+
+    1) Direct communication between servers: The origin server will send
+       the data to the destination server, automatically synchronizing data
+       for the specified branch.
+
+    2) Export package mode: The client will only connect to the source and
+       generate a replication package obtaining both data and metadata for the
+       specified branch. The '--^package' modifier will be used.
+
+    Both modes require the user running the command to be authenticated
+    by the server, either using the default authentication in the client.conf
+    file, or specifiying the '--^authmode' and '--^authdata' modifiers.
+
+    The ^push replication works in a direct way. When executed, the command
+    will replicate the selected branch from source to destination, instead of
+    asking the destination repository to connect to the source and obtain the
+    selected branch (as the pull does).
+
+Examples:
+
+    cm ^push ^br:/main@project1@myserver:8084 projectx@remoteserver:8084
+    (Replicates the 'main' branch from 'myserver' to 'remoteserver'. In this case,
+    both servers are configured with the same authentication mode.)
+
+    cm ^push ^br:/main@project1@myserver:8084 projectx@remoteserver:8084 \
+      --^authmode=^LDAPWorkingMode --^authdata=::0:dave:fPBea2rPsQaagEW3pKNveA
+    (Replicates same branch as before, but now the remote server is configured
+    to authenticate users with Active Directory. For instance, I am connecting
+    from a Linux machine to a Windows server configured to use Active Directory
+    integrated mode. I will specify my Active Directory user and cyphered
+    password and pass it as LDAP to the server.)
+
+    cm ^push ^br:/main@project1@myserver:8084 projectx@remoteserver:8084 \
+      --^authmode=^UPWorkingMode --^user=dave --^password=mysecret
+    (Replicates the same branch, but now users are authenticated on the remote
+    server, taking advantage of the user/password database included in
+    Plastic SCM.)
+
+== CMD_DESCRIPTION_CLONE ==
+Clones a remote repository.
+
+== CMD_USAGE_CLONE ==
+Usage:
+
+    cm ^clone <src_rep_spec> [<dst_rep_spec> | <dst_repserver_spec>]
+             [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+                [TranslateOptions]
+    (Direct repository-to-repository clone.)
+
+    cm ^clone <src_rep_spec> --^package=<pack_file>
+             [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+    (Clones to an intermediate package, that can be imported later using a
+    pull into the destination repository.)
+
+    src_rep_spec        Source repository of the clone operation.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        specs.)
+    dst_rep_spec        Destination repository of the clone operation. If it
+                        exists, it must be empty. If it does not exist, it will
+                        be created.
+                        If it is not specified, the command will use user's
+                        default repository server.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        specs.)
+    dst_repserver_spec  Destination repository server of the clone operation.
+                        If there is a repository with the same name as
+                        <src_rep_spec> in the destination repository server, it
+                        must be empty. If there is not, it will be created.
+                        If it is not specified, the command will use user's
+                        default repository server.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        server specs.)
+
+Options:
+
+    --^user, --^password  Credentials to use if the authentication mode is
+                        different in source and destination and there is not a
+                        profile to authenticate to destination.
+    --^package           Exports the specified repository to a package file,
+                        instead of a repository.
+                        Useful for moving data between servers when there is no
+                        direct network connection.
+                        The resulting package must be imported using the
+                        pull command.
+    TranslateOptions    See the Translate options section for more information.
+    AuthOptions         See the Authentication options section for more
+                        information.
+
+Translate options:
+    --^trmode=(^copy|^name|^table --^trtable=<translation_table_file>)
+      The source and destination repositories may use different authentication
+      modes. The '--^trmode' option specifies how to translate the user names from
+      the source to the destination. The '--^trmode' must be one of the following
+      values:
+          ^copy    (Default.) Means that the user identifiers will be just copied.
+          ^name    The user identifiers will be matched by name.
+          ^table   Uses a translation table specified in the option '--^trtable'
+                  (see below).
+
+    --^trtable=<translation_table_file>
+        If the translation mode is 'table', a translation table is a file
+        containing lines in the form <oldname;newname> (one per line). When the
+        branch is written to the destination repository, the objects created by
+        a user identified by "oldname" in the source repository will be set
+        to the user with "newname" on the destination.
+
+Authentication options:
+
+    Authentication data can be specified using one of the two following modes:
+
+    1) Using authentication parameters: --^authmode=<mode> --^authdata=<data>
+
+        --^authmode=(^NameWorkingMode|^LDAPWorkingMode|^ADWorkingMode|^UPWorkingMode)
+        Examples:
+        (^LDAPWorkingMode) --^authdata=::0:dave:fPBea2rPsQaagEW3pKNveA
+        (^UPWorkingMode)   --^authdata=dave:fPBea2rPsQaagEW3pKNveA==
+
+        The '--^authdata' line is the content of the <^SecurityConfig> entry
+        in the client.conf file and the profiles.conf file. The profiles.conf
+        file can be easily generated from the Plastic GUI in the connection
+        profiles tab under Preferences.
+
+        If you are using ^UPWorkingMode, you can simply specify:
+
+        --^authmode=^UPWorkingMode --^user=<user> --^password=<pwd>
+
+    2) Authentication file where you may have a different file for each server
+       you connect to, containing the credentials for that server.
+
+        --^authfile=<authentication_file>
+            The file contains 2 lines:
+            Line 1) mode, as described in '--^authmode'
+            Line 2) authentication data, as described in '--^authdata'
+
+== CMD_HELP_CLONE ==
+Remarks:
+
+    The clone command can replicate branches (along with their changesets,
+    labels, attributes, reviews, and so on) from a source repository to a
+    destination repository. The repositories can be located at different servers.
+
+    The destination repository can be created beforehand, but if it contains
+    previous data, the clone operation will fail.
+
+    The clone operation does NOT clone repository submodules, nor repositories
+    under a Xlink.
+
+Examples:
+
+    cm ^clone awesomeProject@tardis@cloud
+    (Clones 'awesomeProject' repository from 'tardis@cloud' organization into
+    a local repository with the same name.)
+
+    cm ^clone repo@server.home:9095 repo-local
+    (Clones 'repo' from 'server.home:9095' into 'repo-local' at user's default
+    repository server.)
+
+    cm ^clone project@192.168.111.130:8084 ^repserver:192.168.111.200:9095
+    (Clones 'project' repository from '192.168.111.130:8084' into
+    'project@192.168.111.200:9095'.)
+
+    cm ^clone project@ldapserver:8084 --authfile=credentials.txt \
+      --^trmode=table --^trtable=table.txt
+    (Clones 'project' repository from 'ldapserver:8084' using an authentication
+    file against the remote repository, and translating users following the
+    specified translation table.)
+
+    cm ^clone project@server.home:9095 --^package=project.plasticpkg
+    cm ^repository ^create project@mordor.home:8084
+    cm ^pull --^package=project.plasticpkg project@mordor.home:8084
+    (Clones 'project' repository from 'server.home:9095' into the package
+    'project.plasticpkg', which is later imported through a pull into
+    the 'project' repository at 'mordor.home:8084'.)
+
+== CMD_DESCRIPTION_REVERT ==
+Reverts an item to a previous revision.
+
+== CMD_USAGE_REVERT ==
+Usage:
+
+    cm ^revert <revspec>
+
+    revspec             Specification of the changeset that contains the
+                        revision which content will be loaded in the workspace.
+                        (Use 'cm ^help ^objectspec' to learn more about revision
+                        specs.)
+
+== CMD_HELP_REVERT ==
+Remarks:
+
+    The item must be checked in.
+
+Examples:
+
+    cm ^revert dir#^cs:0
+    cm ^revert C:\mywks\dir\file1.txt#23456
+
+== CMD_DESCRIPTION_REVISION_HISTORY ==
+Displays the history of a file or directory.
+
+== CMD_USAGE_REVISION_HISTORY ==
+Usage:
+
+    cm ^history | ^hist <item_path>[ ...] [--^long | --^format=<str_format>]
+                      [--^symlink] [--^xml[=<output_file>]] [--^encoding=<name>]
+                      [--^moveddeleted]
+
+    item_path           Item's path. Use a whitespace to separate paths. Use
+                        double quotes (" ") to specify paths containing spaces.
+                        Paths can be server path revisions too.
+                        (Use 'cm ^help ^objectspec' to learn more about specs.)
+
+Options:
+
+    --^long              Shows additional information.
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info. This option cannnot be combined
+                        with '--^xml'.
+    --^symlink           Applies the history operation to the symlink and not to
+                        the target.
+    --^xml               Prints the output in XML format to the standard output.
+                        It is possible to specify an output file. This option
+                        cannot be combined with '--^format'.
+    --^encoding          Used with the '--^xml' option, specifies the encoding to
+                        use in the XML output, i.e.: utf-8.
+                        See the MSDN documentation at
+                        http://msdn.microsoft.com/en-us/library/system.text.encoding.aspx
+                        to get the table of supported encodings and its format, 
+                        (at the end of the page, in the "Name" column).
+    --^moveddeleted      Include move and remove operations in the history.
+    --^limit             Displays the N most recent revisions for the specified items, 
+                        sorted by date and changeset id. If a negative number is supplied, 
+                        it will return an empty list. If a number higher than the number 
+                        of revisions is supplied, it will return all the available revisions 
+                        regarding that item.
+
+== CMD_HELP_REVISION_HISTORY ==
+Remarks:
+
+    This command shows a list of revisions for a given item, and label, branch,
+    and comment info for each revision.
+
+    Output format parameters (--^format option):
+        This command accepts a format string to show the output.
+        The output parameters of this command are the following:
+        {0} | {^date}              Date.
+        {1} | {^changesetid}       Changeset number.
+        {2} | {^branch}            Branch.
+        {4} | {^comment}           Comment.
+        {5} | {^owner}             Owner.
+    

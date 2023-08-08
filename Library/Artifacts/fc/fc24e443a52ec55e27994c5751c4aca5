@@ -1,0 +1,335 @@
+One of the enumeration values that indicates whether the zip archive is used to read, create, or update entries.</param>
+      <param name="leaveOpen">true to leave the stream open after the <see cref="T:System.IO.Compression.ZipArchive" /> object is disposed; otherwise, false.</param>
+      <param name="entryNameEncoding">The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.</param>
+      <exception cref="T:System.ArgumentException">The stream is already closed, or the capabilities of the stream do not match the mode.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> is null.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> is an invalid value.</exception>
+      <exception cref="T:System.IO.InvalidDataException">The contents of the stream could not be interpreted as a zip archive.-or-<paramref name="mode" /> is <see cref="F:System.IO.Compression.ZipArchiveMode.Update" /> and an entry is missing from the archive or is corrupt and cannot be read.-or-<paramref name="mode" /> is <see cref="F:System.IO.Compression.ZipArchiveMode.Update" /> and an entry is too large to fit into memory.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)">
+      <summary>Creates an empty entry that has the specified path and entry name in the zip archive.</summary>
+      <returns>An empty entry in the zip archive.</returns>
+      <param name="entryName">A path, relative to the root of the archive, that specifies the name of the entry to be created.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> is <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> is null.</exception>
+      <exception cref="T:System.NotSupportedException">The zip archive does not support writing.</exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive has been disposed.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)">
+      <summary>Creates an empty entry that has the specified entry name and compression level in the zip archive.</summary>
+      <returns>An empty entry in the zip archive.</returns>
+      <param name="entryName">A path, relative to the root of the archive, that specifies the name of the entry to be created.</param>
+      <param name="compressionLevel">One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> is <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> is null.</exception>
+      <exception cref="T:System.NotSupportedException">The zip archive does not support writing.</exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive has been disposed.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.Dispose">
+      <summary>Releases the resources used by the current instance of the <see cref="T:System.IO.Compression.ZipArchive" /> class.</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)">
+      <summary>Called by the <see cref="M:System.IO.Compression.ZipArchive.Dispose" /> and <see cref="M:System.Object.Finalize" /> methods to release the unmanaged resources used by the current instance of the <see cref="T:System.IO.Compression.ZipArchive" /> class, and optionally finishes writing the archive and releases the managed resources.</summary>
+      <param name="disposing">true to finish writing the archive and release unmanaged and managed resources; false to release only unmanaged resources.</param>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchive.Entries">
+      <summary>Gets the collection of entries that are currently in the zip archive.</summary>
+      <returns>The collection of entries that are currently in the zip archive.</returns>
+      <exception cref="T:System.NotSupportedException">The zip archive does not support reading.</exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive has been disposed.</exception>
+      <exception cref="T:System.IO.InvalidDataException">The zip archive is corrupt, and its entries cannot be retrieved.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.GetEntry(System.String)">
+      <summary>Retrieves a wrapper for the specified entry in the zip archive.</summary>
+      <returns>A wrapper for the specified entry in the archive; null if the entry does not exist in the archive.</returns>
+      <param name="entryName">A path, relative to the root of the archive, that identifies the entry to retrieve.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> is <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> is null.</exception>
+      <exception cref="T:System.NotSupportedException">The zip archive does not support reading.</exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive has been disposed.</exception>
+      <exception cref="T:System.IO.InvalidDataException">The zip archive is corrupt, and its entries cannot be retrieved.</exception>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchive.Mode">
+      <summary>Gets a value that describes the type of action the zip archive can perform on entries.</summary>
+      <returns>One of the enumeration values that describes the type of action (read, create, or update) the zip archive can perform on entries.</returns>
+    </member>
+    <member name="T:System.IO.Compression.ZipArchiveEntry">
+      <summary>Represents a compressed file within a zip archive.</summary>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Archive">
+      <summary>Gets the zip archive that the entry belongs to.</summary>
+      <returns>The zip archive that the entry belongs to, or null if the entry has been deleted.</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.CompressedLength">
+      <summary>Gets the compressed size of the entry in the zip archive.</summary>
+      <returns>The compressed size of the entry in the zip archive.</returns>
+      <exception cref="T:System.InvalidOperationException">The value of the property is not available because the entry has been modified.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.Delete">
+      <summary>Deletes the entry from the zip archive.</summary>
+      <exception cref="T:System.IO.IOException">The entry is already open for reading or writing.</exception>
+      <exception cref="T:System.NotSupportedException">The zip archive for this entry was opened in a mode other than <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />. </exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive for this entry has been disposed.</exception>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.FullName">
+      <summary>Gets the relative path of the entry in the zip archive.</summary>
+      <returns>The relative path of the entry in the zip archive.</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.LastWriteTime">
+      <summary>Gets or sets the last time the entry in the zip archive was changed.</summary>
+      <returns>The last time the entry in the zip archive was changed.</returns>
+      <exception cref="T:System.NotSupportedException">The attempt to set this property failed, because the zip archive for the entry is in <see cref="F:System.IO.Compression.ZipArchiveMode.Read" /> mode.</exception>
+      <exception cref="T:System.IO.IOException">The archive mode is set to <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />.- or -The archive mode is set to <see cref="F:System.IO.Compression.ZipArchiveMode.Update" /> and the entry has been opened.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">An attempt was made to set this property to a value that is either earlier than 1980 January 1 0:00:00 (midnight) or later than 2107 December 31 23:59:58 (one second before midnight).</exception>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Length">
+      <summary>Gets the uncompressed size of the entry in the zip archive.</summary>
+      <returns>The uncompressed size of the entry in the zip archive.</returns>
+      <exception cref="T:System.InvalidOperationException">The value of the property is not available because the entry has been modified.</exception>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Name">
+      <summary>Gets the file name of the entry in the zip archive.</summary>
+      <returns>The file name of the entry in the zip archive.</returns>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.Open">
+      <summary>Opens the entry from the zip archive.</summary>
+      <returns>The stream that represents the contents of the entry.</returns>
+      <exception cref="T:System.IO.IOException">The entry is already currently open for writing.-or-The entry has been deleted from the archive.-or-The archive for this entry was opened with the <see cref="F:System.IO.Compression.ZipArchiveMode.Create" /> mode, and this entry has already been written to. </exception>
+      <exception cref="T:System.IO.InvalidDataException">The entry is either missing from the archive or is corrupt and cannot be read. -or-The entry has been compressed by using a compression method that is not supported.</exception>
+      <exception cref="T:System.ObjectDisposedException">The zip archive for this entry has been disposed.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.ToString">
+      <summary>Retrieves the relative path of the entry in the zip archive.</summary>
+      <returns>The relative path of the entry, which is the value stored in the <see cref="P:System.IO.Compression.ZipArchiveEntry.FullName" /> property.</returns>
+    </member>
+    <member name="T:System.IO.Compression.ZipArchiveMode">
+      <summary>Specifies values for interacting with zip archive entries.</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Create">
+      <summary>Only creating new archive entries is permitted.</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Read">
+      <summary>Only reading archive entries is permitted.</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Update">
+      <summary>Both read and write operations are permitted for archive entries.</summary>
+    </member>
+  </members>
+</doc>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  MZê       ˇˇ  ∏       @                                   Ä   ∫ ¥	Õ!∏LÕ!This program cannot be run in DOS mode.
+$       PE  L Î
+˙…        ‡ !  T         ûr            @                       ¿     <ˆ   @Ö                           Hr  S    Ä              \  (   †     ÿq  8                                                             H           .text   §R       T                    `.rsrc       Ä      V              @  @.reloc      †      Z              @  B                Är      H     H.  êC                                                         "(  
+ *& }  * 0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *& }  *  0       {  
++ *0 *      
+, {  `}   + {  f_}   *  0       {  _˛
++ *"}  *{  *"}  *{  *"}  *{  *"}  *{  *"}  *{  *"}  *{  *"}  *{  *& }  *  0       {  
++ *& }  *  0       {  
++ *& }   *  0       {   
++ *& }!  *  0       {!  
++ *& }"  *  0       {"  
++ *& }#  *  0       {#  
++ *& }$  *  0       {$  
++ *& }%  *  0       {%  
++ *& }&  *  0       {&  
++ *& }'  *  0       {'  
++ *& }(  *  0       {(  
++ *& })  *  0       {)  
++ *& }*  *  0       {*  
++ *& }+  *  0       {+  
++ *0       {4  
++ *0       {5  
++ *0       {6  
++ *0       {7  
++ *0       {8  
++ *0       {9  
++ *0       {:  
++ *0       {;  
++ *0       {<  
++ *0       {=  
++ *0    	   {>  
++ *0 $      {  
+å  {  
+(  
+ {  
+
++ *Ê~	  
+}  
+(  +}  
+(  
+  –  (  
+(  
+(  
+}  
+*F o  
+ (  
+ *0 /      {  
+~	  
+(  
+
+, {  
+(  
+ ~	  
+}  
+ * 0          o  
+ ﬁ(  
+ ‹*            0 )      }E  (W   ˛
+,{E  (  
+}F  *   0       {F  
++ *F oX   (  
+ *  0 /      {F  ~	  
+(  
+
+, {F  (  
+ ~	  
+}F   * 0          oX   ﬁ(  
+ ‹*            j}E  ~	  
+}F  (  
+ * 0 \       sZ  }G  sZ  }H  sZ  }I  s  
+}J  (  
+  {G  oU   {H  oU   {I  oU   *0 e      {J  |  
+{G  oV  (   {J  |  
+{H  oV  (   {J  |  
+{I  oV  (	   {J  o  
+
++ *   0    
+   {K  |  
+
++ *   0       {L  |  
+
++ *   0       (]  q  
+ (  + *ˆs  
+}K  s  
+}L  (  
+  {K  }  
+{K  |  
+(   * 0       {K  o  
+
++ *   0 (      {L  |  
+(_  (C   {L  o  
+
++ *≤}M  }N  }O  }P  (  
+  }M  *   0       {N  
++ *0       {O  
++ *0       {P  ,
+{P  
++(  ++ *z}Z  (  
+  s[  }Z  *0       {Z  o\  (  
++ *" (Ä   * 0          (i   ﬁ(  
+ ‹*    
+     Z (É  (ä  Xo  
+ * 0 P      ~Y  ˛, ~Y  oi   ~Y  oh  &~Y  +"sg  
+oh  	, ÄY  ++ *0 (       ˇˇ  _
+ ˇ  _-+bb``+ 	*0 .      (   
+,+o_  (m  
+(Ñ  o!  
+ *  0        ˛   (à   + *0       (á  
++ *& (â   *   0       ~W  ("  
+~X  (l  
++ *  0       ("  
+~X  (l  
++ *  0       ("  
+(l  
++ *  0       ~Y  
++ * 0       (Ü  
++ * 0       (Å  
++ *0 9      (w  ˛,+$q  (Ö  s`  
+oa  (k   + *^ o_  ns#  
+(k   *   0 à        (  (n   (  (n   (   (n   ("  (n   ($  (n   (&  (n   ((  (n   ob  (k   *0       (Ç  
++ *0       (p  sc  
++ *   0 ß      ˛
+,8ò    {M  (o  {?  }N  {@  }O  {P  ,{B  n{P  éij˛˛+,{B  ç  }P  +' {P  	{A  	”˛  ZXq  §   	X	j{B  n˛-» * 0       ˛
+,+{M  (q   *nr  pÄW  r  pÄX  ÄY  *   BSJB         v2.0.50727     l     #~  x  ¿  #Strings    8+     #US T+     #GUID   d+  ,  #Blob         
+W_¢	   ˙3 ƒ          Z   ã   Y      )      Ã            5   T                                Ñ
+      µ°
+ º∂ í°
+
+ HF ®
+°
+ ^°
+ ö°
+ lâ { ì{ °
+ l
+ó X°
+ °
+ ü°
+ °
+ Y °
+  ó  ü ¸¬ Œ( íâ {â m∂ °∂ Ò{k ÷   ,∂
+ (â ◊®    =         ™ê     ç∂   Å ≠
+F      F      BF     ◊F    	 F    	 ¡F    	 /F   )   ˘   , E 	 aF  4 E 	 F  ; L  òF  ? P     F  C P    mF  E U    ÆF  G [   †F  K ]   ÃF  M c   ˛F  Q g    ”F  S g   \F  W g ∑< VÄï? VÄÉ ? VÄé? VÄh? VÄs? VÄ? ∑< VÄg\ VÄV\ VÄá\ VÄv\  ƒe  e  ‹e  [y  µy  åy  Èy  ]\  ?  ˙y  »  5»  ¢»  ˙»  ÿ»  Å»  π»  ô<  jÎ  ó Î  'Î  º Î  LÎ  ∞Î   y  Äy  ¸y  `y  ßy  ’y  ˙y ∑< VÄKVÄtVÄ_	VÄ8VÄ
+VÄ1VÄÊ	! ÿy ! :y ! jÎ ! G	y ! ∞y ! ¿y !  y ! ﬁ! ˙y ! ø!! y% ∆
+y  ª
+y  .O Îy  Àe  ◊T _õ >e  ƒß ß ‹ß y´ y¡ ø… y  ÷
+y  By  Â∑< VÄê I∑< VÄ"MVÄøMVÄ M f õ Âõ öQ ¨UP     Ü
+  P     Ü
+       ñ Q       ñ _  Y     ÜÔh  d     Ü·q  |     Ü0h  à     Üq  †     Ü h  ¨     Üıq  ƒ     Ü{|  –     ÜjÖ  Ë     Ü◊|  Ù     Ü≈Ö  !    ÜÆ|  !    ÜúÖ  0!    Ü|  <!    Ü˙Ö  T!    Üéâ  `!    ÜÇî 	 x!    Ü5ô 	 Ñ!    Ü$§ 
+ ú!    É/| 
+ ®!    ÉÖ  ¿!    Ü ≠  ¯!    Ü ¥  "    Üe€  "    ÜV·  &"    Üê€  /"    ÜÄ·  7"    Üo	€  @"    Üe	·  H"    ÜX€  Q"    ÜF·  Y"    Ü>
+€  b"    Ü)
+·  j"    ÜU€  s"    ÜA·  {"    Ü
+€  Ñ"    ÜÙ	·  å"    Ü´Ó  ò"    Ü°˜  ∞"    ÜÑ˚  º"    Üv ‘"    ÜØ ˚  ‡"    Ü¢  ¯"    Ü?˚  #    Ü2 #    Üﬁ ˚  (#    ÜÃ  @#    Ün˚  L#    Ü\ d#    ÜŒ˚  p#    Üæ à#    Ü|  î#    ÜÖ  ¨#    Ü§|  ∏#    ÜëÖ  –#    Ü	|  ‹#    Ü	Ö  Ù#    ÜÇ|   $    ÜpÖ   $    Ü≈|   $$    ÜµÖ ! <$    ÜÛ| ! H$    Ü„Ö " `$    É/| " l$    ÉÖ # Ñ$    ÜÈÖ # ú$    ÜLÖ # ¥$    Üv# Ã$    ÜR	Ö # ‰$    ÜºÖ # ¸$    ÜÀÖ # %    Ü,Ö # ,%    ÜÌ)# D%    ÜÖ # \%    Ü 2# t%    ÜÑ<# å%    Ü"q # º%    Ü
+ # ˆ%    Ê|
+ # &    ƒ|Ü# D&    ƒ ˆ
+ $ x&    Üe $ ∞&    Ü"q % »&    Ê|
+ % ‹&    ƒ|Ü% '    ƒ ˆ
+ & L'    Ü
+ & h'    Ü∫& –'    É ;q ) D(    ÜÑﬁ) d(    ÜÛ* Ñ(    ÉÖ * ©(    Éˇ* Ë(    É ;q , )    É *q , <)    É| , l)    Ü¸
+Ö - Ñ)    ÜOÖ - ú)    Ü7- ≈)    Å∫- ‰)    Å „)0 *    Å á
+ 0 *    ƒ ˆ
+ 0 @*    Å t
+`0 X*    ë Ñr3 ¥*    ë HÅ6 Ë*    Å iù9 $+    É ∞≥> H+    É Ö ? _+    É ,| ? l+    ñ V¬@ î+    ñ V«@ ∏+    ñ VÕA ÿ+    ñk¬C +    ño‘C ,    Ü ÈÿC  ,    Ü ÊD e,    Ü "ıF Ä,    Ü â ˝H -    Ü `K 0-    Ü ˘O P-    Ü ‰&O .    Ü &P     Ä ë ù	,Q     Ä ë å	1R     Ä ë ‰5R     Ä ë [;S     Ä ë  	FW     Ä ë ™	FW     Ä ë ‘W     Ä ë Ê
+‘W     Ä ë Ù‘W     Ä ë êJW     Ä ë 	RY     Ä ë ˝WZ ).    ë1Z    ›   ›   ›   ›   ›   ›   ›   ›   ›   ›      ›      ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   ›   Q   ›   Q   Û   4            É   3   J   Û   4      R   ﬂ   w   –   4      ∫   ?   “   R   ¿   ?   t “   >   >   y    y       \    R  É   R   ¿   R   ¿     ;	   £   †  s         à   \    -	   î   N  ë   >  ë   > -  - 	 
+  
+ !  1 
+ I Ã  ◊T Àe a Ibi Ωe q ≤i 
+ y %ta ˇ{a S
+Å |Üâ Óãi öêa `
+ñ ˆ
+ a y	û 
+  ◊T "q $ ◊T, ◊T$ 
+ , 
+ $ "q , "q ° ∏(© ÈY± vç©  ïπ ^æi ¡ Ó … 
+ — å·  È 
+ Ò 
+   C      H   M   R   W  $ H  (   , C  0 `  ¥ C  ∏   º H  ¿ `  ƒ M  »  Ã  ı ™ HC  PC  T  XH ' K . ;. ;5. ;Q. ;m. ;É. ;î. ;¨. ;–. ;Ï. ;. ;<. ;b. ;z. ;ú. ;ƒ. ;¯. ;. ;1. ;O. ;w. ;ò. ;Ô. ;‘. ;ø. ;†. ;‘
+. ;
+. ;. ;:. ;l. ;ò. ;∆. ;. ;. ;+. ;≤. ;H. ;ä. ;§. ;¿. ;ﬁ. ;˝. ;. ;5. ;P. ;m. ;â. ;p. ;∑
+. ;—. ;. ;M. ;t. ;õ. ;¬. ;È. ;. ;7. ;^. ;Ö. ;¨. ;”. ;˙. ;!. ;H. ;o. ;ñ. ;¿. ;Í. ;. ;>. ;h. ;&. ;ˇ. ;ÿ. ;±. ;+. ;L. ;n. ;Ñ. ;±. ;Œ. ;Ú. ;. ;(. ;H. ;Ì. ;[. ;Ü. ;ö. ;¥. ;À. ;ﬁ. ;Ó. ;. ;<. ;c. ;ä. ;s. ;ï
+. ;m
+. ;S
+. ; . ;. ;Ÿ. ;µ. ;é. ;j. ;M. ;0. ;. ;Ï. ;“. ;G. ;µ. ;q. ;P. ;.. ;. ;Ô. ;”. ;¨. C . 3í. +m. #d. ;ê. ;m. ;õ. ;≥. ;4
+. ;
+
+. ;‡	. ;∫	. ;õ	. ;y	. ;X	. ;7	. ;	. ;Ú. ;Õ. ;å. ;l. ;K. ;. ;˘. ;€. ;∑. ;ö. ;w. ;R. ;6. ;. ;˙. ;”. ;ìC 
+  C   c   c 
+  É   £ #  É  £  ·  ·+ “   + “ !+ “ !  A  A+ “ `  a  a+ “ Ä  Ä  Å  Å+ “ †  °  °+ “ ¿  ¿  ‡           @  @  `  Ä  Ä  †  ¿  ¿  ‡        $  …  §  D	    äm Å è ü © Û  -7—Ê˘izà¨πﬁ    	  
+      '  +  ,  .  1  4   Ûu   4u   u   ∫   €∫   ≤∫   ∫   †æ   9√   3∫   iÊ   îÊ   s	Ê   \Ê   B
+Ê   YÊ   
+
+Ê   Ø  à  ≥   C  ‚   r  “  ∫   ®∫    	∫   Ü∫   …∫   ˜∫   3∫   Ì∫   P∫   à  V	∫   ¿∫   œ∫   0∫   ÒA  3∫   ŒE  àJ  [u   s£  [u   à    3∫    ∫   S∫   @  o[  s`             
+   	    	   	                                                         "   !   #   $   & !  % !  ( #  ' #  * %  ) %  , '  + '  . )  - )  / +  0 +  2 -  1 -  4 /  3 /  6 1  5 1  8 3  7 3  9 5  : 5  < 7  ; 7  > 9  = 9  @ ;  ? ;  B =  A =  D ?  C ?  E A  F C  G E  H G  I I  J K  K M  L O  M Q  N S  O U  P W  U Y  V [  ] ]  ^ _  _ a  d c  e e  f g  u i  v k  ® '  ≤ '  ‘ ' ≠
+X_≥◊Ïˇ ù	 å	 ‰ [  	 	™	  Ê
+ Ù ê 	 ˝ Ä                7              ñ                  g                  P               §     
+     ï  o= 2   NativeData`1 IEnumerable`1 IssuePluginCustomTextureUpdateV2 <Module> UnityEngine.NVIDIA GC featureID s_DefaultProjectID projectID IsHDR ExecuteDLSS T m_MVScaleX get_mvScaleX set_mvScaleX m_JitterOffsetX get_jitterOffsetX set_jitterOffsetX m_SubrectOffsetX get_subrectOffsetX set_subrectOffsetX m_MVScaleY get_mvScaleY set_mvScaleY m_JitterOffsetY get_jitterOffsetY set_jitterOffsetY m_SubrectOffsetY get_subrectOffsetY set_subrectOffsetY value__ m_ExecData get_execData InitDeviceCmdData IssuePluginEventAndData get_executeData DLSSCommandInitializationData DLSSCommandExecutionData CreateSetTextureUserData OptimalDLSSSettingsData m_InitData get_initData data mscorlib System.Collections.Generic featureId m_ProjectId appIdOrProjectId get_projectId set_projectId NVUP_GetBaseEventId m_ViewId CreateDebugViewId DeleteDebugViewId debugViewId viewId Load Balanced IsLoaded MVJittered DepthInverted <exposureTexture>k__BackingField <depth>k__BackingField <biasColorMask>k__BackingField <transparencyMask>k__BackingField <motionVectors>k__BackingField <colorInput>k__BackingField <colorOutput>k__BackingField cmd CreateGraphicsDevice get_device UltraPerformance MaximumPerformance sGraphicsDeviceInstance CreateInstance DLSSTextureTable clearTextureTable NVUP_IsFeatureAvailable Enumerable IDisposable RuntimeTypeHandle GetTypeFromHandle UnityEngine.NVIDIAModule UnityEngine.CoreModule UnityEngine.SharedInternalsModule UnityEngine None ValueType System.Core m_PreExposure get_preExposure set_preExposure m_ValidFeature get_validFeature GraphicsDeviceFeature CreateFeature DestroyFeature ExposureTexture get_exposureTexture set_exposureTexture SetTexture texture Dispose InternalCreate DebuggerBrowsableState EmbeddedAttribute CompilerGeneratedAttribute UnverifiableCodeAttribute DebuggableAttribute DebuggerBrowsableAttribute InAttribute InternalsVisibleToAttribute NativeHeaderAttribute FlagsAttribute CompilationRelaxationsAttribute IsReadOnlyAttribute RuntimeCompatibilityAttribute DLSSExecute m_MarshalledValue value Initialize SuppressFinalize SizeOf GetFlag SetFlag flag DoSharpening UnityEngine.Rendering m_MarshalledString disposing m_InputRTWidth get_inputRTWidth set_inputRTWidth m_OutputRTWidth get_outputRTWidth set_outputRTWidth m_MinWidth get_minWidth m_OutRenderWidth get_outRenderWidth m_SubrectWidth get_subrectWidth set_subrectWidth inTargetWidth targetWidth m_MaxWidth get_maxWidth Depth get_depth set_depth StringToHGlobalUni NVUP_ShutdownApi NVUP_InitApi NVUP_GetSetTextureEventCallback NVUP_GetRenderEventCallback BiasColorMask get_biasColorMask set_biasColorMask TransparencyMask get_transparencyMask set_transparencyMask AllocHGlobal FreeHGlobal Marshal InsertEventCall UnityEngine.NVIDIAModule.dll System Enum NVUnityPlugin NGXVersion NVDeviceVersion m_DeviceVersion NVUP_GetDeviceVersion get_deviceVersion m_EngineVersion get_engineVersion set_engineVersion m_NgxVersion get_ngxVersion get_unityVersion get_version Application Shutdown NVUP_GetGraphicsDeviceDebugInfo GetDebugInfo Zero System.Linq CommandBuffer m_AppDir s_DefaultAppDir get_appDir set_appDir Activator .ctor .cctor get_Ptr GetExecuteCmdPtr GetInitCmdPtr StructureToPtr IntPtr m_Str set_Str NativeStr ptr System.Diagnostics MVLowRes System.Runtime.InteropServices System.Runtime.CompilerServices DebuggingModes m_DlssDebugFeatures Textures textures m_Flags DLSSFeatureFlags get_featureFlags set_featureFlags UnityEngine.Bindings NVUP_GetOptimalSettings optimalSettings initSettings Microsoft.CodeAnalysis m_InvertXAxis get_invertXAxis set_invertXAxis m_InvertYAxis get_invertYAxis set_invertYAxis DLSSDebugFeatureInfos get_dlssFeatureInfos dlssInfos MotionVectors get_motionVectors set_motionVectors m_Sharpness get_sharpness set_sharpness Object m_Reset get_reset set_reset m_InputRTHeight get_inputRTHeight set_inputRTHeight m_OutputRTHeight get_outputRTHeight set_outputRTHeight m_MinHeight get_minHeight m_OutRenderHeight get_outRenderHeight m_SubrectHeight get_subrectHeight set_subrectHeight inTargetHeight targetHeight m_MaxHeight get_maxHeight DLSSInit PluginEvent pluginEvent dlssInfosCount m_FeatureSlot NVUP_CreateFeatureSlot get_featureSlot set_featureSlot textureSlot ColorInput get_colorInput set_colorInput ColorOutput get_colorOutput set_colorOutput DLSSContext m_InitDeviceContext dlssContext GraphicsDeviceDebugView UpdateDebugView NVUP_CreateDebugView NVUP_DeleteDebugView debugView UnityEngineModuleAssembly DLSSQuality inPerfVQuality m_Quality MaximumQuality op_Equality get_quality set_quality op_Inequality System.Security Empty    2 3 1 3 1 3 1 3 2  . \   ˚F& ÕŒEóü M˝û! ∑z\V4‡â         Modules/NVIDIA/NVPlugins.h                        ( 	 		  	        ( 	( ( ! )        !  !( !      ( ( ,      (   (  (    ( ( ((  4 <     
+  =A =      ( @<< < <( <   I (<(  ( 	  	( I ( (4M4M4	 M 
+4  M4( M4PTXD  UTXX X 	 YY !	 UH,! 88 8	X    X X X  	 PHH	 HU  
+ UH
+ UH$
+ 		0L  L8 L    P
+ 		0   	8 	   X 	        TWrapNonExceptionThrows m      UnityEngine  & !UnityEngine.SharedInternalsModule   UnityEngine.CoreModule  $ UnityEngine.AccessibilityModule   UnityEngine.AIModule  ! UnityEngine.AndroidJNIModule    UnityEngine.AnimationModule   UnityEngine.PhysicsModule  $ UnityEngine.JSONSerializeModule   UnityEngine.InputModule   UnityEngine.ARModule    UnityEngine.HotReloadModule  " UnityEngine.AssetBundleModule   UnityEngine.AudioModule   UnityEngine.ClothModule  # UnityEngine.ClusterInputModule  & !UnityEngine.ClusterRendererModule  # UnityEngine.UnityConnectModule  + &UnityEngine.UnityAnalyticsCommonModule   UnityEngine.TLSModule  & !UnityEngine.UnityWebRequestModule  %  UnityEngine.UnityAnalyticsModule  %  UnityEngine.CrashReportingModule   UnityEngine.DirectorModule   UnityEngine.DSPGraphModule  & !UnityEngine.ImageConversionModule  ! UnityEngine.GameCenterModule   UnityEngine.GIModule   UnityEngine.GridModule  $ UnityEngine.TextRenderingModule  " UnityEngine.InputLegacyModule   UnityEngine.IMGUIModule  # UnityEngine.LocalizationModule   UnityEngine.NVIDIAModule  %  UnityEngine.ParticleSystemModule  + &UnityEngine.PerformanceReportingModule    UnityEngine.Physics2DModule   UnityEngine.ProfilerModule  @ ;UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule  $ UnityEngine.ScreenCaptureModule  ! UnityEngine.SpriteMaskModule  " UnityEngine.SpriteShapeModule    UnityEngine.StreamingModule    UnityEngine.SubstanceModule  ! UnityEngine.SubsystemsModule   UnityEngine.TerrainModule  %  UnityEngine.TerrainPhysicsModule  ) $UnityEngine.TextCoreFontEngineModule  ) $UnityEngine.TextCoreTextEngineModule   UnityEngine.TilemapModule   UnityEngine.UIModule  ' "UnityEngine.UIElementsNativeModule  ! UnityEngine.UIElementsModule   UnityEngine.UmbraModule   UnityEngine.UNETModule    UnityEngine.UnityCurlModule  ( #UnityEngine.UnityTestProtocolModule  1 ,UnityEngine.UnityWebRequestAssetBundleModule  + &UnityEngine.UnityWebRequestAudioModule  - (UnityEngine.UnityWebRequestTextureModule  ) $UnityEngine.UnityWebRequestWWWModule   UnityEngine.VehiclesModule   UnityEngine.VFXModule   UnityEngine.VideoModule  ' "UnityEngine.VirtualTexturingModule   UnityEng

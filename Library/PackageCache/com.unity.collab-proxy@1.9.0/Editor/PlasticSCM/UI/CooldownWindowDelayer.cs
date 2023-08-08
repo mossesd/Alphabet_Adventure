@@ -1,0 +1,12 @@
+Globalization.Extensions.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.ZipFile.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Primitives.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Watcher.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.IsolatedStorage.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.MemoryMappedFiles.dll",
+        "C:/build/output/unity/unity/build/WindowsEditor/x64/Release/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Pipes.dll",
+        

@@ -1,0 +1,42 @@
+and the new and old targets point to the same network share, but have different network paths.
+
+If you enable this policy setting, Folder Redirection creates a temporary file in the old location in order to verify that new and old locations point to the same network share. If both new and old locations point to the same share, the target path is updated and files are not copied or deleted.  The temporary file is deleted.
+
+If you disable or do not configure this policy setting, Folder Redirection does not create a temporary file and functions as if both new and old locations point to different shares when their network paths are different.
+
+Note: If the paths point to different network shares, this policy setting is not required.  If the paths point to the same network share, any data contained in the redirected folders is deleted if this policy setting is not enabled.</string>
+
+      <string id="DisableIndexedLibraryExperience_DisplayName">Turn off Windows Libraries features that rely on indexed file data</string>
+      <string id="DisableIndexedLibraryExperience_ExplainText">This policy setting allows you to turn off Windows Libraries features that need indexed file metadata to function properly.  If you enable this policy, some Windows Libraries features will be turned off to better handle included folders that have been redirected to non-indexed network locations.
+Setting this policy will:
+    * Disable all Arrangement views except for "By Folder"
+    * Disable all Search filter suggestions other than "Date Modified" and "Size"
+    * Disable view of file content snippets in Content mode when search results are returned
+    * Disable ability to stack in the Context menu and Column headers
+    * Exclude Libraries from the scope of Start search
+This policy will not enable users to add unsupported locations to Libraries.
+
+If you enable this policy, Windows Libraries features that rely on indexed file data will be disabled.
+If you disable or do not configure this policy, all default Windows Libraries features will be enabled. </string>
+      <string id="DisableSearchBoxSuggestions_DisplayName">Turn off display of recent search entries in the File Explorer search box</string>
+      <string id="DisableSearchBoxSuggestions_ExplainText">
+Disables suggesting recent queries for the Search Box and prevents entries into the Search Box from being stored in the registry for future references.
+
+File Explorer shows suggestion pop-ups as users type into the Search Box.  These suggestions are based on their past entries into the Search Box.
+
+Note: If you enable this policy, File Explorer will not show suggestion pop-ups as users type into the Search Box, and it will not store Search Box entries into the registry for future references.  If the user types a property, values that match this property will be shown but no data will be saved in the registry or re-shown on subsequent uses of the search box.
+      </string>
+      <string id="DisableBindDirectlyToPropertySetStorage_DisplayName">Disable binding directly to IPropertySetStorage without intermediate layers.</string>
+      <string id="DisableBindDirectlyToPropertySetStorage_ExplainText">
+Changes the behavior of IShellFolder::BindToObject for IID_IPropertySetStorage to not bind directly to the IPropertySetStorage implementation, and to include the intermediate layers provided by the Property System.  This behavior is consistent with Windows Vista's behavior in this scenario.
+
+This disables access to user-defined properties, and properties stored in NTFS secondary streams.
+      </string>
+      <string id="NoStrCmpLogical_DisplayName">Turn off numerical sorting in File Explorer</string>
+      <string id="NoStrCmpLogical_ExplainText">
+This policy setting allows you to have file names sorted literally (as in Windows 2000 and earlier) rather than in numerical order.
+If you enable this policy setting, File Explorer will sort file names by each digit in a file name (for example, 111 &lt; 22 &lt; 3).
+If you disable or do not configure this policy setting, File Explorer will sort file names by increasing number value (for example, 3 &lt; 22 &lt; 111).
+      </string>
+      <string id="IZ_OpenSearchQuery">Allow OpenSearch queries in File Explorer</string>
+      <string id="IZ_Explain_OpenSearchQuery"

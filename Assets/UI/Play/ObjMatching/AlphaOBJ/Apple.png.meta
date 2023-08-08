@@ -1,0 +1,49 @@
+10.0.22621.1992_none_b53fd11fa0bf8044\f\unbcl.dll" length="7576" time="133332706630000000" attr="128">
+      <Hash alg="SHA256" value="A9898CB1A84D91CC96413504C80427EC00D81F15689CFB5AC22E287AEE7A0A91" />
+      <Delta>
+        <Source type="RAW" offset="193793809" length="7576">
+          <Hash alg="SHA256" value="A9898CB1A84D91CC96413504C80427EC00D81F15689CFB5AC22E287AEE7A0A91" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23297" name="amd64_microsoft-windows-s..platform-media-base_31bf3856ad364e35_10.0.22621.1992_none_b53fd11fa0bf8044\f\wdscore.dll" length="3370" time="133332706620000000" attr="128">
+      <Hash alg="SHA256" value="216E034F034E187DAAAB6368645588BA3346BD653E40DF8C16A8D2CD8AF133A4" />
+      <Delta>
+        <Source type="RAW" offset="193801385" length="3370">
+          <Hash alg="SHA256" value="216E034F034E187DAAAB6368645588BA3346BD653E40DF8C16A8D2CD8AF133A4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23298" name="amd64_microsoft-windows-s..platform-media-base_31bf3856ad364e35_10.0.22621.1992_none_b53fd11fa0bf8044\f\reagent.admx" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="211FCA382D8DBDD779A6E5E560CA642774FECFA85B81705A4FD03FB94496501B" />
+      <Delta>
+        <Source type="RAW" offset="193804755" length="50">
+          <Hash alg="SHA256" value="211FCA382D8DBDD779A6E5E560CA642774FECFA85B81705A4FD03FB94496501B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23299" name="amd64_microsoft-windows-s..platform-media-base_31bf3856ad364e35_10.0.22621.1992_none_b53fd11fa0bf8044\f\upgrade_frmwrk.xml" length="52" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="1B4D7AB21F7D90153CC6F2486A34C12232F8DCEBFD0E20807DE5BB4971BDAA85" />
+      <Delta>
+        <Source type="RAW" offset="193804805" length="52">
+          <Hash alg="SHA256" value="1B4D7AB21F7D90153CC6F2486A34C12232F8DCEBFD0E20807DE5BB4971BDAA85" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23300" name="amd64_microsoft-windows-s..platform-media-base_31bf3856ad364e35_10.0.22621.1992_none_b53fd11fa0bf8044\f\wdsclientapi.dll" length="3356" time="133332706620000000" attr="128">
+      <Hash alg="SHA256" value="E74412C44ADD68345CA12CA5A2D998C7D73840141D1F70A527E79F56DF265408" />
+      <Delta>
+        <Source type="RAW" offset="193804857" length="3356">
+          <Hash alg="SHA256" value="E74412C44ADD68345CA12CA5A2D998C7D73840141D1F70A527E79F56DF265408" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23301" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\imagingprovider.dll" length="3227" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="6ECDCB8D8C19E61D2627656EF24B94FA679E4466A0F721E6553B53E9733B6A8B" />
+      <Delta>
+        <Source type="RAW" offset="193808213" length="3227">
+          <Hash alg="SHA256" value="6ECDCB8D8C19E61D2627656EF24B94FA679E4466A0F721E6553B53E9733B6A8B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23302" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\nlsbres.dll" length="3416" time="13

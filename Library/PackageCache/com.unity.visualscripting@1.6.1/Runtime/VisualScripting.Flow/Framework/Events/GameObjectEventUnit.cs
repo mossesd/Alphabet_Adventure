@@ -1,0 +1,68 @@
+uizu100.com/data/attachment/portal/
+(ÿï08@Rhuoche.net/Images/pc/ad_
+,ÿï08@Rhuoche.net/public/huoche/ad/
+&ÿï08@Rhuoyan.tv/yb/img/*.gif
+$ÿï08@Rhupu.com^*/stream.js
+"ÿï08@Rhur.cn/AhurD/*.gif
+8ÿï*
+quote.hexun.com08@Rhxjs.tool.hexun.com
+!ÿï08@Rhxsxw.com/hx8899/
+%ÿï08@Rhxsxw.com/js/float.js
+!ÿï08@Rhy5.com.cn/admin/
+08@Rhybbs.com/i/
+!ÿï08@Rhz.shouyoutv.com^
+ÿï08@Rhzhyhm.com^
+.ÿï08@Rhznzcn.com/moban/youxiajiao.js
+"ÿï08@Ri-gamer.net/promo_
+.ÿï*
+cartoonmad.com08@Ri-gamer.net^
+.ÿï08@Ri-part.com.tw/js2/newShineStar
+;*
+my.alipay.com08@Ri.alipayobjects.com/i/ecmng/
+ÿï08@Ri.wuhaolin.cn^
+#ÿï08@Ri322.com/ad_avshow/
+>ÿï08@R.i3zh.com/wp-content/plugins/cm-pop-up-banners/
+&ÿï08@Ri8.com.cn/images/a.swf
+.ÿï08@Ri8.com.cn/images/tiandijie.jpg
+%ÿï08@Riabao.com/sladewap.js
+ÿï08@Riads.xinmin.cn^
+ ÿï08@Riapolo.com/myjs/
+!ÿï08@Riask.ca/img/*.gif
+ÿï08@Riask.cn^*.data.
+ ÿï08@Riask.cn^*.param.
+ÿï08@Riask.cn^*/qiye.
+$ÿï08@Riask.cn^*commercial.
+ÿï08@Riask.cn^*model.
++ÿï08@Ribf.tw/js/jquery.blockUI.js
+$ÿï08@Ricaile.com/z.php?id=
++ÿï08@Ricao4.com/uploads/pic/2.jpg
+Aÿï08@R1iciba.com/www/img/activity/common/active-11-11.js
+'ÿï08@Rickd.cn/mobile/js/touchÝ
+"ÿï08@Ricnkr.com/cnkradv/
+1ÿï08@R!icnkr.com/data/attachment/portal/
+ÿï08@R
+idcot.com^
+"ÿï08@Ridv.st/dns/bar.htm
+9ÿï08@R)ieforex.com/r/cms/www/red/red2/images/*0.
+ÿï08@Rifeng.com/a_if/
+)ÿï08@Rifeng.com/iframe/quickbet
+#ÿï08@Rifeng.com/showcode?
+(ÿï08@Rifeng.com/showjs?*apids=
+#ÿï08@Rifeng.com/ssi-incs/
+4ÿï08@R$ifeng.com/statics/comment_baidu.html
+%ÿï08@Rifeng.com^*&ADUNITID=
+Mÿï08@R=ifengimg.com/1d124ac5e89463af/2013/0125/rdn_51023a5071d32.jpg
+>ÿï08@R.ifengimg.com/29daa33abbbc4bbc/2015/7/titad.gif
+Aÿï08@R1ifengimg.com/6e0e559e19f25e8b/2013/1226/shoucheng
+(ÿï08@Rifengimg.com/a/*/core201
+&ÿï08@Rifengimg.com/a/*/yemei
++ÿï08@Rifengimg.com/a/*_w300_h250.
+'ÿï08@Rifengimg.com/a/201*.swf
+)ÿï08@Rifengimg.com/a/2016/*600.
+)ÿï08@Rifengimg.com/a/2017/*600.
+Mÿï08@R=ifengimg.com/c337cf1a3749e953/2015/0301/rdn_54f25a4228062.jpg
+1ÿï08@R!ifengimg.com/iamsImg/*_w100_h550.
++ÿï08@Rifengimg.com/ifeng/sources/
+%ÿï08@Rifengimg.com/iis/iis_
+#ÿï08@Rifengimg.com/mappa/
+.ÿï08@Rifengimg.com/md/*/v_r

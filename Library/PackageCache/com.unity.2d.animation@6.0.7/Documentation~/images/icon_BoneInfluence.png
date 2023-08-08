@@ -1,0 +1,30 @@
+HasSpriteRectOverlaps(sprites)))
+            {
+                foreach (Sprite sprite in sprites)
+                {
+                    GetIsometricGridPosition(sprite, cellPixelSize, offsetSize, out Vector2Int position);
+                    result[position] = new TileDragAndDropHoverData(sprite, Vector3.zero, (Vector2)cellPixelSize / sprite.pixelsPerUnit, false);
+                }
+            }
+            else
+            {
+                foreach (Sprite sprite in sprites)
+                {
+                    GetGridPosition(sprite, cellPixelSize, offsetSize, paddingSize, out Vector2Int position, out Vector3 offset);
+                    result[position] = new TileDragAndDropHoverData(sprite, offset, (Vector2)cellPixelSize / sprite.pixelsPerUnit);
+                }
+            }
+
+            return result;
+        }
+
+        private static bool HasSpriteRectOverlaps(IReadOnlyList<Sprite> sprites)
+        {
+            var count = sprites.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var rect = sprites[i].rect;
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (rect.Overlaps(sprites[j].rect))
+                        return t

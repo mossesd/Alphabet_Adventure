@@ -1,0 +1,54 @@
+     {
+                    // Look to the right
+                    return GetBlockIdxFromTextIdx(textIdx, mid + 1, end);
+                }
+                if (textIdx < _blockTextIdxs[mid].startIdx)
+                {
+                    // look to the left
+                    return GetBlockIdxFromTextIdx(textIdx, start, mid - 1);
+                }
+            }
+            return (-1, -1, -1);
+        }
+
+        private bool _smellTest;
+        private void UseSkin(bool useDarkSkin, bool smellTest)
+        {
+            _smellTest = smellTest;
+            if (useDarkSkin)
+            {
+                ColorLineDirective = DarkColorLineDirective;
+                ColorDirective = DarkColorDirective;
+                ColorIdentifier = DarkColorIdentifier;
+                ColorQualifier = DarkColorQualifier;
+                ColorInstruction = DarkColorInstruction;
+                ColorInstructionSIMD = DarkColorInstructionSIMD;
+                ColorInstructionSIMDPacked = DarkColorInstructionSIMDPacked;
+                ColorInstructionSIMDScalar = DarkColorInstructionSIMDScalar;
+                ColorRegister = DarkColorRegister;
+                ColorNumber = DarkColorNumber;
+                ColorString = DarkColorString;
+                ColorComment = DarkColorComment;
+            }
+            else
+            {
+                ColorLineDirective = LightColorLineDirective;
+                ColorDirective = LightColorDirective;
+                ColorIdentifier = LightColorIdentifier;
+                ColorQualifier = LightColorQualifier;
+                ColorInstruction = LightColorInstruction;
+                ColorInstructionSIMD = LightColorInstructionSIMD;
+                ColorInstructionSIMDPacked = LightColorInstructionSIMDPacked;
+                ColorInstructionSIMDScalar = LightColorInstructionSIMDScalar;
+                ColorRegister = LightColorRegister;
+                ColorNumber = LightColorNumber;
+                ColorString = LightColorString;
+                ColorComment = LightColorComment;
+            }
+        }
+
+        private int AlignInstruction(StringBuilder output, int instructionLength, AsmKind asmKind)
+        {
+            // Only support Intel for now
+            if (instructionLength >= InstructionAlignment || asmKind != AsmKind.Intel)
+ 

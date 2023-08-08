@@ -1,0 +1,47 @@
+ingConventions,System.Type[],System.Reflection.ParameterModifier[])">
+      <summary>Returns the method implementation in accordance with the specified criteria.</summary>
+      <returns>A MethodInfo object containing implementation information as specified, or null if the method does not exist.</returns>
+      <param name="name">The method name. </param>
+      <param name="bindingAttr">One of the BindingFlags bit flags used to control the search. </param>
+      <param name="binder">An object that implements Binder, containing properties related to this method. </param>
+      <param name="callConvention">The calling convention for the method. </param>
+      <param name="types">The parameter types to search for. </param>
+      <param name="modifiers">An array of parameter modifiers used to make binding work with parameter signatures in which the types have been modified. </param>
+      <exception cref="T:System.Reflection.AmbiguousMatchException">
+        <paramref name="types" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Module.GetMethods">
+      <summary>Returns the global methods defined on the module.</summary>
+      <returns>An array of <see cref="T:System.Reflection.MethodInfo" /> objects representing all the global methods defined on the module; if there are no global methods, an empty array is returned.</returns>
+    </member>
+    <member name="M:System.Reflection.Module.GetMethods(System.Reflection.BindingFlags)">
+      <summary>Returns the global methods defined on the module that match the specified binding flags.</summary>
+      <returns>An array of type <see cref="T:System.Reflection.MethodInfo" /> representing the global methods defined on the module that match the specified binding flags; if no global methods match the binding flags, an empty array is returned.</returns>
+      <param name="bindingFlags">A bitwise combination of <see cref="T:System.Reflection.BindingFlags" /> values that limit the search.</param>
+    </member>
+    <member name="M:System.Reflection.Module.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Provides an <see cref="T:System.Runtime.Serialization.ISerializable" /> implementation for serialized objects.</summary>
+      <param name="info">The information and data needed to serialize or deserialize an object. </param>
+      <param name="context">The context for the serialization. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="info" /> is null. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Reflection.Module.GetPEKind(System.Reflection.PortableExecutableKinds@,System.Reflection.ImageFileMachine@)">
+      <summary>Gets a pair of values indicating the nature of the code in a module and the platform targeted by the module.</summary>
+      <param name="peKind">When this method returns, a combination of the <see cref="T:System.Reflection.PortableExecutableKinds" /> values indicating the nature of the code in the module.</param>
+      <param name="machine">When this method returns, one of the <see cref="T:System.Reflection.ImageFileMachine" /> values indicating the platform targeted by the module.</param>
+    </member>
+    <member name="M:System.Reflection.Module.GetSignerCertificate">
+      <summary>Returns an X509Certificate object corresponding to the certificate included in the Authenticode signature of the assembly which this module belongs to. If the assembly has not been Authenticode signed, null is returned.</summary>
+      <returns>An X509Certificate object, or null if the assembly to which this module belongs has not been Authenticode signed.</returns>
+    </member>
+    <member name="M:System.Reflection.Module.GetType(System.String)">
+      <summary>Returns the specified type, performing a case-sensitive search.</summary>
+      <returns>A Type object representing the given type, if the type is in this module; otherwise, null.</returns>
+      <param name="className">The name of the type to locate. The name must be fully qualified with the namespace. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="className" /> is null. </exception>
+      <exception cref="T:System.Reflection.TargetInvocationException">The class initializers are invoked and an exception is thrown. 

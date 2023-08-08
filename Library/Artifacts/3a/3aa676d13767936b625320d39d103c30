@@ -1,0 +1,167 @@
+       <Hash alg="SHA256" value="109EE7DC0BCDB537CA95FCDC65D345C5461EA1498B54FC3918E5B8CEC9DBBACF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23133" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\msdxm.ocx" length="159" time="133332706740000000" attr="128">
+      <Hash alg="SHA256" value="30E35439EDCE0AC43ABA23D105DD899248E7E25E4B89284B980FFECE6DE1EADE" />
+      <Delta>
+        <Source type="RAW" offset="186392857" length="159">
+          <Hash alg="SHA256" value="30E35439EDCE0AC43ABA23D105DD899248E7E25E4B89284B980FFECE6DE1EADE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23134" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\dmr_120.png" length="52" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="92D606A1FCD5F91E4309120A76462C3C886E000A32BAD2C89F76DFEA26A67848" />
+      <Delta>
+        <Source type="RAW" offset="186393016" length="52">
+          <Hash alg="SHA256" value="92D606A1FCD5F91E4309120A76462C3C886E000A32BAD2C89F76DFEA26A67848" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23135" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmp.dll" length="182415" time="133332706750000000" attr="128">
+      <Hash alg="SHA256" value="47EEED1E07A59AFC21588A5F4399730DA617373A2B9C9249F60EB169E9614817" />
+      <Delta>
+        <Source type="PA30" offset="186393068" length="178738">
+          <Hash alg="SHA256" value="564D2FA01BBBFFAD9338EC5319E2A2F88DB68479EF70FE66FC7DDF1E9DAFF41D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23136" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\avtransport.xml" length="52" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="225ABB3A6BD55CA0B12F7E0A40C883E38AA2B357A78E1E5B8E73D9D3C4AA3FCE" />
+      <Delta>
+        <Source type="RAW" offset="186571806" length="52">
+          <Hash alg="SHA256" value="225ABB3A6BD55CA0B12F7E0A40C883E38AA2B357A78E1E5B8E73D9D3C4AA3FCE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23137" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmpshare.exe" length="171" time="133332706740000000" attr="128">
+      <Hash alg="SHA256" value="9F5E6D2DD7192861CB53412B9EE281109893FF5564C37A764688F721DBA1ED7D" />
+      <Delta>
+        <Source type="RAW" offset="186571858" length="171">
+          <Hash alg="SHA256" value="9F5E6D2DD7192861CB53412B9EE281109893FF5564C37A764688F721DBA1ED7D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23138" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmploc.dll.mun" length="247" time="133284071900000000" attr="128">
+      <Hash alg="SHA256" value="9BC8C6C82D927E60F33D271D9862565500DE6540B37B5D542935A383AEE62C64" />
+      <Delta>
+        <Source type="RAW" offset="186572029" length="247">
+          <Hash alg="SHA256" value="9BC8C6C82D927E60F33D271D9862565500DE6540B37B5D542935A383AEE62C64" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23139" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\spwmp.dll" length="162" time="133332706740000000" attr="128">
+      <Hash alg="SHA256" value="46C20D4A6A83FDBC409509B62D6916BC3F10524B11CA449A29B89BB4EB8D66D7" />
+      <Delta>
+        <Source type="RAW" offset="186572276" length="162">
+          <Hash alg="SHA256" value="46C20D4A6A83FDBC409509B62D6916BC3F10524B11CA449A29B89BB4EB8D66D7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23140" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmpconfig.exe" length="165" time="133332706740000000" attr="128">
+      <Hash alg="SHA256" value="A6B1EF5B4E7F02BAF191758E9D6025111D0E002BE26CB876CF1F23017896D3C9" />
+      <Delta>
+        <Source type="RAW" offset="186572438" length="165">
+          <Hash alg="SHA256" value="A6B1EF5B4E7F02BAF191758E9D6025111D0E002BE26CB876CF1F23017896D3C9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23141" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmplayer.exe" length="230" time="133332706740000000" attr="128">
+      <Hash alg="SHA256" value="07479A28AE69BEB19B01A19AA16C2DB048C9F562CC246FBC565600F4C44911B1" />
+      <Delta>
+        <Source type="RAW" offset="186572603" length="230">
+          <Hash alg="SHA256" value="07479A28AE69BEB19B01A19AA16C2DB048C9F562CC246FBC565600F4C44911B1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23142" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\renderingcontrol_dmp.xml" length="50" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="86DD9F291EAA24F10CC1973DFB7229181B1A5B1A3F386FB8F1A10C709816A671" />
+      <Delta>
+        <Source type="RAW" offset="186572833" length="50">
+          <Hash alg="SHA256" value="86DD9F291EAA24F10CC1973DFB7229181B1A5B1A3F386FB8F1A10C709816A671" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23143" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\renderingcontrol.xml" length="51" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="75E3D976804565B7204050DB4CA068B6D0B8BC557D553CAD630059718A655DC0" />
+      <Delta>
+        <Source type="RAW" offset="186572883" length="51">
+          <Hash alg="SHA256" value="75E3D976804565B7204050DB4CA068B6D0B8BC557D553CAD630059718A655DC0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23144" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\wmploc.dll" length="220" time="133284071670000000" attr="128">
+      <Hash alg="SHA256" value="F21A229B8292ECA39C425B107379092690786ED05288ADF26851BD0D1C39D8EE" />
+      <Delta>
+        <Source type="RAW" offset="186572934" length="220">
+          <Hash alg="SHA256" value="F21A229B8292ECA39C425B107379092690786ED05288ADF26851BD0D1C39D8EE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23145" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\dmr_120.jpg" length="50" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="DF149E5EA3824E35C5D561981FE305DFF49ED12726B74319844BB0E8FDB9503B" />
+      <Delta>
+        <Source type="RAW" offset="186573154" length="50">
+          <Hash alg="SHA256" value="DF149E5EA3824E35C5D561981FE305DFF49ED12726B74319844BB0E8FDB9503B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23146" name="amd64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_eb2244dacad131be\f\connectionmanager_dmr.xml" length="51" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="51FC039999E6405675F7527C4E11D834FEAEA4D44D5A0BCA2A4FA058188CF774" />
+      <Delta>
+        <Source type="RAW" offset="186573204" length="51">
+          <Hash alg="SHA256" value="51FC039999E6405675F7527C4E11D834FEAEA4D44D5A0BCA2A4FA058188CF774" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23147" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\dmr_120.jpg" length="50" time="133332636060000000" attr="128">
+      <Hash alg="SHA256" value="DF149E5EA3824E35C5D561981FE305DFF49ED12726B74319844BB0E8FDB9503B" />
+      <Delta>
+        <Source type="RAW" offset="186573255" length="50">
+          <Hash alg="SHA256" value="DF149E5EA3824E35C5D561981FE305DFF49ED12726B74319844BB0E8FDB9503B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23148" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\wmpshare.exe" length="192" time="133332706670000000" attr="128">
+      <Hash alg="SHA256" value="969E311E6DB1A3E395C5B71AAE2AE329F39A9D366D16505B61D77F05CE272B0B" />
+      <Delta>
+        <Source type="RAW" offset="186573305" length="192">
+          <Hash alg="SHA256" value="969E311E6DB1A3E395C5B71AAE2AE329F39A9D366D16505B61D77F05CE272B0B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23149" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\wmpconfig.exe" length="186" time="133332706670000000" attr="128">
+      <Hash alg="SHA256" value="2C1D4CEDE9C78EE00DBD44FEBF6486ACE297D3127D72311E251AC72E5F3F5E48" />
+      <Delta>
+        <Source type="RAW" offset="186573497" length="186">
+          <Hash alg="SHA256" value="2C1D4CEDE9C78EE00DBD44FEBF6486ACE297D3127D72311E251AC72E5F3F5E48" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23150" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\wmploc.dll" length="226" time="133284071670000000" attr="128">
+      <Hash alg="SHA256" value="04755B2A5C75DF63DD11A38139A43713DBD214C575412390CABB087D8EFA6F26" />
+      <Delta>
+        <Source type="RAW" offset="186573683" length="226">
+          <Hash alg="SHA256" value="04755B2A5C75DF63DD11A38139A43713DBD214C575412390CABB087D8EFA6F26" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23151" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\wmplayer.exe" length="252" time="133332706670000000" attr="128">
+      <Hash alg="SHA256" value="D200D22472AC0117E62A0EA2A57475488DCBD16CC605B6D082996293CE7B9107" />
+      <Delta>
+        <Source type="RAW" offset="186573909" length="252">
+          <Hash alg="SHA256" value="D200D22472AC0117E62A0EA2A57475488DCBD16CC605B6D082996293CE7B9107" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23152" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\wmp.dll" length="108196" time="133332706870000000" attr="128">
+      <Hash alg="SHA256" value="800DBBC92C1D863A440F078663DA9C6331441D5C0F7C26A51876FF0AD1F23D76" />
+      <Delta>
+        <Source type="PA30" offset="186574161" length="106855">
+          <Hash alg="SHA256" value="CFFE14C0436BBF729490AA5EC02AF0EC561C7EC7255B775B41A4A20D5CE98A87" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23153" name="wow64_microsoft-windows-mediaplayer-core_31bf3856ad364e35_10.0.22621.1992_none_f576ef2cff31f3b9\f\msdxm.ocx" length="178" time="133332706670000000" attr="128">
+      <Hash alg="SHA256" value="EFE34EF3B4557A4F835A95D2BD4C3D3B2281137AA20DD57FDAA088373C9F4E54" />
+  

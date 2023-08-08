@@ -1,0 +1,82 @@
+�传入分支
+
+== ShowExcludedBranchesCheckButton ==
+显示排除的分支
+
+== NewSyncView ==
+新建同步视图
+
+== NewSyncViewName ==
+同步视图名称
+
+== NewSyncViewTitle ==
+创建一个新的同步视图以推送/拉取分支组
+
+== NewSyncViewTitleCloud ==
+创建一个新的同步视图以将分支组推送/拉取到 Plastic Cloud
+
+== NewSyncViewExplanation ==
+借助同步视图，无需逐个进行推送/拉取，而是可以轻松批量复制分支
+
+== NewSyncViewCheckingRepositories ==
+正在检查存储库...
+
+== NewSyncViewNoSourceRepository ==
+没有可用作源的 {0} 存储库
+
+== NewSyncViewNoDestinationRepository ==
+没有可用作目标的 {0} 存储库
+
+== NewSyncViewSourceRepository ==
+源存储库
+
+== NewSyncViewDestinationRepository ==
+目标存储库
+
+== NewSyncViewEnterSyncViewName ==
+请输入同步视图名称
+
+== NewSyncViewEnterRepositorySpec ==
+请输入存储库规格
+
+== NewSyncViewInvalidRepositorySpec ==
+无效的存储库规格：{0}
+
+== NewSyncViewCheckingSourceRepositoryExists ==
+正在检查源存储库是否存在...
+
+== NewSyncViewCheckingDestinationRepositoryExists ==
+正在检查目标存储库是否存在...
+
+== NewSyncViewSourceRepositoryNotExist ==
+源存储库 {0} 不存在
+
+== NewSyncViewDestinationRepositoryNotExist ==
+目标存储库 {0} 不存在
+
+== NewSyncViewCreateSyncView ==
+创建新的同步视图（推送/拉取）
+
+== NewSyncViewCreatingRepository ==
+正在创建存储库...
+
+== SyncStatusLoading ==
+正在加载...
+
+== SyncStatusUpToDate ==
+所有分支都是最新的
+
+== SyncStatusError ==
+错误：{0}
+
+== OutgoingBranchesSingular ==
+传出分支 - 1 个分支
+
+== OutgoingBranchesPlural ==
+传出分支 - {0} 个分支
+
+== IncomingBranchesSingular ==
+传入分支 - 1 个分支
+
+== IncomingBranchesPlural ==
+传入分�

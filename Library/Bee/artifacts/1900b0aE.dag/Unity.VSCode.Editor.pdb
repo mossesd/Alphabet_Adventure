@@ -1,0 +1,219 @@
+putslot != null)
+                    inputslot.textureArray = textureArray;
+            }
+
+            var texture3D = obj as Texture3D;
+            if (texture3D != null)
+            {
+                graph.owner.RegisterCompleteObjectUndo("Drag Texture 3D");
+
+                var node = new SampleTexture3DNode();
+                var drawState = node.drawState;
+                drawState.position = new Rect(nodePosition, drawState.position.size);
+                node.drawState = drawState;
+                graph.AddNode(node);
+
+                var inputslot = node.FindSlot<Texture3DInputMaterialSlot>(SampleTexture3DNode.TextureInputId);
+                if (inputslot != null)
+                    inputslot.texture = texture3D;
+            }
+
+            var cubemap = obj as Cubemap;
+            if (cubemap != null)
+            {
+                graph.owner.RegisterCompleteObjectUndo("Drag Cubemap");
+
+                var node = new SampleCubemapNode();
+                var drawState = node.drawState;
+                drawState.position = new Rect(nodePosition, drawState.position.size);
+                node.drawState = drawState;
+                graph.AddNode(node);
+
+                var inputslot = node.FindInputSlot<CubemapInputMaterialSlot>(SampleCubemapNode.CubemapInputId);
+                if (inputslot != null)
+                    inputslot.cubemap = cubemap;
+            }
+
+            var subGraphAsset = obj as SubGraphAsset;
+            if (subGraphAsset != null)
+            {
+                graph.owner.RegisterCompleteObjectUndo("Drag Sub-Graph");
+                var node = new SubGraphNode();
+
+                var drawState = node.drawState;
+                drawState.position = new Rect(nodePosition, drawState.position.size);
+                node.drawState = drawState;
+                node.asset = subGraphAsset;
+                graph.AddNode(node);
+            }
+
+            var blackboardPropertyView = obj as SGBlackboardField;
+            if (blackboardPropertyView?.userData is ShaderInput inputBeingDraggedIn)
+            {
+                var dragGraphInputAction = new DragGraphInputAction { nodePosition = nodePosition, graphInputBeingDraggedIn = inputBeingDraggedIn };
+                graph.owner.graphDataStore.Dispatch(dragGraphInputAction);
+            }
+        }
+
+        #endregion
+
+        void ElementsInsertedToStackNode(StackNode stackNode, int insertIndex, IEnumerable<GraphElement> elements)
+        {
+            var contextView = stackNode as ContextView;
+            contextView.InsertElements(insertIndex, elements);
+        }
+    }
+
+    static class GraphViewExtensions
+    {
+        // Sorts based on their position on the blackboard
+        internal class PropertyOrder : IComparer<ShaderInput>
+        {
+            GraphData graphData;
+
+            internal PropertyOrder(GraphData data)
+            {
+                graphData = data;
+            }
+
+            public int Compare(ShaderInput x, ShaderInput y)
+            {
+                if (graphData.GetGraphInputIndex(x) > graphData.GetGraphInputIndex(y)) return 1;
+                else return -1;
+            }
+        }
+
+        internal static void InsertCopyPasteGraph(this MaterialGraphView graphView, CopyPasteGraph copyGraph)
+        {
+            if (copyGraph == null)
+                return;
+
+            // Keywords need to be tested against variant limit based on multiple factors
+            bool keywordsDirty = false;
+
+            bool dropdownsDirty = false;
+
+            var blackboardController = graphView.GetFirstAncestorOfType<GraphEditorView>().blackboardController;
+
+            // Get the position to insert the new shader inputs per category
+            int insertionIndex = blackboardController.GetInsertionIndexForPaste();
+
+            // Any child of the categories need to be removed from selection as well (there's a Graphview issue where these don't get properly added to selection before the duplication sometimes, have to do it manually)
+            foreach (var selectable in graphView.selection)
+            {
+                if (selectable is SGBlackboardCategory blackboardCategory)
+                {
+                    foreach (var blackboardChild in blackboardCategory.Children())
+                    {
+                        if (blackboardChild is SGBlackboardRow blackboardRow)
+                        {
+                            var blackboardField = blackboardRow.Q<SGBlackboardField>();
+                            if (blackboardField != null)
+                            {
+                                blackboardField.selected = false;
+                                blackboardField.OnUnselected();
+                            }
+                        }
+                    }
+                }
+            }
+
+            var cachedSelection = graphView.selection.ToList();
+
+            // Before copy-pasting, clear all current selections so the duplicated items may be selected instead
+            graphView.ClearSelectionNoUndoRecord();
+
+            // Make new inputs from the copied graph
+            foreach (ShaderInput input in copyGraph.inputs)
+            {
+                // Disregard any inputs that belong to a category in the CopyPasteGraph already,
+                // GraphData handles copying those child inputs over when the category is copied
+                if (copyGraph.IsInputCategorized(input))
+                    continue;
+
+                string associatedCategoryGuid = String.Empty;
+
+                foreach (var category in graphView.graph.categories)
+                {
+                    if (copyGraph.IsInputDuplicatedFromCategory(input, category, graphView.graph))
+                    {
+                        associatedCategoryGuid = category.categoryGuid;
+                    }
+                }
+
+                // In the specific case of just an input being selected to copy but some other category than the one containing it was selected, we want to copy it to the default category
+                if (associatedCategoryGuid != String.Empty)
+                {
+                    foreach (var selection in cachedSelection)
+                    {
+                        if (selection is SGBlackboardCategory blackboardCategory && blackboardCategory.viewModel.associatedCategoryGuid != associatedCategoryGuid)
+                        {
+                            associatedCategoryGuid = String.Empty;
+                            // Also ensures it is added to the end of the default category
+                            insertionIndex = -1;
+                        }
+                    }
+                }
+
+                // This ensures that if an item is duplicated, it is copied to the same category
+                if (copyGraph.copyPasteGraphSource == CopyPasteGraphSource.Duplicate)
+                {
+                    associatedCategoryGuid = graphView.graph.FindCategoryForInput(input);
+                }
+
+                var copyShaderInputAction = new CopyShaderInputAction { shaderInputToCopy = input, containingCategoryGuid = associatedCategoryGuid };
+                copyShaderInputAction.insertIndex = insertionIndex;
+
+                if (graphView.graph.IsInputAllowedInGraph(input))
+                {
+                    switch (input)
+                    {
+                        case AbstractShaderProperty property:
+                            copyShaderInputAction.dependentNodeList = copyGraph.GetNodes<PropertyNode>().Where(x => x.property == input);
+                            break;
+
+                        case ShaderKeyword shaderKeyword:
+                            copyShaderInputAction.dependentNodeList = copyGraph.GetNodes<KeywordNode>().Where(x => x.keyword == input);
+                            // Pasting a new Keyword so need to test against variant limit
+                            keywordsDirty = true;
+                            break;
+
+                        case ShaderDropdown shaderDropdown:
+                            copyShaderInputAction.dependentNodeList = copyGraph.GetNodes<DropdownNode>().Where(x => x.dropdown == input);
+                            dropdownsDirty = true;
+                            break;
+
+                        default:
+                            AssertHelpers.Fail("Tried to paste shader input of unknown type into graph.");
+                            break;
+                    }
+
+                    graphView.graph.owner.graphDataStore.Dispatch(copyShaderInputAction);
+
+                    // Increment insertion index for next input
+                    insertionIndex++;
+                }
+            }
+
+            // Make new categories from the copied graph
+            foreach (var category in copyGraph.categories)
+            {
+                foreach (var input in category.Children.ToList())
+                {
+                    // Remove this input from being copied if its not allowed to be copied into the target graph (eg. its a dropdown and the target graph isn't a sub-graph)
+                    if (graphView.graph.IsInputAllowedInGraph(input) == false)
+                        category.RemoveItemFromCategory(input);
+                }
+                var copyCategoryAction = new CopyCategoryAction() { categoryToCopyReference = category };
+                graphView.graph.owner.graphDataStore.Dispatch(copyCategoryAction);
+            }
+
+            // Pasting a Sub Graph node that contains Keywords so need to test against variant limit
+            foreach (SubGraphNode subGraphNode in copyGraph.GetNodes<SubGraphNode>())
+            {
+                if (subGraphNode.asset.keywords.Any())
+                {
+                    keywordsDirty = true;
+                }
+
+                if (subGraphNode.asset.dropdow

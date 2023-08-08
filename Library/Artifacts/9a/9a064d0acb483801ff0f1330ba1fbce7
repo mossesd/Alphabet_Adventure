@@ -1,0 +1,382 @@
+y.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.T">
+      <summary>The T key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.U">
+      <summary>The U key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.V">
+      <summary>The V key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.W">
+      <summary>The W key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.X">
+      <summary>The X key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Y">
+      <summary>The Y key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Z">
+      <summary>The Z key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LeftWindows">
+      <summary>The left Windows logo key (Microsoft Natural Keyboard).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.RightWindows">
+      <summary>The right Windows logo key (Microsoft Natural Keyboard).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Applications">
+      <summary>The Application key (Microsoft Natural Keyboard).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Sleep">
+      <summary>The Computer Sleep key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad0">
+      <summary>The 0 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad1">
+      <summary>The 1 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad2">
+      <summary>The 2 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad3">
+      <summary>The 3 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad4">
+      <summary>The 4 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad5">
+      <summary>The 5 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad6">
+      <summary>The 6 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad7">
+      <summary>The 7 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad8">
+      <summary>The 8 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad9">
+      <summary>The 9 key on the numeric keypad.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Multiply">
+      <summary>The Multiply key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Add">
+      <summary>The Add key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Separator">
+      <summary>The Separator key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Subtract">
+      <summary>The Subtract key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Decimal">
+      <summary>The Decimal key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Divide">
+      <summary>The Divide key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F1">
+      <summary>The F1 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F2">
+      <summary>The F2 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F3">
+      <summary>The F3 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F4">
+      <summary>The F4 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F5">
+      <summary>The F5 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F6">
+      <summary>The F6 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F7">
+      <summary>The F7 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F8">
+      <summary>The F8 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F9">
+      <summary>The F9 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F10">
+      <summary>The F10 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F11">
+      <summary>The F11 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F12">
+      <summary>The F12 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F13">
+      <summary>The F13 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F14">
+      <summary>The F14 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F15">
+      <summary>The F15 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F16">
+      <summary>The F16 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F17">
+      <summary>The F17 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F18">
+      <summary>The F18 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F19">
+      <summary>The F19 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F20">
+      <summary>The F20 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F21">
+      <summary>The F21 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F22">
+      <summary>The F22 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F23">
+      <summary>The F23 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F24">
+      <summary>The F24 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserBack">
+      <summary>The Browser Back key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserForward">
+      <summary>The Browser Forward key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserRefresh">
+      <summary>The Browser Refresh key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserStop">
+      <summary>The Browser Stop key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserSearch">
+      <summary>The Browser Search key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserFavorites">
+      <summary>The Browser Favorites key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserHome">
+      <summary>The Browser Home key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeMute">
+      <summary>The Volume Mute key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeDown">
+      <summary>The Volume Down key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeUp">
+      <summary>The Volume Up key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaNext">
+      <summary>The Media Next Track key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaPrevious">
+      <summary>The Media Previous Track key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaStop">
+      <summary>The Media Stop key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaPlay">
+      <summary>The Media Play/Pause key (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchMail">
+      <summary>The Start Mail key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchMediaSelect">
+      <summary>The Select Media key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchApp1">
+      <summary>The Start Application 1 key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchApp2">
+      <summary>The Start Application 2 key (Microsoft Natural Keyboard, Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem1">
+      <summary>The OEM 1 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemPlus">
+      <summary>The OEM Plus key on any country/region keyboard (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemComma">
+      <summary>The OEM Comma key on any country/region keyboard (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemMinus">
+      <summary>The OEM Minus key on any country/region keyboard (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemPeriod">
+      <summary>The OEM Period key on any country/region keyboard (Windows 2000 or later).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem2">
+      <summary>The OEM 2 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem3">
+      <summary>The OEM 3 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem4">
+      <summary>The OEM 4 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem5">
+      <summary>The OEM 5 (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem6">
+      <summary>The OEM 6 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem7">
+      <summary>The OEM 7 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem8">
+      <summary>The OEM 8 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem102">
+      <summary>The OEM 102 key (OEM specific).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Process">
+      <summary>The IME PROCESS key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Packet">
+      <summary>The PACKET key (used to pass Unicode characters with keystrokes).</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Attention">
+      <summary>The ATTN key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.CrSel">
+      <summary>The CRSEL (CURSOR SELECT) key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.ExSel">
+      <summary>The EXSEL (EXTEND SELECTION) key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.EraseEndOfFile">
+      <summary>The ERASE EOF key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Play">
+      <summary>The PLAY key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Zoom">
+      <summary>The ZOOM key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NoName">
+      <summary>A constant reserved for future use.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Pa1">
+      <summary>The PA1 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemClear">
+      <summary>The CLEAR key (OEM specific).</summary>
+    </member>
+    <member name="T:System.ConsoleKeyInfo">
+      <summary>Describes the console key that was pressed, including the character represented by the console key and the state of the SHIFT, ALT, and CTRL modifier keys.</summary>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.#ctor(System.Char,System.ConsoleKey,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.ConsoleKeyInfo" /> structure using the specified character, console key, and modifier keys.</summary>
+      <param name="keyChar">The Unicode character that corresponds to the <paramref name="key" /> parameter. </param>
+      <param name="key">The console key that corresponds to the <paramref name="keyChar" /> parameter. </param>
+      <param name="shift">true to indicate that a SHIFT key was pressed; otherwise, false. </param>
+      <param name="alt">true to indicate that an ALT key was pressed; otherwise, false. </param>
+      <param name="control">true to indicate that a CTRL key was pressed; otherwise, false. </param>
+      <exception cref="T:System.ArgumentOutOfRangeException">The numeric value of the <paramref name="key" /> parameter is less than 0 or greater than 255.</exception>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.Equals(System.ConsoleKeyInfo)">
+      <summary>Gets a value indicating whether the specified <see cref="T:System.ConsoleKeyInfo" /> object is equal to the current <see cref="T:System.ConsoleKeyInfo" /> object.</summary>
+      <returns>true if <paramref name="obj" /> is equal to the current <see cref="T:System.ConsoleKeyInfo" /> object; otherwise, false.</returns>
+      <param name="obj">A <see cref="T:System.ConsoleKeyInfo" /> object to compare to the current <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.Equals(System.Object)">
+      <summary>Gets a value indicating whether the specified object is equal to the current <see cref="T:System.ConsoleKeyInfo" /> object.</summary>
+      <returns>true if <paramref name="value" /> is a <see cref="T:System.ConsoleKeyInfo" /> object and is equal to the current <see cref="T:System.ConsoleKeyInfo" /> object; otherwise, false.</returns>
+      <param name="value">An object to compare to the current <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.GetHashCode">
+      <summary>Returns the hash code for the current <see cref="T:System.ConsoleKeyInfo" /> object.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.Key">
+      <summary>Gets the console key represented by the current <see cref="T:System.ConsoleKeyInfo" /> object.</summary>
+      <returns>A <see cref="T:System.ConsoleKey" /> value that identifies the console key that was pressed.</returns>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.KeyChar">
+      <summary>Gets the Unicode character represented by the current <see cref="T:System.ConsoleKeyInfo" /> object.</summary>
+      <returns>A <see cref="T:System.Char" /> object that corresponds to the console key represented by the current <see cref="T:System.ConsoleKeyInfo" /> object.</returns>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.Modifiers">
+      <summary>Gets a bitwise combination of <see cref="T:System.ConsoleModifiers" /> values that specifies one or more modifier keys pressed simultaneously with the console key.</summary>
+      <returns>A bitwise combination of <see cref="T:System.ConsoleModifiers" /> values. There is no default value.</returns>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.op_Equality(System.ConsoleKeyInfo,System.ConsoleKeyInfo)">
+      <summary>Indicates whether the specified <see cref="T:System.ConsoleKeyInfo" /> objects are equal.</summary>
+      <returns>true if <paramref name="a" /> is equal to <paramref name="b" />; otherwise, false.</returns>
+      <param name="a">A <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+      <param name="b">A <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.op_Inequality(System.ConsoleKeyInfo,System.ConsoleKeyInfo)">
+      <summary>Indicates whether the specified <see cref="T:System.ConsoleKeyInfo" /> objects are not equal.</summary>
+      <returns>true if <paramref name="a" /> is not equal to <paramref name="b" />; otherwise, false.</returns>
+      <param name="a">A <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+      <param name="b">A <see cref="T:System.ConsoleKeyInfo" /> object.</param>
+    </member>
+    <member name="T:System.ConsoleModifiers">
+      <summary>Represents the SHIFT, ALT, and CTRL modifier keys on a keyboard.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="F:System.ConsoleModifiers.Alt">
+      <summary>The left or right ALT modifier key.</summary>
+    </member>
+    <member name="F:System.ConsoleModifiers.Shift">
+      <summary>The left or right SHIFT modifier key.</summary>
+    </member>
+    <member name="F:System.ConsoleModifiers.Control">
+      <summary>The left or right CTRL modifier key.</summary>
+    </member>
+    <member name="T:System.ConsoleSpecialKey">
+      <summary>Specifies combinations of modifier and console keys that can interrupt the current process.</summary>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="F:System.ConsoleSpecialKey.ControlC">
+      <summary>The <see cref="F:System.ConsoleModifiers.Control" /> modifier key plus the <see cref="F:System.ConsoleKey.C" /> console key.</summary>
+    </member>
+    <member name="F:System.ConsoleSpecialKey.ControlBreak">
+      <summary>The <see cref="F:System.ConsoleModifiers.Control" /> modifier key plus the BREAK console key.</summary>
+    </member>
+    <member name="T:System.ContextBoundObject">
+      <summary>Defines the base class for all context-bound classes.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.ContextBoundObject.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.ContextBoundObject" /> class.</summary>
+    </member>
+    <member name="T:System.ContextMarshalException">
+      <summary>The exception that is thrown when an attempt to marshal an object across a context boundary fails.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:System.ContextMarshalException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.ContextMarshalException" /> class with default properties.</summary>
+    </member>
+    <member name="M:System.ContextMarshalException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:System.ContextMarshalException" /> class with serialized data.</summary>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
+    </member>
+    <member name="M:System.ContextMarshalException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.ContextMarshalException" /> class with a specified error message.</summary>
+      <param name="message">The error message that explains the reason for the exception. </param>
+    </member>
+    <member name="M:System.ContextMarshalE

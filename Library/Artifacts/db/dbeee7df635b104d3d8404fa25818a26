@@ -1,0 +1,128 @@
+6.Text : null, NumberStyles.Float, numberFormatInfo));
+                        }
+                        break;
+                    case 3:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:210:4: STRING
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            STRING37 = (IToken)Match(input, STRING, FOLLOW_STRING_in_value892);
+                            STRING37_tree = (CommonTree)adaptor.Create(STRING37);
+                            adaptor.AddChild(root_0, STRING37_tree);
+
+                            retval.value = new ValueExpression(extractString(STRING37 != null ? STRING37.Text : null));
+                        }
+                        break;
+                    case 4:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:211:5: DATETIME
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            DATETIME38 = (IToken)Match(input, DATETIME, FOLLOW_DATETIME_in_value901);
+                            DATETIME38_tree = (CommonTree)adaptor.Create(DATETIME38);
+                            adaptor.AddChild(root_0, DATETIME38_tree);
+
+                            retval.value = new ValueExpression(DateTime.Parse((DATETIME38 != null ? DATETIME38.Text : null).Substring(1, (DATETIME38 != null ? DATETIME38.Text : null).Length - 2)));
+                        }
+                        break;
+                    case 5:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:212:4: TRUE
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            TRUE39 = (IToken)Match(input, TRUE, FOLLOW_TRUE_in_value908);
+                            TRUE39_tree = (CommonTree)adaptor.Create(TRUE39);
+                            adaptor.AddChild(root_0, TRUE39_tree);
+
+                            retval.value = new ValueExpression(true);
+                        }
+                        break;
+                    case 6:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:213:4: FALSE
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            FALSE40 = (IToken)Match(input, FALSE, FOLLOW_FALSE_in_value916);
+                            FALSE40_tree = (CommonTree)adaptor.Create(FALSE40);
+                            adaptor.AddChild(root_0, FALSE40_tree);
+
+                            retval.value = new ValueExpression(false);
+                        }
+                        break;
+                }
+                retval.Stop = input.LT(-1);
+
+                retval.Tree = (CommonTree)adaptor.RulePostProcessing(root_0);
+                adaptor.SetTokenBoundaries(retval.Tree, (IToken)retval.Start, (IToken)retval.Stop);
+            }
+            catch (RecognitionException re)
+            {
+                ReportError(re);
+                Recover(input, re);
+                // Conversion of the second argument necessary, but harmless
+                retval.Tree = (CommonTree)adaptor.ErrorNode(input, (IToken)retval.Start, input.LT(-1), re);
+            }
+            finally { }
+            return retval;
+        }
+
+        // $ANTLR start "identifier"
+        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:216:1: identifier returns [Identifier value] : ( ID | NAME );
+        public identifier_return identifier() // throws RecognitionException [1]
+        {
+            var retval = new identifier_return();
+            retval.Start = input.LT(1);
+
+            CommonTree root_0 = null;
+
+            IToken ID41 = null;
+            IToken NAME42 = null;
+
+            CommonTree ID41_tree = null;
+            CommonTree NAME42_tree = null;
+
+            try
+            {
+                // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:217:2: ( ID | NAME )
+                var alt21 = 2;
+                var LA21_0 = input.LA(1);
+
+                if (LA21_0 == ID)
+                {
+                    alt21 = 1;
+                }
+                else if (LA21_0 == NAME)
+                {
+                    alt21 = 2;
+                }
+                else
+                {
+                    var nvae_d21s0 =
+                        new NoViableAltException("", 21, 0, input);
+
+                    throw nvae_d21s0;
+                }
+                switch (alt21)
+                {
+                    case 1:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:217:5: ID
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            ID41 = (IToken)Match(input, ID, FOLLOW_ID_in_identifier934);
+                            ID41_tree = (CommonTree)adaptor.Create(ID41);
+                            adaptor.AddChild(root_0, ID41_tree);
+
+                            retval.value = new IdentifierExpression(ID41 != null ? ID41.Text : null);
+                        }
+                        break;
+                    case 2:
+                        // C:\\Users\\s.ros\\Documents\\D�veloppement\\NCalc\\Grammar\\NCalc.g:218:5: NAME
+                        {
+                            root_0 = (CommonTree)adaptor.GetNilNode();
+
+                            NAME42 = (IToken)Match(input, NAME, FOLLOW_NAME_in_identifier942);
+                            NAME42_tree = (CommonTree)adaptor.Create(NAME42);
+                            adaptor.AddChild(root_0, NAME42_tree);
+
+              

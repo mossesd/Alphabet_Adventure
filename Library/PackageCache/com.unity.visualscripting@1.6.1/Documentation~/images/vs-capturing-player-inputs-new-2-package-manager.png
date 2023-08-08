@@ -1,0 +1,1278 @@
+ssemblies/Unity.Rider.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Rider.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        177
+      ],
+      "DebugActionIndex": 542
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Rider.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Rider.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        177
+      ],
+      "DebugActionIndex": 543
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VSCode.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VSCode.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        197
+      ],
+      "DebugActionIndex": 544
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VSCode.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VSCode.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        197
+      ],
+      "DebugActionIndex": 545
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        207
+      ],
+      "DebugActionIndex": 546
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualStudio.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualStudio.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        207
+      ],
+      "DebugActionIndex": 547
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/UnityEngine.UI.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/UnityEngine.UI.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/UnityEngine.UI.dll"
+      ],
+      "ToBuildDependencies": [
+        433
+      ],
+      "DebugActionIndex": 548
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/UnityEngine.UI.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/UnityEngine.UI.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/UnityEngine.UI.pdb"
+      ],
+      "ToBuildDependencies": [
+        433
+      ],
+      "DebugActionIndex": 549
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/UnityEditor.UI.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/UnityEditor.UI.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/UnityEditor.UI.dll"
+      ],
+      "ToBuildDependencies": [
+        435
+      ],
+      "DebugActionIndex": 550
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/UnityEditor.UI.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/UnityEditor.UI.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/UnityEditor.UI.pdb"
+      ],
+      "ToBuildDependencies": [
+        435
+      ],
+      "DebugActionIndex": 551
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/PsdPlugin.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/PsdPlugin.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/PsdPlugin.dll"
+      ],
+      "ToBuildDependencies": [
+        437
+      ],
+      "DebugActionIndex": 552
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/PsdPlugin.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/PsdPlugin.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/PsdPlugin.pdb"
+      ],
+      "ToBuildDependencies": [
+        437
+      ],
+      "DebugActionIndex": 553
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.IK.Runtime.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll"
+      ],
+      "ToBuildDependencies": [
+        439
+      ],
+      "DebugActionIndex": 554
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.IK.Runtime.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.IK.Runtime.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.IK.Runtime.pdb"
+      ],
+      "ToBuildDependencies": [
+        439
+      ],
+      "DebugActionIndex": 555
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Path.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Path.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Path.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        441
+      ],
+      "DebugActionIndex": 556
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Path.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Path.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Path.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        441
+      ],
+      "DebugActionIndex": 557
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.PixelPerfect.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll"
+      ],
+      "ToBuildDependencies": [
+        443
+      ],
+      "DebugActionIndex": 558
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.PixelPerfect.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.PixelPerfect.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.PixelPerfect.pdb"
+      ],
+      "ToBuildDependencies": [
+        443
+      ],
+      "DebugActionIndex": 559
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Sprite.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        445
+      ],
+      "DebugActionIndex": 560
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Sprite.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Sprite.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Sprite.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        445
+      ],
+      "DebugActionIndex": 561
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        447
+      ],
+      "DebugActionIndex": 562
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        447
+      ],
+      "DebugActionIndex": 563
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Extras.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll"
+      ],
+      "ToBuildDependencies": [
+        449
+      ],
+      "DebugActionIndex": 564
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Extras.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.pdb"
+      ],
+      "ToBuildDependencies": [
+        449
+      ],
+      "DebugActionIndex": 565
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Burst.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.dll"
+      ],
+      "ToBuildDependencies": [
+        451
+      ],
+      "DebugActionIndex": 566
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Burst.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.pdb"
+      ],
+      "ToBuildDependencies": [
+        451
+      ],
+      "DebugActionIndex": 567
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.InternalAPIEngineBridge.001.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll"
+      ],
+      "ToBuildDependencies": [
+        453
+      ],
+      "DebugActionIndex": 568
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.InternalAPIEngineBridge.001.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.pdb"
+      ],
+      "ToBuildDependencies": [
+        453
+      ],
+      "DebugActionIndex": 569
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Mathematics.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Mathematics.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Mathematics.dll"
+      ],
+      "ToBuildDependencies": [
+        455
+      ],
+      "DebugActionIndex": 570
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Mathematics.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Mathematics.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Mathematics.pdb"
+      ],
+      "ToBuildDependencies": [
+        455
+      ],
+      "DebugActionIndex": 571
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.PlasticSCM.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        457
+      ],
+      "DebugActionIndex": 572
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.PlasticSCM.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.PlasticSCM.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.PlasticSCM.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        457
+      ],
+      "DebugActionIndex": 573
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.dll"
+      ],
+      "ToBuildDependencies": [
+        459
+      ],
+      "DebugActionIndex": 574
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.pdb"
+      ],
+      "ToBuildDependencies": [
+        459
+      ],
+      "DebugActionIndex": 575
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.TextMeshPro.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.TextMeshPro.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.TextMeshPro.dll"
+      ],
+      "ToBuildDependencies": [
+        461
+      ],
+      "DebugActionIndex": 576
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.TextMeshPro.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.TextMeshPro.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.TextMeshPro.pdb"
+      ],
+      "ToBuildDependencies": [
+        461
+      ],
+      "DebugActionIndex": 577
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Timeline.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Timeline.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Timeline.dll"
+      ],
+      "ToBuildDependencies": [
+        463
+      ],
+      "DebugActionIndex": 578
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Timeline.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Timeline.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Timeline.pdb"
+      ],
+      "ToBuildDependencies": [
+        463
+      ],
+      "DebugActionIndex": 579
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Core.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Core.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Core.dll"
+      ],
+      "ToBuildDependencies": [
+        465
+      ],
+      "DebugActionIndex": 580
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Core.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Core.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Core.pdb"
+      ],
+      "ToBuildDependencies": [
+        465
+      ],
+      "DebugActionIndex": 581
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Common.Runtime.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll"
+      ],
+      "ToBuildDependencies": [
+        467
+      ],
+      "DebugActionIndex": 582
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Common.Runtime.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Common.Runtime.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Common.Runtime.pdb"
+      ],
+      "ToBuildDependencies": [
+        467
+      ],
+      "DebugActionIndex": 583
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.PixelPerfect.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        469
+      ],
+      "DebugActionIndex": 584
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.PixelPerfect.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        469
+      ],
+      "DebugActionIndex": 585
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Extras.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        471
+      ],
+      "DebugActionIndex": 586
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Tilemap.Extras.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        471
+      ],
+      "DebugActionIndex": 587
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.CodeGen.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.Burst.CodeGen.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.CodeGen.dll"
+      ],
+      "ToBuildDependencies": [
+        231
+      ],
+      "DebugActionIndex": 588
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.CodeGen.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/Unity.Burst.CodeGen.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.CodeGen.pdb"
+      ],
+      "ToBuildDependencies": [
+        231
+      ],
+      "DebugActionIndex": 589
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Burst.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        473
+      ],
+      "DebugActionIndex": 590
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Burst.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Burst.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Burst.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        473
+      ],
+      "DebugActionIndex": 591
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.InternalAPIEditorBridge.001.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll"
+      ],
+      "ToBuildDependencies": [
+        475
+      ],
+      "DebugActionIndex": 592
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.InternalAPIEditorBridge.001.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.pdb"
+      ],
+      "ToBuildDependencies": [
+        475
+      ],
+      "DebugActionIndex": 593
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Mathematics.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Mathematics.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Mathematics.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        477
+      ],
+      "DebugActionIndex": 594
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Mathematics.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Mathematics.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Mathematics.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        477
+      ],
+      "DebugActionIndex": 595
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Analytics.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll"
+      ],
+      "ToBuildDependencies": [
+        479
+      ],
+      "DebugActionIndex": 596
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Analytics.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Analytics.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Analytics.pdb"
+      ],
+      "ToBuildDependencies": [
+        479
+      ],
+      "DebugActionIndex": 597
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Internal.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Internal.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Internal.dll"
+      ],
+      "ToBuildDependencies": [
+        481
+      ],
+      "DebugActionIndex": 598
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Internal.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Internal.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Internal.pdb"
+      ],
+      "ToBuildDependencies": [
+        481
+      ],
+      "DebugActionIndex": 599
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.TextMeshPro.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        483
+      ],
+      "DebugActionIndex": 600
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.TextMeshPro.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.TextMeshPro.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.TextMeshPro.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        483
+      ],
+      "DebugActionIndex": 601
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Timeline.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Timeline.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Timeline.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        485
+      ],
+      "DebugActionIndex": 602
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Timeline.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Timeline.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Timeline.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        485
+      ],
+      "DebugActionIndex": 603
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Core.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        487
+      ],
+      "DebugActionIndex": 604
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Core.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        487
+      ],
+      "DebugActionIndex": 605
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Flow.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll"
+      ],
+      "ToBuildDependencies": [
+        489
+      ],
+      "DebugActionIndex": 606
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Flow.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Flow.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Flow.pdb"
+      ],
+      "ToBuildDependencies": [
+        489
+      ],
+      "DebugActionIndex": 607
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Animation.Runtime.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll"
+      ],
+      "ToBuildDependencies": [
+        491
+      ],
+      "DebugActionIndex": 608
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Animation.Runtime.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Animation.Runtime.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Animation.Runtime.pdb"
+      ],
+      "ToBuildDependencies": [
+        491
+      ],
+      "DebugActionIndex": 609
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Common.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Common.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Common.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        493
+      ],
+      "DebugActionIndex": 610
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Common.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Common.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Common.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        493
+      ],
+      "DebugActionIndex": 611
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.SpriteShape.Runtime.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll"
+      ],
+      "ToBuildDependencies": [
+        495
+      ],
+      "DebugActionIndex": 612
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.SpriteShape.Runtime.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.pdb"
+      ],
+      "ToBuildDependencies": [
+        495
+      ],
+      "DebugActionIndex": 613
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Configuration.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Configuration.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Configuration.dll"
+      ],
+      "ToBuildDependencies": [
+        497
+      ],
+      "DebugActionIndex": 614
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Configuration.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Configuration.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Configuration.pdb"
+      ],
+      "ToBuildDependencies": [
+        497
+      ],
+      "DebugActionIndex": 615
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Device.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Device.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Device.dll"
+      ],
+      "ToBuildDependencies": [
+        499
+      ],
+      "DebugActionIndex": 616
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Device.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Device.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Device.pdb"
+      ],
+      "ToBuildDependencies": [
+        499
+      ],
+      "DebugActionIndex": 617
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Environments.Internal.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.dll"
+      ],
+      "ToBuildDependencies": [
+        501
+      ],
+      "DebugActionIndex": 618
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Environments.Internal.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.pdb"
+      ],
+      "ToBuildDependencies": [
+        501
+      ],
+      "DebugActionIndex": 619
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Environments.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Environments.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Environments.dll"
+      ],
+      "ToBuildDependencies": [
+        503
+      ],
+      "DebugActionIndex": 620
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Environments.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Environments.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Environments.pdb"
+      ],
+      "ToBuildDependencies": [
+        503
+      ],
+      "DebugActionIndex": 621
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Networking.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Networking.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Networking.dll"
+      ],
+      "ToBuildDependencies": [
+        505
+      ],
+      "DebugActionIndex": 622
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Networking.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Networking.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Networking.pdb"
+      ],
+      "ToBuildDependencies": [
+        505
+      ],
+      "DebugActionIndex": 623
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Scheduler.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Scheduler.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Scheduler.dll"
+      ],
+      "ToBuildDependencies": [
+        507
+      ],
+      "DebugActionIndex": 624
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Scheduler.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Scheduler.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Scheduler.pdb"
+      ],
+      "ToBuildDependencies": [
+        507
+      ],
+      "DebugActionIndex": 625
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Telemetry.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Telemetry.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Telemetry.dll"
+      ],
+      "ToBuildDependencies": [
+        509
+      ],
+      "DebugActionIndex": 626
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Telemetry.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Telemetry.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Telemetry.pdb"
+      ],
+      "ToBuildDependencies": [
+        509
+      ],
+      "DebugActionIndex": 627
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Threading.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Threading.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Threading.dll"
+      ],
+      "ToBuildDependencies": [
+        511
+      ],
+      "DebugActionIndex": 628
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Threading.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Threading.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Threading.pdb"
+      ],
+      "ToBuildDependencies": [
+        511
+      ],
+      "DebugActionIndex": 629
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Flow.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        513
+      ],
+      "DebugActionIndex": 630
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.Flow.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        513
+      ],
+      "DebugActionIndex": 631
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.State.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.State.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.State.dll"
+      ],
+      "ToBuildDependencies": [
+        515
+      ],
+      "DebugActionIndex": 632
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.State.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/19

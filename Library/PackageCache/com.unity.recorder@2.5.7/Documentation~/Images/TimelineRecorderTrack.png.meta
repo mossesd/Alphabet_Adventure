@@ -1,0 +1,33 @@
+                          }
+                            break;
+                        case 3:
+                            for (int i = 0; i < VectorsCount; i++)
+                            {
+                                var x = ints[NextIndex(random, indices, originalIndices)];
+                                var y = ints[NextIndex(random, indices, originalIndices)];
+                                var z = ints[NextIndex(random, indices, originalIndices)];
+                                yield return new int3(x, y, z);
+                            }
+                            break;
+                        case 4:
+                            for (int i = 0; i < VectorsCount; i++)
+                            {
+                                var x = ints[NextIndex(random, indices, originalIndices)];
+                                var y = ints[NextIndex(random, indices, originalIndices)];
+                                var z = ints[NextIndex(random, indices, originalIndices)];
+                                var w = ints[NextIndex(random, indices, originalIndices)];
+                                yield return new int4(x, y, z, w);
+                            }
+                            break;
+                        default:
+                            throw new NotSupportedException($"Unsupported DataRange type `{type}`");
+                    }
+                }
+                else if (type.Name.StartsWith("uint"))
+                {
+                    var size = (uint)(type.Name["uint".Length] - '0');
+                    var uints = ExpandRange(dataRange & ~(DataRange.NaN | DataRange.Inf), typeof(uint), seed).OfType<uint>().ToArray();
+                    var indices = Enumerable.Range(0, uints.Length).ToList();
+                    var originalIndices = new List<int>(indices);
+                    var random = new System.Random(seed);
+                    switch (

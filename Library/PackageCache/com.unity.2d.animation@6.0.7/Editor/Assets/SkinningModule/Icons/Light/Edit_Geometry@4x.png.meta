@@ -1,0 +1,41 @@
+onInteropProvider.RootObjectId">
+      <summary>Contains a value used in the lParam member of a WM_GETOBJECT message, indicating that the server should return a reference to the root raw element provider. </summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IDockProvider">
+      <summary>Exposes methods and properties to support UI Automation client access to controls that expose their dock properties within a docking container. </summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IDockProvider.DockPosition">
+      <summary>Gets the current <see cref="T:System.Windows.Automation.DockPosition" /> of the control within a docking container.</summary>
+      <returns>The <see cref="T:System.Windows.Automation.DockPosition" /> of the control, relative to the boundaries of the docking container and other elements within the container.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)">
+      <summary>Docks the control within a docking container.</summary>
+      <param name="dockPosition">The dock position, relative to the boundaries of the docking container and other elements within the container.</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <summary>Exposes methods and properties to support UI Automation client access to controls that visually expand to display content and collapse to hide content.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse">
+      <summary>Hides all nodes, controls, or content that are descendants of the control.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand">
+      <summary>Displays all child nodes, controls, or content of the control.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState">
+      <summary>Gets the state, expanded or collapsed, of the control.</summary>
+      <returns>The state, expanded or collapsed, of the control.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IGridItemProvider">
+      <summary>Exposes methods and properties to support UI Automation client access to individual child controls of containers that implement <see cref="T:System.Windows.Automation.Provider.IGridProvider" />. </summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.Column">
+      <summary>Gets the ordinal number of the column that contains the cell or item.</summary>
+      <returns>A zero-based ordinal number that identifies the column containing the cell or item.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan">
+      <summary>Gets the number of columns spanned by a cell or item.</summary>
+      <returns>The number of columns spanned. </returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid">
+      <summary>Gets a UI Automation provider that implements <see cref="T:System.Windows.Automation.Provider.IGridProvider" /> and represents the container of the cell or item.</summary>
+      <returns>A UI Automation provider that implements the <see cref="T:System.Windows.Automation.GridPattern" /> and represents the cell or item container. </returns>

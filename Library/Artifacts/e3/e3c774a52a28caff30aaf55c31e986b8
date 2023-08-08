@@ -1,0 +1,328 @@
+l.
+    filter      Aplica el filtro o filtros indicados a las rutas especificadas.
+                Use un espacio en blanco para separar filtros. Consulte la
+                sección Filtros para más información.
+
+Opciones:
+
+    --symlink               Deshace los cambios en el symlink pero no en el
+                            destino (target).
+    -r                      Deshace los cambios recursivamente.
+    --silent                No muestra ninguna salida.
+    --machinereadable       Muestra el resultado en un formato fácil de parsear.
+    --startlineseparator    Usado con '--machinereadable', indica cómo deben
+                            empezar las líneas del resultado.
+    --endlineseparator      Usado con '--machinereadable', indica cómo deben
+                            terminar las líneas del resultado.
+    --fieldseparator        Usado con '--machinereadable', indica cómo deben
+                            separarse los campos de cada línea resultante.
+
+Filtros:
+
+    Las rutas se pueden filtrar usando uno o varios de los filtros a continuación.
+    Cada uno de estos filtros se refiere a un tipo de cambio:
+    --checkedout    Selecciona ficheros y directorios desprotegidos (checked-out).
+    --unchanged     Selecciona ficheros sin cambios.
+    --changed       Selecciona ficheros y directorios cambiados o desprotegidos
+                    (checked-out).
+    --deleted       Selecciona ficheros y directorios borrados.
+    --moved         Selecciona ficheros y directorios movidos.
+    --added         Selecciona ficheros y directorios añadidos.
+
+    Si la ruta contiene alguno de los tipos de cambios especificados en los
+    filtros, entonces solo esos tipos de cambios se desharán en dicha ruta.
+    Por ejemplo, si se especifica a la vez --checkedout y --moved, si un fichero
+    está tanto movido como checkedout, ambos tipos de cambios se desharán.
+
+    Si no se especifica ningun filtro, se deshacen todos los tipos de cambios.
+
+== CMD_HELP_UNDO ==
+Notas:
+
+    - Si no se especifica ninguna ruta, se deshacen todos los cambios en el
+      directorio actual pero no recursivamente.
+
+    - Si se especifica una o más rutas, se deshacen todos los cambios en las
+      rutas especificadas pero no recursivamente.
+
+    - Para hacer que el undo sea recursivo hay que especificar la opción -r.
+      Así para deshacer todos los cambios de un directorio incluyendo los cambios
+      sobre el propio directorio habría que ejecutar lo siguiente:
+
+          cm undo dirpath -r
+
+      Si dirpath es la ruta de un workspace, entonces se deshacen todos los
+      cambios dentro del workspace.
+
+    - El comando undo es peligroso porque deshace los cambios irreversiblemente.
+      Es decir, no hay manera posible de recuperar el estado anterior de los
+      ficheros y directorios afectados.
+
+    - En el siguiente escenario:
+
+          /src
+          |- file.txt
+          |- code.cs
+          \- /test
+             |- test_a.py
+             \- test_b.py
+
+      Estos comandos son equivalentes (ejecutados desde el directorio /src):
+          cm undo
+          cm undo *
+          cm undo file.txt code.cs /test
+
+      Y estos también son equivalentes (también ejecutados desde /src):
+          cm undo .
+          cm undo /src file.txt code.cs
+
+Ficheros borrados:
+
+    Para deshacer borrados de fichero o directorios hay que especificar la
+    ruta completa del fichero o directorio, o el directorio padre más la opción 
+    -r (recursivo).
+
+    Por ejemplo:
+
+    cm undo .
+    (NO deshace los borrados (solo otros cambios) en el directorio actual.)
+
+    cm undo . -r
+    (Deshace todos los borrados (y otros cambios) recursivamente del directorio
+    actual.)
+
+    cm undo src/file.txt
+    (Deshace el borrado (u otro cambio) del fichero src/file.txt.)
+
+Ejemplos:
+
+    cm undo . -r
+    (Deshace recursivamente todos los cambios en el directorio actual. Si
+    se ejecuta desde la raíz del workspace, deshace todos los cambios en el
+    workspace completo.)
+
+    cm co file.txt
+    cm undo file.txt
+    (Deshace el checkout en file.txt.)
+
+    cm undo c:\otroworkspace\file.txt
+    (Deshace los cambios en 'file.txt' que se encuentra en un workspace distinto
+    del que se está trabajando.)
+
+    echo content >> file.txt
+    cm undo file.txt
+    (Deshace el cambio local en file.txt.)
+
+    cm undo src
+    (Deshace los cambios en el directorio src y en todos los ficheros
+    controlados que contenga)
+
+    cm undo src/*
+    (Deshace los cambios en todos ficheros y directorios en src sin afectar
+    al propio directorio.)
+
+    cm undo *.cs
+    (Deshace cambios en cada fichero y directorio que cumpla el patrón *.cs en
+    el directorio actual.)
+
+    cm undo *.cs -r
+    (Deshace recursivamente cambios en cada fichero y directorio que cumpla el
+    patrón *.cs en el directorio actual y en cada directorio por debajo.)
+
+    cm co file1.txt file2.txt
+    echo content >> file1.txt
+    cm undo --unchanged
+    (Deshace el checkout en file2.txt y no en file1.txt ya que file1.txt sí
+    tiene cambios locales.)
+
+    echo content >> file1.txt
+    echo content >> file2.txt
+    cm co file1.txt
+    cm undo --checkedout
+    (Deshace el cambio en el fichero desprotegido (checked-out) file1.txt e
+    ignora file2.txt ya que no está en checked-out.)
+
+    cm add file.txt
+    cm undo file.txt
+    (Deshace el añadido de file.txt dejándolo de nuevo como privado.)
+
+    $ rm file1.txt
+    $ echo content >> file2.txt
+    $ cm add file3.txt
+    $ cm undo --deleted --added *
+    (Deshace el borrado de file1.txt y el añadido de file3.txt, ignorando
+    el cambio en file2.txt.)
+
+== CMD_DESCRIPTION_LOCK_UNLOCK ==
+Deshace los bloqueos en los elementos de un servidor.
+
+== CMD_USAGE_LOCK_UNLOCK ==
+Sintaxis:
+
+    cm lock unlock [<repserverspec>] <guid>[ ...]
+
+    repserverspec       Especificación del servidor de repositorio.
+                        (Use 'cm help objectspec' para más información sobre las
+                        especificaciones de servidores de repositorio.)
+    guid                Lista de GUIDs de ítems a desbloquear. Use un
+                        espacio en blanco para separar GUIDs.
+
+== CMD_HELP_LOCK_UNLOCK ==
+Notas:
+
+    - El comando usa el servidor especificado para desbloquear los ítems.
+    - Si no se especifica ningún servidor, el comando intentará obtener un
+      servidor del espacio de trabajo actual.
+    - Si con los pasos anteriores no se pudo obtener ningún servidor, el comando
+      utilizará el servidor de la configuración actual del cliente de Plastic SCM.
+    - Únicamente el administrador del servidor puede ejecutar el comando 'cm unlock'.
+    - Para especificar un GUID, indique los 32 dígitos separados por guiones con
+      el siguiente formato (y, opcionalmente, incluidos entre llaves):
+        {00000000-0000-0000-0000-000000000000}
+        o
+        00000000-0000-0000-0000-000000000000
+
+Ejemplos:
+
+    cm lock unlock 91961b14-3dfe-4062-8c4c-f33a81d201f5
+    (Deshace el bloqueo del ítem indicado.)
+
+    cm lock unlock DIGITALIS:8084 2340b4fa-47aa-4d0e-bb00-0311af847865 \
+      bcb98a61-2f62-4309-9a26-e21a2685e075
+    (Deshace los bloqueos de los ítems indicados del servidor 'DIGITALIS'.)
+
+    cm lock unlock tardis@cloud 4740c4fa-56af-3dfe-de10-8711fa248635 \
+      71263c17-5eaf-5271-4d2c-a25f72e101d4
+    (Deshace los bloqueos de los ítems indicados del servidor cloud 'tardis'.)
+
+== CMD_DESCRIPTION_UPDATE ==
+Actualiza el espacio de trabajo.
+
+== CMD_USAGE_UPDATE ==
+Sintaxis:
+    cm update [<ruta> | --last]
+              [--changeset=csetspec] [--cloaked] [--dontmerge] [--forced]
+              [--ignorechanges] [--override] [--recursewk] [--skipchangedcheck]
+              [--silent] [--verbose] [--xml[=output_file]] [--encoding=name]
+              [--machinereadable [--startlineseparator=<sep>]
+                [--endlineseparator=<sep>] [--fieldseparator=<sep>]]
+              [--forcedetailedprogress]
+
+    ruta                    Ruta a actualizar.
+                            Use . para aplicar la actualización al directorio actual.
+                            Si no se especifica ninguna ruta, se actualiza todo
+                            el workspace.
+    --last                  Antes de la actualización, cambia el selector del
+                            espacio de trabajo (workspace) desde una configuración
+                            de changeset o de etiqueta a una configuración de
+                            rama.
+                            El selector se cambia a la rama a la que pertenece el
+                            changeset o la etiqueta.
+
+Opciones:
+                        
+    --changeset             Actualiza el espacio de trabajo a un changeset concreto.
+                            (Use 'cm help objectspec' para obtener más información
+                            sobre la especificación de changesets.)
+    --cloaked               Incluye los ítems cloaked en la operación de update.
+                            Si no se utiliza esta opción, se ignorarán durante
+                            la actualización todos los ítems cloaked.
+    --dontmerge             El update merge no se llevará cabo en el caso en que
+                            se requiera esa operación.
+    --forced                Fuerza la actualización de todos los ítems a aquella
+                            revisión especificada en el selector.
+    --ignorechanges         Si existen cambios pendientes durante la actualización
+                            del espacio de trabajo, se ignorarán y se continuará
+                            con la actualización.
+    --override              Ignoran los ficheros cambiados fuera del control de
+                            Plastic SCM. Su contenido se sobrescribirá con el
+                            contenido del servidor.
+    --recursewk             Actualiza todos los espacios de trabajo de la ruta
+                            actual. Esto es útil para actualizar todos los 
+                            espacios de trabajo contenidos en la ruta indicada.
+    --skipchangedcheck      Comprueba si hay cambios locales en el workspace
+                            antes de actualizar. Esta opción es útil para
+                            acelerar la actualización cuando siempre se
+                            desprotegen (checkout) ficheros antes de
+                            modificarlos.
+    --silent                No muestra ninguna salida.
+    --verbose               Muestra información adicional.
+    --xml                   Imprime el resultado en formato XML a la salida
+                            estándar. También es posible especificar un fichero
+                            de salida.
+    --encoding              Usado con la opción --xml, especifica el encoding
+                            que se usará en la salida XML, por ejemplo, utf-8.
+                            Consulte la documentación de MSDN en
+                            http://msdn.microsoft.com/en-us/library/system.text.encoding.aspx
+                            para obtener la tabla de codificaciones soportadas y
+                            su formato (al final de la página en la columna "Name").
+    --machinereadable       Muestra el resultado en un formato fácil de parsear.
+    --startlineseparator    Usado con '--machinereadable', indica cómo deben
+                            empezar las líneas del resultado.
+    --endlineseparator      Usado con '--machinereadable', indica cómo deben
+                            terminar las líneas del resultado.
+    --fieldseparator        Usado con '--machinereadable', indica cómo deben
+                            separarse los campos de cada línea resultante.
+    --forcedetailedprogress Fuerza mostrar el progreso detallado incluso cuando
+                            se redirige la salida estándar.
+
+
+== CMD_HELP_UPDATE ==
+Notas:
+
+    El comando 'update' solo descarga los ficheros necesarios.
+
+    El comando asume recursividad.
+
+    Cuando se especifica la opción --last, no es necesario especificar una ruta.
+    En ese caso, el espacio de trabajo del directorio actual se actualizará.
+    (Especificar la opción --last puede hacer que el selector del espacio de
+    trabajo cambie a un configuración de rama si previamente apuntaba a un
+    changeset o una etiqueta.)
+
+Ejemplos:
+
+    cm update
+    (Actualiza el espacio de trabajo actual.)
+
+    cm update .
+    (Actualiza recursivamente el contenido del directorio actual.)
+
+    cm update . --forced --verbose
+    (Fuerza la actualización de todas las revisiones y muestra información
+    adicional.)
+
+    cm update --last
+
+    cm update . --machinereadable --startlineseparator=">"
+    (Actualiza recursivamente el directorio actual y muestra por pantalla el
+    resultado en un formato simple y fácil de parsear, comenzando cada línea con
+    el separador indicado.)
+
+== CMD_DESCRIPTION_VERSION ==
+Muestra el número de versión del cliente.
+
+== CMD_USAGE_VERSION ==
+Sintaxis:
+
+    cm version
+
+== CMD_HELP_VERSION ==
+
+== CMD_DESCRIPTION_WHOAMI ==
+Muestra el usuario actual de Plastic SCM.
+
+== CMD_USAGE_WHOAMI ==
+Sintaxis:
+
+    cm whoami
+
+== CMD_HELP_WHOAMI ==
+
+== CMD_USAGE_WKTREENODESTATUS ==
+Uso:
+
+    cm wktreenodestatus path1, path2, ...
+
+== CMD_DESCRIPTION_WORKSPACE ==
+Use este comando para adminis

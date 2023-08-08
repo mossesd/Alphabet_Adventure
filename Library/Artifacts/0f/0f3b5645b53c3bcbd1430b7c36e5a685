@@ -1,0 +1,396 @@
+uct _monodroid_ifaddrs *
+get_link_address(const struct nlmsghdr *message, struct _monodroid_ifaddrs **ifaddrs_head)
+{
+    size_t length;
+    struct rtattr *attribute;
+    struct ifaddrmsg *net_address;
+    struct _monodroid_ifaddrs *ifa = NULL;
+    struct sockaddr **sa;
+    int payload_size;
+
+    assert(message);
+    net_address = NLMSG_DATA(message);
+    length = IFA_PAYLOAD(message);
+    if (length <= 0)
+    {
+        goto error;
+    }
+
+    ifa = calloc(1, sizeof(*ifa));
+    if (!ifa)
+    {
+        goto error;
+    }
+
+    ifa->ifa_flags = get_interface_flags_by_index(net_address->ifa_index, ifaddrs_head);
+
+    attribute = IFA_RTA(net_address);
+    while (RTA_OK(attribute, length))
+    {
+        payload_size = RTA_PAYLOAD(attribute);
+        sa = NULL;
+
+        switch (attribute->rta_type)
+        {
+            case IFA_LABEL:
+            {
+                int room_for_trailing_null = 0;
+
+                if (payload_size > MAX_IFA_LABEL_SIZE)
+                {
+                    payload_size = MAX_IFA_LABEL_SIZE;
+                    room_for_trailing_null = 1;
+                }
+
+                if (payload_size > 0)
+                {
+                    ifa->ifa_name = (char*)malloc(payload_size + room_for_trailing_null);
+                    if (!ifa->ifa_name)
+                    {
+                        goto error;
+                    }
+
+                    memcpy(ifa->ifa_name, RTA_DATA(attribute), payload_size);
+                    if (room_for_trailing_null)
+                        ifa->ifa_name[payload_size] = '\0';
+                }
+                break;
+            }
+
+            case IFA_LOCAL:
+                if (ifa->ifa_addr)
+                {
+                    /* P2P protocol, set the dst/broadcast address union from the original address.
+                     * Since ifa_addr is set it means IFA_ADDRESST occured earlier and that address
+                     * is indeed the P2P destination one.
+                     */
+                    ifa->_monodroid_ifa_dstaddr = ifa->ifa_addr;
+                    ifa->ifa_addr = 0;
+                }
+                sa = &ifa->ifa_addr;
+                break;
+
+            case IFA_BROADCAST:
+                if (ifa->_monodroid_ifa_dstaddr)
+                {
+                    /* IFA_LOCAL happened earlier, undo its effect here */
+                    free(ifa->_monodroid_ifa_dstaddr);
+                    ifa->_monodroid_ifa_dstaddr = NULL;
+                }
+                sa = &ifa->_monodroid_ifa_broadaddr;
+                break;
+
+            case IFA_ADDRESS:
+                if (ifa->ifa_addr)
+                {
+                    /* Apparently IFA_LOCAL occured earlier and we have a P2P connection
+                     * here. IFA_LOCAL carries the destination address, move it there
+                     */
+                    ifa->_monodroid_ifa_dstaddr = ifa->ifa_addr;
+                    ifa->ifa_addr = NULL;
+                }
+                sa = &ifa->ifa_addr;
+                break;
+        }
+
+        if (sa)
+        {
+            if (fill_sa_address(sa, net_address, RTA_DATA(attribute), RTA_PAYLOAD(attribute)) < 0)
+            {
+                goto error;
+            }
+        }
+
+        attribute = RTA_NEXT(attribute, length);
+    }
+
+    /* glibc stores the associated interface name in the address if IFA_LABEL never occured */
+    if (!ifa->ifa_name)
+    {
+        char *name = get_interface_name_by_index(net_address->ifa_index, ifaddrs_head);
+        log_debug(LOG_NETLINK, "   address has no name/label, getting one from interface\n");
+        ifa->ifa_name = name ? strdup(name) : NULL;
+    }
+    log_debug(LOG_NETLINK, "   address label: %s\n", ifa->ifa_name);
+
+    if (calculate_address_netmask(ifa, net_address) < 0)
+    {
+        goto error;
+    }
+
+    return ifa;
+
+    error :
+    {
+        /* errno may be modified by free, or any other call inside the free_single_xamarin_ifaddrs
+         * function. We don't care about errors in there since it is more important to know how we
+         * failed to obtain the link address and not that we went OOM. Save and restore the value
+         * after the resources are freed.
+         */
+        int errno_save = errno;
+        free_single_xamarin_ifaddrs(&ifa);
+        errno = errno_save;
+        return NULL;
+    }
+}
+
+static struct _monodroid_ifaddrs *
+get_link_info(const struct nlmsghdr *message)
+{
+    ssize_t length;
+    struct rtattr *attribute;
+    struct ifinfomsg *net_interface;
+    struct _monodroid_ifaddrs *ifa = NULL;
+    struct sockaddr_ll_extended *sa = NULL;
+
+    assert(message);
+    net_interface = NLMSG_DATA(message);
+    length = message->nlmsg_len - NLMSG_LENGTH(sizeof(*net_interface));
+    if (length <= 0)
+    {
+        goto error;
+    }
+
+    ifa = calloc(1, sizeof(*ifa));
+    if (!ifa)
+    {
+        goto error;
+    }
+
+    ifa->ifa_flags = net_interface->ifi_flags;
+    attribute = IFLA_RTA(net_interface);
+    while (RTA_OK(attribute, length))
+    {
+        switch (attribute->rta_type)
+        {
+            case IFLA_IFNAME:
+                ifa->ifa_name = strdup(RTA_DATA(attribute));
+                if (!ifa->ifa_name)
+                {
+                    goto error;
+                }
+                log_debug(LOG_NETLINK, "   interface name (payload length: %d; string length: %d)\n", RTA_PAYLOAD(attribute), strlen(ifa->ifa_name));
+                log_debug(LOG_NETLINK, "     %s\n", ifa->ifa_name);
+                break;
+
+            case IFLA_BROADCAST:
+                log_debug(LOG_NETLINK, "   interface broadcast (%d bytes)\n", RTA_PAYLOAD(attribute));
+                if (fill_ll_address(&sa, net_interface, RTA_DATA(attribute), RTA_PAYLOAD(attribute)) < 0)
+                {
+                    goto error;
+                }
+                ifa->_monodroid_ifa_broadaddr = (struct sockaddr*)sa;
+                break;
+
+            case IFLA_ADDRESS:
+                log_debug(LOG_NETLINK, "   interface address (%d bytes)\n", RTA_PAYLOAD(attribute));
+                if (fill_ll_address(&sa, net_interface, RTA_DATA(attribute), RTA_PAYLOAD(attribute)) < 0)
+                {
+                    goto error;
+                }
+                ifa->ifa_addr = (struct sockaddr*)sa;
+                break;
+
+            default:
+                log_debug(LOG_NETLINK, "     rta_type: ");
+#if DEBUG
+                print_ifla_name(attribute->rta_type);
+#endif
+                break;
+        }
+
+        attribute = RTA_NEXT(attribute, length);
+    }
+    log_debug(LOG_NETLINK, "link flags: 0x%X", ifa->ifa_flags);
+    return ifa;
+
+error:
+    if (sa)
+        free(sa);
+    free_single_xamarin_ifaddrs(&ifa);
+
+    return NULL;
+}
+
+#else
+void
+_monodroid_getifaddrs_init(void)
+{
+}
+
+int
+_monodroid_getifaddrs(struct _monodroid_ifaddrs **ifap)
+{
+    *ifap = NULL;
+    return 0;
+}
+
+void _monodroid_freeifaddrs(struct _monodroid_ifaddrs *ifa)
+{
+}
+
+#endif
+
+#if LINUX && DEBUG
+#define ENUM_VALUE_ENTRY(enumvalue) { enumvalue, #enumvalue }
+struct enumvalue
+{
+    int   value;
+    char *name;
+};
+
+struct enumvalue iflas[] = {
+    ENUM_VALUE_ENTRY(IFLA_UNSPEC),
+    ENUM_VALUE_ENTRY(IFLA_ADDRESS),
+    ENUM_VALUE_ENTRY(IFLA_BROADCAST),
+    ENUM_VALUE_ENTRY(IFLA_IFNAME),
+    ENUM_VALUE_ENTRY(IFLA_MTU),
+    ENUM_VALUE_ENTRY(IFLA_LINK),
+    ENUM_VALUE_ENTRY(IFLA_QDISC),
+    ENUM_VALUE_ENTRY(IFLA_STATS),
+    ENUM_VALUE_ENTRY(IFLA_COST),
+    ENUM_VALUE_ENTRY(IFLA_PRIORITY),
+    ENUM_VALUE_ENTRY(IFLA_MASTER),
+    ENUM_VALUE_ENTRY(IFLA_WIRELESS),
+    ENUM_VALUE_ENTRY(IFLA_PROTINFO),
+    ENUM_VALUE_ENTRY(IFLA_TXQLEN),
+    ENUM_VALUE_ENTRY(IFLA_MAP),
+    ENUM_VALUE_ENTRY(IFLA_WEIGHT),
+    ENUM_VALUE_ENTRY(IFLA_OPERSTATE),
+    ENUM_VALUE_ENTRY(IFLA_LINKMODE),
+    ENUM_VALUE_ENTRY(IFLA_LINKINFO),
+    ENUM_VALUE_ENTRY(IFLA_NET_NS_PID),
+    ENUM_VALUE_ENTRY(IFLA_IFALIAS),
+    ENUM_VALUE_ENTRY(IFLA_NUM_VF),
+    ENUM_VALUE_ENTRY(IFLA_VFINFO_LIST),
+    ENUM_VALUE_ENTRY(IFLA_STATS64),
+    ENUM_VALUE_ENTRY(IFLA_VF_PORTS),
+    ENUM_VALUE_ENTRY(IFLA_PORT_SELF),
+    ENUM_VALUE_ENTRY(IFLA_AF_SPEC),
+    ENUM_VALUE_ENTRY(IFLA_GROUP),
+    ENUM_VALUE_ENTRY(IFLA_NET_NS_FD),
+    ENUM_VALUE_ENTRY(IFLA_EXT_MASK),
+    ENUM_VALUE_ENTRY(IFLA_PROMISCUITY),
+    ENUM_VALUE_ENTRY(IFLA_NUM_TX_QUEUES),
+    ENUM_VALUE_ENTRY(IFLA_NUM_RX_QUEUES),
+    ENUM_VALUE_ENTRY(IFLA_CARRIER),
+    ENUM_VALUE_ENTRY(IFLA_PHYS_PORT_ID),
+    { -1, 0 }
+};
+
+static void
+print_ifla_name(int id)
+{
+    int i = 0;
+    while (1)
+    {
+        if (iflas[i].value == -1 && iflas[i].name == 0)
+        {
+            log_info(LOG_NETLINK, "Unknown ifla->name: unknown id %d\n", id);
+            break;
+        }
+
+        if (iflas[i].value != id)
+        {
+            i++;
+            continue;
+        }
+        log_info(LOG_NETLINK, "ifla->name: %s (%d)\n", iflas[i].name, iflas[i].value);
+        break;
+    }
+}
+
+static void
+print_address_list(char *title, struct _monodroid_ifaddrs *list)
+{
+    struct _monodroid_ifaddrs *cur;
+    char *msg, *tmp;
+
+    if (!list)
+    {
+        log_info(LOG_NETLINK, "monodroid-net", "No list to print in %s", __FUNCTION__);
+        return;
+    }
+
+    cur = list;
+    msg = NULL;
+    while (cur)
+    {
+        tmp = NULL;
+        asprintf(&tmp, "%s%s%p (%s; %p)", msg ? msg : "", msg ? " -> " : "", cur, cur->ifa_name, cur->ifa_name);
+        if (msg)
+            free(msg);
+        msg = tmp;
+        cur = cur->ifa_next;
+    }
+
+    log_info(LOG_NETLINK, "%s: %s", title, msg ? msg : "[no addresses]");
+    free(msg);
+}
+
+#endif
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.Compression</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Compression.CompressionLevel">
+      <summary>Specifies values that indicate whether a compression operation emphasizes speed or compression size.</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.Fastest">
+      <summary>The compression operation should complete as quickly as possible, even if the resulting file is not optimally compressed.</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.NoCompression">
+      <summary>No compression should be performed on the file.</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.Optimal">
+      <summary>The compression operation should be optimally compressed, even if the operation takes a longer time to complete.</summary>
+    </member>
+    <member name="T:System.IO.Compression.CompressionMode">
+      <summary> Specifies whether to compress or decompress the underlying stream.</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionMode.Compress">
+      <summary>Compresses the underlying stream.</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionMode.Decompress">
+      <summary>Decompresses the underlying stream.</summary>
+    </member>
+    <member name="T:System.IO.Compression.DeflateStream">
+      <summary>Provides methods and properties for compressing and decompressing streams by using the Deflate algorithm.</summary>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <summary>Initializes a new instance of the <see cref="T:System.IO.Compression.DeflateStream" /> class by using the specified stream and compression level.</summary>
+      <param name="stream">The stream to compress.</param>
+      <param name="compressionLevel">One of the enumeration values that indicates whether to emphasize speed or compression efficiency when compressing the stream.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> is null.</exception>
+      <exception cref="T:System.ArgumentException">The stream does not support write operations such as compression. (The <see cref="P:System.IO.Stream.CanWrite" /> property on the stream object is false.)</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.IO.Compression.DeflateStream" /> class by using the specified stream and compression level, and optionally leaves the stream open.</summary>
+      <param name="stream">The stream to compress.</param>
+      <param name="compressionLevel">One of the enumeration values that indicates whether to emphasize speed or compression efficiency when compressing the stream.</param>
+      <param name="leaveOpen">true to leave the stream object open after disposing the <see cref="T:System.IO.Compression.DeflateStream" /> object; otherwise, false.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> is null.</exception>
+      <exception cref="T:System.ArgumentException">The stream does not support write operations such as compression. (The <see cref="P:System.IO.Stream.CanWrite" /> property on the stream object is false.)</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <summary>Initializes a new instance of the <see cref="T:System.IO.Compression.DeflateStream" /> class by using the specified stream and compression mode.</summary>
+      <param name="stream">The stream to compress or decompress.</param>
+      <param name="mode">One of the enumeration values that indicates whether to compress or decompress the stream.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> is null.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> is not a valid <see cref="T:System.IO.Compression.CompressionMode" /> value.-or-<see cref="T:System.IO.Compression.CompressionMode" /> is <see cref="F:System.IO.Compression.CompressionMode.Compress" />  and <see cref="P:System.IO.Stream.CanWrite" /> is false.-or-<see cref="T:System.IO.Compression.CompressionMode" /> is <see cref="F:System.IO.Compression.CompressionMode.Decompress" />  and <see cref="P:System.IO.Stream.CanRead" /> is false.</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.IO.Compression.DeflateStream" /> class by using the specified stream and compression mode, and optionally leaves the stream open.</summary>
+      <param name="stream">The stream to compress or decompress.</param>
+      <param name="mode">One of the enumeration values that indicates whether to compress or decompress the stream.</param>
+      <param name="leaveOpen">true to leave the stream open after disposing the <see cref="T:System.IO.Compression.DeflateStream" /> object; otherwise, false.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> is null.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> is not a valid <see cref="T:S

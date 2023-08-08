@@ -1,0 +1,84 @@
+T_MAX);
+                    textComponent.rectTransform.sizeDelta = size;
+                }
+                else
+                {
+                    textComponent.rectTransform.sizeDelta = TMP_Settings.defaultTextMeshProUITextContainerSize;
+                }
+            }
+            else
+            {
+                textComponent.fontSize = -99;
+                textComponent.color = Color.white;
+                textComponent.text = "New Text";
+            }
+
+            PlaceUIElementRoot(go, menuCommand);
+        }
+
+        [MenuItem("GameObject/UI/Button - TextMeshPro", false, 2031)]
+        public static void AddButton(MenuCommand menuCommand)
+        {
+            GameObject go = TMP_DefaultControls.CreateButton(GetStandardResources());
+
+            // Override font size
+            TMP_Text textComponent = go.GetComponentInChildren<TMP_Text>();
+            textComponent.fontSize = 24;
+
+            PlaceUIElementRoot(go, menuCommand);
+        }
+
+
+
+        [MenuItem("GameObject/UI/Input Field - TextMeshPro", false, 2037)]
+        static void AddTextMeshProInputField(MenuCommand menuCommand)
+        {
+            GameObject go = TMP_DefaultControls.CreateInputField(GetStandardResources());
+            PlaceUIElementRoot(go, menuCommand);
+        }
+
+
+        [MenuItem("GameObject/UI/Dropdown - TextMeshPro", false, 2036)]
+        public static void AddDropdown(MenuCommand menuCommand)
+        {
+            GameObject go = TMP_DefaultControls.CreateDropdown(GetStandardResources());
+            PlaceUIElementRoot(go, menuCommand);
+        }
+
+
+        private const string kUILayerName = "UI";
+
+        private const string kStandardSpritePath = "UI/Skin/UISprite.psd";
+        private const string kBackgroundSpritePath = "UI/Skin/Background.psd";
+        private const string kInputFieldBackgroundPath = "UI/Skin/InputFieldBackground.psd";
+        private const string kKnobPath = "UI/Skin/Knob.psd";
+        private const string kCheckmarkPath = "UI/Skin/Checkmark.psd";
+        private const string kDropdownArrowPath = "UI/Skin/DropdownArrow.psd";
+        private const string kMaskPath = "UI/Skin/UIMask.psd";
+
+        private static TMP_DefaultControls.Resources s_StandardResources;
+
+
+        private static TMP_DefaultControls.Resources GetStandardResources()
+        {
+            if (s_StandardResources.standard == null)
+            {
+                s_StandardResources.standard = AssetDatabase.GetBuiltinExtraResource<Sprite>(kStandardSpritePath);
+                s_StandardResources.background = AssetDatabase.GetBuiltinExtraResource<Sprite>(kBackgroundSpritePath);
+                s_StandardResources.inputField = AssetDatabase.GetBuiltinExtraResource<Sprite>(kInputFieldBackgroundPath);
+                s_StandardResources.knob = AssetDatabase.GetBuiltinExtraResource<Sprite>(kKnobPath);
+                s_StandardResources.checkmark = AssetDatabase.GetBuiltinExtraResource<Sprite>(kCheckmarkPath);
+                s_StandardResources.dropdown = AssetDatabase.GetBuiltinExtraResource<Sprite>(kDropdownArrowPath);
+                s_StandardResources.mask = AssetDatabase.GetBuiltinExtraResource<Sprite>(kMaskPath);
+            }
+            return s_StandardResources;
+        }
+
+
+        private static void SetPositionVisibleinSceneView(RectTransform canvasRTransform, RectTransform itemTransform)
+        {
+            // Find the best scene view
+            SceneView sceneView = SceneView.lastActiveSceneView;
+
+            if (sceneView == null && SceneView.sceneViews.Count > 0)
+                sceneView = SceneView.sce

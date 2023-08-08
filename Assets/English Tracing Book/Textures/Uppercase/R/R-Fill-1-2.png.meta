@@ -1,0 +1,36 @@
+   </Source>
+      </Delta>
+    </File>
+    <File id="530" name="wow64_microsoft-windows-m..yer-setup.resources_31bf3856ad364e35_10.0.22621.608_de-de_a2a8a775e13d5dfc\n\setup_wm.exe.mui" length="11363" time="133088202800000000" attr="128">
+      <Hash alg="SHA256" value="AE2BC596008A8C1ED0F4B51054DCEAB0951ED091AFBBD6F417B6109814689587" />
+      <Delta>
+        <Source type="RAW" offset="2885889" length="11363">
+          <Hash alg="SHA256" value="AE2BC596008A8C1ED0F4B51054DCEAB0951ED091AFBBD6F417B6109814689587" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="531" name="amd64_microsoft-windows-m..layer-vis.resources_31bf3856ad364e35_10.0.22621.608_de-de_b954284aeebf7b0e\n\mpvis.dll.mui" length="1183" time="133088202800000000" attr="128">
+      <Hash alg="SHA256" value="57D294FB2AF9C513844814BD8CEB91B96DA2C3237F71809ED6E00201682E04D4" />
+      <Delta>
+        <Source type="RAW" offset="2897252" length="1183">
+          <Hash alg="SHA256" value="57D294FB2AF9C513844814BD8CEB91B96DA2C3237F71809ED6E00201682E04D4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="532" name="wow64_microsoft-windows-m..layer-vis.resources_31bf3856ad364e35_10.0.22621.608_de-de_c3a8d29d23203d09\n\mpvis.dll.mui" length="1183" time="133088202800000000" attr="128">
+      <Hash alg="SHA256" value="57D294FB2AF9C513844814BD8CEB91B96DA2C3237F71809ED6E00201682E04D4" />
+      <Delta>
+        <Source type="RAW" offset="2898435" length="1183">
+          <Hash alg="SHA256" value="57D294FB2AF9C513844814BD8CEB91B96DA2C3237F71809ED6E00201682E04D4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="533" name="amd64_microsoft-windows-m..r-wmerror.resources_31bf3856ad364e35_10.0.22621.608_de-de_01ed3e4bca0fefe6\n\wmerror.dll.mui" length="31662" time="133088202800000000" attr="128">
+      <Hash alg="SHA256" value="6477D92AD88FE7C4173226A6C063306083BADCA3B4625760D64AE40C66F293D4" />
+      <Delta>
+        <Source type="RAW" offset="2899618" length="31662">
+          <Hash alg="SHA256" value="6477D92AD88FE7C4173226A6C063306083BADCA3B4625760D64AE40C66F293D4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="534" name="amd64_microsoft-windows-m..-wmpshell.resources_31bf3856a

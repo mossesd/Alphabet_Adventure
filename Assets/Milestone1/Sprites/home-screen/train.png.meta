@@ -1,0 +1,61 @@
+ckedFocusedState">
+        <attr name="state_checkable" />
+        <attr name="state_checked" />
+        <attr name="state_focused" />
+    </declare-styleable>
+    <!-- State array representing a menu item that is focused and checkable but is not currently checked. -->
+    <declare-styleable name="MenuItemUncheckedFocusedState">
+        <attr name="state_checkable" />
+        <attr name="state_focused" />
+    </declare-styleable>
+    <!-- State array representing an expandable list child's indicator. -->
+    <declare-styleable name="ExpandableListChildIndicatorState">
+        <!-- State identifier indicating the child is the last child within its group. -->
+        <attr name="state_last" />
+    </declare-styleable>
+    <!-- State array representing an expandable list group's indicator. -->
+    <declare-styleable name="ExpandableListGroupIndicatorState">
+        <!-- State identifier indicating the group is expanded. -->
+        <attr name="state_expanded" format="boolean" />
+        <!-- State identifier indicating the group is empty (has no children). -->
+        <attr name="state_empty" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="PopupWindowBackgroundState">
+        <!-- State identifier indicating the popup will be above the anchor. -->
+        <attr name="state_above_anchor" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="TextViewMultiLineBackgroundState">
+        <!-- State identifier indicating a TextView has a multi-line layout. -->
+        <attr name="state_multiline" format="boolean" />
+    </declare-styleable>
+
+    <!-- ***************************************************************** -->
+    <!-- Support for Searchable activities. -->
+    <!-- ***************************************************************** -->
+    <eat-comment />
+
+    <!-- Searchable activities and applications must provide search configuration information
+        in an XML file, typically called searchable.xml.  This file is referenced in your manifest.
+        For a more in-depth discussion of search configuration, please refer to
+        {@link android.app.SearchManager}. -->
+    <declare-styleable name="Searchable">
+          <!--<strong>This is deprecated.</strong><br/>The default
+              application icon is now always used, so this attribute is
+              obsolete.-->
+        <attr name="icon" />
+        <!-- This is the user-displayed name of the searchable activity.  <i>Required
+            attribute.</i> -->
+        <attr name="label" />
+        <!-- If supplied, this string will be displayed as a hint to the user.  <i>Optional
+            attribute.</i> -->
+        <attr name="hint" />
+        <!-- If supplied, this string will be displayed as the text of the "Search" button.
+          <i>Optional attribute.</i>
+          {@deprecated This will create a non-standard UI appearance, because the search bar UI is
+                       changing to use only icons for its buttons.}-->
+        <attr name="searchButtonText" format="string" />
+        <attr name="inputType" />
+        <attr name="imeOptions" />
+
+        <!-- Additional features are controlled by mode bits in this field.  Omitting
+            this field, or setting to zero, provides default beha

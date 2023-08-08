@@ -1,0 +1,212 @@
+f line =~ '^\s*#'
+      setf make
+      return
+    endif
+    let n = n + 1
+  endwhile
+  setf mmix
+endfunc
+
+
+" Modsim III (or LambdaProlog)
+au BufNewFile,BufRead *.mod
+	\ if getline(1) =~ '\<module\>' |
+	\   setf lprolog |
+	\ else |
+	\   setf modsim3 |
+	\ endif
+
+" Modula 2
+au BufNewFile,BufRead *.m2,*.DEF,*.MOD,*.md,*.mi setf modula2
+
+" Modula 3 (.m3, .i3, .mg, .ig)
+au BufNewFile,BufRead *.[mi][3g]		setf modula3
+
+" Monk
+au BufNewFile,BufRead *.isc,*.monk,*.ssc,*.tsc	setf monk
+
+" MOO
+au BufNewFile,BufRead *.moo			setf moo
+
+" Modconf
+au BufNewFile,BufRead /etc/modules.conf,/etc/conf.modules	setf modconf
+au BufNewFile,BufRead /etc/modutils/*
+	\ if executable(expand("<afile>")) != 1
+	\|  call s:StarSetf('modconf')
+	\|endif
+
+" Mplayer config
+au BufNewFile,BufRead mplayer.conf,*/.mplayer/config	setf mplayerconf
+
+" Moterola S record
+au BufNewFile,BufRead *.s19,*.s28,*.s37		setf srec
+
+" Mrxvtrc
+au BufNewFile,BufRead mrxvtrc,.mrxvtrc		setf mrxvtrc
+
+" Msql
+au BufNewFile,BufRead *.msql			setf msql
+
+" Mysql
+au BufNewFile,BufRead *.mysql			setf mysql
+
+" M$ Resource files
+au BufNewFile,BufRead *.rc			setf rc
+
+" MuPAD source
+au BufRead,BufNewFile *.mu			setf mupad
+
+" Mush
+au BufNewFile,BufRead *.mush			setf mush
+
+" Mutt setup file (also for Muttng)
+au BufNewFile,BufRead Mutt{ng,}rc			setf muttrc
+au BufNewFile,BufRead .mutt{ng,}rc*,*/.mutt{ng,}/mutt{ng,}rc*	call s:StarSetf('muttrc')
+
+" Nano
+au BufNewFile,BufRead /etc/nanorc,.nanorc	setf nanorc
+
+" Nastran input/DMAP
+"au BufNewFile,BufRead *.dat			setf nastran
+
+" Natural
+au BufNewFile,BufRead *.NS[ACGLMNPS]		setf natural
+
+" Netrc
+au BufNewFile,BufRead .netrc			setf netrc
+
+" Novell netware batch files
+au BufNewFile,BufRead *.ncf			setf ncf
+
+" Nroff/Troff (*.ms and *.t are checked below)
+au BufNewFile,BufRead *.me
+	\ if expand("<afile>") != "read.me" && expand("<afile>") != "click.me" |
+	\   setf nroff |
+	\ endif
+au BufNewFile,BufRead *.tr,*.nr,*.roff,*.tmac,*.mom	setf nroff
+au BufNewFile,BufRead *.[1-9]			call s:FTnroff()
+
+" This function checks if one of the first five lines start with a dot.  In
+" that case it is probably an nroff file: 'filetype' is set and 1 is returned.
+func! s:FTnroff()
+  if getline(1)[0] . getline(2)[0] . getline(3)[0] . getline(4)[0] . getline(5)[0] =~ '\.'
+    setf nroff
+    return 1
+  endif
+  return 0
+endfunc
+
+" Nroff or Objective C++
+au BufNewFile,BufRead *.mm			call s:FTmm()
+
+func! s:FTmm()
+  let n = 1
+  while n < 10
+    let line = getline(n)
+    if line =~ '^\s*\(#\s*\(include\|import\)\>\|/\*\)'
+      setf objcpp
+      return
+    endif
+    let n = n + 1
+  endwhile
+  setf nroff
+endfunc
+
+" Not Quite C
+au BufNewFile,BufRead *.nqc			setf nqc
+
+" NSIS
+au BufNewFile,BufRead *.nsi			setf nsis
+
+" OCAML
+au BufNewFile,BufRead *.ml,*.mli,*.mll,*.mly	setf ocaml
+
+" Occam
+au BufNewFile,BufRead *.occ			setf occam
+
+" Omnimark
+au BufNewFile,BufRead *.xom,*.xin		setf omnimark
+
+" OpenROAD
+au BufNewFile,BufRead *.or			setf openroad
+
+" OPL
+au BufNewFile,BufRead *.[Oo][Pp][Ll]		setf opl
+
+" Oracle config file
+au BufNewFile,BufRead *.ora			setf ora
+
+" Packet filter conf
+au BufNewFile,BufRead pf.conf			setf pf
+
+" Pam conf
+au BufNewFile,BufRead /etc/pam.conf		setf pamconf
+
+" PApp
+au BufNewFile,BufRead *.papp,*.pxml,*.pxsl	setf papp
+
+" Password file
+au BufNewFile,BufRead /etc/passwd,/etc/shadow,/etc/shadow- setf passwd
+
+" Pascal (also *.p)
+au BufNewFile,BufRead *.pas			setf pascal
+
+" Delphi project file
+au BufNewFile,BufRead *.dpr			setf pascal
+
+" Perl
+if has("fname_case")
+  au BufNewFile,BufRead *.pl,*.PL		call s:FTpl()
+else
+  au BufNewFile,BufRead *.pl			call s:FTpl()
+endif
+au BufNewFile,BufRead *.plx			setf perl
+
+func! s:FTpl()
+  if exists("g:filetype_pl")
+    exe "setf " . g:filetype_pl
+  else
+    " recognize Prolog by specific text in the first non-empty line
+    " require a blank after the '%' because Perl uses "%list" and "%translate"
+    let l = getline(nextnonblank(1))
+    if l =~ '\<prolog\>' || l =~ '^\s*\(%\+\(\s\|$\)\|/\*\)' || l =~ ':-'
+      setf prolog
+    else
+      setf perl
+    endif
+  endif
+endfunc
+
+" Perl, XPM or XPM2
+au BufNewFile,BufRead *.pm
+	\ if getline(1) =~ "XPM2" |
+	\   setf xpm2 |
+	\ elseif getline(1) =~ "XPM" |
+	\   setf xpm |
+	\ else |
+	\   setf perl |
+	\ endif
+
+" Perl POD
+au BufNewFile,BufRead *.pod			setf pod
+
+" Php, php3, php4, etc.
+au BufNewFile,BufRead *.php,*.php\d		setf php
+
+" Phtml
+au BufNewFile,BufRead *.phtml			setf phtml
+
+" Pike
+au BufNewFile,BufRead *.pike,*.lpc,*.ulpc,*.pmod setf pike
+
+" Pinfo config
+au BufNewFile,BufRead */etc/pinforc,*/.pinforc	setf pinfo
+
+" Palm Resource compiler
+au BufNewFile,BufRead *.rcp			setf pilrc
+
+" Pine config
+au BufNewFile,BufRead .pinerc,pinerc,.pinercex,pinercex		setf pine
+
+" PL/M (also: *.inp)
+au BufNewFile,BufRead *.plm,*.p36,*.pac		setf 

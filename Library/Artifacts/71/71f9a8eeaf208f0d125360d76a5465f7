@@ -1,0 +1,164 @@
+_b0" msgid="2057859571254103889">"ISO B0"</string>
+    <string name="mediasize_iso_b1" msgid="4931975244795236924">"ISO B1"</string>
+    <string name="mediasize_iso_b2" msgid="4701978611340339483">"ISO B2"</string>
+    <string name="mediasize_iso_b3" msgid="3509735449039761603">"ISO B3"</string>
+    <string name="mediasize_iso_b4" msgid="486628178454656526">"ISO B4"</string>
+    <string name="mediasize_iso_b5" msgid="2507554073053511267">"ISO B5"</string>
+    <string name="mediasize_iso_b6" msgid="344189428571954711">"ISO B6"</string>
+    <string name="mediasize_iso_b7" msgid="7266158663658064799">"ISO B7"</string>
+    <string name="mediasize_iso_b8" msgid="5229204010533786299">"ISO B8"</string>
+    <string name="mediasize_iso_b9" msgid="2925910409602493256">"ISO B9"</string>
+    <string name="mediasize_iso_b10" msgid="8590530019536996218">"ISO B10"</string>
+    <string name="mediasize_iso_c0" msgid="6504734131385460314">"ISO C0"</string>
+    <string name="mediasize_iso_c1" msgid="1751671704929443684">"ISO C1"</string>
+    <string name="mediasize_iso_c2" msgid="2935473413647925667">"ISO C2"</string>
+    <string name="mediasize_iso_c3" msgid="6835637985527663396">"ISO C3"</string>
+    <string name="mediasize_iso_c4" msgid="3000965043023118958">"ISO C4"</string>
+    <string name="mediasize_iso_c5" msgid="3846339505379333795">"ISO C5"</string>
+    <string name="mediasize_iso_c6" msgid="8663097559661858303">"ISO C6"</string>
+    <string name="mediasize_iso_c7" msgid="4469290754678239705">"ISO C7"</string>
+    <string name="mediasize_iso_c8" msgid="1949330679635319183">"ISO C8"</string>
+    <string name="mediasize_iso_c9" msgid="3716843356839880581">"ISO C9"</string>
+    <string name="mediasize_iso_c10" msgid="2113667674722450076">"ISO C10"</string>
+    <string name="mediasize_na_letter" msgid="1947253006814499213">"লেটাৰ"</string>
+    <string name="mediasize_na_gvrnmt_letter" msgid="4056220626420245955">"চৰকাৰী পত্ৰ"</string>
+    <string name="mediasize_na_legal" msgid="8356233803828931150">"লিগেল"</string>
+    <string name="mediasize_na_junior_legal" msgid="3398084874757748531">"জুনিয়ৰ লিগেল"</string>
+    <string name="mediasize_na_ledger" msgid="1819497882853940248">"লেজাৰ"</string>
+    <string name="mediasize_na_tabloid" msgid="6792611672983574375">"টে\'বলইড"</string>
+    <string name="mediasize_na_index_3x5" msgid="990821038991491710">"ইনডেক্স কাৰ্ড ৩x৫"</string>
+    <string name="mediasize_na_index_4x6" msgid="4414381976602032401">"ইনডেক্স কাৰ্ড ৪x৬"</string>
+    <string name="mediasize_na_index_5x8" msgid="4499341583361946948">"ইনডেক্স কাৰ্ড ৫x৮"</string>
+    <string name="mediasize_na_monarch" msgid="4396943937986136896">"ম\'নাৰ্ক"</string>
+    <string name="mediasize_na_quarto" msgid="2119101847712239885">"কুৱাট্ৰো"</string>
+    <string name="mediasize_na_foolscap" msgid="5011612828564394648">"ফুলস্কেপ"</string>
+    <string name="mediasize_chinese_roc_8k" msgid="411670106572707544">"ROC 8K"</string>
+    <string name="mediasize_chinese_roc_16k" msgid="7496706798725321898">"ROC 16K"</string>
+    <string name="mediasize_chinese_prc_1" msgid="946949835711037253">"PRC 1"</string>
+    <string name="mediasize_chinese_prc_2" msgid="4704308592895046237">"PRC 2"</string>
+    <string name="mediasize_chinese_prc_3" msgid="1082996050478581675">"PRC 3"</string>
+    <string name="mediasize_chinese_prc_4" msgid="7865122849174932948">"PRC 4"</string>
+    <string name="mediasize_chinese_prc_5" msgid="852020506971633186">"PRC 5"</string>
+    <string name="mediasize_chinese_prc_6" msgid="3399567254628077606">"PRC 6"</string>
+    <string name="mediasize_chinese_prc_7" msgid="2804330751361491000">"PRC 7"</string>
+    <string name="mediasize_chinese_prc_8" msgid="7988760621340084314">"PRC 8"</string>
+    <string name="mediasize_chinese_prc_9" msgid="90266288020939533">"PRC 9"</string>
+    <string name="mediasize_chinese_prc_10" msgid="7721316829399772162">"PRC 10"</string>
+    <string name="mediasize_chinese_prc_16k" msgid="7471455177845043180">"PRC 16K"</string>
+    <string name="mediasize_chinese_om_pa_kai" msgid="6305242012782587594">"Pa Kai"</string>
+    <string name="mediasize_chinese_om_dai_pa_kai" msgid="8133982147973309032">"Dai Pa Kai"</string>
+    <string name="mediasize_chinese_om_jurro_ku_kai" msgid="5888548906612445289">"Jurro Ku Kai"</string>
+    <string name="mediasize_japanese_jis_b10" msgid="6761433476186549691">"JIS B10"</string>
+    <string name="mediasize_japanese_jis_b9" msgid="6011047111717561836">"JIS B9"</string>
+    <string name="mediasize_japanese_jis_b8" msgid="1541865115368043069">"JIS B8"</string>
+    <string name="mediasize_japanese_jis_b7" msgid="8300341273885698803">"JIS B7"</string>
+    <string name="mediasize_japanese_jis_b6" msgid="4329528623016980657">"JIS B6"</string>
+    <string name="mediasize_japanese_jis_b5" msgid="7340334955358311979">"JIS B5"</string>
+    <string name="mediasize_japanese_jis_b4" msgid="7403538361394953235">"JIS B4"</string>
+    <string name="mediasize_japanese_jis_b3" msgid="9024287678505132047">"JIS B3"</string>
+    <string name="mediasize_japanese_jis_b2" msgid="5151340021154579154">"JIS B2"</string>
+    <string name="mediasize_japanese_jis_b1" msgid="2709589944170908250">"JIS B1"</string>
+    <string name="mediasize_japanese_jis_b0" msgid="1209735840926222618">"JIS B0"</string>
+    <string name="mediasize_japanese_jis_exec" msgid="2137738196058117115">"JIS Exec"</string>
+    <string name="mediasize_japanese_chou4" msgid="2533204016634398713">"Chou4"</string>
+    <string name="mediasize_japanese_chou3" msgid="5976745918096025459">"Chou3"</string>
+    <string name="mediasize_japanese_chou2" msgid="6841260581434101675">"Chou2"</string>
+    <string name="mediasize_japanese_hagaki" msgid="2112968853810337326">"Hagaki"</string>
+    <string name="mediasize_japanese_oufuku" msgid="1575013107082530108">"Oufuku"</string>
+    <string name="mediasize_japanese_kahu" msgid="7290232592648122042">"Kahu"</string>
+    <string name="mediasize_japanese_kaku2" msgid="7477551750461028312">"Kaku2"</string>
+    <string name="mediasize_japanese_you4" msgid="5552111912684384833">"You4"</string>
+    <string name="mediasize_unknown_portrait" msgid="3817016220446495613">"অজ্ঞাত প\'ৰ্ট্ৰেইট"</string>
+    <string name="mediasize_unknown_landscape" msgid="1584741567225095325">"অজ্ঞাত লেণ্ডস্কেইপ"</string>
+    <string name="write_fail_reason_cancelled" msgid="2344081488493969190">"বাতিল কৰা হ’ল"</string>
+    <string name="write_fail_reason_cannot_write" msgid="432118118378451508">"সমল লিখাত আসোঁৱাহ"</string>
+    <string name="reason_unknown" msgid="5599739807581133337">"অজ্ঞাত"</string>
+    <string name="reason_service_unavailable" msgid="5288405248063804713">"প্ৰিণ্টিং সেৱা সক্ষম নহয়"</string>
+    <string name="print_service_installed_title" msgid="6134880817336942482">"<xliff:g id="NAME">%s</xliff:g> সেৱা ইনষ্টল কৰা হ’ল"</string>
+    <string name="print_service_installed_message" msgid="7005672469916968131">"সক্ষম কৰিবলৈ টিপক"</string>
+    <string name="restr_pin_enter_admin_pin" msgid="1199419462726962697">"প্ৰশাসকৰ পিন দিয়ক"</string>
+    <string name="restr_pin_enter_pin" msgid="373139384161304555">"পিন দিয়ক"</string>
+    <string name="restr_pin_incorrect" msgid="3861383632940852496">"অশুদ্ধ"</string>
+    <string name="restr_pin_enter_old_pin" msgid="7537079094090650967">"বৰ্তমানৰ পিন"</string>
+    <string name="restr_pin_enter_new_pin" msgid="3267614461844565431">"নতুন পিন"</string>
+    <string name="restr_pin_confirm_pin" msgid="7143161971614944989">"নতুন পিন নিশ্চিত কৰক"</string>
+    <string name="restr_pin_create_pin" msgid="917067613896366033">"সীমাবদ্ধতা সংশোধন কৰিবলৈ এটা পিন সৃষ্টি কৰক"</string>
+    <string name="restr_pin_error_doesnt_match" msgid="7063392698489280556">"পিনবোৰ মিলা নাই। আকৌ চেষ্টা কৰক।"</string>
+    <string name="restr_pin_error_too_short" msgid="1547007808237941065">"পিনটো অতি চুটি। কমেও ৪টা সংখ্যাৰ হ\'ব লাগিব।"</string>
+    <plurals name="restr_pin_countdown" formatted="false" msgid="4427486903285216153">
+      <item quantity="one"> <xliff:g id="COUNT">%d</xliff:g> ছেকেণ্ডত আকৌ চেষ্টা কৰক</item>
+      <item quantity="other"> <xliff:g id="COUNT">%d</xliff:g> ছেকেণ্ডত আকৌ চেষ্টা কৰক</item>
+    </plurals>
+    <string name="restr_pin_try_later" msgid="5897719962541636727">"পিছত আকৌ চেষ্টা কৰক"</string>
+    <string name="immersive_cling_title" msgid="2307034298721541791">"স্ক্ৰীণ পূৰ্ণৰূপত চাই আছে"</string>
+    <string name="immersive_cling_description" msgid="7092737175345204832">"বাহিৰ হ\'বলৈ ওপৰৰপৰা তললৈ ছোৱাইপ কৰক।"</string>
+    <string name="immersive_cling_positive" msgid="7047498036346489883">"বুজি পালোঁ"</string>
+    <string name="done_label" msgid="7283767013231718521">"সম্পন্ন কৰা হ’ল"</string>
+    <string name="hour_picker_description" msgid="5153757582093524635">"ঘড়ীৰ বৃত্তাকাৰ শ্লাইডাৰ"</string>
+    <string name="minute_picker_description" msgid="9029797023621927294">"মিনিটৰ বৃত্তাকাৰ শ্লাইডাৰ"</string>
+    <string name="select_hours" msgid="5982889657313147347">"ঘণ্টা বাছনি কৰক"</string>
+    <string name="select_minutes" msgid="9157401137441014032">"মিনিট বাছনি কৰক"</string>
+    <string name="select_day" msgid="2060371240117403147">"মাহ আৰু দিন বাছনি কৰক"</string>
+    <string name="select_year" msgid="1868350712095595393">"বছৰ বাছনি কৰক"</string>
+    <string name="deleted_key" msgid="9130083334943364001">"<xliff:g id="KEY">%1$s</xliff:g> মচা হ’ল"</string>
+    <string name="managed_profile_label_badge" msgid="6762559569999499495">"কৰ্মস্থান <xliff:g id="LABEL">%1$s</xliff:g>"</string>
+    <string name="managed_profile_label_badge_2" msgid="5673187309555352550">"২য় কার্য <xliff:g id="LABEL">%1$s</xliff:g>"</string>
+    <string name="managed_profile_label_badge_3" msgid="6882151970556391957">"৩য় কার্য <xliff:g id="LABEL">%1$s</xliff:g>"</string>
+    <string name="lock_to_app_unlock_pin" msgid="3890940811866290782">"আনপিন কৰাৰ পূৰ্বে পিন দিবলৈ কওক"</string>
+    <string name="lock_to_app_unlock_pattern" msgid="2694204070499712503">"আনপিন কৰাৰ পূৰ্বে আনলক আৰ্হি দিবলৈ কওক"</string>
+    <string name="lock_to_app_unlock_password" msgid="9126722403506560473">"আনপিন কৰাৰ পূৰ্বে পাছৱৰ্ড দিবলৈ কওক"</string>
+    <string name="package_installed_device_owner" msgid="7035926868974878525">"আপোনাৰ প্ৰশাসকে ইনষ্টল কৰিছে"</string>
+    <string name="package_updated_device_owner" msgid="7560272363805506941">"আপোনাৰ প্ৰশাসকে আপেডট কৰিছে"</string>
+    <string name="package_deleted_device_owner" msgid="2292335928930293023">"আপোনাৰ প্ৰশাসকে মচিছে"</string>
+    <string name="confirm_battery_saver" msgid="5247976246208245754">"ঠিক আছে"</string>
+    <string name="battery_saver_description_with_learn_more" msgid="5997766757551917769">"বেটাৰীৰ জীৱনকাল বৃদ্ধি কৰিবলৈ, বেটাৰী সঞ্চয়কাৰীয়ে:\n\n•গাঢ় ৰঙৰ থীম অন কৰে\n•পটভূমিৰ কাৰ্যকলাপ, কিছুমান ভিজুৱেল প্ৰভাৱ আৰু “Hey Google”ৰ দৰে অন্য সুবিধাসমূহ অফ কৰে অথবা সেইবোৰ সীমাবদ্ধ কৰে\n\n"<annotation id="url">"অধিক জানক"</annotation></string>
+    <string name="battery_saver_description" msgid="8587408568232177204">"বেটাৰীৰ জীৱনকাল বৃদ্ধি কৰিবলৈ, বেটাৰী সঞ্চয়কাৰীয়ে:\n\n•গাঢ় ৰঙৰ থীম অন কৰে\n•পটভূমিৰ কাৰ্যকলাপ, কিছুমান ভিজুৱেল প্ৰভাৱ আৰু “Hey Google”ৰ দৰে অন্য সুবিধাসমূহ অফ কৰে অথবা সেইবোৰ সীমাবদ্ধ কৰে"</string>
+    <string name="data_saver_description" msgid="4995164271550590517">"ডেটা ব্য়ৱহাৰ মাত্ৰা কম কৰিবৰ বাবে ডেটা সঞ্চয়কাৰীয়ে কিছুমান এপক নেপথ্য়ত ডেটা প্ৰেৰণ বা সংগ্ৰহ কৰাত বাধা প্ৰদান কৰে। আপুনি বৰ্তমান ব্য়ৱহাৰ কৰি থকা এটা এপে ডেটা ব্য়ৱহাৰ কৰিব পাৰে, কিন্তু সঘনাই এই কার্য কৰিব নোৱাৰিব পাৰে। ইয়াৰ অৰ্থ এইয়ে হ\'ব পাৰে যে, উদাহৰণস্বৰূপে, আপুনি নিটিপা পর্যন্ত প্ৰতিচ্ছবিসমূহ দেখুওৱা নহ’ব।"</string>
+    <string name="data_saver_enable_title" msgid="7080620065745260137">"ডেটা সঞ্চয়কাৰী অন কৰিবনে?"</string>
+    <string name="data_saver_enable_button" msgid="4399405762586419726">"অন কৰক"</string>
+    <plurals name="zen_mode_duration_minutes_summary" formatted="false" msgid="2877101784123058273">
+      <item quantity="one"> %1$d মিনিটৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পৰ্যন্ত)</item>
+      <item quantity="other"> %1$d মিনিটৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পৰ্যন্ত)</item>
+    </plurals>
+    <plurals name="zen_mode_duration_minutes_summary_short" formatted="false" msgid="4230730310318858312">
+      <item quantity="one">%1$d মিনিটৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পর্যন্ত)</item>
+      <item quantity="other">%1$d মিনিটৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পর্যন্ত)</item>
+    </plurals>
+    <plurals name="zen_mode_duration_hours_summary" formatted="false" msgid="7725354244196466758">
+      <item quantity="one">%1$d ঘণ্টাৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পৰ্যন্ত)</item>
+      <item quantity="other">%1$d ঘণ্টাৰ বাবে (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পৰ্যন্ত)</item>
+    </plurals>
+    <plurals name="zen_mode_duration_hours_summary_short" formatted="false" msgid="588719069121765642">
+      <item quantity="one">%1$d ঘণ্টা (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পর্যন্ত)</item>
+      <item quantity="other">%1$d ঘণ্টা (<xliff:g id="FORMATTEDTIME_1">%2$s</xliff:g> পর্যন্ত)</item>
+    </plurals>
+    <plurals name="zen_mode_duration_minutes" formatted="false" msgid="1148568456958944998">
+      <item quantity="one">%d মিনিটৰ বাবে</item>
+      <item quantity="other">%d মিনিটৰ বাবে</item>
+    </plurals>
+    <plurals name="zen_mode_duration_minutes_short" formatted="false" msgid="2742377799995454859">
+      <item quantity="one">%d মিনিটৰ বাবে</item>
+      <item quantity="other">%d মিনিটৰ বাবে</item>
+    </plurals>
+    <plurals name="zen_mode_duration_hours" formatted="false" msgid="525401855645490022">
+      <item quantity="one">%d ঘণ্টাৰ বাবে</item>
+      <item quantity="other">%d ঘণ্টাৰ বাবে</item>
+    </plurals>
+    <plurals name="zen_mode_duration_hours_short" formatted="false" msgid="7644653189680911640">
+      <item quantity="one">%d ঘণ্টাৰ বাবে</item>
+      <item quantity="other">%d ঘণ্টাৰ বাবে</item>
+    </plurals>
+    <string name="zen_mode_until" msgid="2250286190237669079">"<xliff:g id="FORMATTEDTIME">%1$s</xliff:g> পৰ্যন্ত"</string>
+    <string name="zen_mode_alarm" msgid="7046911727540499275">"<xliff:g id="FORMATTEDTIME">%1$s</xliff:g> (পৰৱৰ্তী এলার্ম) পর্যন্ত"</string>
+    <string name="zen_mode_forever" msgid="740585666364912448">"আপুনি অফ নকৰা পর্যন্ত"</string>
+    <string name="zen_mode_forever_dnd" msgid="3423201955704180067">"আপুনি যেতিয়ালৈকে অসুবিধা নিদিব অফ নকৰে"</string>
+    <string name="zen_mode_rule_name_combination" msgid="7174598364351313725">"<xliff:g id="FIRST">%1$s</xliff:g> / <xliff:g id="REST">%2$s</xliff:g>"</string>
+    <string name="toolbar_collapse_description" msgid="8009920446193610996">"সংকুচিত কৰক"</string>
+    <string name="zen_mode_feature_name" msgid="3785547207263754500">"অসুবিধা নিদিব"</string>
+    <string name="zen_mode_downtime_feature_name" msgid="5886005761431427128">"ডাউনটাইম"</string>
+    <string name="zen_mode_default_weeknights_name" msgid="7902108149994062847">"কাৰ্য-দিনৰ নিশা"</string>
+    <string name="zen_mode_default_weekends_name" msgid="4707200272709377930">"সপ্তাহ অন্ত"</string>
+    <string name="zen_mode_default_events_name" msgid="2280682960128512257">"কার্যক্ৰম"</string>
+    <string name="zen_mode_default_every_night_name" msgid="1467765312174275823">"নিদ্ৰাৰত"</string>
+    <string name="muted_by" msgid="91464083490094950">"<xliff:g id="THIRD_PARTY">%1$s</xliff:g>এ কিছুমান ধ্বনি মিউট কৰি আছে"</string>
+    <string name="system_error_wipe_data" msgid="5910572292172208493">"আপোনাৰ ডিভাইচত এটা আভ্যন্তৰীণ সমস্যা আছে আৰু আপুনি �

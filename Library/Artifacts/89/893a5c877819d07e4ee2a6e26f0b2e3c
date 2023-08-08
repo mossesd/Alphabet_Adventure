@@ -1,0 +1,145 @@
+
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Configuration.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Configuration.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Configuration.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        521
+      ],
+      "DebugActionIndex": 639
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Registration.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Registration.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Registration.dll"
+      ],
+      "ToBuildDependencies": [
+        523
+      ],
+      "DebugActionIndex": 640
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.Services.Core.Registration.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.Services.Core.Registration.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.Services.Core.Registration.pdb"
+      ],
+      "ToBuildDependencies": [
+        523
+      ],
+      "DebugActionIndex": 641
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.SettingsProvider.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        525
+      ],
+      "DebugActionIndex": 642
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.SettingsProvider.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        525
+      ],
+      "DebugActionIndex": 643
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.State.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        527
+      ],
+      "DebugActionIndex": 644
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.VisualScripting.State.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        527
+      ],
+      "DebugActionIndex": 645
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.IK.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.IK.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.IK.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        529
+      ],
+      "DebugActionIndex": 646
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.IK.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.IK.Editor.pdb"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.IK.Editor.pdb"
+      ],
+      "ToBuildDependencies": [
+        529
+      ],
+      "DebugActionIndex": 647
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Psdimporter.Editor.dll"
+      ],
+      "Outputs": [
+        "Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll"
+      ],
+      "ToBuildDependencies": [
+        531
+      ],
+      "DebugActionIndex": 648
+    },
+    {
+      "Annotation": "CopyFiles Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.pdb",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Library/Bee/artifacts/1900b0aE.dag/post-processed/Unity.2D.Psdimport

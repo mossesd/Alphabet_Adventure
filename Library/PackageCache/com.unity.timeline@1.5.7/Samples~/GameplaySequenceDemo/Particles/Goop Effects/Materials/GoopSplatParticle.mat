@@ -1,0 +1,78 @@
+                                                \
+    (((__SUNPRO_CC >> 16) & 0xf) * 10) + ((__SUNPRO_CC >> 12) & 0xf), \
+    (((__SUNPRO_CC >> 8) & 0xf) * 10) + ((__SUNPRO_CC >> 4) & 0xf),   \
+    (__SUNPRO_CC & 0xf) * 10)
+#elif defined(__SUNPRO_CC)
+#define BROTLI_SUNPRO_VERSION                   \
+  BROTLI_MAKE_VERSION((__SUNPRO_CC >> 8) & 0xf, \
+                      (__SUNPRO_CC >> 4) & 0xf, \
+                      (__SUNPRO_CC) & 0xf)
+#endif
+
+#if defined(BROTLI_SUNPRO_VERSION)
+#define BROTLI_SUNPRO_VERSION_CHECK(major, minor, patch) \
+  (BROTLI_SUNPRO_VERSION >= BROTLI_MAKE_VERSION(major, minor, patch))
+#else
+#define BROTLI_SUNPRO_VERSION_CHECK(major, minor, patch) (0)
+#endif
+
+#if defined(__CC_ARM) && defined(__ARMCOMPILER_VERSION)
+#define BROTLI_ARM_VERSION                                       \
+  BROTLI_MAKE_VERSION((__ARMCOMPILER_VERSION / 1000000),         \
+                      (__ARMCOMPILER_VERSION % 1000000) / 10000, \
+                      (__ARMCOMPILER_VERSION % 10000) / 100)
+#elif defined(__CC_ARM) && defined(__ARMCC_VERSION)
+#define BROTLI_ARM_VERSION                                 \
+  BROTLI_MAKE_VERSION((__ARMCC_VERSION / 1000000),         \
+                      (__ARMCC_VERSION % 1000000) / 10000, \
+                      (__ARMCC_VERSION % 10000) / 100)
+#endif
+
+#if defined(BROTLI_ARM_VERSION)
+#define BROTLI_ARM_VERSION_CHECK(major, minor, patch) \
+  (BROTLI_ARM_VERSION >= BROTLI_MAKE_VERSION(major, minor, patch))
+#else
+#define BROTLI_ARM_VERSION_CHECK(major, minor, patch) (0)
+#endif
+
+#if defined(__ibmxl__)
+#define BROTLI_IBM_VERSION                    \
+  BROTLI_MAKE_VERSION(__ibmxl_version__,      \
+                      __ibmxl_release__,      \
+                      __ibmxl_modification__)
+#elif defined(__xlC__) && defined(__xlC_ver__)
+#define BROTLI_IBM_VERSION \
+  BROTLI_MAKE_VERSION(__xlC__ >> 8, __xlC__ & 0xff, (__xlC_ver__ >> 8) & 0xff)
+#elif defined(__xlC__)
+#define BROTLI_IBM_VERSION BROTLI_MAKE_VERSION(__xlC__ >> 8, __xlC__ & 0xff, 0)
+#endif
+
+#if defined(BROTLI_IBM_VERSION)
+#define BROTLI_IBM_VERSION_CHECK(major, minor, patch) \
+  (BROTLI_IBM_VERSION >= BROTLI_MAKE_VERSION(major, minor, patch))
+#else
+#define BROTLI_IBM_VERSION_CHECK(major, minor, patch) (0)
+#endif
+
+#if defined(__TI_COMPILER_VERSION__)
+#define BROTLI_TI_VERSION                                         \
+  BROTLI_MAKE_VERSION((__TI_COMPILER_VERSION__ / 1000000),        \
+                      (__TI_COMPILER_VERSION__ % 1000000) / 1000, \
+                      (__TI_COMPILER_VERSION__ % 1000))
+#endif
+
+#if defined(BROTLI_TI_VERSION)
+#define BROTLI_TI_VERSION_CHECK(major, minor, patch) \
+  (BROTLI_TI_VERSION >= BROTLI_MAKE_VERSION(major, minor, patch))
+#else
+#define BROTLI_TI_VERSION_CHECK(major, minor, patch) (0)
+#endif
+
+#if defined(__IAR_SYSTEMS_ICC__)
+#if __VER__ > 1000
+#define BROTLI_IAR_VERSION                     \
+  BROTLI_MAKE_VERSION((__VER__ / 1000000),     \
+                      (__VER__ / 1000) % 1000, \
+                      (__VER__ % 1000))
+#else
+#define BROTLI_IAR_VERSION BROTLI_MAKE_V

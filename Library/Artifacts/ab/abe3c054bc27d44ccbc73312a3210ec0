@@ -1,0 +1,149 @@
+  }
+
+        // Make sure a gameobject has all the required component for the given TrackAsset
+        public static Component AddRequiredComponent(GameObject go, TrackAsset asset)
+        {
+            if (go == null || asset == null)
+                return null;
+
+            var bindings = asset.outputs;
+            if (!bindings.Any())
+                return null;
+
+            var binding = bindings.First();
+            if (binding.outputTargetType == null || !typeof(Component).IsAssignableFrom(binding.outputTargetType))
+                return null;
+
+            var component = go.GetComponent(binding.outputTargetType);
+            if (component == null)
+            {
+                component = Undo.AddComponent(go, binding.outputTargetType);
+            }
+            return component;
+        }
+
+        public static string GetTrackCategoryName(System.Type trackType)
+        {
+            if (trackType == null)
+                return string.Empty;
+
+            string s = GetItemCategoryName(trackType);
+            if (!String.IsNullOrEmpty(s))
+                return s;
+
+            // if as display name with a path is specified use that
+            var attr = Attribute.GetCustomAttribute(trackType, typeof(DisplayNameAttribute)) as DisplayNameAttribute;
+            if (attr != null && attr.DisplayName.Contains('/'))
+                return string.Empty;
+
+            if (trackType.Namespace == null || trackType.Namespace.Contains("UnityEngine"))
+                return string.Empty;
+
+            return trackType.Namespace + "/";
+        }
+
+        public static string GetItemCategoryName(System.Type itemType)
+        {
+            if (itemType == null)
+                return string.Empty;
+
+            var attribute = itemType.GetCustomAttribute(typeof(MenuCategoryAttribute)) as MenuCategoryAttribute;
+            if (attribute != null)
+            {
+                var s = attribute.category;
+                if (!s.EndsWith("/"))
+                    s += "/";
+                return s;
+            }
+
+            return string.Empty;
+        }
+
+        public static string GetTrackMenuName(System.Type trackType)
+        {
+            return L10n.Tr(TypeUtility.GetDisplayName(trackType));
+        }
+
+        // retrieve the duration of a single loop, taking into account speed
+        public static double GetLoopDuration(TimelineClip clip)
+        {
+            double length = clip.clipAssetDuration;
+            if (double.IsNegativeInfinity(length) || double.IsNaN(length))
+                return TimelineClip.kMinDuration;
+
+            if (length == double.MaxValue || double.IsInfinity(length))
+            {
+                return double.MaxValue;
+            }
+
+            return Math.Max(TimelineClip.kMinDuration, length / clip.timeScale);
+        }
+
+        public static double GetClipAssetEndTime(TimelineClip clip)
+        {
+            var d = GetLoopDuration(clip);
+            if (d < double.MaxValue)
+                d = clip.FromLocalTimeUnbound(d);
+
+            return d;
+        }
+
+        // Checks if the underlying asset duration is usable. This means the clip
+        //  can loop or hold
+        public static bool HasUsableAssetDuration(TimelineClip clip)
+        {
+            double length = clip.clipAssetDuration;
+            return (length < TimelineClip.kMaxTimeValue) && !double.IsInfinity(length) && !double.IsNaN(length);
+        }
+
+        // Retrieves the starting point of each loop of a clip, relative to the start of the clip
+        //  Note that if clip-in is bigger than the loopDuration, negative times will be added
+        public static double[] GetLoopTimes(TimelineClip clip)
+        {
+            if (!HasUsableAssetDuration(clip))
+                return new[] { -clip.clipIn / clip.timeScale };
+
+            var times = new List<double>();
+            double loopDuration = GetLoopDuration(clip);
+
+            if (loopDuration <= TimeUtility.kTimeEpsilon)
+                return new double[] { };
+
+
+            double start = -clip.clipIn / clip.timeScale;
+            double end = start + loopDuration;
+
+            times.Add(start);
+            while (end < clip.duration - WindowState.kTimeEpsilon)
+            {
+                times.Add(end);
+                end += loopDuration;
+            }
+
+            return times.ToArray();
+        }
+
+        public static double GetCandidateTime(Vector2? mousePosition, params TrackAsset[] trackAssets)
+        {
+            // Right-Click
+            if (mousePosition != null)
+            {
+                return TimeReferenceUtility.GetSnappedTimeAtMousePosition(mousePosition.Value);
+            }
+
+            // Playhead
+            if (TimelineEditor.inspectedDirector != null)
+            {
+                return TimeReferenceUtility.SnapToFrameIfRequired(TimelineEditor.inspectedSequenceTime);
+            }
+
+            // Specific tracks end
+            if (trackAssets != null && trackAssets.Any())
+            {
+                var items = trackAssets.SelectMany(t => t.GetItems()).ToList();
+                return items.Any() ? items.Max(i => i.end) : 0;
+            }
+
+            // Timeline tracks end
+            if (TimelineEditor.inspectedAsset != null)
+                return TimelineEditor.inspectedAsset.flattenedTracks.Any() ? TimelineEdit

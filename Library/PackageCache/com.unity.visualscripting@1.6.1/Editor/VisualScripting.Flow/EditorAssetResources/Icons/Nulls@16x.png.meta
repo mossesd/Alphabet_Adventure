@@ -1,0 +1,37 @@
+Rank    - 00FF0001
+     utl:           Signer Score   - WHQL (0D000005)
+     utl:           Submission ID  - 30089880_14306842078313635_1152921504628166648
+     utl:           Flight IDs     - RD:42927
+     utl:      Driver Node:
+     utl:           Status         - Outranked
+     utl:           Driver INF     - oem22.inf (C:\WINDOWS\System32\DriverStore\FileRepository\prnhpcl3.inf_amd64_47ef944205892e6a\prnhpcl3.inf)
+     utl:           Class GUID     - {4d36e979-e325-11ce-bfc1-08002be10318}
+     utl:           Driver Version - 04/22/2009,10.0.17119.1
+     utl:           Configuration  - 1284_CID_HPLJPDLV1
+     utl:           Driver Rank    - 00FF2001
+     utl:           Signer Score   - WHQL (0D000005)
+     utl:           Submission ID  - 29989680_14180728090604544_1152921504627686721
+     utl:           Flight IDs     - RD:45A72
+     utl:      Driver Node:
+     utl:           Status         - Outranked
+     utl:           Driver INF     - oem37.inf (C:\WINDOWS\System32\DriverStore\FileRepository\prnhpcl3.inf_amd64_bc8290454e743598\prnhpcl3.inf)
+     utl:           Class GUID     - {4d36e979-e325-11ce-bfc1-08002be10318}
+     utl:           Driver Version - 04/21/2009,10.0.16299.15
+     utl:           Configuration  - 1284_CID_HPLJPDLV1
+     utl:           Driver Rank    - 00FF3001
+     utl:           Signer Score   - Inbox (0D000003)
+     utl:      Driver Node:
+     utl:           Status         - Outranked
+     utl:           Driver INF     - prnms007.inf (C:\WINDOWS\System32\DriverStore\FileRepository\prnms007.inf_amd64_476c9e3d3e30c64a\prnms007.inf)
+     utl:           Class GUID     - {4d36e979-e325-11ce-bfc1-08002be10318}
+     utl:           Driver Version - 06/21/2006,10.0.22621.1105
+     utl:           Configuration  - 1284_CID_MS_PWGR
+     utl:           Driver Rank    - 00FF3002
+     utl:           Signer Score   - Inbox (0D000003)
+     utl:      Driver Node:
+     utl:           Status         - Outranked
+     utl:           Driver INF     - prnms013.inf (C:\WINDOWS\System32\DriverStore\FileRepository\prnms013.inf_amd64_ed6d9ed7abff7cdf\prnms013.inf)
+     utl:           Class GUID     - {62f9c741-b25a-46ce-b54c-9bccce08b6f2}
+     utl:           Driver Version - 06/21/2006,10.0.22621.1
+     utl:           Configuration  - CID_MS_GENERICPRINT [MS_GENERICPRINT]
+     utl:  

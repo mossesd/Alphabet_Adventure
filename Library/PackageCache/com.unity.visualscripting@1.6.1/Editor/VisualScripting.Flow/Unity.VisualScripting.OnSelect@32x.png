@@ -1,0 +1,31 @@
+ditional expression, a kind of if-then state-
+       ment.  ?exp(text) will display text if and only	if  exp	 evaluates  to
+       non-zero.   This	 is useful for two things.  First, it allows fields to
+       be displayed if and only if a flag is set.  And	second,	 it  allows  a
+       value  such  as a state number to be displayed as a name rather than as
+       just a number.  The syntax of exp is as follows:
+
+       exp    ::= term | term=exp | !exp
+
+       term   ::= n | $n | mn
+
+       The ! operator is a logical ``not'', changing 0 to 1 and	 any  non-zero
+       value  to  0.   =  is  an  equality operator.  Note that internally all
+       expressions are evaluated as 32 bit numbers  so	-1  is	not  equal  to
+       65535.  = returns 1 if the two values are equal and 0 if not.  n repre-
+       sents the constant value n while $n represents the value of field  num-
+       ber n.  mn is 1 if flag number n in the first field having format char-
+       acter 'm' in the corresponding format is 1, 0 otherwise.
+
+       Examples: ?m3(count: $3\n) displays field 3 with a label	 of  count  if
+       and   only   if	 flag	number	 3   (count   starts  at  0!)  is  on.
+       ?$2=0(True)?!$2=0(False) displays the inverted value of field  2	 as  a
+       boolean.
+
+       In  order  to display a property, xprop needs both a format and a dfor-
+       mat.  Before xprop uses its default values of a format  of  32x	and  a
+       dformat	of " = { $0+ }\n", it searches several places in an attempt to
+       find more specific formats.  First, a search is made using the name  of
+       the  property.	If  this fails, a search is made using the type of the
+       property.  This allows type STRING to be defined with one set  of  for-
+       mats  while  allowing  property	WM_NAME	 which is of type STR

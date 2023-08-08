@@ -1,0 +1,62 @@
+
+                blendFactor = lerp(blendFactor, saturate(2.0f * blendFactor), saturate(motionVectorLenInPixels  / 50.0f));
+#endif
+                // --------------------------------------------------------
+
+                // ------------------- Alpha handling ---------------------------
+#if defined(ENABLE_ALPHA)
+                // Compute the antialiased alpha value
+                filteredColor.w = lerp(history.w, filteredColor.w, blendFactor);
+                // TAA should not overwrite pixels with zero alpha. This allows camera stacking with mixed TAA settings (bottom camera with TAA OFF and top camera with TAA ON).
+                CTYPE unjitteredColor = Fetch4(_InputTexture, input.texcoord - color.w * jitter, 0.0, _RTHandleScale.xy).CTYPE_SWIZZLE;
+                unjitteredColor = ConvertToWorkingSpace(unjitteredColor);
+                unjitteredColor.xyz *= PerceptualWeight(unjitteredColor);
+                filteredColor.xyz = lerp(unjitteredColor.xyz, filteredColor.xyz, filteredColor.w);
+                blendFactor = color.w > 0 ? blendFactor : 1;
+#endif
+                // ---------------------------------------------------------------
+
+                // --------------- Blend to final value and output ---------------
+
+#if VELOCITY_REJECTION
+                // The 10 multiplier serves a double purpose, it is an empirical scale value used to perform the rejection and it also helps with storing the value itself.
+                lengthMV = motionVectorLength * 10;
+                blendFactor = ModifyBlendWithMotionVectorRejection(_InputVelocityMagnitudeHistory, lengthMV, prevUV, blendFactor, _SpeedRejectionIntensity, _RTHandleScaleForTAAHistory);
+#endif
+
+#ifdef TAA_UPSCALE
+                blendFactor *= GetUpsampleConfidence(filterParams.zw, _TAAUBoxConfidenceThresh, _TAAUFilterRcpSigma2, _TAAUScale);
+#endif
+                blendFactor = clamp(blendFactor, 0.03f, 0.98f);
+
+                CTYPE finalColor;
+#if PERCEPTUAL_SPACE_ONLY_END
+                finalColor.xyz = lerp(ReinhardToneMap(history).xyz, ReinhardToneMap(filteredColor).xyz, blendFactor);
+                finalColor.xyz = InverseReinhardToneMap(finalColor).xyz;
+#else
+                finalColor.xyz = lerp(history.xyz, filteredColor.xyz, blendFactor);
+                finalColor.xyz *= PerceptualInvWeight(finalColor);
+#endif
+
+                color.xyz = ConvertToOutputSpace(finalColor.xyz);
+                color.xyz = clamp(color.xyz, 0, CLAMP_MAX);
+#if defined(ENABLE_ALPHA)
+                // Set output alpha to the antialiased alpha.
+                color.w = filteredColor.w;
+#endif
+            }
+
+            _OutputHistoryTexture[COORD_TEXTURE2D_X(input.positionCS.xy)] = color.CTYPE_SWIZZLE;
+            outColor = color.CTYPE_SWIZZLE;
+#if VELOCITY_REJECTION && !defined(POST_DOF)
+            _OutputVelocityMagnitudeHistory[COORD_TEXTURE2D_X(input.positionCS.xy)] = lengthMV;
+#endif
+            // -------------------------------------------------------------
+        }
+
+        void FragExcludedTAA(Varyings input, out CTYPE outColor : SV_Target0)
+        {
+            UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+
+            float2 jitter = _TaaJitterStrength.zw;
+            float2 uv = input.texc

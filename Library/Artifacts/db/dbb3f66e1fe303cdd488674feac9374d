@@ -1,0 +1,464 @@
+ 생성합니다.
+
+== GluonWkExplSuggestConfigure ==
+[title]리포지토리에 다운로드 대기 중인 콘텐츠가 있습니다[/title]
+
+[action:GluonConfigure]구성[/action]을 클릭하여 리포지토리에서 다운로드하는 데 실제로 필요한 항목을 설정합니다.
+
+이렇게 하면 워크스페이스로 다운로드할 파일을 정확하게 선택할 수 있습니다.
+
+== GluonConfigureNoPreviousConfig ==
+[title]작업에 필요한 파일을 로드합니다[/title]
+
+리포지토리를 탐색하고 작업에 필요한 파일 또는 디렉터리를 정확하게 선택합니다.
+
+Gluon을 사용하면 작업에 필요한 항목을 다운로드할 수 있습니다.
+
+Gluon을 사용하면 공간과 다운로드 시간을 크게 절약할 수 있으므로 대규모 리포지토리를 사용하는 경우에 좋습니다.
+
+[bold]팁[/bold]: [action:GluonConfigSearch]검색[/action]을 클릭하여 파일을 찾습니다.
+
+== GluonWkExplExplainUpdate ==
+[title]다운로드할 수 있는 새 버전이 있습니다[/title]
+
+[action:GluonUpdateWorkspace]업데이트[/action]를 사용하여 워크스페이스에 있는 파일의 새 버전을 모두 다운로드합니다.
+
+파일의 더 최신 버전이 있는 경우 상태 열에 "이전 버전임"이 표시됩니다. 업데이트 버튼을 사용할 때와 마찬가지로 전체 워크스페이스를 업데이트하는 대신, 파일을 오른쪽 클릭하여 개별적으로 파일을 업데이트할 수 있습니다.
+
+[bold]팁[/bold]: 언제 새 파일이 다운로드됩니까? 누군가가 새 파일을 리포지토리에 추가한다고 가정해 봅시다. 업데이트를 클릭하면 다운로드될까요? 디렉터리가 "모두 선택"으로 구성된 경우에는 그렇습니다. 하지만 일부만 선택한 경우에는 그렇지 않습니다. 이유가 무엇일까요? "일부 선택"이란 특정 파일만 다운로드하고 싶다는 의미이기 때문입니다. 따라서 모든 새 파일이 자동으로 다운로드되지는 않습니다.
+
+== GluonWkExplNewAddedFilesInRepo ==
+[title]새 파일이 리포지토리에 추가되었습니다[/title]
+
+워크스페이스에 없는 리포지토리에 새 파일이 있습니다.
+
+워크스페이스를 [action:GluonConfigure]구성[/action]하고 이를 다운로드하겠다고 표시할 수 있습니다.
+
+== GluonConfigureEmpty ==
+[title]리포지토리가 비어 있습니다[/title]
+
+이런, 리포지토리가 비어 있어 구성할 항목이 없습니다.
+
+이 리포지토리에 프로젝트를 추가하려 할 수도 있습니다.
+
+아니면 잘못된 리포지토리를 연결했을 수 있습니다.
+
+[help:GluonWkExplFullEmpty]Plastic에 프로젝트를 추가하거나 다른 리포지토리를 사용하는 방법을 확인하십시오[/help].
+
+== GluonConfigurePreviousConfig ==
+[title]워크스페이스를 조정합니다[/title]
+
+* 녹색 체크 표시: 다운로드할 새 파일 또는 디렉터리를 구성합니다.
+* 빨간색 체크 표시: 요소의 구성을 해제합니다.
+* 검정색 체크 표시: 이미 다운로드하도록 구성된 항목입니다.
+* 체크 표시 없음: 워크스페이스로 다운로드하도록 구성되지 않았습니다.
+* 디렉터리의 부분 체크 표시: 이 표시는 일부 콘텐츠가 다운로드된다는 의미입니다. 몇 가지 파일을 선택한 경우에 이렇게 됩니다.
+
+
+작업에 필요한 항목만 다운로드하면 공간과 다운로드 시간을 크게 절약할 수 있으므로 대규모 리포지토리를 사용하는 경우에 매우 유용합니다.
+
+[bold]팁[/bold]: [action:GluonConfigSearch]검색[/action]을 클릭하여 파일을 찾습니다.
+
+== GluonWkExplExplainSearch ==
+[title]빌트인 검색 기능을 사용하면 파일을 신속하게 찾을 수 있습니다[/title]
+
+[windows]CTRL-F[/windows][macos]Command-F[/macos][linux]CTRL-F[/linux]를 입력하여 찾기 다이얼로그를 표시합니다.
+
+== GluonWkExplTipUseContextMenu ==
+[title]컨텍스트를 사용하거라, 루크[/title]
+
+사용할 수 있는 컨텍스트 메뉴(오른쪽 클릭)가 있다는 점을 기억하십시오.
+
+컨텍스트 메뉴에서 여러 유용한 작업을 수행할 수 있습니다.
+
+== GluonWkExplTipHowToLockFiles ==
+[title]파일을 잠그는 방법을 알고 계십니까?[/title]
+
+[bold]체크아웃[/bold] 시 잠금이 자동으로 이루어집니다.
+
+1. 파일을 오른쪽 클릭합니다.
+2. 체크아웃을 선택합니다.
+
+잠금이 이 파일 유형에 대해 구성된 경우 서버에서 체크아웃하는 동안 파일을 잠급니다.
+
+[link:https://plasticscm.com/download/help/locking]여기에서 잠금에 대해 읽어보십시오[/link].
+
+== GluonWkExplTipUseHistory ==
+[title]선택한 파일의 내역을 언제든지 확인할 수 있다는 사실을 알고 계셨습니까?[/title]
+
+그뿐만 아니라 버전을 쉽게 비교할 수도 있습니다.
+
+== GluonChangesetsEmptyState ==
+[title]체크인할 때마다 새 체인지 세트를 생성하십시오[/title]
+
+체인지 세트에는 두 가지 기능이 있습니다.
+1. 체인지 세트는 체크인한 항목을 기록합니다.
+2. 체인지 세트는 전체 리포지토리의 스냅샷이기도 합니다.
+
+약간의 팁:
+* 체인지 세트는 리포지토리에서 고유의 "정수"로 식별됩니다. 단, 복제본을 사용하는 경우 GUID를 대신 사용합니다.
+* 각 새 리포지토리에는 "체인지 세트 0"이 있습니다.
+* 체인지 세트를 "csets"라 할 때도 있습니다.
+* 컨텍스트 메뉴를 사용하여 체인지 세트를 비교하십시오.
+* Git 사용자의 경우: "체인지 세트"는 "커밋"과 동등합니다.
+
+== GluonChangesetsExplainFilterAndAdvanced ==
+[title]위에서 "필터"를 입력하여 빠르게 필터링하십시오[/title]
+
+필터는 쿼리 결과에서 로컬로 작동합니다.
+
+[bold]필터 팁[/bold]: '[italic]필드 이름[/italic]:value'를 사용하여 특정 필드 기준으로 필터링하십시오. 
+예: name:13055
+
+[action:QueryViewClickAdvanced]고급[/action]을 클릭하여 쿼리를 커스터마이즈할 수도 있습니다.
+
+[link:https://plasticscm.com/download/help/cmfind]여기[/link]에서 쿼리에 대해 자세히 알아보십시오.
+
+컨텍스트 메뉴(오른쪽 클릭)를 사용하여 체인지 세트를 비교할 수 있다는 점을 기억하십시오.
+
+[windows]전문가 팁: 열을 테이블 위 영역으로 드래그하여 체인지 세트 표시 방식을 커스터마이즈할 수 있습니다. 날짜, 작성자 등을 기준으로 그룹을 구성할 수 있습니다.[/windows]
+
+== GluonPendingChangesEmptyState ==
+[reference]PlasticPendingChangesEmptyState[/reference]
+
+== GluonPendingChangesOnboarding ==
+[reference]PlasticPendingChangesOnboarding[/reference]
+
+== GluonPendingChangesOptionWarningCheckouts ==
+[reference]PlasticPendingChangesOptionWarningCheckouts[/reference]
+
+== GluonPendingChangesFrustrationFilter ==
+[reference]PlasticPendingChangesFrustrationFilter[/reference]
+
+== GluonPendingChangesFrustrationRefreshNoFilter ==
+[reference]PlasticPendingChangesFrustrationRefreshNoFilter[/reference]
+
+== GluonPendingChangesFirstTimeWithAdded ==
+[reference]PlasticPendingChangesFirstTimeWithAdded[/reference]
+== GluonPendingChangesWithAdded ==
+[reference]PlasticPendingChangesWithAdded[/reference]
+
+== GluonPendingChangesMovedOnlyFiles ==
+[reference]PlasticPendingChangesMovedOnlyFiles[/reference]
+
+== GluonPendingChangesMovedOnlyDirectories ==
+[reference]PlasticPendingChangesMovedOnlyDirectories[/reference]
+
+== GluonPendingChangesMovedFilesAndDirectories ==
+[reference]PlasticPendingChangesMovedFilesAndDirectories[/reference]
+
+== GluonPendingChangesSlowTooManyPrivates ==
+[reference]PlasticPendingChangesSlowTooManyPrivates[/reference]
+
+== GluonPendingChangesSlowMoveCalculation ==
+[reference]PlasticPendingChangesSlowMoveCalculation[/reference]
+
+== GluonPendingChangesSlowFindChanges ==
+[reference]PlasticPendingChangesSlowFindChanges[/reference]
+
+== GluonReposExplained ==
+[reference]PlasticReposExplained[/reference]
+
+== GluonWorkspacesExplained ==
+[reference]PlasticWorkspacesExplained[/reference]
+
+== GluonQueryViewsFrustrationCustomQuery ==
+[reference]PlasticQueryViewsFrustrationCustomQuery[/reference]
+
+== GluonFrustrationFilterEnabled ==
+[reference]PlasticFrustrationFilterEnabled[/reference]
+
+== GluonWkExplGeneralHelp ==
+[reference]PlasticWkExplGeneralHelp[/reference]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    �      �t               0.0.0 ����      ��f��!�5�9�4Q��B   �          7  �����     �            � �� �                      E �                   �  �#          �           . �,          �           5   a �                   �  �#          �           . �,          �           � �r �                   �  �#      	    �           . �,      
+    �           H �� �����   �          1  �1  �����   @           �  � �                  Q  �j  �                  �  �J   ����   �           1  �1  �����   �            �  � �                    �j  �����   �            \   �  �����   �            H �r   ����   �           1  �1  �����   @            �  � �                   Q  �j  �                   H �w   ����   �           1  �1  �����   @            �  � �                   Q  �j  �                   H ��   ����   �           1  �1  �����   @            �  � �                   Q  �j  �                   y �
+ �                    �  �#      !    �           . �,      "    �            ��   ����#   @          1  �1  �����$               �  � �   %               . �j  �   &               � ��   ����'    �           1  �1  �����(    �            �  � �   )                  �j  �����*    �            H ��  �����+    �           1  �1  �����,   @            �  � �   -                Q  �j  �   .                y �
+ �   /                 �  �#      0    �           . �,      1    �             ��      2    @            � ��      3    @            �  �#      4    �           . �,      5    �           H ��   ����6   �           1  �1  �����7   @            �  � �   8                Q  �j  �   9                H ��   ����:   �           1  �1  �����;   @            �  � �   <                Q  �j  �   =                H ��   ����>   �           1  �1  �����?   @            �  � �   @                Q  �j  �   A              MonoImporter PPtr<EditorExtension> m_FileID m_PathID PPtr<PrefabInstance> m_ExternalObjects SourceAssetIdentifier type assembly name m_UsedFileIDs m_DefaultReferences executionOrder icon m_UserData m_AssetBundleName m_AssetBundleVariant     s    ���G��܏Z56�:!@i�J*   �       �7  �����     �            � �� �                       E �                   �  �          �           . �          �           (   a �                   �  �          �           . �          �           � �r �                   �  �      	    �           . �      
+    �           H �� �����   �          1  �1  �����   @           �  � �                  Q  �j  �                  H �� �����   �           1  �1  �����   @            �  � �                   Q  �j  �                   �  �=   ����   �           1  �1  �����   �            �  � �                    �j  �����   �            H ��  �����   �           1  �1  �����   @            �  � �                   Q  �j  �                   y �
+ �                   �  �          �           . �          �           y �Q                       �  �          �           . �           �           �  �X      !                H �i   ����"   �           1  �1  �����#   @            �  � �   $                Q  �j  �   %                H �u   ����&   �           1  �1  �����'   @            �  � �   (                Q  �j  �   )              PPtr<EditorExtension> m_FileID m_PathID PPtr<PrefabInstance> m_DefaultReferences m_Icon m_ExecutionOrder m_ClassName m_Namespace                        \       �y�     `       �                                                                                                                                                �y�                                                                                    SpriteLibraryDataInspector  t�  using System;
+using System.Linq;
+using System.Collections.Generic;
+using UnityEditorInternal;
+using UnityEngine;
+using UnityEngine.U2D.Animation;
+
+namespace UnityEditor.U2D.Animation
+{
+    internal class SpriteLibraryDataInspector
+    {
+        class Style
+        {
+            public GUIContent duplicateWarningText = EditorGUIUtility.TrTextContent("Duplicate name found or name hash clashes. Please use a different name");
+            public GUIContent duplicateWarning;
+            public int lineSpacing = 3;
+            public int  spriteGridSize = 64;
+            public float gridPadding = EditorGUIUtility.standardVerticalSpacing * 2;
+            public int gridHeaderSize = 20;
+            public int gridFooterSize = 20;
+            public float gridHeight;
+            public Vector2 gridSize;
+            public GUIStyle footerBackground;
+            public GUIStyle boxBackground;
+            public GUIStyle preButton;
+            public GUIStyle headerBackground;
+            public GUIStyle gridList;
+            public GUIContent iconToolbarPlus = EditorGUIUtility.TrIconContent("Toolbar Plus", "Add to list");
+            public GUIContent iconToolbarMinus = EditorGUIUtility.TrIconContent("Toolbar Minus", "Remove selection or last element from list");
+            public GUIContent overrideIcon = EditorGUIUtility.TrIconContent("PrefabOverlayAdded Icon");
+            public string newCategoryText = L10n.Tr("New Category");
+            public string categoryLabel = L10n.Tr("Category");
+            public float categoryElementHeight;
+            public float categoryTextFieldHeight;
+            public string newEntryText = L10n.Tr("Entry");
+            public float categoryLabelWidth = 100;
+
+            public Style()
+            {
+               gridSize = new Vector2(spriteGridSize + gridPadding * 2,
+                   spriteGridSize + lineSpacing + EditorGUIUtility.singleLineHeight + gridPadding * 2);
+               duplicateWarning = EditorGUIUtility.TrIconContent("console.warnicon.sml", duplicateWarningText.text);
+               gridHeight = gridSize.y +gridPadding + gridFooterSize;
+               categoryTextFieldHeight  = EditorGUIUtility.singleLineHeight + lineSpacing;
+               categoryElementHeight = gridHeight + categoryTextFieldHeight + gridHeaderSize;
+               
+            }
+
+            public void InitStyle(Event currentEvent)
+            {
+                if (footerBackground == null && currentEvent.type == EventType.Repaint)
+                {
+                    footerBackground = "RL Footer";
+                    boxBackground = "RL Background";
+                    preButton = "RL FooterButton";
+                    headerBackground = "RL Header";
+                    gridList = "GridList";
+                }
+            }
+        }
+        
+        class SpriteCategoryGridState
+        {
+            public Vector2 scrollPos;
+            public int selectedIndex;
+
+            public static SpriteCategoryGridState Default =>
+                new SpriteCategoryGridState()
+                {
+                    scrollPos = Vector2.zero,
+                    selectedIndex = 0
+                };
+        }
+
+        private Style m_Style;
+        private SerializedProperty m_Library;
+        private List<SpriteCategoryGridState> m_GridStates = new List<SpriteCategoryGridState>();
+        private ReorderableList m_LabelReorderableList;
+
+        public SpriteLibraryDataInspector(SerializedObject so,
+            SerializedProperty library)
+        {
+            m_Style = new Style();
+            m_Library = library;
+            m_LabelReorderableList = new ReorderableList(so, library, true, false,
+                true, true);
+            m_LabelReorderableList.drawElementCallback = DrawElement;
+            m_LabelReorderableList.elementHeight = m_Style.categoryTextFieldHeight;
+            m_LabelReorderableList.elementHeightCallback = delegate(int index) { return m_Style.categoryElementHeight; };
+            m_LabelReorderableList.onAddCallback = OnAddCallback;
+            m_LabelReorderableList.onCanRemoveCallback = OnCanRemoveCallback;
+        }
+
+        public static void UpdateLibraryWithNewMainLibrary(SpriteLibraryAsset spriteLib, SerializedProperty library)
+        {
+            var emptyStringArray = new string[0];
+            var categories = spriteLib != null ? spriteLib.GetCategoryNames() : emptyStringArray;
+            
+            // populate new primary
+            int newCatgoryIndex = 0;
+            foreach (var newCategory in categories)
+            {
+                SerializedProperty existingCategory = null;
+                if (library.arraySize > 0)
+                {
+                    var cat = library.GetArrayElementAtIndex(0);
+                    for (int i = 0; i < library.arraySize; ++i)
+                    {
+                        if (cat.FindPropertyRelative(SpriteLibraryPropertyString.name).stringValue == newCategory)
+                        {
+                            existingCategory = cat;
+                            if(i != newCatgoryIndex)
+                                library.MoveArrayElement(i, newCatgoryIndex);
+                            break;
+                        }
+                        cat.Next(false);
+                    }
+                }
+
+                if (existingCategory != null)
+                {
+                    if(!existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.fromMain).boolValue)
+                        existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.fromMain).boolValue = true;
+                }
+                else
+                {
+                    library.InsertArrayElementAtIndex(newCatgoryIndex);
+                    existingCategory = library.GetArrayElementAtIndex(newCatgoryIndex);
+                    SetPropertyName(existingCategory, newCategory);
+                    existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.fromMain).boolValue = true;
+                    existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntryCount).intValue = 0;
+                    existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntries).arraySize = 0;
+                }
+                newCatgoryIndex++;
+                
+                var newEntries = spriteLib.GetCategoryLabelNames(newCategory);
+                var entries = existingCategory.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntries);
+                int newEntryIndex = 0;
+                foreach (var newEntry in newEntries)
+                {
+                    SerializedProperty cacheEntry = null;
+                    if (entries.arraySize > 0)
+                    {
+                        var ent = entries.GetArrayElementAtIndex(0);
+                        for (int j = 0; j < entries.arraySize; ++j)
+                        {
+                            if (ent.FindPropertyRelative(SpriteLibraryPropertyString.name).stringValue == newEntry)
+                            {
+                                cacheEntry = ent;
+                                if(j != newEntryIndex)
+                                    entries.MoveArrayElement(j, newEntryIndex);
+                                break;
+                            }
+                            ent.Next(false);
+                        }
+                    }
+                    var mainSprite = spriteLib.GetSprite(newCategory, newEntry);
+                    if (cacheEntry == null)
+                    {
+                        entries.InsertArrayElementAtIndex(newEntryIndex);
+                        cacheEntry = entries.GetArrayElementAtIndex(newEntryIndex);
+                        SetPropertyName(cacheEntry, newEntry);
+                        cacheEntry.FindPropertyRelative(SpriteLibraryPropertyString.spriteOverride)
+                            .objectReferenceValue = mainSprite;
+                    }
+                    
+                    ++newEntryIndex;
+                    if(!cacheEntry.FindPropertyRelative(SpriteLibraryPropertyString.fromMain).boolValue)
+                        cacheEntry.FindPropertyRelative(SpriteLibraryPropertyString.fromMain).boolValue = true;
+                    if(cacheEntry.FindPropertyRelative(SpriteLibraryPropertyString.sprite).objectReferenceValue != mainSprite)
+                        cacheEntry.FindPropertyRelative(SpriteLibraryPropertyString.sprite).objectReferenceValue = mainSprite;
+                }
+            }
+                
+            // Remove any library or entry that is not in primary and not overridden
+            for (int i = 0; i < library.arraySize; ++i)
+            {
+                var categoryProperty = library.GetArrayElementAtIndex(i);
+                var categoryEntriesProperty = categoryProperty.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntries);
+                var categoryFromMainProperty = categoryProperty.FindPropertyRelative(SpriteLibraryPropertyString.fromMain);
+                
+                var categoryName = categoryProperty.FindPropertyRelative(SpriteLibraryPropertyString.name).stringValue;
+                var categoryInPrimary = categories.Contains(categoryName);
+                var entriesInPrimary = categoryInPrimary ? spriteLib.GetCategoryLabelNames(categoryName) : emptyStringArray;
+
+                var categoryOverride = 0;
+                for (int j = 0; j < categoryEntriesProperty.arraySize; ++j)
+                {
+                    var entry = categoryEntriesProperty.GetArrayElementAtIndex(j);
+                    var entryName = entry.FindPropertyRelative(SpriteLibraryPropertyString.name).stringValue;
+                    var entryInPrimary = entriesInPrimary.Contains(entryName);
+                    var entryFromMainProperty = entry.FindPropertyRelative(SpriteLibraryPropertyString.fromMain);
+                    var overrideSpriteProperty = entry.FindPropertyRelative(SpriteLibraryPropertyString.spriteOverride);
+                    var spriteProperty = entry.FindPropertyRelative(SpriteLibraryPropertyString.sprite);
+                    if (!entryInPrimary)
+                    {
+                        // Entry no longer in new primary.
+                        // Check for override and set it to us
+                        if (entryFromMainProperty.boolValue)
+                        {
+                            if (overrideSpriteProperty.objectReferenceValue == spriteProperty.objectReferenceValue)
+                            {
+                                categoryEntriesProperty.DeleteArrayElementAtIndex(j);
+                                --j;
+                                continue;
+                            }                            
+                        }
+
+
+                        if(entryFromMainProperty.boolValue)
+                            entryFromMainProperty.boolValue = false;
+                        if(spriteProperty.objectReferenceValue != overrideSpriteProperty.objectReferenceValue)
+                            spriteProperty.objectReferenceValue = overrideSpriteProperty.objectReferenceValue;
+                        ++categoryOverride;
+                    }
+                    else
+                    {
+                        // Check if sprite has been override
+                        if(spriteProperty.objectReferenceValue != overrideSpriteProperty.objectReferenceValue)
+                            ++categoryOverride;    
+                    }
+                    
+                }
+
+                if (!categoryInPrimary && categoryEntriesProperty.arraySize == 0 && categoryFromMainProperty.boolValue)
+                {
+                    library.DeleteArrayElementAtIndex(i);
+                    --i;
+                    continue;
+                }
+                // since there is override, and we removed the main. This category now
+                // belows to the library
+                if (!categoryInPrimary)
+                {
+                    if(categoryFromMainProperty.boolValue)
+                        categoryFromMainProperty.boolValue = false;
+                }
+                else
+                {
+                    if(categoryProperty.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntryCount).intValue != categoryOverride)
+                        categoryProperty.FindPropertyRelative(SpriteLibraryPropertyString.overrideEntryCount).intValue = categoryOverride;   
+                }
+            }
+        }
+        
+        public void OnGUI()
+        {
+            m_Style.InitStyle(Event.current);
+            m_LabelReorderableList.DoLayoutList();
+            HandleCategoryCreateSpriteDragAndDrop();
+        }
+
+        void HandleCategoryCreateSpriteDragAndDrop()
+        {
+            bool dragAccepted = false;
+            switch (Event.current.type)
+            {
+                case EventType.DragPerform:
+                    foreach (var obj in DragAndDrop.objectReferences)
+                    {
+                        if (obj is Sprite || obj is Texture2D)
+                        {
+                            dragAccepted = true;
+                        }
+                    }
+
+                    if (dragAccepted)
+                    {
+                        DragAndDrop.AcceptDrag();
+                        foreach (var obj in DragAndDrop.objectReferences)
+                        {
+                            if (obj is Sprite)
+                            {
+                                var category = AddCategory(obj.name, false);
+                                AddSpriteToCategory(category, (Sprite)obj);
+                            }
+                            else if (obj is Texture2D)
+                            {
+                                var sprites = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(obj))
+                                    .Where(x => x is Sprite);
+                                foreach (var s in sprites)
+                                {
+                                    var category = AddCategory(s.name, false);   
+                                    AddSpriteToCategory(category, (Sprite)s);
+                                }
+                            }
+  

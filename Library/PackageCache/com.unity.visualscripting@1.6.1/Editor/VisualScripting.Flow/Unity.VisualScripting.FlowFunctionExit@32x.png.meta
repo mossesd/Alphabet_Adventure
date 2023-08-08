@@ -1,0 +1,15 @@
+ додаток його не знає."</string>
+    <string name="permlab_useBiometric" msgid="6314741124749633786">"використовувати біометричне апаратне забезпечення"</string>
+    <string name="permdesc_useBiometric" msgid="7502858732677143410">"Додаток може використовувати біометричне апаратне забезпечення для автентифікації"</string>
+    <string name="permlab_manageFingerprint" msgid="7432667156322821178">"керувати сканером відбитків пальців"</string>
+    <string name="permdesc_manageFingerprint" msgid="2025616816437339865">"Увімкнути в додатку функції для додавання й видалення шаблонів відбитків пальців."</string>
+    <string name="permlab_useFingerprint" msgid="1001421069766751922">"використання сканера відбитків пальців"</string>
+    <string name="permdesc_useFingerprint" msgid="412463055059323742">"Дозволити додатку використовувати сканер відбитків пальців для автентифікації"</string>
+    <string name="permlab_audioWrite" msgid="8501705294265669405">"змінювати колекцію музики"</string>
+    <string name="permdesc_audioWrite" msgid="8057399517013412431">"Додаток зможе змінювати вашу колекцію музики."</string>
+    <string name="permlab_videoWrite" msgid="5940738769586451318">"змінювати колекцію відео"</string>
+    <string name="permdesc_videoWrite" msgid="6124731210613317051">"Додаток зможе змінювати вашу колекцію відео."</string>
+    <string name="permlab_imagesWrite" msgid="1774555086984985578">"змінювати колекцію фотографій"</string>
+    <string name="permdesc_imagesWrite" msgid="5195054463269193317">"Додаток зможе змінювати вашу колекцію фотографій."</string>
+    <string name="permlab_mediaLocation" msgid="7368098373378598066">"розпізнавати геодані з колекції медіа-вмісту"</string>
+    <string name="permdesc_mediaLocation" msgid="597912899423578138">"До

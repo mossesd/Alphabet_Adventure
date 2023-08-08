@@ -1,0 +1,180 @@
+used to "lock" resource from being reused until the pipe has been synchronized.
+            if (producerPassInfo.syncFromPassIndex == -1)
+                producerPassInfo.syncFromPassIndex = currentPassIndex;
+        }
+
+        void UpdateResourceSynchronization(ref int lastGraphicsPipeSync, ref int lastComputePipeSync, int currentPassIndex, in CompiledResourceInfo resource)
+        {
+            int lastProducer = GetLatestProducerIndex(currentPassIndex, resource);
+            if (lastProducer != -1)
+            {
+                ref CompiledPassInfo currentPassInfo = ref m_CompiledPassInfos[currentPassIndex];
+
+                //If the passes are on different pipes, we need synchronization.
+                if (m_CompiledPassInfos[lastProducer].enableAsyncCompute != currentPassInfo.enableAsyncCompute)
+                {
+                    // Pass is on compute pipe, need sync with graphics pipe.
+                    if (currentPassInfo.enableAsyncCompute)
+                    {
+                        if (lastProducer > lastGraphicsPipeSync)
+                        {
+                            UpdatePassSynchronization(ref currentPassInfo, ref m_CompiledPassInfos[lastProducer], currentPassIndex, lastProducer, ref lastGraphicsPipeSync);
+                        }
+                    }
+                    else
+                    {
+                        if (lastProducer > lastComputePipeSync)
+                        {
+                            UpdatePassSynchronization(ref currentPassInfo, ref m_CompiledPassInfos[lastProducer], currentPassIndex, lastProducer, ref lastComputePipeSync);
+                        }
+                    }
+                }
+            }
+        }
+
+        int GetLatestProducerIndex(int passIndex, in CompiledResourceInfo info)
+        {
+            // We want to know the highest pass index below the current pass that writes to the resource.
+            int result = -1;
+            foreach (var producer in info.producers)
+            {
+                // producers are by construction in increasing order.
+                if (producer < passIndex)
+                    result = producer;
+                else
+                    return result;
+            }
+
+            return result;
+        }
+
+        int GetLatestValidReadIndex(in CompiledResourceInfo info)
+        {
+            if (info.consumers.Count == 0)
+                return -1;
+
+            var consumers = info.consumers;
+            for (int i = consumers.Count - 1; i >= 0; --i)
+            {
+                if (!m_CompiledPassInfos[consumers[i]].culled)
+                    return consumers[i];
+            }
+
+            return -1;
+        }
+
+        int GetFirstValidWriteIndex(in CompiledResourceInfo info)
+        {
+            if (info.producers.Count == 0)
+                return -1;
+
+            var producers = info.producers;
+            for (int i = 0; i < producers.Count; i++)
+            {
+                if (!m_CompiledPassInfos[producers[i]].culled)
+                    return producers[i];
+            }
+
+            return -1;
+        }
+
+        int GetLatestValidWriteIndex(in CompiledResourceInfo info)
+        {
+            if (info.producers.Count == 0)
+                return -1;
+
+            var producers = info.producers;
+            for (int i = producers.Count - 1; i >= 0; --i)
+            {
+                if (!m_CompiledPassInfos[producers[i]].culled)
+                    return producers[i];
+            }
+
+            return -1;
+        }
+
+        void CreateRendererLists()
+        {
+            for (int passIndex = 0; passIndex < m_CompiledPassInfos.size; ++passIndex)
+            {
+                ref CompiledPassInfo passInfo = ref m_CompiledPassInfos[passIndex];
+
+                if (passInfo.culled)
+                    continue;
+
+                // Gather all renderer lists
+                m_RendererLists.AddRange(passInfo.pass.usedRendererListList);
+            }
+
+            // Creates all renderer lists
+            m_Resources.CreateRendererLists(m_RendererLists, m_RenderGraphContext.renderContext, m_RendererListCulling);
+        }
+
+        void UpdateResourceAllocationAndSynchronization()
+        {
+            int lastGraphicsPipeSync = -1;
+            int lastComputePipeSync = -1;
+
+            // First go through all passes.
+            // - Update the last pass read index for each resource.
+            // - Add texture to creation list for passes that first write to a texture.
+            // - Update synchronization points for all resources between compute and graphics pipes.
+            for (int passIndex = 0; passIndex < m_CompiledPassInfos.size; ++passIndex)
+            {
+                ref CompiledPassInfo passInfo = ref m_CompiledPassInfos[passIndex];
+
+                if (passInfo.culled)
+                    continue;
+
+                for (int type = 0; type < (int)RenderGraphResourceType.Count; ++type)
+                {
+                    var resourcesInfo = m_CompiledResourcesInfos[type];
+                    foreach (int resource in passInfo.pass.resourceReadLists[type])
+                    {
+                        UpdateResourceSynchronization(ref lastGraphicsPipeSync, ref lastComputePipeSync, passIndex, resourcesInfo[resource]);
+                    }
+
+                    foreach (int resource in passInfo.pass.resourceWriteLists[type])
+                    {
+                        UpdateResourceSynchronization(ref lastGraphicsPipeSync, ref lastComputePipeSync, passIndex, resourcesInfo[resource]);
+                    }
+                }
+            }
+
+            for (int type = 0; type < (int)RenderGraphResourceType.Count; ++type)
+            {
+                var resourceInfos = m_CompiledResourcesInfos[type];
+                // Now push resources to the release list of the pass that reads it last.
+                for (int i = 0; i < resourceInfos.size; ++i)
+                {
+                    CompiledResourceInfo resourceInfo = resourceInfos[i];
+
+                    bool sharedResource = m_Resources.IsRenderGraphResourceShared((RenderGraphResourceType)type, i);
+
+                    // Imported resource needs neither creation nor release.
+                    if (resourceInfo.imported && !sharedResource)
+                        continue;
+
+                    // Resource creation
+                    int firstWriteIndex = GetFirstValidWriteIndex(resourceInfo);
+                    // Index -1 can happen for imported resources (for example an imported dummy black texture will never be written to but does not need creation anyway)
+                    // Or when the only pass that was writting to this resource was culled dynamically by renderer lists
+                    if (firstWriteIndex != -1)
+                        m_CompiledPassInfos[firstWriteIndex].resourceCreateList[type].Add(i);
+
+                    var latestValidReadIndex = GetLatestValidReadIndex(resourceInfo);
+                    var latestValidWriteIndex = GetLatestValidWriteIndex(resourceInfo);
+
+                    // Sometimes, a texture can be written by a pass after the last pass that reads it.
+                    // In this case, we need to extend its lifetime to this pass otherwise the pass would get an invalid texture.
+                    // This is exhibited in cases where a pass might produce more than one output and one of them isn't used.
+                    // Ex: Transparent pass in HDRP that writes to the color buffer and motion vectors.
+                    // If TAA/MotionBlur aren't used, the movecs are never read after the transparent pass and it would raise this error.
+                    // Because of that, it's hard to make this an actual error.
+                    // Commented out code to check such cases if needed.
+                    //if (latestValidReadIndex != -1 && (latestValidWriteIndex > latestValidReadIndex))
+                    //{
+                    //    var name = m_Resources.GetRenderGraphResourceName((RenderGraphResourceType)type, i);
+                    //    var lastPassReadName = m_CompiledPassInfos[latestValidReadIndex].pass.name;
+                    //    var lastPassWriteName = m_CompiledPassInfos[latestValidWriteIndex].pass.name;
+                    //    Debug.LogError($"Resource {name} is written again after the last p

@@ -1,0 +1,631 @@
+ionId,
+            @itemShort  tSessionItemShort OUTPUT,
+            @locked     bit OUTPUT,
+            @lockDate   datetime OUTPUT,
+            @lockCookie int OUTPUT,
+            @actionFlags int OUTPUT
+        AS
+            DECLARE @textptr AS tTextPtr
+            DECLARE @length AS int
+            DECLARE @now AS datetime
+
+            SET @now = GETDATE()
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, Timeout, @now), 
+                @lockDate = LockDate = CASE Locked
+                    WHEN 0 THEN @now
+                    ELSE LockDate
+                    END,
+                @lockCookie = LockCookie = CASE Locked
+                    WHEN 0 THEN LockCookie + 1
+                    ELSE LockCookie
+                    END,
+                @itemShort = CASE Locked
+                    WHEN 0 THEN SessionItemShort
+                    ELSE NULL
+                    END,
+                @textptr = CASE Locked
+                    WHEN 0 THEN TEXTPTR(SessionItemLong)
+                    ELSE NULL
+                    END,
+                @length = CASE Locked
+                    WHEN 0 THEN DATALENGTH(SessionItemLong)
+                    ELSE NULL
+                    END,
+                @locked = Locked,
+                Locked = 1,
+
+                /* If the Uninitialized flag (0x1) if it is set,
+                   remove it and return InitializeItem (0x1) in actionFlags */
+                Flags = CASE
+                    WHEN (Flags & 1) <> 0 THEN (Flags & ~1)
+                    ELSE Flags
+                    END,
+                @actionFlags = CASE
+                    WHEN (Flags & 1) <> 0 THEN 1
+                    ELSE 0
+                    END
+            WHERE SessionId = @id
+            IF @length IS NOT NULL BEGIN
+                READTEXT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions.SessionItemLong @textptr 0 @length
+            END
+
+            RETURN 0'    
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempReleaseStateItemExclusive
+            @id         tSessionId,
+            @lockCookie int
+        AS
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, Timeout, GETUTCDATE()), 
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempReleaseStateItemExclusive
+            @id         tSessionId,
+            @lockCookie int
+        AS
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, Timeout, GETDATE()), 
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertUninitializedItem
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int
+        AS    
+
+            DECLARE @now AS datetime
+            DECLARE @nowLocal AS datetime
+            
+            SET @now = GETUTCDATE()
+            SET @nowLocal = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemShort, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockDateLocal,
+                 LockCookie,
+                 Flags) 
+            VALUES 
+                (@id, 
+                 @itemShort, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 @nowLocal,
+                 1,
+                 1)
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertUninitializedItem
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int
+        AS    
+
+            DECLARE @now AS datetime
+            SET @now = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemShort, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockCookie,
+                 Flags) 
+            VALUES 
+                (@id, 
+                 @itemShort, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 1,
+                 1)
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertStateItemShort
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int
+        AS    
+
+            DECLARE @now AS datetime
+            DECLARE @nowLocal AS datetime
+            
+            SET @now = GETUTCDATE()
+            SET @nowLocal = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemShort, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockDateLocal,
+                 LockCookie) 
+            VALUES 
+                (@id, 
+                 @itemShort, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 @nowLocal,
+                 1)
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertStateItemShort
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int
+        AS    
+
+            DECLARE @now AS datetime
+            SET @now = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemShort, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockCookie) 
+            VALUES 
+                (@id, 
+                 @itemShort, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 1)
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertStateItemLong
+            @id         tSessionId,
+            @itemLong   tSessionItemLong,
+            @timeout    int
+        AS    
+            DECLARE @now AS datetime
+            DECLARE @nowLocal AS datetime
+            
+            SET @now = GETUTCDATE()
+            SET @nowLocal = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemLong, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockDateLocal,
+                 LockCookie) 
+            VALUES 
+                (@id, 
+                 @itemLong, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 @nowLocal,
+                 1)
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempInsertStateItemLong
+            @id         tSessionId,
+            @itemLong   tSessionItemLong,
+            @timeout    int
+        AS    
+            DECLARE @now AS datetime
+            SET @now = GETDATE()
+
+            INSERT [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions 
+                (SessionId, 
+                 SessionItemLong, 
+                 Timeout, 
+                 Expires, 
+                 Locked, 
+                 LockDate,
+                 LockCookie) 
+            VALUES 
+                (@id, 
+                 @itemLong, 
+                 @timeout, 
+                 DATEADD(n, @timeout, @now), 
+                 0, 
+                 @now,
+                 1)
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemShort
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETUTCDATE()), 
+                SessionItemShort = @itemShort, 
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemShort
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETDATE()), 
+                SessionItemShort = @itemShort, 
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemShortNullLong
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETUTCDATE()), 
+                SessionItemShort = @itemShort, 
+                SessionItemLong = NULL, 
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemShortNullLong
+            @id         tSessionId,
+            @itemShort  tSessionItemShort,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETDATE()), 
+                SessionItemShort = @itemShort, 
+                SessionItemLong = NULL, 
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+
+EXEC (@cmd)    
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemLong
+            @id         tSessionId,
+            @itemLong   tSessionItemLong,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETUTCDATE()), 
+                SessionItemLong = @itemLong,
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemLong
+            @id         tSessionId,
+            @itemLong   tSessionItemLong,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETDATE()), 
+                SessionItemLong = @itemLong,
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+
+EXEC (@cmd)            
+GO
+
+
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempUpdateStateItemLongNullShort
+            @id         tSessionId,
+            @itemLong   tSessionItemLong,
+            @timeout    int,
+            @lockCookie int
+        AS    
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, @timeout, GETUTCDATE()), 
+                SessionItemLong = @itemLong, 
+                SessionItemShort = NULL,
+                Timeout = @timeout,
+                Locked = 0
+            WHERE SessionId = @id AND LockCookie = @lockCookie
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+    CREATE PROCEDURE dbo.TempUpdateStateItemLongNullShort
+        @id         tSessionId,
+        @itemLong   tSessionItemLong,
+        @timeout    int,
+        @lockCookie int
+    AS    
+        UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+        SET Expires = DATEADD(n, @timeout, GETDATE()), 
+            SessionItemLong = @itemLong, 
+            SessionItemShort = NULL,
+            Timeout = @timeout,
+            Locked = 0
+        WHERE SessionId = @id AND LockCookie = @lockCookie
+
+        RETURN 0'
+
+EXEC (@cmd)            
+GO
+
+/*****************************************************************************/
+
+DECLARE @cmd nchar(4000)
+SET @cmd = N'
+    CREATE PROCEDURE dbo.TempRemoveStateItem
+        @id     tSessionId,
+        @lockCookie int
+    AS
+        DELETE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+        WHERE SessionId = @id AND LockCookie = @lockCookie
+        RETURN 0'
+EXEC(@cmd)    
+GO
+            
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempResetTimeout
+            @id     tSessionId
+        AS
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, Timeout, GETUTCDATE())
+            WHERE SessionId = @id
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.TempResetTimeout
+            @id     tSessionId
+        AS
+            UPDATE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            SET Expires = DATEADD(n, Timeout, GETDATE())
+            WHERE SessionId = @id
+            RETURN 0'
+
+EXEC (@cmd)            
+GO
+
+            
+/*****************************************************************************/
+
+DECLARE @ver int
+EXEC dbo.GetMajorVersion @@ver=@ver OUTPUT
+DECLARE @cmd nchar(4000)
+IF (@ver >= 8)
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.DeleteExpiredSessions
+        AS
+            DECLARE @now datetime
+            SET @now = GETUTCDATE()
+
+            DELETE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            WHERE Expires < @now
+
+            RETURN 0'
+ELSE
+    SET @cmd = N'
+        CREATE PROCEDURE dbo.DeleteExpiredSessions
+        AS
+            DECLARE @now datetime
+            SET @now = GETDATE()
+
+            DELETE [DatabaseNamePlaceHolder].dbo.ASPStateTempSessions
+            WHERE Expires < @now
+
+            RETURN 0'
+
+EXEC (@cmd)            
+GO
+            
+/*****************************************************************************/
+
+EXECUTE dbo.CreateTempTables
+GO
+
+USE master
+GO
+
+DECLARE @sstype nvarchar(128)
+SET @sstype = N'sstype_custom'
+
+IF UPPER(@sstype) = 'SSTYPE_TEMP' BEGIN
+    DECLARE @cmd nchar(4000)
+
+    SET @cmd = N'
+        /* Create the startup procedure */
+        CREATE PROCEDURE dbo.ASPState_Startup 
+        AS
+            EXECUTE ASPState.dbo.CreateTempTables
+
+            RETURN 0'
+    EXEC(@cmd)
+    EXECUTE sp_procoption @ProcName='dbo.ASPState_Startup', @OptionName='startup', @OptionValue='true'
+END    
+
+/*****************************************************************************/
+
+/* Create the job to delete expired sessions */
+
+-- Add job category
+-- We expect an error if the category already exists.
+PRINT 'If the category already exists, an error from msdb.dbo.sp_add_category is expected.'
+EXECUTE msdb.dbo.sp_add_category @name = N'[Uncategorized (Local)]'
+GO
+
+BEGIN TRANSACTION            
+    DECLARE @JobID BINARY(16)  
+    DECLARE @ReturnCode int    
+    DECLARE @nameT nchar(200)
+    SELECT @ReturnCode = 0     
+
+    -- Add the job
+    SET @nameT = N'DatabaseNamePlaceHolder' + '_Job_DeleteExpiredSessions'
+    EXECUTE @ReturnCode = msdb.dbo.sp_add_job 
+            @job_id = @JobID OUTPUT, 
+            @job_name = @nameT, 
+            @owner_login_name = NULL, 
+            @description = N'Deletes expired sessions from the session state database.', 
+            @category_name = N'[Uncategorized (Local)]', 
+            @enabled = 1, 
+            @notify_level_email = 0, 
+            @notify_level_page = 0, 
+            @notify_level_netsend = 0, 
+            @notify_level_eventlog = 0, 
+            @delete_level= 0
+
+    IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback 
+    
+    -- Add the job steps
+    SET @nameT = N'DatabaseNamePlaceHolder' + '_JobStep_DeleteExpiredSessions'
+    EXECUTE @ReturnCode = msdb.dbo.sp_add_jobstep 
+            @job_id = @JobID,
+            @step_id = 1, 
+            @step_name = @nameT, 
+            @command = N'EXECUTE DeleteExpiredSessions', 
+            @database_name = N'DatabaseNamePlaceHolder', 
+            @server = N'', 
+            @database_user_name = N'', 
+            @subsystem = N'TSQL', 
+            @cmdexec_success_code = 0, 
+            @flags = 0, 
+            @retry_attempts = 0, 
+            @retry_interval = 1, 
+  

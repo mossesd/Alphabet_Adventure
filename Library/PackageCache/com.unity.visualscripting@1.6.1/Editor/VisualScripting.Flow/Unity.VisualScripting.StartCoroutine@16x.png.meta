@@ -1,0 +1,45 @@
+    <summary>
+        <para>Sets the float value of the preference identified by the given key. You can use PlayerPrefs.GetFloat to retrieve this value.</para>
+      </summary>
+      <param name="key"></param>
+      <param name="value"></param>
+    </member>
+    <member name="M:UnityEngine.PlayerPrefs.SetInt(System.String,System.Int32)">
+      <summary>
+        <para>Sets a single integer value for the preference identified by the given key. You can use PlayerPrefs.GetInt to retrieve this value.</para>
+      </summary>
+      <param name="key"></param>
+      <param name="value"></param>
+    </member>
+    <member name="M:UnityEngine.PlayerPrefs.SetString(System.String,System.String)">
+      <summary>
+        <para>Sets a single string value for the preference identified by the given key. You can use PlayerPrefs.GetString to retrieve this value.</para>
+      </summary>
+      <param name="key"></param>
+      <param name="value"></param>
+    </member>
+    <member name="T:UnityEngine.PlayerPrefsException">
+      <summary>
+        <para>An exception thrown by the PlayerPrefs class in a  web player build.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Pool.CollectionPool`2">
+      <summary>
+        <para>A Collection such as List, HashSet, Dictionary etc can be pooled and reused by using a CollectionPool.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Pool.CollectionPool_2.Get">
+      <summary>
+        <para>Get an instance from the pool. If the pool is empty then a new instance will be created.</para>
+      </summary>
+      <returns>
+        <para>A pooled object or a new instance if the pool is empty.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Pool.CollectionPool_2.Get(TCollection&amp;)">
+      <summary>
+        <para>Returns a PooledObject that will automatically return the instance to the pool when it is disposed.</para>
+      </summary>
+      <param name="value">Out parameter that will contain a reference to an instance from the pool.</param>
+      <returns>
+        <para>A Pooled

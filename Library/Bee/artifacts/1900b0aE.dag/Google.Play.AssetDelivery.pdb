@@ -1,0 +1,68 @@
+del sistema actual se encuentra en la hora anterior.rIndica si esta datetime se produce durante el minuto anterior, determinado por la fecha y hora actual del sistema.�Indica si el valor datetime proporcionado {0} se produce durante el minuto anterior, determinado por la fecha y hora actual del sistema.
+      <ul>
+      <li>{0}: un valor <code>datetime</code> o <code>datetimezone</code> que se va a evaluar.</li>
+      </ul>`Determine si el minuto anterior a la hora del sistema actual se encuentra en el minuto anterior.|Indica si esta datetime se produce durante el número de horas anterior, determinado por la fecha y hora actual del sistema.�Indica si el valor datetime dado {0} se produce durante el número de horas anterior, determinado por la fecha y hora actual del sistema.
+      <ul>
+      <li>{0}: un valor <code>datetime</code> o <code>datetimezone</code> que se va a evaluar.</li>
+      <li>{1}: El número de horas.</li>
+      </ul>dDetermine si la hora anterior a la hora del sistema actual se encuentra en las dos horas anteriores.~Indica si esta datetime se produce durante el número de minutos anterior, determinado por la fecha y hora actual del sistema.�Indica si el valor datetime proporcionado {0} se produce durante el número de minutos anterior, determinado por la fecha y hora actual del sistema.
+      <ul>
+      <li>{0}: un valor <code>datetime</code> o <code>datetimezone</code> que se va a evaluar.</li>
+      <li>{1}: el número de minutos.</li>
+      </ul>hDetermine si el minuto anterior a la hora del sistema actual se encuentra en los dos minutos anteriores.Indica si esta datetime se produce durante el número de segundos anterior, determinado por la fecha y hora actual del sistema.�Indica si el valor datetime dado {0} se produce durante el número de segundos anterior, determinado por la fecha y hora actual del sistema.
+      <ul>
+      <li>{0}: un valor <code>datetime</code> o <code>datetimezone</code> que se va a evaluar.</li>
+      <li>{1}: el número de segundos.</li>
+      </ul>iDetermine si el minuto anterior a la hora del sistema actual se encuentra en los dos segundos anteriores.sIndica si esta datetime se produce durante el segundo anterior, determinado por la fecha y hora actual del sistema.�Indica si el valor datetime proporcionado {0} se produce durante el segundo anterior, determinado por la fecha y hora actual del sistema.
+      <ul>
+      <li>{0}: un valor <code>datetime</code> o <code>datetimezone</code> que se va a evaluar.</li>
+      </ul>bDetermine si el segundo anterior a la hora del sistema actual se encuentra en el segundo anterior.>Devuelve la fecha y la hora actuales de la zona horaria local.bDevuelve un valor <code>datetime</code> establecido en la fecha y hora actuales según el sistema.9Devuelve la parte de hora del valor de fecha y hora dado.>Devuelve la parte de hora del valor de fecha y hora dado, {0}.?Buscar el valor de hora de #datetime(2010, 12, 31, 11, 56, 02).FDevuelve un registro que contiene los elementos del valor de datetime.�Devuelve un registro que contiene los elementos del valor datetime especificado, {0}.
+ <ul>
+        <li>{0}: un valor <code>datetime</code> a partir del cual se calculará el registro de sus partes.</li>
+      </ul>wConvertir el valor <code>#datetime(2011, 12, 31, 11, 56, 2)</code> en un registro que contenga valores de fecha y hora.9Devuelve una representación de texto del valor datetime.�Devuelve una representación textual de {0}, el valor datetime, {0}.
+    Esta función admite un parámetro opcional de formato {1}. Para obtener una lista completa de los formatos admitidos, vea el documento de la especificación de la biblioteca.QObtener una representación de texto de #datetime(2011, 12, 31, 11, 56, 2, 8, 0).aObtener una representación textual de #datetime(2011, 12, 31, 11, 56, 2) con opción de formato.WEl tipo que representa todos los valores de fecha y hora sin una zona horaria asociada.(Suma los días especificados a la fecha.�Devuelve el resultado <code>date</code>, <code>datetime</code> o <code>datetimezone</code> obtenido al sumar {1} días al valor <code>datetime</code> {0}.
+      <ul>
+      <li>{0}: el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> al que se suman los días.</li>
+      <li>{1}: el número de días que se deben sumar.</li>
+      </ul>~Sumar 5 días al valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> que representa la fecha 14/5/2011.(Suma los meses especificados a la fecha.�Devuelve el valor <code>date</code><code>datetime</code> o <code>datetimezone</code> como resultado de sumar {1} meses al valor <code>datetime</code> {0}.
+      <ul>
+        <li>{0}: el valor <code>date</code><code>datetime</code> o <code>datetimezone</code> al que se suman los meses.</li>
+        <li>{1}: número de meses que se sumarán.</li>
+      </ul>|Sumar 5 meses al valor <code>date</code><code>datetime</code> o <code>datetimezone</code> que representa la fecha 5/14/2011.�Sumar 18 meses al valor <code>date</code><code>datetime</code> o <code>datetimezone</code> que representa la fecha y la hora 5/14/2011 08:15:22 a.m.-Suma los trimestres especificados a la fecha.�Devuelve el resultado <code>date</code>, <code>datetime</code> o <code>datetimezone</code> obtenido al sumar {1} trimestres al valor <code>datetime</code> {0}.
+      <ul>
+      <li>{0}: el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> al que se suman los trimestres.</li>
+      <li>{1}: el número de trimestres que se deben sumar.</li>
+      </ul>�Sumar 1 trimestre al valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> que representa la fecha 14/5/2011.*Suma las semanas especificadas a la fecha.�Devuelve el resultado <code>date</code>, <code>datetime</code> o <code>datetimezone</code> obtenido al sumar {1} semanas al valor <code>datetime</code> {0}.
+      <ul>
+      <li>{0}: el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> al que se suman las semanas.</li>
+      <li>{1}: el número de semanas que se deben sumar.</li>
+      </ul>�Sumar 2 semanas al valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> que representa la fecha 14/5/2011.(Suma los años especificados a la fecha.�Devuelve el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> como resultado de sumar {1} a un valor <code>datetime</code> {0}.
+      <ul>
+        <li>{0}: el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> al que se suman los años.</li>
+        <li>{1}: número de años que se sumarán.</li>
+      </ul>|Sumar 4 años al valor <code>date</code><code>datetime</code> o <code>datetimezone</code> que representa la fecha 5/14/2011.�Sumar 10 años al valor <code>date</code><code>datetime</code> o <code>datetimezone</code> que representa la fecha y la hora 5/14/2011 08:15:22 a.m. Devuelve el componente del día.CDevuelve un número del 1 al 7 que representa el día de la semana.)Devuelve el nombre del día de la semana.vDevuelve el nombre del día de la semana para el {0} proporcionado y, de manera opcional, una referencia cultural {1}.(Obtener el nombre del día de la semana.�Devuelve un número entre 0 y 6 que representa el día de la semana en el valor datetime proporcionado {0}.
+Esta función toma un valor opcional Day ({1}) para establecer el primer día de la semana para este cálculo relativo. El valor predeterminado firstDay es Day.Sunday.
+Los valores válidos son: Day.Sunday, Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday y Day.Saturday.
+  <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> a partir del que se determina el día de la semana.</li>
+        <li>{1}: un tipo <code>Day</code> que representa el primer día de la semana para este cálculo.</li>
+      </ul>Obtener en qué día de la semana cae el 21 de febrero de 2011, siendo el domingo (predeterminado) el primer día de la semana.nObtener en qué día de la semana cae el 21 de febrero de 2011, siendo el domingo el primer día de la semana.ADevuelve un número del 1 al 366 que representa el día del año.�Devuelve un número que representa el día del año en el valor de <code>date</code>, <code>datetime</code> o <code>datetimezone</code>, {0}.GNúmero del día 1 de marzo de 2011 (<code>#date(2011, 03, 01)</code>).�Devuelve el componente de día de un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code>.
+      <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> a partir del que se extrae el componente del día.</li>
+      </ul>�Obtener el componente del día de un valor <code>date</code><code>datetime</code> o <code>datetimezone</code> que representa la fecha y hora de 5/14/2011 05:00: 00 p.m.HDevuelve un número del 28 al 31 que indica el número de días del mes.�Devuelve el número de días del mes en el valor de <code>date</code>, <code>datetime</code> o <code>datetimezone</code> {0}.
+ <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> para el que se devuelve el número de días del mes.</li>
+      </ul>aNúmero de días del mes de diciembre según se representa con <code>#date(2011, 12, 01)></code>.#Devuelve el último valor del día.�Devuelve un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> que representa el final del día en {0}. Se mantiene la información de zona horaria.
+      <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> a partir del que se calcula el final del día.</li>
+      </ul>6Obtener el final del día para 5/14/2011 05:00:00 p.m.<Obtener el final del día para 5/17/2011 05:00:00 p.m -7:00.!Devuelve el último día del mes.�Devuelve el último día del mes en {0}.
+      <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> a partir del que se calcula el final del mes.</li>
+      </ul>&Obtener el final del mes de 5/14/2011.?Obtener el final del día mes de 5/17/2011 05:00:00 p.m. -7:00.(Devuelve el último valor del trimestre.�Devuelve un valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> que representa el final del trimestre en {0}. Se mantiene la información de zona horaria.
+      <ul>
+      <li>{0}: valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> a partir del que se calcula el final del trimestre.</li>
+      </ul>sBuscar el final del trimestre del 10 de octubre de 2011, 8:00 a.m. (<code>#datetime(2011, 10, 10, 8, 0, 0)</code>).&Devuelve el último día de la semana.�Devuelve el último día de la semana en el valor <code>date</code>, <code>datetime</code> o <code>datetimezone</code> proporcionado {0}.
+Esta función toma un valor opcional <code>Day</code> ({1}) para establecer el primer día de la semana para este cálculo relativo. El valor predeterminado es <code>Day.Sunday</code>.
+      <ul>
+        <li>{0}: un valor <code>date</code>, <code>datetime</code>o <code>datetimezone</code> a partir del que se calcula el último día de la semana.</li>
+        <li>{1}: <i>[opcional]</i> un valor <code>Day.Type</code> que representa el primer día de la semana. Los valores

@@ -1,0 +1,28 @@
+        }
+        if(u_xlati14 == 0) {
+            u_xlatu3.x = 0u;
+        }
+        if(u_xlatu3.x != uint(0)) {
+            u_xlat2.y = intBitsToFloat(int(0x7FFFFFFFu));
+            u_xlati21 = int(0xFFFFFFFFu);
+        }
+    } else {
+        u_xlatu4.y = 0u;
+        u_xlatu3.x = uint(0u);
+        u_xlatu3.w = uint(0u);
+        u_xlati14 = 0;
+        while(true){
+            u_xlatb8 = u_xlatu3.w>=numAddedTiles;
+            u_xlati14 = 0;
+            if(u_xlatb8){break;}
+            u_xlatu8 = u_xlatu3.w >> 1u;
+            u_xlatu18.x =  uint(int(bitfieldInsert(0, int(u_xlatu3.w), 1 & 0x1F, 1)));
+            u_xlati5.x = int((u_xlatu18.x<1u) ? 0xFFFFFFFFu : uint(0));
+            u_xlati5.y = int((u_xlati5.x==0) ? 0xFFFFFFFFu : uint(0));
+            u_xlati5.xy = ivec2(uvec2(u_xlati5.xy) & addedTiles[int(u_xlatu8)].xz);
+            u_xlati25 = int(uint(u_xlati5.y) | uint(u_xlati5.x));
+            u_xlatb25 = u_xlati3.y==u_xlati25;
+            if(u_xlatb25){
+                u_xlati18.x = int(u_xlatu18.x) + 1;
+                u_xlatu18.x = uint(u_xlati18.x) + 4294967295u;
+          

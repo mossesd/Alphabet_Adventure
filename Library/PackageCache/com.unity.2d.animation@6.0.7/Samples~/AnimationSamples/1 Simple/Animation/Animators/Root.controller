@@ -1,0 +1,88 @@
+
+
+  <Type Name="std::not_equal_to&lt;*&gt;">
+      <DisplayString>not_equal_to</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::greater&lt;*&gt;">
+      <DisplayString>greater</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::less&lt;*&gt;">
+      <DisplayString>less</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::greater_equal&lt;*&gt;">
+      <DisplayString>greater_equal</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::less_equal&lt;*&gt;">
+      <DisplayString>less_equal</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::logical_and&lt;*&gt;">
+      <DisplayString>logical_and</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::logical_or&lt;*&gt;">
+      <DisplayString>logical_or</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::logical_not&lt;*&gt;">
+      <DisplayString>logical_not</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::bit_and&lt;*&gt;">
+      <DisplayString>bit_and</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::bit_or&lt;*&gt;">
+      <DisplayString>bit_or</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::bit_xor&lt;*&gt;">
+      <DisplayString>bit_xor</DisplayString>
+      <Expand/>
+  </Type>
+
+  <Type Name="std::bit_not&lt;*&gt;">
+      <DisplayString>bit_not</DisplayString>
+      <Expand/>
+  </Type>
+
+
+  <Type Name="std::unary_negate&lt;*&gt;">
+      <DisplayString>not1({_Functor})</DisplayString>
+      <Expand>
+          <Item Name="[pred]">_Functor</Item>
+      </Expand>
+  </Type>
+
+  <Type Name="std::binary_negate&lt;*&gt;">
+      <DisplayString>not2({_Functor})</DisplayString>
+      <Expand>
+          <Item Name="[pred]">_Functor</Item>
+      </Expand>
+  </Type>
+
+
+  <Type Name="std::_Ph&lt;*&gt;">
+      <DisplayString>_{$T1,d}</DisplayString>
+      <Expand/>
+  </Type>
+
+  <!-- VC 2013 -->
+  <Type Name="std::_Bind&lt;*&gt;">
+      <DisplayString>bind({_Myfun}, {_Mybargs,view(noparens)})</DisplayString>
+      <Expand>
+          <

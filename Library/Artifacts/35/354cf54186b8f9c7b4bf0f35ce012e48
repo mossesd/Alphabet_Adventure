@@ -1,0 +1,154 @@
+ (plastic cset:{1})
+
+== BisyncCommitsCannotBeProcessed ==
+Existen commits que no han podido ser procesados.
+
+== BisyncComplete ==
+Sincronización completa
+
+== BisyncCompressing ==
+Comprimiendo objetos
+
+== BisyncConflictBranches ==
+Ramas con conflictos
+
+== BisyncConnectException ==
+Se ha producido un error mientras se conectaba con Git: {0}
+
+== BisyncCsetNotFoundWithGuid ==
+No se ha encontrado el último changeset sincronizado con el guid {0}
+
+== BisyncCtrlCDetected ==
+Ctrl+C detectado. Por favor, espere hasta que el changeset actual haya sido sincronizado. Después, la operación de sincronización efectuará una parada controlada.
+
+== BisyncDownloading ==
+Descargando
+
+== BisyncDownloadingMappings ==
+Descargando mappings del servidor
+
+== BisyncErrorPushingCs ==
+Se ha producido un error en la operación de push de cs:{0}. {1}\n{2}
+
+== BisyncExportComplete ==
+
+Exportación completada.
+
+== BisyncExportedToCommit ==
+Exportado cs:{0} al commit ({1})
+
+== BisyncExporting ==
+Exportando
+
+== BisyncForeignTreeNotRetrieved ==
+No se ha podido obtener el árbol remoto para la rev:{0}
+
+== BisyncGetfileNotValid ==
+El método GetFile by path no está soportado por el git puller
+
+== BisyncGettingInfo ==
+Obteniendo referencias
+
+== BisyncGettingInfoDone ==
+Obteniendo referencias del servidor remoto, listo.
+
+== BisyncInvalidCredentials ==
+Las credenciales introducidas para el repositorio no son válidas
+
+== BisyncInvalidNodeType ==
+El tipo de nodo no es válido
+
+== BisyncInvalidScm ==
+No se ha espeficifado un SCM válido
+
+== BisyncItemDiscardedWithoutRevid ==
+El elemento '{0}' con hash '{1}' no está enlazado a ningún revid, por lo tanto será descartado.
+
+== BisyncLastCsetForeign ==
+Último changeset en SCM externo: {0}
+
+== BisyncLastEquivalenceFound ==
+Última equivalencia encontrada {0}
+
+== BisyncLfsException ==
+Se ha producido un error al contactar con GitHub LFS: {0}. Puede deshabilitar el soporte para Git LFS desde la línea de comandos (cm sync) con el parámetro '--skipgitlfs'.
+
+== BisyncNoChangesPull ==
+No se han encontrado nuevas revisiones que importar del SCM externo
+
+== BisyncNoSettingsMultipleStore ==
+No se ha especificado repositorio y hay varias preferencias guardadas para {0}. Por favor, especifique el repositorio de git a sincronizar.
+
+== BisyncNoSettingsNoStore ==
+No se ha especificado rama o repositorio y no hay preferencias guardadas para {0}
+
+== BisyncNothingToCommit ==
+Nada que guardar.
+
+== BisyncObjectCount ==
+Objetos
+
+== BisyncPackaging ==
+Empaquetando...
+
+== BisyncPendingChanges ==
+Se han encontrado cambios para importar y exportar.
+
+== BisyncPendingChangesExplanation ==
+Se importarán los cambios remotos. Posteriormente deberá hacer la operación de merge antes de exportarlos nuevamente.
+
+== BisyncProcessingObjects ==
+Procesando objetos
+
+== BisyncPullComplete ==
+Importación completa.
+
+== BisyncPullCsetList ==
+El proceso importará cambios de Git
+
+== BisyncPullingChangesets ==
+Importando
+
+== BisyncPushCsetList ==
+El proceso exportará cambios a Git
+
+== BisyncPushErrors ==
+Errores durante el push:
+
+== BisyncPushingRepository ==
+Exportando repositorio {0} hacia '{1}'
+
+== BisyncReferenceWithoutSha ==
+No se pueden procesar referencias sin SHA
+
+== BisyncRemoteDeletedSkip ==
+La rama '{0}' ha sido borrada en el repositorio remoto y será ignorada.
+
+== BisyncRemoteError ==
+Error remoto: {0}
+
+== BisyncRemoteMappingSkip ==
+La rama '{0}' viene del mapeo de una etiqueta remota y será ignorada.
+
+== BisyncResults ==
+Resultados:
+
+== BisyncRevisionDiscardedNotRetrieved ==
+La revision enlazada {0} con sha '{1}' no se pudo obtener, con lo cual será descartada.
+
+== BisyncSettingsNotMatch ==
+La información introducida no coincide con los registros para la rama o repositorio {0}. La información introducida es: {1}. Los mappings se están guardando aquí {2}. Para usuarios avanzados: es posible borrar los mappings y reintentar la operación.
+
+== BisyncShaNotFound ==
+No se ha encontrado SHA para la revid:{0}
+
+== BisyncShaNotValid ==
+El SHA a procesar no es válido
+
+== BisyncSincronizingRepository ==
+Sincronizando repositorio {0} con '{1}'
+
+== BisyncSyncStatusSaved ==
+Estado de sincronización guardado: cset de Plastic SCM {0} -> {1} commit {2}
+
+== BisyncTagC

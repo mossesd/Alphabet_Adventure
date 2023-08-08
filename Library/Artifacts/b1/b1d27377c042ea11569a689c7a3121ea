@@ -1,0 +1,626 @@
+(int)MouseButton.Left);
+                }
+                else
+                {
+                    throw new UnexpectedEnumValueException<CanvasControlScheme>(controlScheme);
+                }
+
+                if (panning)
+                {
+                    var panDelta = -e.mouseDelta;
+
+                    if (panDelta.magnitude != 0)
+                    {
+                        graph.pan += panDelta;
+                    }
+
+                    if (e.mouseButton == MouseButton.Middle)
+                        HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.PanMmb);
+                    if (e.alt && e.mouseButton == (int)MouseButton.Left)
+                        HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.PanAltLmb);
+
+                    e.Use();
+                }
+            }
+
+            if (e.IsKeyDown(KeyCode.Home))
+            {
+                ViewSelection();
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Home);
+                e.Use();
+            }
+        }
+
+        private void HandleEdgePanning()
+        {
+            if (isTweeningView || !window.IsFocused() || !shouldEdgePan)
+            {
+                return;
+            }
+
+            var mousePosition = e.mousePosition;
+
+            var dragSpeedMultiplier = 120 * BoltCore.Configuration.dragPanSpeed;
+
+            var dragLeftSpeed = 0f;
+            var dragRightSpeed = 0f;
+            var dragTopSpeed = 0f;
+            var dragBottomSpeed = 0f;
+
+            if (mousePosition.x < viewport.x)
+            {
+                dragLeftSpeed = 3;
+            }
+            else if (mousePosition.x < viewport.x + dragPanOffset.left)
+            {
+                dragLeftSpeed = 1;
+            }
+
+            if (mousePosition.x > viewport.xMax)
+            {
+                dragRightSpeed = 3;
+            }
+            else if (mousePosition.x > viewport.xMax - dragPanOffset.right)
+            {
+                dragRightSpeed = 1;
+            }
+
+            if (mousePosition.y < viewport.y)
+            {
+                dragTopSpeed = 3;
+            }
+            else if (mousePosition.y < viewport.y + dragPanOffset.top)
+            {
+                dragTopSpeed = 1;
+            }
+
+            if (mousePosition.y > viewport.yMax)
+            {
+                dragBottomSpeed = 3;
+            }
+            else if (mousePosition.y > viewport.yMax - dragPanOffset.bottom)
+            {
+                dragBottomSpeed = 1;
+            }
+
+            var delta = new Vector2(dragRightSpeed - dragLeftSpeed, dragBottomSpeed - dragTopSpeed) * eventDeltaTime * dragSpeedMultiplier;
+
+            graph.pan += delta;
+
+            if (isDragging)
+            {
+                foreach (var draggedElement in dragGroup)
+                {
+                    using (LudiqGUI.matrix.Override(Matrix4x4.identity))
+                    {
+                        this.Widget(draggedElement).CachePosition();
+                    }
+
+                    this.Widget(draggedElement).Drag(delta, dragConstraint);
+                }
+            }
+        }
+
+        private void Overview()
+        {
+            ViewElements(graph.elements);
+        }
+
+        private void ViewSelection()
+        {
+            ViewElements(selection.Count > 0 ? (IEnumerable<IGraphElement>)selection : graph.elements);
+        }
+
+        public void ViewElements(IEnumerable<IGraphElement> elements)
+        {
+            var view = GraphGUI.CalculateArea(elements.Select(e => this.Widget(e)));
+
+            var pan = view.center;
+
+            var padding = 50;
+
+            var zoomX = (viewport.width * graph.zoom) / (view.width + padding);
+            var zoomY = (viewport.height * graph.zoom) / (view.height + padding);
+            var zoom = Mathf.Clamp(Mathf.Min(zoomX, zoomY), GraphGUI.MinZoom, GraphGUI.MaxZoom);
+
+            TweenViewport(pan, zoom, BoltCore.Configuration.overviewSmoothing);
+        }
+
+        public bool IsVisible(IWidget widget)
+        {
+            return !widget.canClip || viewport.Overlaps(widget.clippingPosition);
+        }
+
+        #endregion
+
+
+        #region Positioning
+
+        private readonly List<IWidget> widgetsToReposition = new List<IWidget>();
+
+        public void CacheWidgetPositions()
+        {
+            widgetsToReposition.Clear();
+
+            widgetsToReposition.AddRange(widgets.Where(widget => !widget.isPositionValid).OrderByDependencies(widget => widget.positionDependencies));
+
+            using (LudiqGUI.matrix.Override(Matrix4x4.identity))
+            {
+                foreach (var widget in widgetsToReposition)
+                {
+                    widget.CachePositionFirstPass();
+                }
+
+                foreach (var widget in widgetsToReposition)
+                {
+                    widget.CachePosition();
+                    widget.isPositionValid = true;
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Hovering
+
+        public IWidget hoveredWidget { get; private set; }
+
+        private void DetermineHoveredWidget()
+        {
+            hoveredWidget = null;
+
+            foreach (var widget in visibleWidgetsByDescendingZ)
+            {
+                if (widget.isMouseThrough)
+                {
+                    hoveredWidget = widget;
+
+                    break;
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Lassoing
+
+        private Vector2 lassoOrigin;
+
+        public bool isLassoing { get; private set; }
+
+        public Rect lassoArea
+        {
+            get
+            {
+                return new Rect()
+                {
+                    xMin = Mathf.Min(lassoOrigin.x, mousePosition.x),
+                    xMax = Mathf.Max(lassoOrigin.x, mousePosition.x),
+                    yMin = Mathf.Min(lassoOrigin.y, mousePosition.y),
+                    yMax = Mathf.Max(lassoOrigin.y, mousePosition.y),
+                };
+            }
+        }
+
+        private void HandleLassoing()
+        {
+            if (e.IsMouseDrag(MouseButton.Left))
+            {
+                if (!isLassoing)
+                {
+                    lassoOrigin = mousePosition;
+                    isLassoing = true;
+                }
+            }
+            else if (e.IsMouseUp(MouseButton.Left))
+            {
+                if (isSelecting)
+                {
+                    isLassoing = false;
+                }
+
+                if (isGrouping)
+                {
+                    isLassoing = false;
+
+                    var group = new GraphGroup() { position = groupArea };
+                    UndoUtility.RecordEditedObject("Create Graph Group");
+                    graph.elements.Add(group);
+                    selection.Select(group);
+                    this.Widget<GraphGroupWidget>(group).FocusLabel();
+                    GUI.changed = true;
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Selecting
+
+        public bool isSelecting => isLassoing && !isGrouping;
+
+        public Rect selectionArea => lassoArea;
+
+        private void HandleSelecting()
+        {
+            if (e.IsValidateCommand("SelectAll"))
+            {
+                e.ValidateCommand();
+            }
+            else if (e.IsExecuteCommand("SelectAll"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.SelectAll);
+
+                selection.Select(elementWidgets.Where(widget => widget.canSelect).Select(widget => widget.element));
+                e.Use();
+            }
+            else if (e.IsMouseDown(MouseButton.Left))
+            {
+                selection.Clear();
+            }
+            else if (e.IsMouseDrag(MouseButton.Left))
+            {
+                if (isSelecting)
+                {
+                    // In selection mode, include any widget that overlaps the lasso
+                    selection.Select(elementWidgets.Where(widget => widget.canSelect && selectionArea.Overlaps(widget.hotArea)).Select(widget => widget.element));
+                    e.Use();
+                }
+                else if (isGrouping)
+                {
+                    // In grouping mode, only inlude widgets that are encompassed by the lasso
+                    selection.Select(elementWidgets.Where(widget => widget.canSelect && groupArea.Encompasses(widget.position)).Select(widget => widget.element));
+                    e.Use();
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Grouping
+
+        public bool isGrouping => isLassoing && (e.ctrlOrCmd && graph.elements.Includes<GraphGroup>());
+
+        public Rect groupArea
+        {
+            get
+            {
+                var groupBackground = GraphGroupWidget.Styles.group.normal.background;
+
+                var groupRect = selectionArea;
+
+                groupRect.y -= GraphGroupWidget.Styles.headerHeight;
+                groupRect.height += GraphGroupWidget.Styles.headerHeight;
+
+                if (groupRect.width < groupBackground.width)
+                {
+                    groupRect.width = groupBackground.width;
+                }
+
+                if (groupRect.height < groupBackground.height)
+                {
+                    groupRect.height = groupBackground.height;
+                }
+
+                return groupRect;
+            }
+        }
+
+        #endregion
+
+
+        #region Dragging
+
+        private static readonly Vector2 HorizontalDrag = new Vector2(1, 0);
+
+        private static readonly Vector2 VerticalDrag = new Vector2(0, 1);
+
+        private static readonly Vector2 FreeDrag = new Vector2(1, 1);
+
+        private Vector2 dragConstraint = FreeDrag;
+
+        public bool isDragging { get; private set; }
+
+        private readonly HashSet<IGraphElement> dragGroup = new HashSet<IGraphElement>();
+
+        public void BeginDrag(EventWrapper e)
+        {
+            if (isDragging)
+            {
+                return;
+            }
+
+            UndoUtility.RecordEditedObject("Drag Graph Elements");
+
+            isDragging = true;
+
+            dragGroup.Clear();
+
+            dragGroup.UnionWith(selection);
+
+            foreach (var selected in selection)
+            {
+                this.Widget(selected).ExpandDragGroup(dragGroup);
+            }
+
+            LockDragOrigin();
+
+            foreach (var dragged in dragGroup)
+            {
+                this.Widget(dragged).BeginDrag();
+            }
+
+            e.Use();
+        }
+
+        public void Drag(EventWrapper e)
+        {
+            if (!isDragging)
+            {
+                return;
+            }
+
+            if (e.shift)
+            {
+                if (dragConstraint == FreeDrag)
+                {
+                    LockDragOrigin();
+
+                    if (Mathf.Abs(e.mouseDelta.x) > Mathf.Abs(e.mouseDelta.y))
+                    {
+                        dragConstraint = HorizontalDrag;
+                    }
+                    else if (Mathf.Abs(e.mouseDelta.y) > Mathf.Abs(e.mouseDelta.x))
+                    {
+                        dragConstraint = VerticalDrag;
+                    }
+                }
+            }
+            else
+            {
+                dragConstraint = FreeDrag;
+            }
+
+            foreach (var dragged in dragGroup)
+            {
+                this.Widget(dragged).Drag(e.mouseDelta, dragConstraint);
+            }
+
+            e.Use();
+        }
+
+        public void EndDrag(EventWrapper e)
+        {
+            if (!isDragging)
+            {
+                return;
+            }
+
+            UndoUtility.RecordEditedObject("Drag Graph Elements");
+
+            isDragging = false;
+
+            foreach (var dragged in dragGroup)
+            {
+                this.Widget(dragged).EndDrag();
+            }
+
+            dragGroup.Clear();
+
+            dragConstraint = FreeDrag;
+
+            e.Use();
+        }
+
+        private void LockDragOrigin()
+        {
+            foreach (var dragged in dragGroup)
+            {
+                this.Widget(dragged).LockDragOrigin();
+            }
+        }
+
+        #endregion
+
+
+        #region Deleting
+
+        public void DeleteSelection()
+        {
+            var deleted = false;
+
+            var deleteGroup = new HashSet<IGraphElement>();
+
+            foreach (var element in selection)
+            {
+                deleteGroup.Add(element);
+                this.Widget(element).ExpandDeleteGroup(deleteGroup);
+            }
+
+            foreach (var element in deleteGroup.OrderByDescending(e => e.dependencyOrder))
+            {
+                if (this.Widget(element).canDelete)
+                {
+                    UndoUtility.RecordEditedObject("Delete Graph Element");
+                    graph.elements.Remove(element);
+                    selection.Remove(element);
+                    deleted = true;
+                }
+            }
+
+            if (deleted)
+            {
+                GUI.changed = true;
+                e.TryUse();
+            }
+        }
+
+        private void HandleDeleting()
+        {
+            if (e.IsValidateCommand("Delete"))
+            {
+                if (selection.Count > 0)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Delete"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Delete);
+
+                DeleteSelection();
+            }
+            else if (e.IsKeyDown(KeyCode.Delete))
+            {
+                DeleteSelection();
+            }
+        }
+
+        #endregion
+
+
+        #region Clipboard
+
+        public virtual void ShrinkCopyGroup(HashSet<IGraphElement> copyGroup) { }
+
+        private DateTime lastPasteTime;
+
+        private void HandleClipboard()
+        {
+            if (e.IsValidateCommand("Copy"))
+            {
+                if (GraphClipboard.canCopySelection)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Copy"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Copy);
+
+                GraphClipboard.CopySelection();
+            }
+
+            if (e.IsValidateCommand("Cut"))
+            {
+                if (GraphClipboard.canCopySelection)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Cut"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Cut);
+
+                GraphClipboard.CutSelection();
+            }
+
+            if (e.IsValidateCommand("Paste"))
+            {
+                if (GraphClipboard.canPaste && (DateTime.Now - lastPasteTime).TotalSeconds >= 0.25)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Paste"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Paste);
+
+                GraphClipboard.Paste();
+                lastPasteTime = DateTime.Now;
+            }
+
+            if (e.IsValidateCommand("Duplicate"))
+            {
+                if (GraphClipboard.canDuplicateSelection && (DateTime.Now - lastPasteTime).TotalSeconds >= 0.25)
+                {
+                    e.Use();
+                }
+            }
+            else if (e.IsExecuteCommand("Duplicate"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Duplicate);
+
+                GraphClipboard.DuplicateSelection();
+                lastPasteTime = DateTime.Now;
+            }
+        }
+
+        #endregion
+
+
+        #region Context
+
+        protected IEnumerable<DropdownOption> GetExtendedContextOptions()
+        {
+            foreach (var item in context.extensions.SelectMany(extension => extension.contextMenuItems).OrderBy(item => item.label))
+            {
+                yield return new DropdownOption(item.action, item.label);
+            }
+        }
+
+        protected virtual IEnumerable<DropdownOption> GetContextOptions()
+        {
+            foreach (var extendedOption in GetExtendedContextOptions())
+            {
+                yield return extendedOption;
+            }
+
+            if (GraphClipboard.canCopySelection)
+            {
+                yield return new DropdownOption((Action)GraphClipboard.CopySelection, "Copy Selection");
+                yield return new DropdownOption((Action)GraphClipboard.CutSelection, "Cut Selection");
+            }
+
+            if (GraphClipboard.canDuplicateSelection)
+            {
+                yield return new DropdownOption((Action)GraphClipboard.DuplicateSelection, "Duplicate Selection");
+            }
+
+            if (selection.Count > 0)
+            {
+                yield return new DropdownOption((Action)DeleteSelection, "Delete Selection");
+            }
+
+            if (GraphClipboard.canPasteOutside)
+            {
+                yield return new DropdownOption((Action<Vector2>)((position) => GraphClipboard.PasteOutside(true, position)), "Paste");
+            }
+        }
+
+        protected virtual void OnContext()
+        {
+            var contextOptions = this.GetContextOptions().ToArray();
+
+            delayCall += () =>
+            {
+                var _mousePosition = mousePosition;
+
+                LudiqGUI.Dropdown
+                    (
+                        e.mousePosition,
+                        delegate (object _action)
+                        {
+                            delayCall += () =>
+                            {
+                                if (_action is Action action)
+                                {
+                                    action.Invoke();
+                                }
+                                else if (_action is Action<Vector2> positionedAction)
+                                {
+                                    positionedAction.Invoke(_mousePosition);
+                                }
+                            };
+                        },
+                        contextOptions,
+                        null
+                    );
+            };
+        }
+
+        privat

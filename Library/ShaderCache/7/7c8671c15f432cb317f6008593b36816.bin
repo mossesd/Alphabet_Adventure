@@ -1,0 +1,45 @@
+(char*)tmp_val, (socklen_t*)length);
+        }
+        __except (SocketExceptionFilter(GetExceptionCode()))
+        {
+        }
+
+        if (ret == -1)
+        {
+            StoreLastError();
+
+            return kWaitStatusFailure;
+        }
+
+        if (system_name == SO_ERROR)
+        {
+            if (*((int32_t*)buffer) != 0)
+            {
+                StoreLastError(*((int32_t*)buffer));
+            }
+            else
+            {
+                *((int32_t*)buffer) = _saved_error;
+            }
+        }
+
+        return kWaitStatusSuccess;
+    }
+
+    WaitStatus SocketImpl::GetSocketOptionFull(SocketOptionLevel level, SocketOptionName name, int32_t *first, int32_t *second)
+    {
+        int32_t system_level = 0;
+        int32_t system_name = 0;
+
+#if !defined(SO_EXCLUSIVEADDRUSE) && defined(SO_REUSEADDR)
+        if (level == kSocketOptionLevelSocket && name == kSocketOptionNameExclusiveAddressUse)
+        {
+            system_level = SOL_SOCKET;
+            system_name = SO_REUSEADDR;
+        }
+        else
+#endif
+        {
+            const int32_t o_res = level_and_name_to_system(level, name, &system_level, &system_name);
+
+            if (o_res == SKIP_OPTION)

@@ -1,0 +1,298 @@
+n_returnValue">
+                /// The promise whose value is the result of executing the complete or
+                /// error function.
+                /// </returns>
+                /// </signature>
+                try {
+                    // If the value returned from the completion handler is the same as the value
+                    // provided to the completion handler then there is no need for a new promise.
+                    //
+                    var newValue = onComplete ? onComplete(this._value) : this._value;
+                    return newValue === this._value ? this : new CompletePromise(newValue);
+                } catch (ex) {
+                    return new ExceptionPromise(ex);
+                }
+            }
+        }, {
+            supportedForProcessing: false
+        }
+    );
+
+    //
+    // Promise is the user-creatable WinJS.Promise object.
+    //
+
+    function timeout(timeoutMS) {
+        var id;
+        return new WinJS.Promise(
+            function (c) {
+                if (timeoutMS) {
+                    id = setTimeout(c, timeoutMS);
+                } else {
+                    setImmediate(c);
+                }
+            },
+            function () {
+                if (id) {
+                    clearTimeout(id);
+                }
+            }
+        );
+    }
+
+    function timeoutWithPromise(timeout, promise) {
+        var cancelPromise = function () { promise.cancel(); }
+        var cancelTimeout = function () { timeout.cancel(); }
+        timeout.then(cancelPromise);
+        promise.then(cancelTimeout, cancelTimeout);
+        return promise;
+    }
+
+    var staticCanceledPromise;
+
+    var Promise = WinJS.Class.derive(PromiseStateMachine,
+        function Promise_ctor(init, oncancel) {
+            /// <signature helpKeyword="WinJS.Promise">
+            /// <summary locid="WinJS.Promise">
+            /// A promise provides a mechanism to schedule work to be done on a value that
+            /// has not yet been computed. It is a convenient abstraction for managing
+            /// interactions with asynchronous APIs.
+            /// </summary>
+            /// <param name="init" type="Function" locid="WinJS.Promise_p:init">
+            /// The function that is called during construction of the  promise. The function
+            /// is given three arguments (complete, error, progress). Inside this function
+            /// you should add event listeners for the notifications supported by this value.
+            /// </param>
+            /// <param name="oncancel" optional="true" locid="WinJS.Promise_p:oncancel">
+            /// The function to call if a consumer of this promise wants
+            /// to cancel its undone work. Promises are not required to
+            /// support cancellation.
+            /// </param>
+            /// </signature>
+
+            if (tagWithStack && (tagWithStack === true || (tagWithStack & tag.promise))) {
+                this._stack = WinJS.Promise._getStack();
+            }
+
+            this._oncancel = oncancel;
+            this._setState(state_created);
+            this._run();
+
+            try {
+                var complete = this._completed.bind(this);
+                var error = this._error.bind(this);
+                var progress = this._progress.bind(this);
+                init(complete, error, progress);
+            } catch (ex) {
+                this._setExceptionValue(ex);
+            }
+        }, {
+            _oncancel: null,
+
+            _cancelAction: function () { 
+                if (this._oncancel) {
+					try {
+						this._oncancel();
+					} catch (ex) {
+						// Access fields to get them created
+						var msg = ex.message;
+						var stack = ex.stack;
+						promiseEventListeners.dispatchEvent('error', ex);
+					}
+                } else {
+					throw new Error('Promise did not implement oncancel');
+				}
+            },
+            _cleanupAction: function () { this._oncancel = null; }
+        }, {
+
+            addEventListener: function Promise_addEventListener(eventType, listener, capture) {
+                /// <signature helpKeyword="WinJS.Promise.addEventListener">
+                /// <summary locid="WinJS.Promise.addEventListener">
+                /// Adds an event listener to the control.
+                /// </summary>
+                /// <param name="eventType" locid="WinJS.Promise.addEventListener_p:eventType">
+                /// The type (name) of the event.
+                /// </param>
+                /// <param name="listener" locid="WinJS.Promise.addEventListener_p:listener">
+                /// The listener to invoke when the event is raised.
+                /// </param>
+                /// <param name="capture" locid="WinJS.Promise.addEventListener_p:capture">
+                /// Specifies whether or not to initiate capture.
+                /// </param>
+                /// </signature>
+                promiseEventListeners.addEventListener(eventType, listener, capture);
+            },
+            any: function Promise_any(values) {
+                /// <signature helpKeyword="WinJS.Promise.any">
+                /// <summary locid="WinJS.Promise.any">
+                /// Returns a promise that is fulfilled when one of the input promises
+                /// has been fulfilled.
+                /// </summary>
+                /// <param name="values" type="Array" locid="WinJS.Promise.any_p:values">
+                /// An array that contains promise objects or objects whose property
+                /// values include promise objects.
+                /// </param>
+                /// <returns type="WinJS.Promise" locid="WinJS.Promise.any_returnValue">
+                /// A promise that on fulfillment yields the value of the input (complete or error).
+                /// </returns>
+                /// </signature>
+                return new Promise(
+                    function (complete, error, progress) {
+                        var keys = Object.keys(values);
+                        var errors = Array.isArray(values) ? [] : {};
+                        if (keys.length === 0) {
+                            complete();
+                        }
+                        var canceled = 0;
+                        keys.forEach(function (key) {
+                            Promise.as(values[key]).then(
+                                function () { complete({ key: key, value: values[key] }); },
+                                function (e) {
+                                    if (e instanceof Error && e.name === canceledName) {
+                                        if ((++canceled) === keys.length) {
+                                            complete(WinJS.Promise.cancel);
+                                        }
+                                        return;
+                                    }
+                                    error({ key: key, value: values[key] });
+                                }
+                            );
+                        });
+                    },
+                    function () {
+                        var keys = Object.keys(values);
+                        keys.forEach(function (key) {
+                            var promise = Promise.as(values[key]);
+                            if (typeof promise.cancel === "function") {
+                                promise.cancel();
+                            }
+                        });
+                    }
+                );
+            },
+            as: function Promise_as(value) {
+                /// <signature helpKeyword="WinJS.Promise.as">
+                /// <summary locid="WinJS.Promise.as">
+                /// Returns a promise. If the object is already a promise it is returned;
+                /// otherwise the object is wrapped in a promise.
+                /// </summary>
+                /// <param name="value" locid="WinJS.Promise.as_p:value">
+                /// The value to be treated as a promise.
+                /// </param>
+                /// <returns type="WinJS.Promise" locid="WinJS.Promise.as_returnValue">
+                /// A promise.
+                /// </returns>
+                /// </signature>
+                if (value && typeof value === "object" && typeof value.then === "function") {
+                    return value;
+                }
+                return new CompletePromise(value);
+            },
+            /// <field type="WinJS.Promise" helpKeyword="WinJS.Promise.cancel" locid="WinJS.Promise.cancel">
+            /// Canceled promise value, can be returned from a promise completion handler
+            /// to indicate cancelation of the promise chain.
+            /// </field>
+            cancel: {
+                get: function () {
+                    return (staticCanceledPromise = staticCanceledPromise || new ErrorPromise(new WinJS.ErrorFromName(canceledName)));
+                }
+            },
+            dispatchEvent: function Promise_dispatchEvent(eventType, details) {
+                /// <signature helpKeyword="WinJS.Promise.dispatchEvent">
+                /// <summary locid="WinJS.Promise.dispatchEvent">
+                /// Raises an event of the specified type and properties.
+                /// </summary>
+                /// <param name="eventType" locid="WinJS.Promise.dispatchEvent_p:eventType">
+                /// The type (name) of the event.
+                /// </param>
+                /// <param name="details" locid="WinJS.Promise.dispatchEvent_p:details">
+                /// The set of additional properties to be attached to the event object.
+                /// </param>
+                /// <returns type="Boolean" locid="WinJS.Promise.dispatchEvent_returnValue">
+                /// Specifies whether preventDefault was called on the event.
+                /// </returns>
+                /// </signature>
+                return promiseEventListeners.dispatchEvent(eventType, details);
+            },
+            is: function Promise_is(value) {
+                /// <signature helpKeyword="WinJS.Promise.is">
+                /// <summary locid="WinJS.Promise.is">
+                /// Determines whether a value fulfills the promise contract.
+                /// </summary>
+                /// <param name="value" locid="WinJS.Promise.is_p:value">
+                /// A value that may be a promise.
+                /// </param>
+                /// <returns type="Boolean" locid="WinJS.Promise.is_returnValue">
+                /// true if the specified value is a promise, otherwise false.
+                /// </returns>
+                /// </signature>
+                return value && typeof value === "object" && typeof value.then === "function";
+            },
+            join: function Promise_join(values) {
+                /// <signature helpKeyword="WinJS.Promise.join">
+                /// <summary locid="WinJS.Promise.join">
+                /// Creates a promise that is fulfilled when all the values are fulfilled.
+                /// </summary>
+                /// <param name="values" type="Object" locid="WinJS.Promise.join_p:values">
+                /// An object whose fields contain values, some of which may be promises.
+                /// </param>
+                /// <returns type="WinJS.Promise" locid="WinJS.Promise.join_returnValue">
+                /// A promise whose value is an object with the same field names as those of the object in the values parameter, where
+                /// each field value is the fulfilled value of a promise.
+                /// </returns>
+                /// </signature>
+                return new Promise(
+                    function (complete, error, progress) {
+                        var keys = Object.keys(values);
+                        var errors = Array.isArray(values) ? [] : {};
+                        var results = Array.isArray(values) ? [] : {};
+                        var undefineds = 0;
+                        var pending = keys.length;
+                        var argDone = function (key) {
+                            if ((--pending) === 0) {
+                                var errorCount = Object.keys(errors).length;
+                                if (errorCount === 0) {
+                                    complete(results);
+                                } else {
+                                    var canceledCount = 0;
+                                    keys.forEach(function (key) {
+                                        var e = errors[key];
+                                        if (e instanceof Error && e.name === canceledName) {
+                                            canceledCount++;
+                                        }
+                                    });
+                                    if (canceledCount === errorCount) {
+                                        complete(WinJS.Promise.cancel);
+                                    } else {
+                                        error(errors);
+                                    }
+                                }
+                            } else {
+                                progress({ Key: key, Done: true });
+                            }
+                        };
+                        keys.forEach(function (key) {
+                            var value = values[key];
+                            if (value === undefined) {
+                                undefineds++;
+                            } else {
+                                Promise.then(value,
+                                    function (value) { results[key] = value; argDone(key); },
+                                    function (value) { errors[key] = value; argDone(key); }
+                                );
+                            }
+                        });
+                        pending -= undefineds;
+                        if (pending === 0) {
+                            complete(results);
+                            return;
+                        }
+                    },
+                    function () {
+                        Object.keys(values).forEach(function (key) {
+                            var promise = Promise.as(values[key]);
+                            if (typeof promise.cancel === "function") {
+                                promise.cancel();
+                            }
+         

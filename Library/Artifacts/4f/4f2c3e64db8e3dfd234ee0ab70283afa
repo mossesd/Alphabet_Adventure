@@ -1,0 +1,29 @@
+core\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: amd64_microsoft-windows-a..ncredentialprovider_31bf3856ad364e35_10.0.22621.1928_none_4aac5e459ea03c29\n\facecredentialprovider.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: amd64_microsoft-windows-a..ncredentialprovider_31bf3856ad364e35_10.0.22621.1928_none_4aac5e459ea03c29\facecredentialprovider.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: amd64_microsoft-media-cap..ternal-broadcastdvr_31bf3856ad364e35_10.0.22621.1992_none_972d7ed291b57d9e\r\KnownGameList.bin failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: amd64_microsoft-media-cap..ternal-broadcastdvr_31bf3856ad364e35_10.0.22621.1992_none_972d7ed291b57d9e\n\KnownGameList.bin failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: amd64_microsoft-media-cap..ternal-broadcastdvr_31bf3856ad364e35_10.0.22621.1992_none_972d7ed291b57d9e\KnownGameList.bin failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: wow64_microsoft-windows-security-negoexts_31bf3856ad364e35_10.0.22621.1992_none_a24d193ea988cac8\r\negoexts.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: wow64_microsoft-windows-security-negoexts_31bf3856ad364e35_10.0.22621.1992_none_a24d193ea988cac8\n\negoexts.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: wow64_microsoft-windows-security-negoexts_31bf3856ad364e35_10.0.22621.1992_none_a24d193ea988cac8\negoexts.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: wow64_microsoft-windows-storage-search-library_31bf3856ad364e35_10.0.22621.1928_none_59985927331fda1f\r\Windows.Storage.Search.dll failed because it is not present in the container (dl+rijH3jc+ViCK6TVjlw1+Kp1CWOhdRl2tOYwIef68=).
+2023-07-13 08:42:30, Info                  DPX    DpxException hr=0x80070002 code=0x020109
+2023-07-13 08:42:30, Info                  DPX    hr: 0x80070002 at onecore\base\compress\dpx\src\dpxcontainer.h(659)
+2023-07-13 08:42:30, Info                  DPX    Extraction of file: wow64_microsoft-w

@@ -1,0 +1,473 @@
+#if ENABLE_UNIT_TESTS
+
+#include "il2cpp-config.h"
+
+#include "UnitTest++.h"
+
+#include "../Path-c-api.h"
+#include "../../Path.h"
+#include "../../../utils/PathUtils.h"
+
+SUITE(Path)
+{
+    TEST(GetTempPathNotNull)
+    {
+        CHECK_NOT_NULL(UnityPalGetTempPath());
+    }
+
+    TEST(GetTempPathSanity)
+    {
+        // Path will never be the same depeding on user, platform,machine etc.  Check if the string is
+        // at least a few chars long
+        CHECK(strlen(UnityPalGetTempPath()) > 3);
+    }
+
+    TEST(GetTempPathTestMatchesClass)
+    {
+        CHECK_EQUAL(il2cpp::os::Path::GetTempPath().c_str(), UnityPalGetTempPath());
+    }
+
+    TEST(GetExecutablePathNotNull)
+    {
+        CHECK_NOT_NULL(UnityPalGetExecutablePath());
+    }
+
+#if !IL2CPP_TARGET_PS4 // PS4 doesn't have an executable path concept - it returns an empty string.
+    TEST(GetExecutablePathIsEmpty)
+    {
+        // Path will never be the same depeding on user, platform,machine etc.  Check if the string is
+        // at least a few chars long
+        CHECK(strlen(UnityPalGetExecutablePath()) > 5);
+    }
+#else
+    TEST(GetExecutablePathIsEmpty)
+    {
+        CHECK_EQUAL(UnityPalGetExecutablePath(), "");
+    }
+#endif
+
+    TEST(GetExecutablePathMatchesClass)
+    {
+        CHECK_EQUAL(il2cpp::os::Path::GetExecutablePath().c_str(), UnityPalGetExecutablePath());
+    }
+
+    static std::string FormatExpectedAbsolutePathMessage(const char* input)
+    {
+        return std::string("The path '") + std::string(input) + std::string("' is not reported as absolute, which is not expected.");
+    }
+
+    static std::string FormatExpectedNotAbsolutePathMessage(const char* input)
+    {
+        return std::string("The path '") + std::string(input) + std::string("' is reported as absolute, which is not expected.");
+    }
+
+    enum PathType
+    {
+        kAbsolute,
+        kRelative
+    };
+
+    static void VerifyPathIs(PathType type, const char* input)
+    {
+        if (type == kAbsolute)
+            CHECK_MSG(UnityPalIsAbsolutePath(input), FormatExpectedAbsolutePathMessage(input).c_str());
+        else
+            CHECK_MSG(!UnityPalIsAbsolutePath(input), FormatExpectedNotAbsolutePathMessage(input).c_str());
+    }
+
+    TEST(PathThatIsNull_IsNotAbsolute)
+    {
+        VerifyPathIs(kRelative, NULL);
+    }
+
+#if defined(WINDOWS)
+    TEST(PathThatIsEmpty_IsNotAbsolute)
+    {
+        VerifyPathIs(kRelative, "");
+    }
+
+    TEST(PathThatIsWithoutDriveLetter_IsNotAbsolute)
+    {
+        VerifyPathIs(kRelative, "home\test");
+    }
+
+    TEST(PathThatIsDriveLetterWithSeparator_IsNotAbsolute)
+    {
+        VerifyPathIs(kRelative, "C:");
+    }
+
+    TEST(PathThatIsDriveLetterWithBackslash_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "C:\\");
+    }
+
+    TEST(PathThatIsDriveLetterWithBackslashFollowedByAnything_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "C:\\bar");
+    }
+
+    TEST(PathThatIsDriveLetterWithForwardslash_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "C:/");
+    }
+
+    TEST(PathThatIsDoubleBackslash_IsNotAbsolute)
+    {
+        VerifyPathIs(kRelative, "\\\\");
+    }
+
+    TEST(PathThatIsDoubleBackslashFollowedByAnything_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "\\\\bar");
+    }
+
+    TEST(IsAbsoluteMatchesForAbsolutePathClass)
+    {
+        std::string input = "C:\\";
+        CHECK_EQUAL(static_cast<int32_t>(il2cpp::os::Path::IsAbsolute(input)), UnityPalIsAbsolutePath(input.c_str()));
+    }
+
+    TEST(IsAbsoluteMatchesForRelativePathClass)
+    {
+        std::string input = "test\\path";
+        CHECK_EQUAL(static_cast<int32_t>(il2cpp::os::Path::IsAbsolute(input)), UnityPalIsAbsolutePath(input.c_str()));
+    }
+#else
+    TEST(PathThatIsOnlyForwardSlash_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "/");
+    }
+
+    TEST(PathThatStartWithForwardSlash_IsAbsolute)
+    {
+        VerifyPathIs(kAbsolute, "/test/path/foo");
+    }
+
+    TEST(PathThatDoesNotStartWithAForwardSlash_INotAbsolute)
+    {
+        VerifyPathIs(kRelative, "test/path/foo");
+    }
+
+    TEST(IsAbsoluteMatchesForAbsolutePathClass)
+    {
+        std::string input = "/home/foo";
+        CHECK_EQUAL(static_cast<int32_t>(il2cpp::os::Path::IsAbsolute(input)), UnityPalIsAbsolutePath(input.c_str()));
+    }
+
+    TEST(IsAbsoluteMatchesForRelativePathClass)
+    {
+        std::string input = "home/path";
+        CHECK_EQUAL(static_cast<int32_t>(il2cpp::os::Path::IsAbsolute(input)), UnityPalIsAbsolutePath(input.c_str()));
+    }
+#endif
+
+    TEST(BasenameForNullPath_ReturnsNull)
+    {
+        CHECK_NULL(UnityPalBasename(NULL));
+    }
+
+    TEST(BasenameForEmptyPath_ReturnsDot)
+    {
+        char* basename = UnityPalBasename("");
+        CHECK_EQUAL(".", basename);
+        free(basename);
+    }
+
+    TEST(BasenameForEmptyPath_MatchesClass)
+    {
+        std::string input = "";
+        char* basename = UnityPalBasename(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::Basename(input), basename);
+        free(basename);
+    }
+#if defined(WINDOWS)
+    TEST(BasenameWithBackslashes_ReturnsLastPathElement)
+    {
+        char* basename = UnityPalBasename("test\\path\\foo");
+        CHECK_EQUAL("foo", basename);
+        free(basename);
+    }
+
+    TEST(BasenameWithBackslashes_MatchesClass)
+    {
+        std::string input = "test\\path\\foo";
+        char* basename = UnityPalBasename(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::Basename(input), basename);
+        free(basename);
+    }
+#else
+    TEST(BasenameWithForwardslashes_ReturnsLastPathElement)
+    {
+        char* basename = UnityPalBasename("test/path/foo");
+        CHECK_EQUAL("foo", basename);
+        free(basename);
+    }
+
+    TEST(BasenameWithForwardslashes_MatchesClass)
+    {
+        std::string input = "test/path/foo";
+        char* basename = UnityPalBasename(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::Basename(input), basename);
+        free(basename);
+    }
+#endif
+
+    TEST(BasenameWithoutSeparators_ReturnsInput)
+    {
+        char* basename = UnityPalBasename("bar");
+        CHECK_EQUAL("bar", basename);
+        free(basename);
+    }
+
+    TEST(BasenameWithoutSeparators_MatchesClass)
+    {
+        std::string input = "bar";
+        char* basename = UnityPalBasename(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::Basename(input), basename);
+        free(basename);
+    }
+
+    TEST(DirectoryNameForNullPath_ReturnsNull)
+    {
+        CHECK_NULL(UnityPalDirectoryName(NULL));
+    }
+
+    TEST(DirectoryNameForEmptyPath_ReturnsEmptyString)
+    {
+        char* DirectoryName = UnityPalDirectoryName("");
+        CHECK_EQUAL("", DirectoryName);
+        free(DirectoryName);
+    }
+
+    TEST(DirectoryNameForEmptyPath_MatchesClass)
+    {
+        std::string input = "";
+        char* DirectoryName = UnityPalDirectoryName(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::DirectoryName(input), DirectoryName);
+        free(DirectoryName);
+    }
+#if defined(WINDOWS)
+    TEST(DirectoryNameWithBackslashes_ReturnsLastPathElement)
+    {
+        char* DirectoryName = UnityPalDirectoryName("test\\path\\foo");
+        CHECK_EQUAL("test\\path", DirectoryName);
+        free(DirectoryName);
+    }
+
+    TEST(DirectoryNameWithBackslashes_MatchesClass)
+    {
+        std::string input = "test\\path\\foo";
+        char* DirectoryName = UnityPalDirectoryName(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::DirectoryName(input), DirectoryName);
+        free(DirectoryName);
+    }
+#else
+    TEST(DirectoryNameWithForwardslashes_ReturnsLastPathElement)
+    {
+        char* DirectoryName = UnityPalDirectoryName("test/path/foo");
+        CHECK_EQUAL("test/path", DirectoryName);
+        free(DirectoryName);
+    }
+
+    TEST(DirectoryNameWithForwardslashes_MatchesClass)
+    {
+        std::string input = "test/path/foo";
+        char* DirectoryName = UnityPalDirectoryName(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::DirectoryName(input), DirectoryName);
+        free(DirectoryName);
+    }
+#endif
+
+    TEST(DirectoryNameWithoutSeparators_ReturnsDot)
+    {
+        char* DirectoryName = UnityPalDirectoryName("bar");
+        CHECK_EQUAL(".", DirectoryName);
+        free(DirectoryName);
+    }
+
+    TEST(DirectoryNameWithoutSeparators_MatchesClass)
+    {
+        std::string input = "bar";
+        char* DirectoryName = UnityPalDirectoryName(input.c_str());
+        CHECK_EQUAL(il2cpp::utils::PathUtils::DirectoryName(input), DirectoryName);
+        free(DirectoryName);
+    }
+}
+
+#endif // ENABLE_UNIT_TESTS
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 #if ENABLE_UNIT_TESTS
+
+#include "UnitTest++.h"
+
+#include "../../Process.h"
+#include "../Process-c-api.h"
+
+
+SUITE(Process)
+{
+    TEST(GetProcessID)
+    {
+        CHECK(UnityPalGetCurrentProcessId() > 0);
+    }
+
+    TEST(GetProcessIDMatchesClass)
+    {
+        CHECK_EQUAL(il2cpp::os::Process::GetCurrentProcessId(), UnityPalGetCurrentProcessId());
+    }
+
+    TEST(GetProcessHandleValid)
+    {
+        UnityPalProcessHandle* handle = NULL;
+        handle = UnityPalGetProcess(UnityPalGetCurrentProcessId());
+
+        CHECK_NOT_NULL(handle);
+    }
+
+// GetProcessName is only supported on Windows, macOS, and Linux
+#if IL2CPP_TARGET_WINDOWS_DESKTOP || IL2CPP_TARGET_OSX || IL2CPP_TARGET_LINUX
+    TEST(GetProcessHandleMatchesClass)
+    {
+        int processId = il2cpp::os::Process::GetCurrentProcessId();
+        UnityPalProcessHandle* api_handle = UnityPalGetProcess(processId);
+        il2cpp::os::ProcessHandle* class_handle = il2cpp::os::Process::GetProcess(processId).Get();
+
+        std::string api_name = il2cpp::os::Process::GetProcessName(api_handle).Get();
+        std::string class_name = il2cpp::os::Process::GetProcessName(class_handle).Get();
+
+        CHECK_EQUAL(class_name, api_name);
+    }
+
+    TEST(GetProcessNameNotNull)
+    {
+        int processId = il2cpp::os::Process::GetCurrentProcessId();
+        UnityPalProcessHandle* processHandle = UnityPalGetProcess(processId);
+
+        const char* processName = UnityPalGetProcessName(processHandle);
+
+        CHECK_NOT_NULL(processName);
+    }
+
+    TEST(GetProcessNameValid)
+    {
+        int processId = il2cpp::os::Process::GetCurrentProcessId();
+        UnityPalProcessHandle* processHandle = UnityPalGetProcess(processId);
+
+        const char* processName = UnityPalGetProcessName(processHandle);
+
+        CHECK(strlen(processName) > 0);
+    }
+
+    TEST(GetProcessNameMatchesClass)
+    {
+        int processId = il2cpp::os::Process::GetCurrentProcessId();
+        UnityPalProcessHandle* api_handle = UnityPalGetProcess(processId);
+        il2cpp::os::ProcessHandle* class_handle = il2cpp::os::Process::GetProcess(processId).Get();
+
+        const char* api_name = UnityPalGetProcessName(api_handle);
+        std::string class_name = il2cpp::os::Process::GetProcessName(class_handle).Get();
+
+        CHECK_EQUAL(class_name.c_str(), api_name);
+    }
+
+    TEST(GetProcessNameWithInvalidId)
+    {
+        const char* processName = NULL;
+
+        // First check the staticness, grab a real string
+        processName = UnityPalGetProcessName(UnityPalGetProcess(UnityPalGetCurrentProcessId()));
+
+        // Now test that it goes blank
+        processName = UnityPalGetProcessName(UnityPalGetProcess(-9999999));
+
+        CHECK_EQUAL("", processName);
+    }
+#endif
+}
+
+#endif // ENABLE_UNIT_TESTS
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              #if ENABLE_UNIT_TESTS
+
+#include "UnitTest++.h"
+#include "../Semaphore-c-api.h"
+#include "../../Semaphore.h"
+#include "../../Event.h"
+#include "../../Thread.h"
+
+SUITE(Semaphore)
+{
+    struct SemaphoreFixture
+    {
+        SemaphoreFixture()
+        {
+            il2cpp::os::Thread::Init();
+            semaphore = UnityPalSemaphoreNew(0, 1);
+            unblockedThreadEvent = new il2cpp::os::Event();
+            unblockedThreadCount = 0;
+        }
+
+        ~SemaphoreFixture()
+        {
+            UnityPalSemaphoreDelete(semaphore);
+        }
+
+        UnityPalSemaphore* semaphore;
+        il2cpp::os::Event* unblockedThreadEvent;
+        int unblockedThreadCount;
+
+        static void WaitForSemaphoreAndIncrementCounter(void* arg)
+        {
+            SemaphoreFixture* data = static_cast<SemaphoreFixture*>(arg);
+            UnityPalSemaphoreWait(data->semaphore, false);
+            data->unblockedThreadCount++;
+            data->unblockedThreadEvent->Set();
+        }
+    };
+
+    TEST_FIXTURE(SemaphoreFixture, CanCreateASemaphore)
+    {
+        CHECK_NOT_NULL(semaphore);
+    }
+
+    TEST_FIXTURE(SemaphoreFixture, VerifyThatPostingASemaphoreAGivenNumberOfTimesReturnsThePreviousCount)
+    {
+        int32_t actualPreviousCount = 0;
+        UnityPalSemaphorePost(semaphore, 2, &actualPreviousCount);
+        CHECK_EQUAL(0, actualPreviousCount);
+    }
+
+    TEST_FIXTURE(SemaphoreFixture, VerifyThatPostWithMultipleThreadsWaitingUnblocksOnlyOneThread)
+    {
+        // Create two threads which each increment the counter once.
+        il2cpp::os::Thread thread1;
+        thread1.Run(WaitForSemaphoreAndIncrementCounter, this);
+
+        il2cpp::os::Thread thread2;
+        thread2.Run(WaitForSemaphoreAndIncrementCounter, this);
+
+        UnityPalSemaphorePost(semaphore, 1, NULL);
+
+        // Let one thread increment and wait for it.
+        unblockedThreadEvent->Wait();
+
+        CHECK_EQUAL(1, unblockedThreadCount);
+
+        // Let the other thread increment and wait for it so we can exit the test cleanly.
+        UnityPalSemaphorePost(semaphore, 1, NULL);
+        unblockedThreadEvent->Wait();
+
+        thread1.Join();
+        thread2.Join();
+    }
+
+    struct SemaphoreHandleFixture
+    {
+        SemaphoreHandleFixture()
+        {
+            il2cpp::os::Thread::Init();
+            semaphore = UnityPalSemaphoreNew(0, 1);
+            semaphoreHandle = UnityPalSemaphoreHandleNew(semaphore);
+            unblockedThreadEvent = new il2cpp::os::Event();
+            unblockedThreadCount = 0;
+        }
+
+        ~SemaphoreHandleFi

@@ -1,0 +1,412 @@
+ght hand side int to use to compute componentwise less than.</param>
+        /// <returns>bool4x2 result of the componentwise less than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator < (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 < rhs, lhs.c1 < rhs); }
+
+        /// <summary>Returns the result of a componentwise less than operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise less than.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise less than.</param>
+        /// <returns>bool4x2 result of the componentwise less than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator < (int lhs, int4x2 rhs) { return new bool4x2 (lhs < rhs.c0, lhs < rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise less or equal operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise less or equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise less or equal.</param>
+        /// <returns>bool4x2 result of the componentwise less or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator <= (int4x2 lhs, int4x2 rhs) { return new bool4x2 (lhs.c0 <= rhs.c0, lhs.c1 <= rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise less or equal operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise less or equal.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise less or equal.</param>
+        /// <returns>bool4x2 result of the componentwise less or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator <= (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 <= rhs, lhs.c1 <= rhs); }
+
+        /// <summary>Returns the result of a componentwise less or equal operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise less or equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise less or equal.</param>
+        /// <returns>bool4x2 result of the componentwise less or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator <= (int lhs, int4x2 rhs) { return new bool4x2 (lhs <= rhs.c0, lhs <= rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise greater than operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise greater than.</param>
+        /// <returns>bool4x2 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator > (int4x2 lhs, int4x2 rhs) { return new bool4x2 (lhs.c0 > rhs.c0, lhs.c1 > rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise greater than operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise greater than.</param>
+        /// <returns>bool4x2 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator > (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 > rhs, lhs.c1 > rhs); }
+
+        /// <summary>Returns the result of a componentwise greater than operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise greater than.</param>
+        /// <returns>bool4x2 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator > (int lhs, int4x2 rhs) { return new bool4x2 (lhs > rhs.c0, lhs > rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise greater or equal.</param>
+        /// <returns>bool4x2 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator >= (int4x2 lhs, int4x2 rhs) { return new bool4x2 (lhs.c0 >= rhs.c0, lhs.c1 >= rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise greater or equal.</param>
+        /// <returns>bool4x2 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator >= (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 >= rhs, lhs.c1 >= rhs); }
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise greater or equal.</param>
+        /// <returns>bool4x2 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator >= (int lhs, int4x2 rhs) { return new bool4x2 (lhs >= rhs.c0, lhs >= rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise unary minus operation on an int4x2 matrix.</summary>
+        /// <param name="val">Value to use when computing the componentwise unary minus.</param>
+        /// <returns>int4x2 result of the componentwise unary minus.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator - (int4x2 val) { return new int4x2 (-val.c0, -val.c1); }
+
+
+        /// <summary>Returns the result of a componentwise unary plus operation on an int4x2 matrix.</summary>
+        /// <param name="val">Value to use when computing the componentwise unary plus.</param>
+        /// <returns>int4x2 result of the componentwise unary plus.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator + (int4x2 val) { return new int4x2 (+val.c0, +val.c1); }
+
+
+        /// <summary>Returns the result of a componentwise left shift operation on an int4x2 matrix by a number of bits specified by a single int.</summary>
+        /// <param name="x">The matrix to left shift.</param>
+        /// <param name="n">The number of bits to left shift.</param>
+        /// <returns>The result of the componentwise left shift.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator << (int4x2 x, int n) { return new int4x2 (x.c0 << n, x.c1 << n); }
+
+        /// <summary>Returns the result of a componentwise right shift operation on an int4x2 matrix by a number of bits specified by a single int.</summary>
+        /// <param name="x">The matrix to right shift.</param>
+        /// <param name="n">The number of bits to right shift.</param>
+        /// <returns>The result of the componentwise right shift.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator >> (int4x2 x, int n) { return new int4x2 (x.c0 >> n, x.c1 >> n); }
+
+        /// <summary>Returns the result of a componentwise equality operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise equality.</param>
+        /// <returns>bool4x2 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator == (int4x2 lhs, int4x2 rhs) { return new bool4x2 (lhs.c0 == rhs.c0, lhs.c1 == rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise equality operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise equality.</param>
+        /// <returns>bool4x2 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator == (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 == rhs, lhs.c1 == rhs); }
+
+        /// <summary>Returns the result of a componentwise equality operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise equality.</param>
+        /// <returns>bool4x2 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator == (int lhs, int4x2 rhs) { return new bool4x2 (lhs == rhs.c0, lhs == rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise not equal operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise not equal.</param>
+        /// <returns>bool4x2 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator != (int4x2 lhs, int4x2 rhs) { return new bool4x2 (lhs.c0 != rhs.c0, lhs.c1 != rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise not equal operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise not equal.</param>
+        /// <returns>bool4x2 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator != (int4x2 lhs, int rhs) { return new bool4x2 (lhs.c0 != rhs, lhs.c1 != rhs); }
+
+        /// <summary>Returns the result of a componentwise not equal operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise not equal.</param>
+        /// <returns>bool4x2 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool4x2 operator != (int lhs, int4x2 rhs) { return new bool4x2 (lhs != rhs.c0, lhs != rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise bitwise not operation on an int4x2 matrix.</summary>
+        /// <param name="val">Value to use when computing the componentwise bitwise not.</param>
+        /// <returns>int4x2 result of the componentwise bitwise not.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator ~ (int4x2 val) { return new int4x2 (~val.c0, ~val.c1); }
+
+
+        /// <summary>Returns the result of a componentwise bitwise and operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise and.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise and.</param>
+        /// <returns>int4x2 result of the componentwise bitwise and.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator & (int4x2 lhs, int4x2 rhs) { return new int4x2 (lhs.c0 & rhs.c0, lhs.c1 & rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise bitwise and operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise and.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise bitwise and.</param>
+        /// <returns>int4x2 result of the componentwise bitwise and.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator & (int4x2 lhs, int rhs) { return new int4x2 (lhs.c0 & rhs, lhs.c1 & rhs); }
+
+        /// <summary>Returns the result of a componentwise bitwise and operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise bitwise and.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise and.</param>
+        /// <returns>int4x2 result of the componentwise bitwise and.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator & (int lhs, int4x2 rhs) { return new int4x2 (lhs & rhs.c0, lhs & rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise bitwise or operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise or.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator | (int4x2 lhs, int4x2 rhs) { return new int4x2 (lhs.c0 | rhs.c0, lhs.c1 | rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise bitwise or operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise or.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise bitwise or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator | (int4x2 lhs, int rhs) { return new int4x2 (lhs.c0 | rhs, lhs.c1 | rhs); }
+
+        /// <summary>Returns the result of a componentwise bitwise or operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise bitwise or.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator | (int lhs, int4x2 rhs) { return new int4x2 (lhs | rhs.c0, lhs | rhs.c1); }
+
+
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on two int4x2 matrices.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise exclusive or.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise exclusive or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise exclusive or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator ^ (int4x2 lhs, int4x2 rhs) { return new int4x2 (lhs.c0 ^ rhs.c0, lhs.c1 ^ rhs.c1); }
+
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int4x2 matrix and an int value.</summary>
+        /// <param name="lhs">Left hand side int4x2 to use to compute componentwise bitwise exclusive or.</param>
+        /// <param name="rhs">Right hand side int to use to compute componentwise bitwise exclusive or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise exclusive or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator ^ (int4x2 lhs, int rhs) { return new int4x2 (lhs.c0 ^ rhs, lhs.c1 ^ rhs); }
+
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int value and an int4x2 matrix.</summary>
+        /// <param name="lhs">Left hand side int to use to compute componentwise bitwise exclusive or.</param>
+        /// <param name="rhs">Right hand side int4x2 to use to compute componentwise bitwise exclusive or.</param>
+        /// <returns>int4x2 result of the componentwise bitwise exclusive or.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 operator ^ (int lhs, int4x2 rhs) { return new int4x2 (lhs ^ rhs.c0, lhs ^ rhs.c1); }
+
+
+
+        /// <summary>Returns the int4 element at a specified index.</summary>
+        unsafe public ref int4 this[int index]
+        {
+            get
+            {
+#if ENABLE_UNITY_COLLECTIONS_CHECKS
+                if ((uint)index >= 2)
+                    throw new System.ArgumentException("index must be between[0...1]");
+#endif
+                fixed (int4x2* array = &this) { return ref ((int4*)array)[index]; }
+            }
+        }
+
+        /// <summary>Returns true if the int4x2 is equal to a given int4x2, false otherwise.</summary>
+        /// <param name="rhs">Right hand side argument to compare equality with.</param>
+        /// <returns>The result of the equality comparison.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(int4x2 rhs) { return c0.Equals(rhs.c0) && c1.Equals(rhs.c1); }
+
+        /// <summary>Returns true if the int4x2 is equal to a given int4x2, false otherwise.</summary>
+        /// <param name="o">Right hand side argument to compare equality with.</param>
+        /// <returns>The result of the equality comparison.</returns>
+        public override bool Equals(object o) { return o is int4x2 converted && Equals(converted); }
+
+
+        /// <summary>Returns a hash code for the int4x2.</summary>
+        /// <returns>The computed hash code.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode() { return (int)math.hash(this); }
+
+
+        /// <summary>Returns a string representation of the int4x2.</summary>
+        /// <returns>String representation of the value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override string ToString()
+        {
+            return string.Format("int4x2({0}, {1},  {2}, {3},  {4}, {5},  {6}, {7})", c0.x, c1.x, c0.y, c1.y, c0.z, c1.z, c0.w, c1.w);
+        }
+
+        /// <summary>Returns a string representation of the int4x2 using a specified format and culture-specific format information.</summary>
+        /// <param name="format">Format string to use during string formatting.</param>
+        /// <param name="formatProvider">Format provider to use during string formatting.</param>
+        /// <returns>String representation of the value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return string.Format("int4x2({0}, {1},  {2}, {3},  {4}, {5},  {6}, {7})", c0.x.ToString(format, formatProvider), c1.x.ToString(format, formatProvider), c0.y.ToString(format, formatProvider), c1.y.ToString(format, formatProvider), c0.z.ToString(format, formatProvider), c1.z.ToString(format, formatProvider), c0.w.ToString(format, formatProvider), c1.w.ToString(format, formatProvider));
+        }
+
+    }
+
+    public static partial class math
+    {
+        /// <summary>Returns a int4x2 matrix constructed from two int4 vectors.</summary>
+        /// <param name="c0">The matrix column c0 will be set to this value.</param>
+        /// <param name="c1">The matrix column c1 will be set to this value.</param>
+        /// <returns>int4x2 constructed from arguments.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(int4 c0, int4 c1) { return new int4x2(c0, c1); }
+
+        /// <summary>Returns a int4x2 matrix constructed from from 8 int values given in row-major order.</summary>
+        /// <param name="m00">The matrix at row 0, column 0 will be set to this value.</param>
+        /// <param name="m01">The matrix at row 0, column 1 will be set to this value.</param>
+        /// <param name="m10">The matrix at row 1, column 0 will be set to this value.</param>
+        /// <param name="m11">The matrix at row 1, column 1 will be set to this value.</param>
+        /// <param name="m20">The matrix at row 2, column 0 will be set to this value.</param>
+        /// <param name="m21">The matrix at row 2, column 1 will be set to this value.</param>
+        /// <param name="m30">The matrix at row 3, column 0 will be set to this value.</param>
+        /// <param name="m31">The matrix at row 3, column 1 will be set to this value.</param>
+        /// <returns>int4x2 constructed from arguments.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(int m00, int m01,
+                                    int m10, int m11,
+                                    int m20, int m21,
+                                    int m30, int m31)
+        {
+            return new int4x2(m00, m01,
+                              m10, m11,
+                              m20, m21,
+                              m30, m31);
+        }
+
+        /// <summary>Returns a int4x2 matrix constructed from a single int value by assigning it to every component.</summary>
+        /// <param name="v">int to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(int v) { return new int4x2(v); }
+
+        /// <summary>Returns a int4x2 matrix constructed from a single bool value by converting it to int and assigning it to every component.</summary>
+        /// <param name="v">bool to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(bool v) { return new int4x2(v); }
+
+        /// <summary>Return a int4x2 matrix constructed from a bool4x2 matrix by componentwise conversion.</summary>
+        /// <param name="v">bool4x2 to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(bool4x2 v) { return new int4x2(v); }
+
+        /// <summary>Returns a int4x2 matrix constructed from a single uint value by converting it to int and assigning it to every component.</summary>
+        /// <param name="v">uint to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(uint v) { return new int4x2(v); }
+
+        /// <summary>Return a int4x2 matrix constructed from a uint4x2 matrix by componentwise conversion.</summary>
+        /// <param name="v">uint4x2 to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(uint4x2 v) { return new int4x2(v); }
+
+        /// <summary>Returns a int4x2 matrix constructed from a single float value by converting it to int and assigning it to every component.</summary>
+        /// <param name="v">float to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(float v) { return new int4x2(v); }
+
+        /// <summary>Return a int4x2 matrix constructed from a float4x2 matrix by componentwise conversion.</summary>
+        /// <param name="v">float4x2 to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(float4x2 v) { return new int4x2(v); }
+
+        /// <summary>Returns a int4x2 matrix constructed from a single double value by converting it to int and assigning it to every component.</summary>
+        /// <param name="v">double to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(double v) { return new int4x2(v); }
+
+        /// <summary>Return a int4x2 matrix constructed from a double4x2 matrix by componentwise conversion.</summary>
+        /// <param name="v">double4x2 to convert to int4x2</param>
+        /// <returns>Converted value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int4x2 int4x2(double4x2 v) { return new int4x2(v); }
+
+        /// <summary>Return the int2x4 transpose of a int4x2 matrix.</summary>
+        /// <param name="v">Value to transpose.</param>
+        /// <returns>Transposed value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int2x4 transpose(int4x2 v)
+        {
+            return int2x4(
+                v.c0.x, v.c0.y, v.c0.z, v.c0.w,
+                v.c1.x, v.c1.y, v.c1.z, v.c1.w);
+        }
+
+        /// <summary>Returns a uint hash code of a int4x2 matrix.</summary>
+        /// <param name="v">Matrix value to hash.</param>
+        /// <returns>uint hash of the argument.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint hash(int4x2 v)
+        {
+            return csum(asuint(v.c0) * uint4(0xFAAF07DDu, 0x625C45BDu, 0xC9F27FCBu, 0x6D2523B1u) +
+                        asuint(v.c1) * uint4(0x6E2BF6A9u, 0xCC74B3B7u, 0x83B58237u, 0x833E3E29u)) + 0xA9D919BFu;
+        }
+
+        /// <summary>
+        /// Returns a uint4 vector hash code of a int4x2 matrix.
+        /// When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash
+        /// that are only reduced to a narrow uint hash at the very end instead of at every step.
+        /// </summary>
+        /// <param name="v">Matrix value to hash.</param>
+        /// <returns>uint4 hash of the argument.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint4 hashwide(int4x2 v)
+        {
+            return (asuint(v.c0) * uint4(0xC3EC1D97u, 0xB8B208C7u, 0x5D3ED947u, 0x4473BBB1u) +
+                    asuint(v.c1) * uint4(0xCBA11D5Fu, 0x685835CFu, 0xC3D32AE1u, 0xB966942Fu)) + 0xFE9856B3u;
+        }
+
+    }
+}
+                    
+   int4x2.gen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   jù      wÀ      k0        0.0.0 şÿÿÿ   î   ÿÿ¤2f,¹´ñø‹t^¼ç[Œs  K	         7  €ÿÿÿÿ     €            ¦ €² €                      E €                   Ş  €&          €           . €/          €           8   a €                   Ş  €&          €           . €/          €           † €r €                   Ş  €&      	    €           . €/      
+    €           H €« €ÿÿÿÿ   €          1  €1  €ÿÿÿÿ   @           Ş  € €                  Q  €j  €                  Õ €M   ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   À            Ş  € €                    €j  €ÿÿÿÿ   €             €›  €                   Ş  €›  €                   . €
+ €                   H €
+ €ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   @            Ş  € €                   Q  €j  €                   ñ  €e   ÿÿÿÿ   À           1  €1  €ÿÿÿÿ   €            Ş  € €                    €j  €ÿÿÿÿ   €            w   ›  €ÿÿÿÿ   €            H €   ÿÿÿÿ   €           1  €1  €ÿÿÿÿ    @            Ş  € €   !                Q  €j  €   "                H €’   ÿÿÿÿ#   €           1  €1  €ÿÿÿÿ$   @            Ş  € €   %                Q  €j  €   &                H €›   ÿÿÿÿ'   €           1  €1  €ÿÿÿÿ(   @            Ş  € €   )                Q  €j  €   *                y €
+ €   +                Ş  €&      ,    €           . €/      -    €            €    ÿÿÿÿ.   @          1  €1  €ÿÿÿÿ/               Ş  € €   0               . €j  €   1               Ş  €®      2                 Ş  €»      3                 Ş  €Ê      4                 Ş  €Ø      5                 Ş  €è      6                 Ş  €ò      7                 Ş  €     8                 ¡  €     9                 Ş  €5     :                 Ş  €O     ;                 Ş  €g     <                 Ş  €|     =                 ¡  €     >                 Ş  €     ?                 Ş  €°     @                 Ş  €½     A                 Ş  €Ğ     B                 Ş  €ë     C                 Ş  €ô     D                 Ş  €     E                 Ş  €"     F                 Ş  €4     G                 Ş  €I     H                 Ş  €[     I                 Ş  €k     J                 |       K                 Ş  €      L                 Ş  €­     M                 ¡  €µ     N                 Ş  €¿     O                 Ş  €Ç     P                 Ş  €Ï     Q                 Ş  €×     R                 Ş  €ã     S                 Ş  €î     T                 Ş  €     U                 ¦ €     V                 Ş  €      W                 Ş  €1     X                 Ü €=     Y                 ¡  €K     Z                 ¡  €M     [                 ¡  €O     \                 î €e     ]                 ¡  €K     ^                 ¡  €M     _                 ¡  €t     `                 ¡  €v     a                 Ş  €x     b                 Ş  €     c                 Ş  €ª     d                 ¡  €À     e                 Ş  €Û     f                 Ş  €é     g                 Ş  €ø     h                 Ş  €     i                 Ş  €      j                 Ş  €2     k                 Ş  €F     l                 Ş  €^     m                 Ş  €q     n                 Ş  €‚     o                 Ş  €—     p    @            Õ €©  ÿÿÿÿq    €           1  €1  €ÿÿÿÿr    À            Ş  € €   s                 ¼  j  €ÿÿÿÿt    €            H €Ü  ÿÿÿÿu    €           1  €1  €ÿÿÿÿv   @            Ş  € €   w                Q  €j  €   x                Ş  €k     y                 Ş  €ê     z                 Ş  €[     {                 Ş  €ü     |                 Ş  €î     }                 L  €     ~                 L  €'                      L  €>     €    @            Ş  €K                      L  €i     ‚                 “  §  ÿÿÿÿƒ    €            Õ €µ  ÿÿÿÿ„    €           1  €1  €ÿÿÿÿ…    À            Ş  € €   †                 ¿  j  €ÿÿÿÿ‡    €            H €« €ÿÿÿÿˆ    €           1  €1  €ÿÿÿÿ‰   @            Ş  € €   Š                Q  €j  €   ‹                ñ €Î     Œ                 ¡  €K                      ¡  €M                      ¡  €Õ                      ¡  €Û                      Ş  €1     ‘                 Ü €â     ’                 ¡  €K     “                 ¡  €M     ”                 î €ê     •                 ¡  €K     –                 ¡  €M     —                 ¡  €t     ˜                 ¡  €v     ™                 Õ €ó  ÿÿÿÿš    €           1  €1  €ÿÿÿÿ›    À            Ş  € €   œ                 Õ €j  €ÿÿÿÿ    €           1  €1  €ÿÿÿÿ    @           	 Ş  € €   Ÿ                	 Ü €j  €                    
+ ¡  €K     ¡                
+ ¡  €M     ¢                 Õ €ı  ÿÿÿÿ£    €           1  €1  €ÿÿÿÿ¤    À            Ş  € €   ¥                 Õ €j  €ÿÿÿÿ¦    €           1  €1  €ÿÿÿÿ§    @           	 Ş  € €   ¨                	 Ü €j  €   ©                
+ ¡  €K     ª                
+ ¡  €M     «                 ¡  €     ¬                 Õ €!  ÿÿÿÿ­    €           1  €1  €ÿÿÿÿ®    À            Ş  € €   ¯                 )  j  €ÿÿÿÿ°    €            H €›   ÿÿÿÿ±    À           	1  €1  €ÿÿÿÿ²   @           
+ Ş  € €   ³               
+ Q  €j  €   ´                H €4  ÿÿÿÿµ    À           	1  €1  €ÿÿÿÿ¶   @           
+ Ş  € €   ·               
+ Q  €j  €   ¸                å €9     ¹                	 ¡  €K     º                	 ¡  €M     »                	 ¡  €t     ¼                 å €B     ½                	 ¡  €K     ¾                	 ¡  €M     ¿                	 ¡  €t     À                	 ¡  €v     Á                 ¡  €K     Â                 Ş  €R     Ã                 V  €[     Ä                	 ¦ €a     Å                H €f  ÿÿÿÿÆ    €           1  €1  €ÿÿÿÿÇ   @            Ş  € €   È                Q  €j  €   É                . €q     Ê                 Õ €~  ÿÿÿÿË    €           1  €1  €ÿÿÿÿÌ    @            Ş  € €   Í                 Ü €j  €   Î                 ¡  €K     Ï                 ¡  €M     Ğ                 Õ €‰  ÿÿÿÿÑ    €           1  €1  €ÿÿÿÿÒ    @            Ş  € €   Ó                 Ş  €j  €   Ô                 Õ €“  ÿÿÿÿÕ    À           1  €1  €ÿÿÿÿÖ    @            Ş  € €   ×                 ! €j  €   Ø                 Ş  €K     Ù                 Ş  €M     Ú                 Õ €›  ÿÿÿÿÛ    À           1  €1  €ÿÿÿÿÜ    @            Ş  € €   İ                 ¥  j  €    Ş                 ¡  €²     ß                 ¡  €¼     à                 ¡  €Æ     á                 ¡  €Ğ     â                 Ş  €Ú     ã                 Ş  €ç     ä                 Ş  €ô     å                 Ş  €     æ                 Õ €ó  ÿÿÿÿç    €           1  €1  €ÿÿÿÿè    À            Ş  € €   é                 Õ €j  €ÿÿÿÿê    €           1  €1  €ÿÿÿÿë    @            Ş  € €   ì                 Ü €j  €   í                 ¡  €K     î                 ¡  €M     ï                 Õ €ı  ÿÿÿÿğ    €           1  €1  €ÿÿÿÿñ    À            Ş  € €   ò                 Õ €j  €ÿÿÿÿó    €           1  €1  €ÿÿÿÿô    @            Ş  € €   õ                 Ü €j  €   ö                 ¡  €K     ÷                 ¡  €M     ø                 Õ €!  ÿÿÿÿù    €           1  €1  €ÿÿÿÿú    À            Ş  € €   û                 )  j  €ÿÿÿÿü    €            H €›   ÿÿÿÿı    À           1  €1  €ÿÿÿÿş   @

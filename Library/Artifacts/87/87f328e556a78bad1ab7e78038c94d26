@@ -1,0 +1,292 @@
+645F1DA9F8" />
+      <Delta>
+        <Source type="RAW" offset="38094857" length="6944">
+          <Hash alg="SHA256" value="760188095345E1A98DFF126AAC99C7C495C1551EDB0CBE94970717645F1DA9F8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13784" name="wow64_microsoft-windows-u..etry-client-wowonly_31bf3856ad364e35_10.0.22621.1635_none_765f3f7fc1cac82a\f\dtdump.exe" length="4781" time="133332706930000000" attr="128">
+      <Hash alg="SHA256" value="0750EECD17F5DD9BBE988ED2098DC2176B5A263109886DA9DA1C865904581313" />
+      <Delta>
+        <Source type="RAW" offset="38101801" length="4781">
+          <Hash alg="SHA256" value="0750EECD17F5DD9BBE988ED2098DC2176B5A263109886DA9DA1C865904581313" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13785" name="wow64_microsoft-windows-u..etry-client-wowonly_31bf3856ad364e35_10.0.22621.1635_none_765f3f7fc1cac82a\f\utcapi.dll" length="3377" time="133332706930000000" attr="128">
+      <Hash alg="SHA256" value="9B8637CB6B9A4F624654D0D3005393679BC89AB1B1F224AB1196E731383CC809" />
+      <Delta>
+        <Source type="RAW" offset="38106582" length="3377">
+          <Hash alg="SHA256" value="9B8637CB6B9A4F624654D0D3005393679BC89AB1B1F224AB1196E731383CC809" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13786" name="wow64_microsoft-windows-u..etry-client-wowonly_31bf3856ad364e35_10.0.22621.1635_none_765f3f7fc1cac82a\f\diagnosticdataquery.dll" length="181" time="133332706930000000" attr="128">
+      <Hash alg="SHA256" value="00518EC7A0AB4D0096F53BEE120138C7428D5EA6EE6EB68AD8DC16E4FE658AE8" />
+      <Delta>
+        <Source type="RAW" offset="38109959" length="181">
+          <Hash alg="SHA256" value="00518EC7A0AB4D0096F53BEE120138C7428D5EA6EE6EB68AD8DC16E4FE658AE8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13787" name="amd64_microsoft-windows-unp_31bf3856ad364e35_10.0.22621.1635_none_8ccd9661d420b938\f\unpuxhost.exe" length="3486" time="133332707140000000" attr="128">
+      <Hash alg="SHA256" value="C2D11F51ECB4F81006595C8F35D0F192160231C637FEC14CFFCB7F4A765394B0" />
+      <Delta>
+        <Source type="RAW" offset="38110140" length="3486">
+          <Hash alg="SHA256" value="C2D11F51ECB4F81006595C8F35D0F192160231C637FEC14CFFCB7F4A765394B0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13788" name="amd64_microsoft-windows-unp_31bf3856ad364e35_10.0.22621.1635_none_8ccd9661d420b938\f\updatenotificationhelpers.dll" length="3479" time="133332707140000000" attr="128">
+      <Hash alg="SHA256" value="5DB4F8533CC3E90D2D7475D04C6BDC0A2E9C223045F27790823D57B5682D2071" />
+      <Delta>
+        <Source type="RAW" offset="38113626" length="3479">
+          <Hash alg="SHA256" value="5DB4F8533CC3E90D2D7475D04C6BDC0A2E9C223045F27790823D57B5682D2071" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13789" name="amd64_microsoft-windows-unp_31bf3856ad364e35_10.0.22621.1635_none_8ccd9661d420b938\f\unpux.dll" length="5403" time="133332707140000000" attr="128">
+      <Hash alg="SHA256" value="B5B6187AB293493CC28DEF5EFCEB0E30859FE6317DF440F3F37F9EB9E58EB33B" />
+      <Delta>
+        <Source type="RAW" offset="38117105" length="5403">
+          <Hash alg="SHA256" value="B5B6187AB293493CC28DEF5EFCEB0E30859FE6317DF440F3F37F9EB9E58EB33B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13790" name="amd64_microsoft-windows-unp_31bf3856ad364e35_10.0.22621.1635_none_8ccd9661d420b938\f\updatenotificationmgr.exe" length="3547" time="133332707140000000" attr="128">
+      <Hash alg="SHA256" value="C0056BE6FC779477ACA49E838CE7DCE7ED714D4FF22F696FA3CF5C3FE9B7456C" />
+      <Delta>
+        <Source type="RAW" offset="38122508" length="3547">
+          <Hash alg="SHA256" value="C0056BE6FC779477ACA49E838CE7DCE7ED714D4FF22F696FA3CF5C3FE9B7456C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13791" name="amd64_microsoft-windows-unp_31bf3856ad364e35_10.0.22621.1635_none_8ccd9661d420b938\f\unpuxlauncher.exe" length="3686" time="133332707140000000" attr="128">
+      <Hash alg="SHA256" value="DA53A509EF3C0222E552CA9FA73F18314EFACD4605B285668B3226FA7FF7DEFA" />
+      <Delta>
+        <Source type="RAW" offset="38126055" length="3686">
+          <Hash alg="SHA256" value="DA53A509EF3C0222E552CA9FA73F18314EFACD4605B285668B3226FA7FF7DEFA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13792" name="amd64_microsoft-windows-update-museuxdocked_31bf3856ad364e35_10.0.22621.1635_none_055d576896b0b7d6\f\museuxdocked.dll" length="1022" time="133332707090000000" attr="128">
+      <Hash alg="SHA256" value="5095489E395D2EBAD2128DBFFE6B1B8BE512E5C107017160C7412DC76AA5CAE1" />
+      <Delta>
+        <Source type="RAW" offset="38129741" length="1022">
+          <Hash alg="SHA256" value="5095489E395D2EBAD2128DBFFE6B1B8BE512E5C107017160C7412DC76AA5CAE1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13793" name="amd64_microsoft-windows-update-orchestratorapi_31bf3856ad364e35_10.0.22621.1635_none_197e4a5ac3db087f\f\usoapi.dll" length="18241" time="133332707080000000" attr="128">
+      <Hash alg="SHA256" value="A4E112087CD37EA828A4A6EC66E9D279DE075CE595C03A3C46158AB899902DB3" />
+      <Delta>
+        <Source type="RAW" offset="38130763" length="18241">
+          <Hash alg="SHA256" value="A4E112087CD37EA828A4A6EC66E9D279DE075CE595C03A3C46158AB899902DB3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13794" name="wow64_microsoft-windows-update-orchestratorapi_31bf3856ad364e35_10.0.22621.1635_none_23d2f4acf83bca7a\f\usoapi.dll" length="12270" time="133332707100000000" attr="128">
+      <Hash alg="SHA256" value="E8ADD28C3ABAF260B8DE90C63497FC77D8289E1238C5AEA8F5F2C631717937EA" />
+      <Delta>
+        <Source type="RAW" offset="38149004" length="12270">
+          <Hash alg="SHA256" value="E8ADD28C3ABAF260B8DE90C63497FC77D8289E1238C5AEA8F5F2C631717937EA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13795" name="amd64_microsoft-windows-u..-orchestratordocked_31bf3856ad364e35_10.0.22621.1635_none_ee038353f80d8e55\f\usodocked.dll" length="43658" time="133332707090000000" attr="128">
+      <Hash alg="SHA256" value="B87038B3AB99577FFE8E3F4CA5AEE80C1614FCAFC948A342699293494CBA9D20" />
+      <Delta>
+        <Source type="RAW" offset="38161274" length="43658">
+          <Hash alg="SHA256" value="B87038B3AB99577FFE8E3F4CA5AEE80C1614FCAFC948A342699293494CBA9D20" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13796" name="amd64_microsoft-windows-upnpssdp_31bf3856ad364e35_10.0.22621.1635_none_5f9c1e574cdd22e4\f\ssdpsrv.dll" length="292" time="133332706750000000" attr="128">
+      <Hash alg="SHA256" value="0A4F5E2B0A5A0C7C038C06A8267ECBDF759C40A59C0FCC2A2A2ACC7872C96F0E" />
+      <Delta>
+        <Source type="RAW" offset="38204932" length="292">
+          <Hash alg="SHA256" value="0A4F5E2B0A5A0C7C038C06A8267ECBDF759C40A59C0FCC2A2A2ACC7872C96F0E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13797" name="amd64_microsoft-windows-upnpssdp_31bf3856ad364e35_10.0.22621.1635_none_5f9c1e574cdd22e4\f\ssdpapi.dll" length="168" time="133332706750000000" attr="128">
+      <Hash alg="SHA256" value="333811C4B7DB37D33EA1F4FC5F6A8CBEEC258225413125D6C372B1CE9C269B9B" />
+      <Delta>
+        <Source type="RAW" offset="38205224" length="168">
+          <Hash alg="SHA256" value="333811C4B7DB37D33EA1F4FC5F6A8CBEEC258225413125D6C372B1CE9C269B9B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13798" name="amd64_microsoft-windows-upnpssdp-server_31bf3856ad364e35_10.0.22621.1635_none_dac6a6a0670c187a\f\ssdpsrv.dll" length="292" time="133332706750000000" attr="128">
+      <Hash alg="SHA256" value="0A4F5E2B0A5A0C7C038C06A8267ECBDF759C40A59C0FCC2A2A2ACC7872C96F0E" />
+      <Delta>
+        <Source type="RAW" offset="38205392" length="292">
+          <Hash alg="SHA256" value="0A4F5E2B0A5A0C7C038C06A8267ECBDF759C40A59C0FCC2A2A2ACC7872C96F0E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13799" name="amd64_microsoft-windows-upnpssdp-server_31bf3856ad364e35_10.0.22621.1635_none_dac6a6a0670c187a\f\ssdpapi.dll" length="168" time="133332706750000000" attr="128">
+      <Hash alg="SHA256" value="333811C4B7DB37D33EA1F4FC5F6A8CBEEC258225413125D6C372B1CE9C269B9B" />
+      <Delta>
+        <Source type="RAW" offset="38205684" length="168">
+          <Hash alg="SHA256" value="333811C4B7DB37D33EA1F4FC5F6A8CBEEC258225413125D6C372B1CE9C269B9B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13800" name="amd64_microsoft-windows-u..ountcontrolsettings_31bf3856ad364e35_10.0.22621.1635_none_6377bd57544062a9\f\useraccountcontrolsettings.exe" length="234" time="133332707120000000" attr="128">
+      <Hash alg="SHA256" value="B1FF7A16BCEB336A0400B3EDE730F8F9F9ACC57C45C0F551B8210BEE9A8FB748" />
+      <Delta>
+        <Source type="RAW" offset="38205852" length="234">
+          <Hash alg="SHA256" value="B1FF7A16BCEB336A0400B3EDE730F8F9F9ACC57C45C0F551B8210BEE9A8FB748" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13801" name="amd64_microsoft-windows-u..ountcontrolsettings_31bf3856ad364e35_10.0.22621.1635_none_6377bd57544062a9\f\useraccountcontrolsettings.dll" length="164" time="133332707120000000" attr="128">
+      <Hash alg="SHA256" value="B284A7888C5218817B3B8C0BF329E404E4CFA7CE212B0147B37C68C0D0FB47D9" />
+      <Delta>
+        <Source type="RAW" offset="38206086" length="164">
+          <Hash alg="SHA256" value="B284A7888C5218817B3B8C0BF329E404E4CFA7CE212B0147B37C68C0D0FB47D9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13802" name="wow64_microsoft-windows-u..ountcontrolsettings_31bf3856ad364e35_10.0.22621.1635_none_6dcc67a988a124a4\f\useraccountcontrolsettings.exe" length="253" time="133332707070000000" attr="128">
+      <Hash alg="SHA256" value="B2917735EFC104CF09BA8D821BBCA836424ACFD29FFEFB6236C445906EB77677" />
+      <Delta>
+        <Source type="RAW" offset="38206250" length="253">
+          <Hash alg="SHA256" value="B2917735EFC104CF09BA8D821BBCA836424ACFD29FFEFB6236C445906EB77677" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13803" name="wow64_microsoft-windows-u..ountcontrolsettings_31bf3856ad364e35_10.0.22621.1635_none_6dcc67a988a124a4\f\useraccountcontrolsettings.dll" length="186" time="133332707070000000" attr="128">
+      <Hash alg="SHA256" value="B5750EE18973300E8AD3829CEFD9200FB4519A09BF83DCEB833D2BE20183C4FC" />
+      <Delta>
+        <Source type="RAW" offset="38206503" length="186">
+          <Hash alg="SHA256" value="B5750EE18973300E8AD3829CEFD9200FB4519A09BF83DCEB833D2BE20183C4FC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13804" name="amd64_microsoft-windows-useractivitybroker_31bf3856ad364e35_10.0.22621.1635_none_9fdcb19088a0dc1c\f\useractivitybroker.dll" length="250" time="133332707030000000" attr="128">
+      <Hash alg="SHA256" value="E42BA14000180C37DFC01728B6556FA8E63B3C8D3B5C44CAA573BE12BF67748F" />
+      <Delta>
+        <Source type="RAW" offset="38206689" length="250">
+          <Hash alg="SHA256" value="E42BA14000180C37DFC01728B6556FA8E63B3C8D3B5C44CAA573BE12BF67748F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13805" name="wow64_microsoft-windows-useractivitybroker_31bf3856ad364e35_10.0.22621.1635_none_aa315be2bd019e17\f\useractivitybroker.dll" length="268" time="133332706690000000" attr="128">
+      <Hash alg="SHA256" value="0BE42F6FAF690105889C28424DCCE5697C6AA8D061ED2D4222A67801DA750555" />
+      <Delta>
+        <Source type="RAW" offset="38206939" length="268">
+          <Hash alg="SHA256" value="0BE42F6FAF690105889C28424DCCE5697C6AA8D061ED2D4222A67801DA750555" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13806" name="amd64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_f92be74f2036edaf\f\dsregtask.dll" length="157" time="133332706770000000" attr="128">
+      <Hash alg="SHA256" value="7668BAC00D810DEE37C429FB8E037CA74E22B3E59DF72975FEEC58F4EC3D81B1" />
+      <Delta>
+        <Source type="RAW" offset="38207207" length="157">
+          <Hash alg="SHA256" value="7668BAC00D810DEE37C429FB8E037CA74E22B3E59DF72975FEEC58F4EC3D81B1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13807" name="amd64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_f92be74f2036edaf\f\dsreg.dll" length="16686" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="29C7043CB13303B977E2D796D3F74FE508E516404728D2940BC7353BE72E7B5B" />
+      <Delta>
+        <Source type="RAW" offset="38207364" length="16686">
+          <Hash alg="SHA256" value="29C7043CB13303B977E2D796D3F74FE508E516404728D2940BC7353BE72E7B5B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13808" name="amd64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_f92be74f2036edaf\f\userdeviceregistration.ngc.dll" length="170" time="133332706780000000" attr="128">
+      <Hash alg="SHA256" value="0B4723B9A593C67ACDC78A259EB55D5B3295065437A96E5B05875B58E201C260" />
+      <Delta>
+        <Source type="RAW" offset="38224050" length="170">
+          <Hash alg="SHA256" value="0B4723B9A593C67ACDC78A259EB55D5B3295065437A96E5B05875B58E201C260" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13809" name="amd64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_f92be74f2036edaf\f\dsregcmd.exe" length="181" time="133332706780000000" attr="128">
+      <Hash alg="SHA256" value="ABE219BD3124D3AD300B8BD328B5A61EE60424ACF6B0ED3FFEE8BA9F869F2F97" />
+      <Delta>
+        <Source type="RAW" offset="38224220" length="181">
+          <Hash alg="SHA256" value="ABE219BD3124D3AD300B8BD328B5A61EE60424ACF6B0ED3FFEE8BA9F869F2F97" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13810" name="amd64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_f92be74f2036edaf\f\userdeviceregistration.dll" length="166" time="133332706780000000" attr="128">
+      <Hash alg="SHA256" value="6DBE6DC3ACC79980C8593837DE527C4F307B741A28DC4D0DDBD18EA894B92B41" />
+      <Delta>
+        <Source type="RAW" offset="38224401" length="166">
+          <Hash alg="SHA256" value="6DBE6DC3ACC79980C8593837DE527C4F307B741A28DC4D0DDBD18EA894B92B41" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13811" name="wow64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_038091a15497afaa\f\userdeviceregistration.dll" length="188" time="133332706680000000" attr="128">
+      <Hash alg="SHA256" value="B10F0E2D6D6FFD588077F0C3569FDAF026F5850B3FE4ABEC7A6708B09E14D993" />
+      <Delta>
+        <Source type="RAW" offset="38224567" length="188">
+          <Hash alg="SHA256" value="B10F0E2D6D6FFD588077F0C3569FDAF026F5850B3FE4ABEC7A6708B09E14D993" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13812" name="wow64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_038091a15497afaa\f\userdeviceregistration.ngc.dll" length="190" time="133332706690000000" attr="128">
+      <Hash alg="SHA256" value="743C8412F47F537D6618DB06D3805C4EA5B524FD9F8541AA61A1A211315203A7" />
+      <Delta>
+        <Source type="RAW" offset="38224755" length="190">
+          <Hash alg="SHA256" value="743C8412F47F537D6618DB06D3805C4EA5B524FD9F8541AA61A1A211315203A7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13813" name="wow64_microsoft-windows-userdeviceregistration_31bf3856ad364e35_10.0.22621.1635_none_038091a15497afaa\f\dsreg.dll" length="7042" time="133332706700000000" attr="128">
+      <Hash alg="SHA256" value="C5EFAAE856D2BA404C4DFF8BFCBA058F9EE3A381BF1DECF2C3BFD8567E1E6C80" />
+      <Delta>
+        <Source type="RAW" offset="38224945" length="7042">
+          <Hash alg="SHA256" value="C5EFAAE856D2BA404C4DFF8BFCBA058F9EE3A381BF1DECF2C3BFD8567E1E6C80" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13814" name="amd64_microsoft-windows-u..eregistration-winpe_31bf3856ad364e35_10.0.22621.1635_none_32ccd5b9e37b788d\f\dsreg.dll" length="16686" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="29C7043CB13303B977E2D796D3F74FE508E516404728D2940BC7353BE72E7B5B" />
+      <Delta>
+        <Source type="RAW" offset="38231987" length="16686">
+          <Hash alg="SHA256" value="29C7043CB13303B977E2D796D3F74FE508E516404728D2940BC7353BE72E7B5B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13815" name="amd64_microsoft-windows-u..ce-client-overrides_31bf3856ad364e35_10.0.22621.1635_none_9c24c3bf7bcf7c49\f\umpo-overrides.dll" length="243" time="133332706930000000" attr="128">
+      <Hash alg="SHA256" value="21D12E6CB1369E39ECB53D08FA07B2AC3C748BD52455CC454D41FF39F2EFC160" />
+      <Delta>
+        <Source type="RAW" offset="38248673" length="243">
+          <Hash alg="SHA256" value="21D12E6CB1369E39ECB53D08FA07B2AC3C748BD52455CC454D41FF39F2EFC160" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13816" name="amd64_microsoft-windows-u..rservice-extensions_31bf3856ad364e35_10.0.22621.1635_none_ac61a941a1c790ae\f\umpoext.dll" length="264" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="32B4051C70B75718DADF227DE92672E6BBBF1ED191FDF6B296C4DFBA07EA503D" />
+      <Delta>
+        <Source type="RAW" offset="38248916" length="264">
+          <Hash alg="SHA256" value="32B4051C70B75718DADF227DE92672E6BBBF1ED191FDF6B296C4DFBA07EA503D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13817" name="amd64_microsoft-windows-u..rservice-extensions_31bf3856ad364e35_10.0.22621.1635_none_ac61a941a1c790ae\f\umpodev.dll" length="159" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="DDF92DB2302CAEB97B5052708BDF457BD4541DBBD1B7C80C26AF800654A09D71" />
+      <Delta>
+        <Source type="RAW" offset="38249180" length="159">
+          <Hash alg="SHA256" value="DDF92DB2302CAEB97B5052708BDF457BD4541DBBD1B7C80C26AF800654A09D71" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13818" name="amd64_microsoft-windows-uxinit_31bf3856ad364e35_10.0.22621.1635_none_3d289c0967d777b0\f\uxinit.dll" length="270" time="133332706920000000" attr="128">
+      <Hash alg="SHA256" value="364D282955823227D62BF835275F18094C420810C3A556623EEDE97A5AEB7702" />
+      <Delta>
+        <Source type="RAW" offset="38249339" length="270">
+          <Hash alg="SHA256" value="364D282955823227D62BF835275F18094C420810C3A556623EEDE97A5AEB7702" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13819" name="wow64_microsoft-windows-uxinit_31bf3856ad364e35_10.0.22621.1635_none_477d465b9c3839ab\f\uxinit.dll" length="274" time="133332707020000000" attr="128">
+      <Hash alg="SHA256" value="8710389E76B7B23B3C30E765CCCAA3A62A4CEC089D401479B1FF54FD391297D3" />
+      <Delta>
+        <Source type="RAW" offset="38249609" length="274">
+          <Hash alg="SHA256" value="8710389E7

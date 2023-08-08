@@ -1,0 +1,67 @@
+f <paramref name="d" />Returns Positive The base 10 log of <paramref name="d" />; that is, log 10<paramref name="d" />. Zero <see cref="F:System.Double.NegativeInfinity" />Negative <see cref="F:System.Double.NaN" />If <paramref name="d" /> is equal to <see cref="F:System.Double.NaN" />, this method returns <see cref="F:System.Double.NaN" />. If <paramref name="d" /> is equal to <see cref="F:System.Double.PositiveInfinity" />, this method returns <see cref="F:System.Double.PositiveInfinity" />.</returns>
+      <param name="d">A number whose logarithm is to be found. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Byte,System.Byte)">
+      <summary>Returns the larger of two 8-bit unsigned integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 8-bit unsigned integers to compare. </param>
+      <param name="val2">The second of two 8-bit unsigned integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Decimal,System.Decimal)">
+      <summary>Returns the larger of two decimal numbers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two <see cref="T:System.Decimal" /> numbers to compare. </param>
+      <param name="val2">The second of two <see cref="T:System.Decimal" /> numbers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Double,System.Double)">
+      <summary>Returns the larger of two double-precision floating-point numbers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger. If <paramref name="val1" />, <paramref name="val2" />, or both <paramref name="val1" /> and <paramref name="val2" /> are equal to <see cref="F:System.Double.NaN" />, <see cref="F:System.Double.NaN" /> is returned.</returns>
+      <param name="val1">The first of two double-precision floating-point numbers to compare. </param>
+      <param name="val2">The second of two double-precision floating-point numbers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Int16,System.Int16)">
+      <summary>Returns the larger of two 16-bit signed integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 16-bit signed integers to compare. </param>
+      <param name="val2">The second of two 16-bit signed integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Int32,System.Int32)">
+      <summary>Returns the larger of two 32-bit signed integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 32-bit signed integers to compare. </param>
+      <param name="val2">The second of two 32-bit signed integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Int64,System.Int64)">
+      <summary>Returns the larger of two 64-bit signed integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 64-bit signed integers to compare. </param>
+      <param name="val2">The second of two 64-bit signed integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.SByte,System.SByte)">
+      <summary>Returns the larger of two 8-bit signed integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 8-bit signed integers to compare. </param>
+      <param name="val2">The second of two 8-bit signed integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.Single,System.Single)">
+      <summary>Returns the larger of two single-precision floating-point numbers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger. If <paramref name="val1" />, or <paramref name="val2" />, or both <paramref name="val1" /> and <paramref name="val2" /> are equal to <see cref="F:System.Single.NaN" />, <see cref="F:System.Single.NaN" /> is returned.</returns>
+      <param name="val1">The first of two single-precision floating-point numbers to compare. </param>
+      <param name="val2">The second of two single-precision floating-point numbers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Math.Max(System.UInt16,System.UInt16)">
+      <summary>Returns the larger of two 16-bit unsigned integers.</summary>
+      <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+      <param name="val1">The first of two 16-bit unsigned integers to compare. </param>
+      <param name="val2">The second of two 16-bit unsigned integers to compare. </param>
+      <filterpriority>1</filterpriority>
+    </member

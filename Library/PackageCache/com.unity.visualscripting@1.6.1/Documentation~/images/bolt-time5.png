@@ -1,0 +1,297 @@
+hs.x, lhs.y <= rhs.y, lhs.z <= rhs.z); }
+
+        /// <summary>Returns the result of a componentwise less or equal operation on a double3 vector and a double value.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise less or equal.</param>
+        /// <param name="rhs">Right hand side double to use to compute componentwise less or equal.</param>
+        /// <returns>bool3 result of the componentwise less or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator <= (double3 lhs, double rhs) { return new bool3 (lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs); }
+
+        /// <summary>Returns the result of a componentwise less or equal operation on a double value and a double3 vector.</summary>
+        /// <param name="lhs">Left hand side double to use to compute componentwise less or equal.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise less or equal.</param>
+        /// <returns>bool3 result of the componentwise less or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator <= (double lhs, double3 rhs) { return new bool3 (lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z); }
+
+
+        /// <summary>Returns the result of a componentwise greater than operation on two double3 vectors.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise greater than.</param>
+        /// <returns>bool3 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator > (double3 lhs, double3 rhs) { return new bool3 (lhs.x > rhs.x, lhs.y > rhs.y, lhs.z > rhs.z); }
+
+        /// <summary>Returns the result of a componentwise greater than operation on a double3 vector and a double value.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side double to use to compute componentwise greater than.</param>
+        /// <returns>bool3 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator > (double3 lhs, double rhs) { return new bool3 (lhs.x > rhs, lhs.y > rhs, lhs.z > rhs); }
+
+        /// <summary>Returns the result of a componentwise greater than operation on a double value and a double3 vector.</summary>
+        /// <param name="lhs">Left hand side double to use to compute componentwise greater than.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise greater than.</param>
+        /// <returns>bool3 result of the componentwise greater than.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator > (double lhs, double3 rhs) { return new bool3 (lhs > rhs.x, lhs > rhs.y, lhs > rhs.z); }
+
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on two double3 vectors.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise greater or equal.</param>
+        /// <returns>bool3 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator >= (double3 lhs, double3 rhs) { return new bool3 (lhs.x >= rhs.x, lhs.y >= rhs.y, lhs.z >= rhs.z); }
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on a double3 vector and a double value.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side double to use to compute componentwise greater or equal.</param>
+        /// <returns>bool3 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator >= (double3 lhs, double rhs) { return new bool3 (lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs); }
+
+        /// <summary>Returns the result of a componentwise greater or equal operation on a double value and a double3 vector.</summary>
+        /// <param name="lhs">Left hand side double to use to compute componentwise greater or equal.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise greater or equal.</param>
+        /// <returns>bool3 result of the componentwise greater or equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator >= (double lhs, double3 rhs) { return new bool3 (lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z); }
+
+
+        /// <summary>Returns the result of a componentwise unary minus operation on a double3 vector.</summary>
+        /// <param name="val">Value to use when computing the componentwise unary minus.</param>
+        /// <returns>double3 result of the componentwise unary minus.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double3 operator - (double3 val) { return new double3 (-val.x, -val.y, -val.z); }
+
+
+        /// <summary>Returns the result of a componentwise unary plus operation on a double3 vector.</summary>
+        /// <param name="val">Value to use when computing the componentwise unary plus.</param>
+        /// <returns>double3 result of the componentwise unary plus.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double3 operator + (double3 val) { return new double3 (+val.x, +val.y, +val.z); }
+
+
+        /// <summary>Returns the result of a componentwise equality operation on two double3 vectors.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator == (double3 lhs, double3 rhs) { return new bool3 (lhs.x == rhs.x, lhs.y == rhs.y, lhs.z == rhs.z); }
+
+        /// <summary>Returns the result of a componentwise equality operation on a double3 vector and a double value.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side double to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator == (double3 lhs, double rhs) { return new bool3 (lhs.x == rhs, lhs.y == rhs, lhs.z == rhs); }
+
+        /// <summary>Returns the result of a componentwise equality operation on a double value and a double3 vector.</summary>
+        /// <param name="lhs">Left hand side double to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator == (double lhs, double3 rhs) { return new bool3 (lhs == rhs.x, lhs == rhs.y, lhs == rhs.z); }
+
+
+        /// <summary>Returns the result of a componentwise not equal operation on two double3 vectors.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator != (double3 lhs, double3 rhs) { return new bool3 (lhs.x != rhs.x, lhs.y != rhs.y, lhs.z != rhs.z); }
+
+        /// <summary>Returns the result of a componentwise not equal operation on a double3 vector and a double value.</summary>
+        /// <param name="lhs">Left hand side double3 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side double to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator != (double3 lhs, double rhs) { return new bool3 (lhs.x != rhs, lhs.y != rhs, lhs.z != rhs); }
+
+        /// <summary>Returns the result of a componentwise not equal operation on a double value and a double3 vector.</summary>
+        /// <param name="lhs">Left hand side double to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side double3 to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool3 operator != (double lhs, double3 rhs) { return new bool3 (lhs != rhs.x, lhs != rhs.y, lhs != rhs.z); }
+
+
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxxx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, x, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxxy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, x, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxxz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, x, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxyx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, y, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxyy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, y, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxyz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, y, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxzx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, z, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxzy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, z, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxzz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, z, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyyx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, y, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyyy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, y, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyyz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, y, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyzx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, z, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyzy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, z, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyzz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, z, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xzxx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, z, x, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xzxy
+        {
+            [MethodImpl(MethodImplOpt

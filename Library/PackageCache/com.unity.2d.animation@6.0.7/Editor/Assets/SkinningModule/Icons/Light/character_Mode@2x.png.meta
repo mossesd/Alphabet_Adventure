@@ -1,0 +1,58 @@
+    OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL = 5797,
+    OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL = 5798,
+    OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL = 5799,
+    OpSubgroupAvcSicSetBilinearFilterEnableINTEL = 5800,
+    OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL = 5801,
+    OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL = 5802,
+    OpSubgroupAvcSicEvaluateIpeINTEL = 5803,
+    OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL = 5804,
+    OpSubgroupAvcSicEvaluateWithDualReferenceINTEL = 5805,
+    OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL = 5806,
+    OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL = 5807,
+    OpSubgroupAvcSicConvertToMceResultINTEL = 5808,
+    OpSubgroupAvcSicGetIpeLumaShapeINTEL = 5809,
+    OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL = 5810,
+    OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL = 5811,
+    OpSubgroupAvcSicGetPackedIpeLumaModesINTEL = 5812,
+    OpSubgroupAvcSicGetIpeChromaModeINTEL = 5813,
+    OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL = 5814,
+    OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL = 5815,
+    OpSubgroupAvcSicGetInterRawSadsINTEL = 5816,
+    OpMax = 0x7fffffff,
+};
+
+#ifdef SPV_ENABLE_UTILITY_CODE
+inline void HasResultAndType(Op opcode, bool *hasResult, bool *hasResultType) {
+    *hasResult = *hasResultType = false;
+    switch (opcode) {
+    default: /* unknown opcode */ break;
+    case OpNop: *hasResult = false; *hasResultType = false; break;
+    case OpUndef: *hasResult = true; *hasResultType = true; break;
+    case OpSourceContinued: *hasResult = false; *hasResultType = false; break;
+    case OpSource: *hasResult = false; *hasResultType = false; break;
+    case OpSourceExtension: *hasResult = false; *hasResultType = false; break;
+    case OpName: *hasResult = false; *hasResultType = false; break;
+    case OpMemberName: *hasResult = false; *hasResultType = false; break;
+    case OpString: *hasResult = true; *hasResultType = false; break;
+    case OpLine: *hasResult = false; *hasResultType = false; break;
+    case OpExtension: *hasResult = false; *hasResultType = false; break;
+    case OpExtInstImport: *hasResult = true; *hasResultType = false; break;
+    case OpExtInst: *hasResult = true; *hasResultType = true; break;
+    case OpMemoryModel: *hasResult = false; *hasResultType = false; break;
+    case OpEntryPoint: *hasResult = false; *hasResultType = false; break;
+    case OpExecutionMode: *hasResult = false; *hasResultType = false; break;
+    case OpCapability: *hasResult = false; *hasResultType = false; break;
+    case OpTypeVoid: *hasResult = true; *hasResultType = false; break;
+    case OpTypeBool: *hasResult = true; *hasResultType = false; break;
+    case OpTypeInt: *hasResult = true; *hasResultType = false; break;
+    case OpTypeFloat: *hasResult = true; *hasResultType = false; break;
+    case OpTypeVector: *hasResult = true; *hasResultType = false; break;
+    case OpTypeMatrix: *hasResult = true; *hasResultType = false; break;
+    case OpTypeImage: *hasResult = true; *hasResultType = false; break;
+    case OpTypeSampler: *hasResult = true; *hasResultType = false; break;
+    case OpTypeSampledImage: *hasResult = true; *hasResultType = false; break;
+    case OpTypeArray: *hasResult = true; *hasResultType = false; break;
+    case OpTypeRuntimeArray: *hasResult = true; *hasResultType = false; break;
+    case OpTypeStruct: *hasResult = true; *hasResultType = false; break;
+    case OpTypeOpaque: *hasResult = true; *hasResultType = false; break;
+    case OpTypePointer: *hasResult = true;

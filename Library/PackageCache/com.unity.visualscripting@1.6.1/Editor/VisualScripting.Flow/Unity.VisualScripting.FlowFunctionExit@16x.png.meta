@@ -1,0 +1,32 @@
+#pragma only_renderers d3d11 ps5
+
+#pragma kernel BilateralFilterHSingleDirectional        BILATERAL_FILTER=BilateralFilterHSingleDirectional      SINGLE_CHANNEL DIRECTIONAL_LIGHT
+#pragma kernel BilateralFilterVSingleDirectional        BILATERAL_FILTER=BilateralFilterVSingleDirectional      FINAL_PASS SINGLE_CHANNEL DIRECTIONAL_LIGHT
+
+#pragma kernel BilateralFilterHColorDirectional         BILATERAL_FILTER=BilateralFilterHColorDirectional       DIRECTIONAL_LIGHT
+#pragma kernel BilateralFilterVColorDirectional         BILATERAL_FILTER=BilateralFilterVColorDirectional       FINAL_PASS DIRECTIONAL_LIGHT
+
+#pragma kernel BilateralFilterHSinglePoint              BILATERAL_FILTER=BilateralFilterHSinglePoint            SINGLE_CHANNEL POINT_LIGHT
+#pragma kernel BilateralFilterVSinglePoint              BILATERAL_FILTER=BilateralFilterVSinglePoint            FINAL_PASS SINGLE_CHANNEL POINT_LIGHT
+
+#pragma kernel BilateralFilterHSingleSpot               BILATERAL_FILTER=BilateralFilterHSingleSpot             SINGLE_CHANNEL SPOT_LIGHT
+#pragma kernel BilateralFilterVSingleSpot               BILATERAL_FILTER=BilateralFilterVSingleSpot             FINAL_PASS SINGLE_CHANNEL SPOT_LIGHT
+
+#pragma multi_compile _ DISTANCE_BASED_DENOISER
+
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariables.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/NormalBuffer.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/Raytracing/Shaders/RaytracingSampling.hlsl"
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Builtin/BuiltinData.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/PostProcessing/Shaders/TemporalAntialiasing.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/Raytracing/Shaders/Denoising/BilateralFilter.hlsl"
+#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/Raytracing/Shaders/Shadows/RayTracingShadowUtilities.hlsl"
+
+#pragma only_renderers d3d11 ps5
+
+// #pragma enable_d3d11_debug_symbols
+
+// Tile size of this compute
+#define SHADOW_DENOISE

@@ -1,0 +1,83 @@
+1bf3856ad364e35_10.0.22621.1635_none_ce5dedba79238c42\f\mfsrcsnk.dll" length="29279" time="133332706710000000" attr="128">
+      <Hash alg="SHA256" value="A48D2CBD3C663B1AC058E624DA57B16D3F120FD524D590A1C8559945E6CAB34B" />
+      <Delta>
+        <Source type="RAW" offset="34636988" length="29279">
+          <Hash alg="SHA256" value="A48D2CBD3C663B1AC058E624DA57B16D3F120FD524D590A1C8559945E6CAB34B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12366" name="wow64_microsoft-windows-mfsrcsnk_31bf3856ad364e35_10.0.22621.1635_none_d8b2980cad844e3d\f\mfsrcsnk.dll" length="22920" time="133332706880000000" attr="128">
+      <Hash alg="SHA256" value="30B32713D3B083B1C698B0BCF3BF58AE993F40B901047D8E322041C74AA9247F" />
+      <Delta>
+        <Source type="RAW" offset="34666267" length="22920">
+          <Hash alg="SHA256" value="30B32713D3B083B1C698B0BCF3BF58AE993F40B901047D8E322041C74AA9247F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12367" name="amd64_microsoft-windows-m..-management-console_31bf3856ad364e35_10.0.22621.1635_none_ef45f67bf14717e9\f\mmc.exe" length="13879" time="133332706870000000" attr="128">
+      <Hash alg="SHA256" value="B20FC8BB17E57200D3AA3E40139C07C5043D21D3D708ABB16C45E2723A6F6AD3" />
+      <Delta>
+        <Source type="RAW" offset="34689187" length="13879">
+          <Hash alg="SHA256" value="B20FC8BB17E57200D3AA3E40139C07C5043D21D3D708ABB16C45E2723A6F6AD3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12368" name="wow64_microsoft-windows-m..-management-console_31bf3856ad364e35_10.0.22621.1635_none_f99aa0ce25a7d9e4\f\mmc.exe" length="652" time="133332706760000000" attr="128">
+      <Hash alg="SHA256" value="D486A1FABA403B8E8F34E257A512F680EF900D692C822D8571DB2C6AF13BBCCC" />
+      <Delta>
+        <Source type="RAW" offset="34703066" length="652">
+          <Hash alg="SHA256" value="D486A1FABA403B8E8F34E257A512F680EF900D692C822D8571DB2C6AF13BBCCC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12369" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\textservicesframework-migration-dl.man" length="50" time="133332635990000000" attr="128">
+      <Hash alg="SHA256" value="7E68D48737C514E6C53A2B6CB883AC854915952F4EFC4AC321FFAAA6EE5D103C" />
+      <Delta>
+        <Source type="RAW" offset="34703718" length="50">
+          <Hash alg="SHA256" value="7E68D48737C514E6C53A2B6CB883AC854915952F4EFC4AC321FFAAA6EE5D103C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12370" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\chxmig.dll" length="3325" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="77BC6D7E1B3497821922D85B92B84E976D7720D4EB1EBB84ED4367C3DB063F6E" />
+      <Delta>
+        <Source type="RAW" offset="34703768" length="3325">
+          <Hash alg="SHA256" value="77BC6D7E1B3497821922D85B92B84E976D7720D4EB1EBB84ED4367C3DB063F6E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12371" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\imkrmig.dll" length="3275" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="28D712FEA6609532A907B3B74215D8341F5C6C54E713D02DA7BAB18B712F9D4B" />
+      <Delta>
+        <Source type="RAW" offset="34707093" length="3275">
+          <Hash alg="SHA256" value="28D712FEA6609532A907B3B74215D8341F5C6C54E713D02DA7BAB18B712F9D4B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12372" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\msctfmig.dll" length="2086" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="E514F6D65C85DA3F99D1023408A1555728F65C1577F143A2F301F4146191B606" />
+      <Delta>
+        <Source type="RAW" offset="34710368" length="2086">
+          <Hash alg="SHA256" value="E514F6D65C85DA3F99D1023408A1555728F65C1577F143A2F301F4146191B606" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12373" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\tabletextservicemig.dll" length="3342" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="B7A0A3C5A590C6FE21A09D2C718D0DB4F7CF132C2FF6800EEB7C7F8E8A187CB3" />
+      <Delta>
+        <Source type="RAW" offset="34712454" length="3342">
+          <Hash alg="SHA256" value="B7A0A3C5A590C6FE21A09D2C718D0DB4F7CF132C2FF6800EEB7C7F8E8A187CB3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12374" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\imjpmig.dll" length="3496" time="133332707130000000" attr="128">
+      <Hash alg="SHA256" value="AB18F839D2C2E09B391C7AACCF1073E18E7E1F9FD54D64F50D0A30041A68FAC9" />
+      <Delta>
+        <Source type="RAW" offset="34715796" length="3496">
+          <Hash alg="SHA256" value="AB18F839D2C2E09B391C7AACCF1073E18E7E1F9FD54D64F50D0A30041A68FAC9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="12375" name="amd64_microsoft-windows-m..elmanifests-windows_31bf3856ad364e35_10.0.22621.1635_none_81318eaa782bfc8a\f\fonts-type1-dl.man" length="50" time="133332635990000000" attr="128">
+      <Hash alg="SHA256" value="BFE8078C0450C1BB8AE81484F46C84B3900B249C5CCA5C6E70F374E4DB06A728" />
+      <Del

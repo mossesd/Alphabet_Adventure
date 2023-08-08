@@ -1,0 +1,18 @@
+ AnimationToolUsageEvent? m_CurrentEvent;
+        int m_InstanceId;
+
+        public AnimationAnalytics(IAnalyticsStorage analyticsStorage, SkinningEvents eventBus, IAnimationAnalyticsModel model, int instanceId)
+        {
+            m_Model = model;
+            m_AnalyticsStorage = analyticsStorage;
+            m_InstanceId = instanceId;
+            m_EventBus = eventBus;
+            m_EventBus.selectedSpriteChanged.AddListener(OnSelectedSpriteChanged);
+            m_EventBus.skeletonPreviewPoseChanged.AddListener(OnSkeletonPreviewPoseChanged);
+            m_EventBus.skeletonBindPoseChanged.AddListener(OnSkeletonBindPoseChanged);
+            m_EventBus.skeletonTopologyChanged.AddListener(OnSkeletonTopologyChanged);
+            m_EventBus.meshChanged.AddListener(OnMeshChanged);
+            m_EventBus.meshPreviewChanged.AddListener(OnMeshPreviewChanged);
+            m_EventBus.skinningModeChanged.AddListener(OnSkinningModuleModeChanged);
+            m_EventBus.boneSelectionChanged.AddListener(OnBoneSelectionChanged);
+            m_EventBus.boneNameChanged.AddListener(OnBoneNameChan

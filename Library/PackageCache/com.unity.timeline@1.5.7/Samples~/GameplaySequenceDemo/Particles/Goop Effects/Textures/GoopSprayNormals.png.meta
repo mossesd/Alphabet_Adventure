@@ -1,0 +1,55 @@
+#include "il2cpp-config.h"
+
+#if IL2CPP_TARGET_ANDROID
+
+#include "os/StackTrace.h"
+#include "os/Image.h"
+
+#include <unwind.h>
+#include <dlfcn.h>
+#include <pthread.h>
+#include <string.h>
+
+namespace il2cpp
+{
+namespace os
+{
+    const int kMaxStackFrames = 128;
+
+namespace
+{
+    extern "C" char end;
+
+    uintptr_t s_BaseAddress;
+    uintptr_t s_EndAddress;
+    pthread_once_t s_InitKnownSymbolInfoOnceFlag = PTHREAD_ONCE_INIT;
+
+    static void InitKnownSymbolInfo()
+    {
+        s_BaseAddress = reinterpret_cast<uintptr_t>(os::Image::GetImageBase());
+        s_EndAddress = reinterpret_cast<uintptr_t>(&end);
+    }
+
+    static bool KnownSymbol(const uintptr_t addr)
+    {
+        pthread_once(&s_InitKnownSymbolInfoOnceFlag, &InitKnownSymbolInfo);
+
+        if (addr >= s_BaseAddress && addr <= s_EndAddress)
+            return true;
+
+        Dl_info info;
+        if (!dladdr(reinterpret_cast<void*>(addr), &info))
+            return false;
+
+        // dli_name can have different values depending on Android OS:
+        // Google Pixel 2 Android 10, dli_name will be "/data/app/com.unity.stopaskingforpackagename-uRHSDLXYA4cnHxyTNT30-g==/lib/arm/libunity.so"
+        // Samsung GT-I9505 Android 5, dli_name will be "libunity.so"
+        return info.dli_fname != NULL && strstr(info.dli_fname, "libunity.so") != NULL;
+    }
+
+    struct AndroidStackTrace
+    {
+        size_t size;
+        Il2CppMethodPointer addrs[kMaxStackFrames];
+
+        bool PushStackFrameAddress(const uint

@@ -1,0 +1,645 @@
+bers from the archive to the current working
+           directory. `path' specifies a different directory to extract to.
+           `members' is optional and must be a subset of the list returned
+           by namelist().
+        """
+        if members is None:
+            members = self.namelist()
+
+        for zipinfo in members:
+            self.extract(zipinfo, path, pwd)
+
+    def _extract_member(self, member, targetpath, pwd):
+        """Extract the ZipInfo object 'member' to a physical
+           file on the path targetpath.
+        """
+        # build the destination pathname, replacing
+        # forward slashes to platform specific separators.
+        arcname = member.filename.replace('/', os.path.sep)
+
+        if os.path.altsep:
+            arcname = arcname.replace(os.path.altsep, os.path.sep)
+        # interpret absolute pathname as relative, remove drive letter or
+        # UNC path, redundant separators, "." and ".." components.
+        arcname = os.path.splitdrive(arcname)[1]
+        arcname = os.path.sep.join(x for x in arcname.split(os.path.sep)
+                    if x not in ('', os.path.curdir, os.path.pardir))
+        if os.path.sep == '\\':
+            # filter illegal characters on Windows
+            illegal = ':<>|"?*'
+            if isinstance(arcname, unicode):
+                table = {ord(c): ord('_') for c in illegal}
+            else:
+                table = string.maketrans(illegal, '_' * len(illegal))
+            arcname = arcname.translate(table)
+            # remove trailing dots
+            arcname = (x.rstrip('.') for x in arcname.split(os.path.sep))
+            arcname = os.path.sep.join(x for x in arcname if x)
+
+        targetpath = os.path.join(targetpath, arcname)
+        targetpath = os.path.normpath(targetpath)
+
+        # Create all upper directories if necessary.
+        upperdirs = os.path.dirname(targetpath)
+        if upperdirs and not os.path.exists(upperdirs):
+            os.makedirs(upperdirs)
+
+        if member.filename[-1] == '/':
+            if not os.path.isdir(targetpath):
+                os.mkdir(targetpath)
+            return targetpath
+
+        with self.open(member, pwd=pwd) as source, \
+             file(targetpath, "wb") as target:
+            shutil.copyfileobj(source, target)
+
+        return targetpath
+
+    def _writecheck(self, zinfo):
+        """Check for errors before writing a file to the archive."""
+        if zinfo.filename in self.NameToInfo:
+            if self.debug:      # Warning for duplicate names
+                print "Duplicate name:", zinfo.filename
+        if self.mode not in ("w", "a"):
+            raise RuntimeError, 'write() requires mode "w" or "a"'
+        if not self.fp:
+            raise RuntimeError, \
+                  "Attempt to write ZIP archive that was already closed"
+        if zinfo.compress_type == ZIP_DEFLATED and not zlib:
+            raise RuntimeError, \
+                  "Compression requires the (missing) zlib module"
+        if zinfo.compress_type not in (ZIP_STORED, ZIP_DEFLATED):
+            raise RuntimeError, \
+                  "That compression method is not supported"
+        if zinfo.file_size > ZIP64_LIMIT:
+            if not self._allowZip64:
+                raise LargeZipFile("Filesize would require ZIP64 extensions")
+        if zinfo.header_offset > ZIP64_LIMIT:
+            if not self._allowZip64:
+                raise LargeZipFile("Zipfile size would require ZIP64 extensions")
+
+    def write(self, filename, arcname=None, compress_type=None):
+        """Put the bytes from filename into the archive under the name
+        arcname."""
+        if not self.fp:
+            raise RuntimeError(
+                  "Attempt to write to ZIP archive that was already closed")
+
+        st = os.stat(filename)
+        isdir = stat.S_ISDIR(st.st_mode)
+        mtime = time.localtime(st.st_mtime)
+        date_time = mtime[0:6]
+        # Create ZipInfo instance to store file information
+        if arcname is None:
+            arcname = filename
+        arcname = os.path.normpath(os.path.splitdrive(arcname)[1])
+        while arcname[0] in (os.sep, os.altsep):
+            arcname = arcname[1:]
+        if isdir:
+            arcname += '/'
+        zinfo = ZipInfo(arcname, date_time)
+        zinfo.external_attr = (st[0] & 0xFFFF) << 16L      # Unix attributes
+        if compress_type is None:
+            zinfo.compress_type = self.compression
+        else:
+            zinfo.compress_type = compress_type
+
+        zinfo.file_size = st.st_size
+        zinfo.flag_bits = 0x00
+        zinfo.header_offset = self.fp.tell()    # Start of header bytes
+
+        self._writecheck(zinfo)
+        self._didModify = True
+
+        if isdir:
+            zinfo.file_size = 0
+            zinfo.compress_size = 0
+            zinfo.CRC = 0
+            self.filelist.append(zinfo)
+            self.NameToInfo[zinfo.filename] = zinfo
+            self.fp.write(zinfo.FileHeader(False))
+            return
+
+        with open(filename, "rb") as fp:
+            # Must overwrite CRC and sizes with correct data later
+            zinfo.CRC = CRC = 0
+            zinfo.compress_size = compress_size = 0
+            # Compressed size can be larger than uncompressed size
+            zip64 = self._allowZip64 and \
+                    zinfo.file_size * 1.05 > ZIP64_LIMIT
+            self.fp.write(zinfo.FileHeader(zip64))
+            if zinfo.compress_type == ZIP_DEFLATED:
+                cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION,
+                     zlib.DEFLATED, -15)
+            else:
+                cmpr = None
+            file_size = 0
+            while 1:
+                buf = fp.read(1024 * 8)
+                if not buf:
+                    break
+                file_size = file_size + len(buf)
+                CRC = crc32(buf, CRC) & 0xffffffff
+                if cmpr:
+                    buf = cmpr.compress(buf)
+                    compress_size = compress_size + len(buf)
+                self.fp.write(buf)
+        if cmpr:
+            buf = cmpr.flush()
+            compress_size = compress_size + len(buf)
+            self.fp.write(buf)
+            zinfo.compress_size = compress_size
+        else:
+            zinfo.compress_size = file_size
+        zinfo.CRC = CRC
+        zinfo.file_size = file_size
+        if not zip64 and self._allowZip64:
+            if file_size > ZIP64_LIMIT:
+                raise RuntimeError('File size has increased during compressing')
+            if compress_size > ZIP64_LIMIT:
+                raise RuntimeError('Compressed size larger than uncompressed size')
+        # Seek backwards and write file header (which will now include
+        # correct CRC and file sizes)
+        position = self.fp.tell()       # Preserve current position in file
+        self.fp.seek(zinfo.header_offset, 0)
+        self.fp.write(zinfo.FileHeader(zip64))
+        self.fp.seek(position, 0)
+        self.filelist.append(zinfo)
+        self.NameToInfo[zinfo.filename] = zinfo
+
+    def writestr(self, zinfo_or_arcname, bytes, compress_type=None):
+        """Write a file into the archive.  The contents is the string
+        'bytes'.  'zinfo_or_arcname' is either a ZipInfo instance or
+        the name of the file in the archive."""
+        if not isinstance(zinfo_or_arcname, ZipInfo):
+            zinfo = ZipInfo(filename=zinfo_or_arcname,
+                            date_time=time.localtime(time.time())[:6])
+
+            zinfo.compress_type = self.compression
+            zinfo.external_attr = 0600 << 16
+        else:
+            zinfo = zinfo_or_arcname
+
+        if not self.fp:
+            raise RuntimeError(
+                  "Attempt to write to ZIP archive that was already closed")
+
+        if compress_type is not None:
+            zinfo.compress_type = compress_type
+
+        zinfo.file_size = len(bytes)            # Uncompressed size
+        zinfo.header_offset = self.fp.tell()    # Start of header bytes
+        self._writecheck(zinfo)
+        self._didModify = True
+        zinfo.CRC = crc32(bytes) & 0xffffffff       # CRC-32 checksum
+        if zinfo.compress_type == ZIP_DEFLATED:
+            co = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION,
+                 zlib.DEFLATED, -15)
+            bytes = co.compress(bytes) + co.flush()
+            zinfo.compress_size = len(bytes)    # Compressed size
+        else:
+            zinfo.compress_size = zinfo.file_size
+        zip64 = zinfo.file_size > ZIP64_LIMIT or \
+                zinfo.compress_size > ZIP64_LIMIT
+        if zip64 and not self._allowZip64:
+            raise LargeZipFile("Filesize would require ZIP64 extensions")
+        self.fp.write(zinfo.FileHeader(zip64))
+        self.fp.write(bytes)
+        if zinfo.flag_bits & 0x08:
+            # Write CRC and file sizes after the file data
+            fmt = '<LQQ' if zip64 else '<LLL'
+            self.fp.write(struct.pack(fmt, zinfo.CRC, zinfo.compress_size,
+                  zinfo.file_size))
+        self.fp.flush()
+        self.filelist.append(zinfo)
+        self.NameToInfo[zinfo.filename] = zinfo
+
+    def __del__(self):
+        """Call the "close()" method in case the user forgot."""
+        self.close()
+
+    def close(self):
+        """Close the file, and for mode "w" and "a" write the ending
+        records."""
+        if self.fp is None:
+            return
+
+        try:
+            if self.mode in ("w", "a") and self._didModify: # write ending records
+                count = 0
+                pos1 = self.fp.tell()
+                for zinfo in self.filelist:         # write central directory
+                    count = count + 1
+                    dt = zinfo.date_time
+                    dosdate = (dt[0] - 1980) << 9 | dt[1] << 5 | dt[2]
+                    dostime = dt[3] << 11 | dt[4] << 5 | (dt[5] // 2)
+                    extra = []
+                    if zinfo.file_size > ZIP64_LIMIT \
+                            or zinfo.compress_size > ZIP64_LIMIT:
+                        extra.append(zinfo.file_size)
+                        extra.append(zinfo.compress_size)
+                        file_size = 0xffffffff
+                        compress_size = 0xffffffff
+                    else:
+                        file_size = zinfo.file_size
+                        compress_size = zinfo.compress_size
+
+                    if zinfo.header_offset > ZIP64_LIMIT:
+                        extra.append(zinfo.header_offset)
+                        header_offset = 0xffffffffL
+                    else:
+                        header_offset = zinfo.header_offset
+
+                    extra_data = zinfo.extra
+                    if extra:
+                        # Append a ZIP64 field to the extra's
+                        extra_data = struct.pack(
+                                '<HH' + 'Q'*len(extra),
+                                1, 8*len(extra), *extra) + extra_data
+
+                        extract_version = max(45, zinfo.extract_version)
+                        create_version = max(45, zinfo.create_version)
+                    else:
+                        extract_version = zinfo.extract_version
+                        create_version = zinfo.create_version
+
+                    try:
+                        filename, flag_bits = zinfo._encodeFilenameFlags()
+                        centdir = struct.pack(structCentralDir,
+                        stringCentralDir, create_version,
+                        zinfo.create_system, extract_version, zinfo.reserved,
+                        flag_bits, zinfo.compress_type, dostime, dosdate,
+                        zinfo.CRC, compress_size, file_size,
+                        len(filename), len(extra_data), len(zinfo.comment),
+                        0, zinfo.internal_attr, zinfo.external_attr,
+                        header_offset)
+                    except DeprecationWarning:
+                        print >>sys.stderr, (structCentralDir,
+                        stringCentralDir, create_version,
+                        zinfo.create_system, extract_version, zinfo.reserved,
+                        zinfo.flag_bits, zinfo.compress_type, dostime, dosdate,
+                        zinfo.CRC, compress_size, file_size,
+                        len(zinfo.filename), len(extra_data), len(zinfo.comment),
+                        0, zinfo.internal_attr, zinfo.external_attr,
+                        header_offset)
+                        raise
+                    self.fp.write(centdir)
+                    self.fp.write(filename)
+                    self.fp.write(extra_data)
+                    self.fp.write(zinfo.comment)
+
+                pos2 = self.fp.tell()
+                # Write end-of-zip-archive record
+                centDirCount = count
+                centDirSize = pos2 - pos1
+                centDirOffset = pos1
+                if (centDirCount >= ZIP_FILECOUNT_LIMIT or
+                    centDirOffset > ZIP64_LIMIT or
+                    centDirSize > ZIP64_LIMIT):
+                    # Need to write the ZIP64 end-of-archive records
+                    zip64endrec = struct.pack(
+                            structEndArchive64, stringEndArchive64,
+                            44, 45, 45, 0, 0, centDirCount, centDirCount,
+                            centDirSize, centDirOffset)
+                    self.fp.write(zip64endrec)
+
+                    zip64locrec = struct.pack(
+                            structEndArchive64Locator,
+                            stringEndArchive64Locator, 0, pos2, 1)
+                    self.fp.write(zip64locrec)
+                    centDirCount = min(centDirCount, 0xFFFF)
+                    centDirSize = min(centDirSize, 0xFFFFFFFF)
+                    centDirOffset = min(centDirOffset, 0xFFFFFFFF)
+
+                endrec = struct.pack(structEndArchive, stringEndArchive,
+                                    0, 0, centDirCount, centDirCount,
+                                    centDirSize, centDirOffset, len(self._comment))
+                self.fp.write(endrec)
+                self.fp.write(self._comment)
+                self.fp.flush()
+        finally:
+            fp = self.fp
+            self.fp = None
+            if not self._filePassed:
+                fp.close()
+
+
+class PyZipFile(ZipFile):
+    """Class to create ZIP archives with Python library files and packages."""
+
+    def writepy(self, pathname, basename = ""):
+        """Add all files from "pathname" to the ZIP archive.
+
+        If pathname is a package directory, search the directory and
+        all package subdirectories recursively for all *.py and enter
+        the modules into the archive.  If pathname is a plain
+        directory, listdir *.py and enter all modules.  Else, pathname
+        must be a Python *.py file and the module will be put into the
+        archive.  Added modules are always module.pyo or module.pyc.
+        This method will compile the module.py into module.pyc if
+        necessary.
+        """
+        dir, name = os.path.split(pathname)
+        if os.path.isdir(pathname):
+            initname = os.path.join(pathname, "__init__.py")
+            if os.path.isfile(initname):
+                # This is a package directory, add it
+                if basename:
+                    basename = "%s/%s" % (basename, name)
+                else:
+                    basename = name
+                if self.debug:
+                    print "Adding package in", pathname, "as", basename
+                fname, arcname = self._get_codename(initname[0:-3], basename)
+                if self.debug:
+                    print "Adding", arcname
+                self.write(fname, arcname)
+                dirlist = os.listdir(pathname)
+                dirlist.remove("__init__.py")
+                # Add all *.py files and package subdirectories
+                for filename in dirlist:
+                    path = os.path.join(pathname, filename)
+                    root, ext = os.path.splitext(filename)
+                    if os.path.isdir(path):
+                        if os.path.isfile(os.path.join(path, "__init__.py")):
+                            # This is a package directory, add it
+                            self.writepy(path, basename)  # Recursive call
+                    elif ext == ".py":
+                        fname, arcname = self._get_codename(path[0:-3],
+                                         basename)
+                        if self.debug:
+                            print "Adding", arcname
+                        self.write(fname, arcname)
+            else:
+                # This is NOT a package directory, add its files at top level
+                if self.debug:
+                    print "Adding files from directory", pathname
+                for filename in os.listdir(pathname):
+                    path = os.path.join(pathname, filename)
+                    root, ext = os.path.splitext(filename)
+                    if ext == ".py":
+                        fname, arcname = self._get_codename(path[0:-3],
+                                         basename)
+                        if self.debug:
+                            print "Adding", arcname
+                        self.write(fname, arcname)
+        else:
+            if pathname[-3:] != ".py":
+                raise RuntimeError, \
+                      'Files added with writepy() must end with ".py"'
+            fname, arcname = self._get_codename(pathname[0:-3], basename)
+            if self.debug:
+                print "Adding file", arcname
+            self.write(fname, arcname)
+
+    def _get_codename(self, pathname, basename):
+        """Return (filename, archivename) for the path.
+
+        Given a module name path, return the correct file path and
+        archive name, compiling if necessary.  For example, given
+        /python/lib/string, return (/python/lib/string.pyc, string).
+        """
+        file_py  = pathname + ".py"
+        file_pyc = pathname + ".pyc"
+        file_pyo = pathname + ".pyo"
+        if os.path.isfile(file_pyo) and \
+                            os.stat(file_pyo).st_mtime >= os.stat(file_py).st_mtime:
+            fname = file_pyo    # Use .pyo file
+        elif not os.path.isfile(file_pyc) or \
+             os.stat(file_pyc).st_mtime < os.stat(file_py).st_mtime:
+            import py_compile
+            if self.debug:
+                print "Compiling", file_py
+            try:
+                py_compile.compile(file_py, file_pyc, None, True)
+            except py_compile.PyCompileError,err:
+                print err.msg
+            fname = file_pyc
+        else:
+            fname = file_pyc
+        archivename = os.path.split(fname)[1]
+        if basename:
+            archivename = "%s/%s" % (basename, archivename)
+        return (fname, archivename)
+
+
+def main(args = None):
+    import textwrap
+    USAGE=textwrap.dedent("""\
+        Usage:
+            zipfile.py -l zipfile.zip        # Show listing of a zipfile
+            zipfile.py -t zipfile.zip        # Test if a zipfile is valid
+            zipfile.py -e zipfile.zip target # Extract zipfile into target dir
+            zipfile.py -c zipfile.zip src ... # Create zipfile from sources
+        """)
+    if args is None:
+        args = sys.argv[1:]
+
+    if not args or args[0] not in ('-l', '-c', '-e', '-t'):
+        print USAGE
+        sys.exit(1)
+
+    if args[0] == '-l':
+        if len(args) != 2:
+            print USAGE
+            sys.exit(1)
+        with ZipFile(args[1], 'r') as zf:
+            zf.printdir()
+
+    elif args[0] == '-t':
+        if len(args) != 2:
+            print USAGE
+            sys.exit(1)
+        with ZipFile(args[1], 'r') as zf:
+            badfile = zf.testzip()
+        if badfile:
+            print("The following enclosed file is corrupted: {!r}".format(badfile))
+        print "Done testing"
+
+    elif args[0] == '-e':
+        if len(args) != 3:
+            print USAGE
+            sys.exit(1)
+
+        with ZipFile(args[1], 'r') as zf:
+            out = args[2]
+            for path in zf.namelist():
+                if path.startswith('./'):
+                    tgt = os.path.join(out, path[2:])
+                else:
+                    tgt = os.path.join(out, path)
+
+                tgtdir = os.path.dirname(tgt)
+                if not os.path.exists(tgtdir):
+                    os.makedirs(tgtdir)
+                with open(tgt, 'wb') as fp:
+                    fp.write(zf.read(path))
+
+    elif args[0] == '-c':
+        if len(args) < 3:
+            print USAGE
+            sys.exit(1)
+
+        def addToZip(zf, path, zippath):
+            if os.path.isfile(path):
+                zf.write(path, zippath, ZIP_DEFLATED)
+            elif os.path.isdir(path):
+                for nm in os.listdir(path):
+                    addToZip(zf,
+                            os.path.join(path, nm), os.path.join(zippath, nm))
+            # else: ignore
+
+        with ZipFile(args[1], 'w', allowZip64=True) as zf:
+            for src in args[2:]:
+                addToZip(zf, src, os.path.basename(src))
+
+if __name__ == "__main__":
+    main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   /****************************************************************************
+ ****************************************************************************
+ ***
+ ***   This header was automatically generated from a Linux kernel header
+ ***   of the same name, to make information necessary for userspace to
+ ***   call into the kernel available to libc.  It contains only constants,
+ ***   structures, and macros generated from the original header, and thus,
+ ***   contains no copyrightable information.
+ ***
+ ***   To edit the content of this header, modify the corresponding
+ ***   source file (e.g. under external/kernel-headers/original/) then
+ ***   run bionic/libc/kernel/tools/update_all.py
+ ***
+ ***   Any manual change here will be lost the next time this script will
+ ***   be run. You've been warned!
+ ***
+ ****************************************************************************
+ ****************************************************************************/
+#ifndef _ASM_X86_LDT_H
+#define _ASM_X86_LDT_H
+#define LDT_ENTRIES 8192
+#define LDT_ENTRY_SIZE 8
+#ifndef __ASSEMBLY__
+struct user_desc {
+  unsigned int entry_number;
+  unsigned int base_addr;
+  unsigned int limit;
+  unsigned int seg_32bit : 1;
+  unsigned int contents : 2;
+  unsigned int read_exec_only : 1;
+  unsigned int limit_in_pages : 1;
+  unsigned int seg_not_present : 1;
+  unsigned int useable : 1;
+#ifdef __x86_64__
+  unsigned int lm : 1;
+#endif
+};
+#define MODIFY_LDT_CONTENTS_DATA 0
+#define MODIFY_LDT_CONTENTS_STACK 1
+#define MODIFY_LDT_CONTENTS_CODE 2
+#endif
+#endif
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                /****************************************************************************
+ ****************************************************************************
+ ***
+ ***   This header was automatically generated from a Linux kernel header
+ ***   of the same name, to make information necessary for userspace to
+ ***   call into the kernel available to libc.  It contains only constants,
+ ***   structures, and macros generated from the original header, and thus,
+ ***   contains no copyrightable information.
+ ***
+ ***   To edit the content of this header, modify the corresponding
+ ***   source file (e.g. under external/kernel-headers/original/) then
+ ***   run bionic/libc/kernel/tools/update_all.py
+ ***
+ ***   Any manual change here will be lost the next time this script will
+ ***   be run. You've been warned!
+ ***
+ ****************************************************************************
+ ****************************************************************************/
+#ifndef _ASM_X86_UNISTD_32_H
+#define _ASM_X86_UNISTD_32_H 1
+#define __NR_restart_syscall 0
+#define __NR_exit 1
+#define __NR_fork 2
+#define __NR_read 3
+#define __NR_write 4
+#define __NR_open 5
+#define __NR_close 6
+#define __NR_waitpid 7
+#define __NR_creat 8
+#define __NR_link 9
+#define __NR_unlink 10
+#define __NR_execve 11
+#define __NR_chdir 12
+#define __NR_time 13
+#define __NR_mknod 14
+#define __NR_chmod 15
+#define __NR_lchown 16
+#define __NR_break 17
+#define __NR_oldstat 18
+#define __NR_lseek 19
+#define __NR_getpid 20
+#define __NR_mount 21
+#define __NR_umount 22
+#define __NR_setuid 23
+#define __NR_getuid 24
+#define __NR_stime 25
+#define __NR_ptrace 26
+#define __NR_alarm 27
+#define __NR_oldfstat 28
+#define __NR_pause 29
+#define __NR_utime 30
+#define __NR_stty 31
+#define __NR_gtty 32
+#define __NR_access 33
+#define __NR_nice 34
+#define __NR_ftime 35
+#define __NR_sync 36
+#define __NR_kill 37
+#define __NR_rename 38
+#define __NR_mkdir 39
+#define __NR_rmdir 40
+#define __NR_dup 41
+#define __NR_pipe 42
+#define __NR_times 43
+#define __NR_prof 44
+#define __NR_brk 45
+#define __NR_setgid 46
+#define __NR_getgid 47
+#define __NR_signal 48
+#define __NR_geteuid 49
+#define __NR_getegid 50
+#define __NR_acct 51
+#define __NR_umount2 52
+#define __NR_lock 53
+#define __NR_ioctl 54
+#define __NR_fcntl 55
+#define __NR_mpx 56
+#define __NR_setpgid 57
+#define __NR_ulimit 58
+#define __NR_oldolduname 59
+#define __NR_umask 60
+#define __NR_chroot 61
+#define __NR_ustat 62
+#define __NR_dup2 63
+#define __NR_getppid 64
+#define __NR_getpgrp 65
+#define __NR_setsid 66
+#define __NR_sigaction 67
+#define __NR_sgetmask 68
+#define __NR_ssetmask 69
+#define __NR_setreuid 70
+#define __NR_setregid 71
+#define __NR_sigsuspend 72
+#define __NR_sigpending 73
+#define __NR_sethostname 74
+#define __NR_setrlimit 75
+#define __NR_getrlimit 76
+#define __NR_getrusage 77
+#define __NR_gettimeofday 78
+#define __NR_settimeofday 79
+#define __NR_getgroups 80
+#define __NR_setgroups 81
+#define __NR_select 82
+#define __NR_symlink 83
+#define __NR_oldlstat 84
+#define __NR_readlink 85

@@ -1,0 +1,975 @@
+" será ignorado:
+        cm merge br:/main/task062 --merge --automaticresolution=all-src;eviltwin-dst
+    Consulte el siguiente enlace para más información sobre conflictos de merge:
+    https://www.plasticscm.com/download/help/directorymerges
+
+    Estas son los valores para la opción --mergetype:
+        onlyone     Merge automático si solo uno de los contribuidores modificó
+                    el elemento.
+        onlysrc     Merge automático si solo el contribuidor origen modificó el
+                    elemento.
+        onlydst     Merge automático si solo el contribuidor destino modificó el
+                    elemento.
+        try         Merge automático si solo un contribuidor ha modificado la
+                    parte del fichero en conflicto (para cada conflicto).
+        forced      Intenta resolver siempre los conflictos no automáticos.
+
+    Estas son las opciones que se usan principalmente por plugins e integraciones:
+        - "--resolveconflict" para resolver un conflicto de directorio. Se 
+          deben usar las siguientes opciones:
+              - "--conflict" es el índice del conflicto que se quiere resolver
+                (empezando por 1).
+              - "--resolutionoption" indica el tipo de resolución de conflicto.
+                Puede ser:
+                    - "src" para mantener el cambio del origen y descartar el
+                      cambio del destino
+                    - "dst" para mantener el cambio del destino y descartar el
+                      cambio del origen
+                    - "rename" (solo si el tipo de conflicto soporta esta
+                      resolución) para renombar el destino al nombre
+                      proporcionado en la opción "--resolutioninfo".
+                        - "--resolutioninfo" para proporcionar el nombre a usar
+                          con el tipo de resolución "rename"
+              - "--mergeresultfile" y "--solvedconflictsfile", ambos se usan
+                para guardar informacación de la mezcla entre las diferentes
+                llamadas.
+        - "nointeractiveresolution" indica a la mezcla que no pregunte al usuario
+          en caso de necesitarse una resolución manual de un conflicto.
+        - "--machinereadable" y "--startlineseparator", "--endlineseparator",
+          "fieldseparator" se usan para imprimir la salida a un formato fácil
+          de leer, tratar o parsear.
+        Por ejemplo:
+        cm merge --machinereadable --startlineseparator=start@_@line \
+          --endlineseparator=new@_@line --fieldseparator=def#_#sep \
+          --mergeresultfile=C:\Users\Borja\AppData\Local\Temp\2tmp4D6C.tmp \
+          --solvedconflictsfile=C:\Users\Borja\AppData\Local\Temp\2tmp4D6D.tmp \
+          --resolveconflict --conflict=1 --resolutionoption=rename \
+          --resolutioninfo=bin_dst br:/main/task --merge
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+
+Ejemplos:
+
+    cm merge br:/task001
+    (No realiza la mezcla, simplemente muestra los elementos que se van a
+    mezclar.)
+
+    cm merge br:/task001 --merge
+    (Realiza el merge desde la rama task001.)
+
+    cm merge cs:5 --merge --cherrypicking --interval-origin=cs:2
+    (Cherry pick del intervalo de changesets (2,5].)
+
+    cm merge cs:8 --merge --subtractive --keepdestination
+    (Merge sustractivo del changeset 8, preservando los cambios del destino
+    para aquellos elementos con conflictos.)
+
+    cm merge br:/main/task001 --to=br:/main --merge -c="Integrated new UI"
+    (Realiza el merge en el lado del servidor -a.k.a. "merge-to"-, desde la
+    rama 'task001' hasta la rama 'main' y añade un comentario.)
+
+    cm merge br:/main/task001 --to=br:/main --merge --shelve
+    (Realiza el merge en el lado del servidor desde la rama 'task001' a la rama
+    'main' y deja el resultado en un shelve.)
+
+    cm merge sh:2 --to=br:/main --merge --no-dst-changes
+    (Aplica el shelve 2 en la rama 'main' solo si fue creado desde la cabeza
+    actual de 'main'.)
+
+== CMD_DESCRIPTION_ATTRIBUTE_CREATE ==
+Crea un atributo nuevo.
+
+== CMD_USAGE_ATTRIBUTE_CREATE ==
+Sintaxis:
+
+    cm attribute | att create | mk <att_name>
+
+    att_name            Nombre del atributo.
+
+== CMD_HELP_ATTRIBUTE_CREATE ==
+Notas:
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+	
+Ejemplos:
+
+    cm attribute create status
+    (Crea el atributo 'status'.)
+
+    cm att mk integrated
+    (Crea el atributo 'integrated'.)
+
+== CMD_DESCRIPTION_BRANCH ==
+Permite al usuario gestionar ramas.
+
+== CMD_USAGE_BRANCH ==
+Sintaxis:
+
+    cm branch | br <command> [options]
+
+Comandos:
+
+    create | mk
+    delete | rm
+    rename
+    history
+    showmain
+    showmerges
+
+    Para obtener más información sobre cada comando:
+    cm branch command --usage
+    cm branch command --help
+
+== CMD_HELP_BRANCH ==
+Ejemplos:
+
+    cm branch /main/scm21345
+    cm branch create /main/scm21345
+    cm branch delete /main/scm21345
+    cm branch rename /main/scm21345 scm21346
+    cm branch history /main/scm21345
+    cm branch showmain
+    cm branch showmerges file.txt
+
+== CMD_DESCRIPTION_BRANCH_CREATE ==
+Crea una rama.
+
+== CMD_USAGE_BRANCH_CREATE ==
+Sintaxis:
+
+    cm branch | br [create | mk] <brspec> 
+                   [--changeset=<csetspec> | --label=<lbspec>]
+                   [-c=<str_comment> | -commentsfile=<comments_file>]
+
+    brspec         Nombre o especificación de la nueva rama.
+                   (Use 'cm help objectspec' para más información sobre
+                   especificaciones de ramas.)
+
+Opciones:
+
+    --changeset         Changeset usado como punto de partida de la nueva rama.
+                        (Use 'cm help objectspec' para más información sobre
+                        especificaciones de changesets.)
+    --label             Etiqueta usada como punto de partida de la nueva rama.
+                        (Use 'cm help objectspec' para más información sobre
+                        especificaciones de ramas.)
+    -c                  Asigna el comentario especificado a la nueva rama.
+    --commentsfile      Asigna el comentario especificado en el fichero a la
+                        nueva rama.
+
+== CMD_HELP_BRANCH_CREATE ==
+Notas:
+
+    Para crear una rama de primer nivel, especifique el nombre sin jerarquía.
+    Por ejemplo:
+
+        cm br /dev
+
+    Si no se especifica el parámetro '--changeset', la base de la nueva rama
+    será el último changeset de la rama madre. En caso de que la rama sea de
+    primer nivel, se utilizará como base el changeset 0.
+
+    Para especificar comentarios use la opción "-c" o "-m" del siguiente modo:
+
+        cm branch main/task001 -c="Este es el comentario"
+        cm branch main/task001 -m "Este es el comentario"
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+
+Ejemplos:
+
+    cm branch task001
+    cm branch create task001
+    cm branch mk task001
+    cm br mk task001
+    (Todos los ejemplos anteriores, crean una rama de primer nivel llamada
+    'task001' en el repositorio del espacio de trabajo actual.)
+
+    cm branch br:/task001/task002
+    (Crea la rama 'task002' como hija de 'task001'.)
+
+    cm br /main/task001@myrep@myserver:8084 -c="my comment"
+    (Crea la rama 'task001' como hija de 'main' en el repositorio
+    'myrepo@myserver:8084' y asigna como comentario el texto 'my comment'.)
+
+    cm br mk br:/main/task001 --changeset=2837 -commentsfile=commenttask001.txt
+    (Crea la rama 'task001' como hija de 'main' con base el changeset '2837'
+    y asigna como comentario el texto del fichero 'commenttask001.txt'.)
+
+== CMD_DESCRIPTION_BRANCH_DELETE ==
+Borra una o más ramas.
+
+== CMD_USAGE_BRANCH_DELETE ==
+Sintaxis:
+
+    cm branch | br delete | rm <brspec>[ ...]
+
+    brspec          Rama a borrar. Use un espacio en blanco para separar ramas.
+                    (Use 'cm help objectspec' para más información sobre
+                    especificaciones de ramas.)
+
+== CMD_HELP_BRANCH_DELETE ==
+Notas:
+
+   Este comando borra una o más ramas.
+
+Ejemplos:
+
+    cm branch delete /main/task001
+    (Borra la rama con nombre 'task001' que es hija de 'main' en el repositorio
+    del espacio de trabajo actual.)
+
+    cm br rm main/task002 /main/task012@reptest@myserver:8084
+    (Borra la rama '/main/task002' del repositorio del espacio de trabajo actual
+    y la rama '/main/task012' del repositorio 'reptest@myserver:8084'.)
+
+== CMD_DESCRIPTION_BRANCH_RENAME ==
+Renombra una rama.
+
+== CMD_USAGE_BRANCH_RENAME ==
+Sintaxis:
+
+    cm branch | br rename <brspec> <new_name>
+
+    brspec          Rama a renombrar.
+                    (Use 'cm help objectspec' para más información sobre
+                    especificaciones de ramas.)
+    new_name        Nuevo nombre para la rama.
+
+== CMD_HELP_BRANCH_RENAME ==
+Notas:
+
+    Este comando renombra una rama.
+
+Ejemplos:
+
+   cm branch rename /main/task0 task1
+   (Renombra la rama '/main/task0' a '/main/task1'.)
+
+   cm br rename br:/main@reptest@server2:8084 secondary
+   (Renombra la rama 'main' del repositorio 'reptest' a 'secondary'.)
+
+== CMD_DESCRIPTION_BRANCH_HISTORY ==
+Muestra la historia de una rama.
+
+== CMD_USAGE_BRANCH_HISTORY ==
+Sintaxis:
+
+    cm branch | br history <brspec> [--dateformat=<date_format>]
+                           [--machinereadable]
+
+    brspec          Especificación de la rama de la que obtener la historia.
+                    (Use 'cm help objectspec' para más información sobre
+                    especificaciones de ramas.)
+
+Opciones:
+
+    --dateformat            Configura el formato de salida para la impresión de
+                            fechas.
+    --machinereadable       Muestra el resultado en un formato fácil de parsear.
+
+== CMD_HELP_BRANCH_HISTORY ==
+Ejemplos:
+
+    cm branch history br:/main/scm001@myrepository@myserver:8084
+    (Muestra la historia de la rama '/main/scm001' del repositorio 'myrepository'
+    en el servidor 'myserver'.)
+
+    cm br history main --dateformat="yyyy, dd MMMM" --machinereadable
+    (Muestra la historia de la rama 'main' del repositorio actual con un formato
+    de fecha determinado y con un formato sencillo de parsear.)
+
+== CMD_DESCRIPTION_BRANCH_SHOWMAIN ==
+Muestra la rama principal de un repositorio.
+Con toda probabilidad, la rama principal de sus repositorios se denominará '/main'.
+Este comando está pensado para la automatización de otros comandos.
+
+== CMD_USAGE_BRANCH_SHOWMAIN ==
+Sintaxis:
+
+    cm branch | br showmain [<repspec>] [--encoding=<name>]
+                            [--format=<format_str>] [--dateformat=<date_format>]
+
+    repspec     Especificación del repositorio de donde mostrar la rama principal.
+                Si no se especifica ningún repositorio, se mostrará la rama
+                principal del repositorio del espacio de trabajo actual.
+                (Use 'cm help objectspec' para más información sobre
+                especificaciones de repositorio.)
+
+Opciones:
+
+    --encoding          Especifica el encoding que se usará en la salida, por
+                        ejemplo, utf-8. Consulte la documentación de MSDN en
+                        http://msdn.microsoft.com/en-us/library/system.text.encoding.aspx
+                        para obtener la tabla de codificaciones soportadas y
+                        su formato (al final de la página en la columna "Name").
+    --format            Muestra el mensaje de salida en el formato indicado.
+                        Consulte las Notas para más información.
+    --dateformat        Configura el formato de salida para la impresión de fechas.
+
+== CMD_HELP_BRANCH_SHOWMAIN ==
+Notas:
+
+    Este comando muestra la rama principal de un repositorio.
+
+    Parámetros de formato de salida (opción --format):
+        Este comando acepta una cadena de formato para mostrar la salida.
+        Los parámetros de salida de este comando son los siguientes:
+        {id}                Id de la rama.
+        {comment}           Comentario.
+        {date}              Fecha.
+        {name}              Nombre.
+        {owner}             Propietario.
+        {parent}            Nombre de la rama madre.
+        {repository}        Repositorio.
+        {repname}           Nombre del repositorio.
+        {repserver}         Servidor.
+        {changeset}         Último changeset de la rama (head).
+
+Ejemplos:
+
+    cm branch showmain
+    (Muestra la rama principal del repositorio del espacio de trabajo actual.)
+
+    cm branch showmain repo@server:8084
+    (Muestra la rama principal del repositorio 'repo' en el servidor
+    'server:8084'.)
+
+    cm br showmain --dateformat="yyyy, dd MMMM" --encoding=utf-8
+    (Muestra la rama principal del repositorio con las fechas en un determinado
+    formato y la salida codificada en utf-8.)
+
+    cm br showmain --format="{id} - {name}"
+    (Muestra la rama principal del repositorio mostrando únicamente su id y
+    nombre.)
+
+
+== CMD_DESCRIPTION_BRANCH_SHOWMERGES ==
+Muestra las ramas que están pendientes de mezclar (merge).
+
+== CMD_USAGE_BRANCH_SHOWMERGES ==
+Este comando está pensado para la automatización de otros comandos. Con lo que,
+es posible, que no resulte muy intuitivo.
+
+Sintaxis:
+
+    cm branch | br showmerges <item_path>[ ...]
+                              [--format=<format_str>] 
+                              [--dateformat=<date_format>]
+
+Opciones:
+
+    --format            Muestra el mensaje de salida en el formato indicado.
+                        Consulte las Notas para más información.
+    --dateformat        Configura el formato de salida para la impresión de fechas.
+
+== CMD_HELP_BRANCH_SHOWMERGES ==
+Notas:
+
+    Parámetros de formato de salida (opción --format):
+        Este comando acepta una cadena de formato para mostrar la salida.
+        Los parámetros de salida de este comando son los siguientes:
+        {id}                Id de la rama.
+        {comment}           Comentario.
+        {date}              Fecha.
+        {name}              Nombre.
+        {owner}             Propietario.
+        {parent}            Nombre de la rama madre.
+        {parentid}          Id de la rama madre.
+        {repid}             Id del repositorio.
+        {repository}        Repositorio.
+        {repname}           Nombre del repositorio.
+        {repserver}         Servidor del repositorio.
+
+Ejemplos:
+
+    cm branch showmerges file.txt
+    (Muestra las ramas involucradas en el merge pendiente del fichero file.txt.)
+
+    cm branch showmerges file.txt --format="{date} {name}" --dateformat="ddMMyy"
+    (Muestra las ramas involucradas en el merge mostrando solo la fecha y el
+    nombre y con las fechas en un determinado formato.)
+
+== CMD_DESCRIPTION_REPOSITORY ==
+Permite al usuario administrar repositorios.
+
+== CMD_USAGE_REPOSITORY ==
+Sintaxis:
+
+    cm repository | repo <command> [options]
+
+Comandos:
+
+    create | mk
+    delete | rm
+    list   | ls
+    rename
+    add
+
+    Para obtener más información sobre cada comando:
+    cm repository <command> --usage
+    cm repository <command> --help
+
+== CMD_HELP_REPOSITORY ==
+Ejemplos:
+
+    cm repository
+    cm repository list
+    cm repository newrepo
+    cm repository create newrepo
+    cm repository rename oldname newname
+    cm repository add C:\repo\
+
+== CMD_DESCRIPTION_REPOSITORY_CREATE ==
+Crea un repositorio en un servidor.
+
+== CMD_USAGE_REPOSITORY_CREATE ==
+Sintaxis:
+
+    cm repository | repo <rep_name>
+    cm repository | repo <repserverspec> <rep_name>[ ...]
+    cm repository | repo [create | mk] <rep_name>
+
+    repserverspec           Especificación del servidor de repositorios.
+                            (Use 'cm help objectspec' para más información sobre
+                            especificaciones de repositorios de servidor.)
+    rep_name                Nombre del nuevo repositorio. Use un espacio en
+                            blanco para separar nombres de repositorio.
+
+== CMD_HELP_REPOSITORY_CREATE ==
+Ejemplos:
+
+    cm repository MyRep
+    cm repo 192.168.1.140:8087 Rep01 Rep01/ModuleA Rep01/ModuleB
+    cm repo create Rep01
+    cm repo mk list
+
+== CMD_DESCRIPTION_REPOSITORY_DELETE ==
+Borra un repositorio de un servidor.
+
+== CMD_USAGE_REPOSITORY_DELETE ==
+Sintaxis:
+
+    cm repository | repo delete | rm <repspec>
+
+    repspec         Especificación del repositorio.
+                    (Use 'cm help objectspec' para más información sobre
+                    especificaciones de repositorios.)
+
+== CMD_HELP_REPOSITORY_DELETE ==
+Nota:
+
+    Borra un repositorio del servidor de repositorios.
+    No borra los datos de la base de datos; simplemente "desconecta" el
+    repositorio de la base de datos para que no sean accesibles. (Los datos
+    se pueden "reconectar" de nuevo con el comando 'cm repository add'.)
+
+Ejemplos:
+
+    cm repository delete myrepository@repserver:myserver:8084
+    cm repository rm myrepository@myserver:8084
+    cm repo rm myrepository
+
+== CMD_DESCRIPTION_REPOSITORY_LIST ==
+Lista los repositorios de un servidor.
+
+== CMD_USAGE_REPOSITORY_LIST ==
+Sintaxis:
+
+    cm repository | repo [list | ls] [<repserverspec>] [--format=<str_format>]
+
+    repserverspec       Especificación del servidor de repositorios.
+                        (Use 'cm help objectspec' para más información sobre
+                        especificaciones de servidor de repositorios.)
+    --format            Muestra el mensaje de salida en el formato indicado.
+                        Consulte las Notas para más información.
+
+== CMD_HELP_REPOSITORY_LIST ==
+Notas:
+
+    Parámetros de formato de salida (opción --format):
+        Este comando acepta una cadena de formato para mostrar la salida.
+        Los parámetros de salida de este comando son los siguientes:
+        {repid}     | {0}           Identificador del repositorio.
+        {repname}   | {1}           Nombre del repositorio.
+        {repserver} | {2}           Nombre del servidor del repositorio.
+        {repowner}  | {3}           Propietario del repositorio.
+        {repguid}   | {4}           Identificador único del repositorio.
+        {tab}                       Inserta un tabulador.
+        {newline}                   Inserta una nueva línea.
+
+    Si el valor de opción '--format' es 'TABLE', la salida se imprimirá en formato
+    tabla con los siguientes campos: {repid}, {repname} y {repserver}.
+
+Ejemplos:
+
+    cm repository
+    (Lista todos los repositorios.)
+
+    cm repository list localhost:8084 --format="{1, -20} {3}"
+    (Muestra el nombre del repositorio utilizando 20 espacios y alineado a la
+    izquierda, un espacio y el propietario del repositorio.)
+
+    cm repository ls localhost:8084 --format="{repname, -20} {repowner}"
+    (Muestra el mismo resultado que el ejemplo anterior.)
+
+    cm repo ls localhost:8084 --format=TABLE
+    (Muestra la lista de repositorios en formato tabla con los siguientes
+    campos: id del repositorio, nombre del repositorio, y el nombre del servidor
+    de repositorios.)
+
+== CMD_DESCRIPTION_REPOSITORY_RENAME ==
+Renombra un repositorio.
+
+== CMD_USAGE_REPOSITORY_RENAME ==
+Sintaxis:
+
+    cm repository | repo rename [<repspec>] <new_name>
+
+    repspec             Repositorio a renombrar.
+                        (Use 'cm help objectspec' para más información sobre
+                        especificaciones de repositorio.)
+    new_name            Nuevo nombre para el repositorio.
+
+== CMD_HELP_REPOSITORY_RENAME ==
+Notas:
+
+   Este comando renombre un repositorio.
+   Si no se proporciona ninguna especificación de repositorio, el comando tomará
+   por defecto el repositorio actual.
+
+Ejemplos:
+
+   cm repository rename development
+   (El repositorio actual se renombra a 'development'.)
+
+   cm repo rename rep:default@SERVER:8084 development
+   (El repositorio 'default' del servidor 'SERVER' se renombra a 'development'.)
+
+== CMD_DESCRIPTION_REPOSITORY_ADD ==
+Conecta un repositorio existente añadiendo su base de datos.
+
+== CMD_USAGE_REPOSITORY_ADD ==
+Sintaxis:
+
+    cm repository | repo add <db_file> <rep_name> <repserverspec>
+
+    db_file             Nombre del fichero de la base de datos.
+    rep_name            Nombre del repositorio.
+    repserverspec       Especificación del servidor de repositorios.
+                        (Use 'cm help objectspec' para más información sobre
+                        especificaciones de servidor de repositorios.)
+
+== CMD_HELP_REPOSITORY_ADD ==
+Nota:
+
+    Reconecta una base de datos de repositorio ya existente al servidor. Este
+    comando es útil para mover un repositorio de un servidor a otro, o para
+    restaurar o reconectar un repositorio después de haber usado el comando
+    'cm repository delete'.
+
+Ejemplos:
+
+    cm repository add rep_27 myrepository myserver:8084
+
+== CMD_DESCRIPTION_TRIGGER_CREATE ==
+Crea un nuevo trigger en un servidor.
+
+== CMD_USAGE_TRIGGER_CREATE ==
+Sintaxis:
+
+    cm trigger | tr create | mk <subtype-type> <new_name> <script_path>
+                                [--position=<new_position>]
+                                [--filter=<str_filter>]
+                                [--server=<repserverspec>]
+
+    subtype-type        Ejecución y operación del trigger.
+                        (Use 'cm showtriggertypes' para ver la lista de tipos de
+                        triggers.)
+    new_name            Nombre del nuevo trigger.
+    script_path         Ruta en disco del servidor donde se encuentra el script
+                        a ejecutar. Si la línea comienza con "webtrigger ", el
+                        trigger entenderá que se trata de un trigger web.
+                        Consulte las Notas para más información.
+
+Opciones:
+    --position          Posición para el trigger especificado. Esta posición no
+                        tiene que estar en uso por ningún otro trigger del mismo
+                        tipo.
+    --filter            Comprueba solo los ítems que concuerdan con el filtro
+                        especificado.
+    --server            Crea el trigger en el servidor especificado.
+                        Si no se especifica ningún servidor, el comando se
+                        ejecuta en el servidor configurado en el cliente.
+                        (Use 'cm help objectspec' para más información sobre
+                        las especificaciones de servidor.)
+
+== CMD_HELP_TRIGGER_CREATE ==
+Notas:
+
+    Web triggers: Para crear triggers web escriba "webtrigger <target-uri>"
+    como comando de trigger. En este caso, el trigger ejecutará una consulta
+    POST contra el URI especificado (donde el cuerpo de la petición contiene un
+    diccionario JSON con las variables de entorno del trigger) y una clave INPUT
+    apuntando a un array de cadenas de texto.
+
+Ejemplos:
+    cm trigger create after-setselector "BackupMgr" "/path/to/script" --position=4
+
+    cm tr mk before-mklabel new "/path/to/script" --server=myserver:8084
+
+    cm tr mk after-mklabel Log "/path/to/script" --filter="rep:myRep,LB*"
+    (Este trigger se ejecutará solo si la etiqueta ha sido creada en el
+    repositorio 'myRep' y si el nombre de la etiqueta comienza por 'LB'.)
+
+    cm tr mk after-checkin NotifyTeam "webtrigger http://myserver.org/api"
+
+== CMD_DESCRIPTION_MOVE ==
+Mueve o renombra un ítem.
+
+== CMD_USAGE_MOVE ==
+Sintaxis:
+
+    cm move ruta_origen ruta_destino
+
+    ruta_origen: Ruta origen del ítem.
+    ruta_destino: Ruta destino del ítem.
+
+== CMD_HELP_MOVE ==
+Notas:
+
+    Este comando mueve o renombra un ítem en el repositorio.
+    Los cambios también se realizan en el sistema de ficheros local.
+    Si la ruta de origen es un fichero, el destino puede ser un fichero o un
+    directorio. En el primer caso, el fichero se renombra, si no, el ítem se
+    mueve al directorio destino.
+    Si la ruta de origen es un directorio, la ruta destino ha de serlo también.
+
+    Requisitos para mover o renombrar un ítem:
+        El ítem ha de estar controlado por Unity VCS.
+        El directorio padre del ítem origen y del ítem destino han de estar desprotegidos.
+
+Ejemplos:
+
+    cm move fichero.txt fichero.old (renombra el ítem)
+    cm move .\fichero.old .\antiguos (mueve fichero.old al directorio antiguos)
+    cm move .\src .\src2 (renombra el directorio)
+
+== CMD_DESCRIPTION_LABEL ==
+Este comando permite al usuario efectuar operaciones con etiquetas.
+
+== CMD_USAGE_LABEL ==
+Sintaxis:
+
+    cm label | lb command [options]
+
+Comandos:
+
+    create | mk
+    delete | rm
+    rename
+
+    Para obtener más información sobre cada uno de los comandos ejecute:
+    cm label command --usage
+    cm label command --help
+
+== CMD_HELP_LABEL ==
+Ejemplos
+
+    cm label myNewLabel cs:42
+    (el comando 'create' es opcional)
+    cm label rename myNewLabel newLabelName
+    cm label delete newLabelName
+
+== CMD_DESCRIPTION_LABEL_CREATE ==
+Crea una etiqueta nueva o etiqueta una changeset dado.
+
+== CMD_USAGE_LABEL_CREATE ==
+Sintaxis:
+
+    cm label [create] spec_etiqueta [spec_changeset | ruta]
+                        [--allxlinkedrepositories]
+                        [-c=str_comment | -commentsfile=<comments_file>]
+
+    spec_etiqueta: Especificación de la etiqueta. Usa 'cm help objectspec' para
+    obtener más información sobre especificaciones.
+    spec_changeset: Nombre o especificación del changeset a etiquetar. Usa 
+    'cm help objectspec' para obtener más información sobre especificaciones.
+    ruta: Ruta del workspace a etiquetar
+
+    Si no se especifica spec_changeset ni ruta se asumirá el directorio actual
+    como workspace a etiquetar.
+
+Opciones:
+
+    --allxlinkedrepositories (-s): Crea la etiqueta en todos los repositorios
+      enlazados.
+    -c: Añade un comentario a la etiqueta creada.
+    --commentsfile=comment.txt: Carga el comentario del fichero especificado.
+
+== CMD_HELP_LABEL_CREATE ==
+Notas:
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+
+Ejemplos:
+
+    cm label create lb:BL001 cs:1203 -commentsfile=commentlb001.txt
+    cm label BL002 cs:=1203 -c="first release"
+
+== CMD_DESCRIPTION_LABEL_DELETE ==
+Borra una o más etiquetas.
+
+== CMD_USAGE_LABEL_DELETE ==
+Sintaxis:
+
+    cm label delete spec_etiqueta1 spec_etiqueta2 ...
+
+    spec_etiqueta:  Etiquetas a borrar, separadas por espacios.
+                    Usa 'cm help objectspec' para obtener más información
+                    sobre la especificación de etiquetas.
+
+== CMD_HELP_LABEL_DELETE ==
+Notas:
+
+   Este comando borra una o más etiquetas creadas previamente.
+
+Ejemplos:
+
+   cm label delete lb:BL001 (Se borra la etiqueta 'BL001')
+   cm label delete lb:BL001 lb:BL002
+
+== CMD_DESCRIPTION_LABEL_RENAME ==
+Renombra una etiqueta.
+
+== CMD_USAGE_LABEL_RENAME ==
+Sintaxis:
+
+    cm label rename spec_etiqueta nuevo_nombre
+
+    sepec_etiqueta: Especificación de la etiqueta que se va a renombrar.
+                    Usa 'cm help objectspec' para obtener más información sobre
+                    la especificación de etiquetas.
+    nuevo_nombre:   Nuevo nombre para la etiqueta.
+
+== CMD_HELP_LABEL_RENAME ==
+Notas:
+
+   Este comando renombra una etiqueta.
+
+Ejemplos:
+
+   cm label rename lb:BL001 BL002
+   (La etiqueta 'BL001' se renombra a 'BL002')
+
+== CMD_DESCRIPTION_OBJECTSPEC ==
+Explica cómo escribir object specs (especificaciones de objetos).
+
+== CMD_USAGE_OBJECTSPEC ==
+Sintaxis:
+    cm objectspec
+    Para obtener toda la información sobre cómo construir specs de objetos.
+
+== CMD_HELP_OBJECTSPEC ==
+Muchos comandos de Unity VCS esperan 'object specs' como entrada para
+referirse a un objeto concreto (normalmente una rama, un changeset, un
+repositorio, etc.).
+
+Esta documentación describe los diferentes tipos de "specs" disponibles y
+cómo construirlas.
+
+Cada tipo de especificación comienza con un tag único, por ejemplo "rep:" o "cs:".
+El tag se debe indicar para comandos que reciban especificaciones generales
+de objetos, como por ejemplo "cm setowner object_spec", pero a menudo se pueden
+omitir en comandos que solo acepten un tipo de especificación, como por ejemplo
+"cm getfile revision_spec".
+
+== Repository server spec (repserverspec) ==
+    repserver:name:port
+
+    Ejemplos:
+        cm lrep repserver:skull:8084
+        cm lrep skull:8084
+
+    Nota:
+        Lo llamamos "rep" server spec (con el 'rep' delante) en lugar de
+        simplemente 'server spec' por motivos históricos. Hace mucho tiempo
+        Unity VCS tenía servidores de workspaces y repositorios separados, y
+        el nombre ha sobrevivido.
+
+== Repository spec (repspec) ==
+    rep:rep_name@[repserverspec]
+
+    Ejemplos:
+        cm showowner rep:codice@localhost:6060
+        (Aquí la "rep:" es necesaria porque el comando showowner admite
+         todo tipo de objetos).
+
+== Branch spec (brspec) ==
+    br:[/]br_name[@repspec]
+
+    Ejemplos:
+        cm switch br:/main@rep:plastic@repserver:skull:9095
+        (En este caso "br:", "rep:" y "repserver:" no son necesarios así
+         que el comando se puede escribir de forma mucho más compacta:
+         "cm switch main@plastic@skull:9095" .)
+
+        cm find revisions "where branch='br:/main/task001'"
+
+    Nota:
+        La barra inicial '/' en las ramas no es obligatoria. Solíamos escribir
+        todas las ramas como /main, /main/task001, etc. Pero ahora preferimos
+        user formatos más cortos tipo main, main/task001.
+
+== Changeset spec (csetspec) ==
+    cs:cs_number|cs_guid[@repspec]
+
+    Se puede especificar el número o el GUID del changeset.
+
+    Ejemplos:
+        cm ls /code --tree=ae1390ed-7ce9-4ec3-a155-e5a61de0dc77@code@skull:7070
+
+== Label spec (labelspec) ==
+    lb:lb_name[@repspec]
+
+    Ejemplos:
+        cm switch lb:RELEASE2.0
+        cm switch lb:RELEASE1.4@myrep@MYSERVER:8084
+
+== Revision spec ==
+Hay distintos tipos de specs de revisiones:
+
+    rev:item_path[#(brspec|csetspec|labelspec)]
+
+    rev:serverpath:item_path#(brspec|cset_spec|lb_spec)
+
+    rev:revid:rev_id[@rep_spec]
+
+    rev:itemid:item_id#(br_spec|cset_spec|lb_spec)
+
+    Ejemplos:
+        cm diff rev:readme.txt#cs:19 rev:readme.txt#cs:20
+
+        cm diff serverpath:/doc/readme.txt#cs:19@myrepo \
+            serverpath:/doc/readme.txt#br:/main@myrepo@localhost:8084
+
+        cm cat revid:1230@rep:myrep@repserver:myserver:8084
+
+== Item spec ==
+Se usa muy raras veces.
+    item:path
+
+    Ejemplo:
+        cm find revision "where item='item:.'"
+
+== Attribute spec ==
+    att:att_name[@repspec]
+
+    Ejemplo:
+        cm rmattributereal att:merged@code@doe:8084 cs:25@code@doe:8084
+
+== Workspace specs ==
+    wk:name@clientmachine
+
+Se usa muy poco porque solamente aplica a los comandos relacionados con los
+workspaces. Es útil para indicar el nombre del workspace en lugar del path.
+
+    Ejemplo:
+        cm showselector wk:codebase@modok
+
+    Nota:
+        Estas specs vienen de los viejos tiempos de Plastic SCM 2.x en los que
+        los 'workspace servers' eran una forma de almacenar metadatos de forma
+        centralizada. Se eliminaron por cuestiones de rendimiento.
+
+== CMD_DESCRIPTION_PARTIAL ==
+Ejecuta comandos en un espacio de trabajo parcial.
+
+== CMD_USAGE_PARTIAL ==
+Sintaxis:
+
+    cm partial comando [opciones]
+
+Comandos:
+
+    configure
+    add
+    undo
+    co     | checkout
+    unco   | undocheckout
+    ci     | checkin
+    mv     | move
+    rm     | remove
+    stb    | switch
+    upd    | update
+    shelve | shelveset
+
+    Para obtener más información de cada uno de los comandos ejecute:
+    cm partial comando --usage
+    cm partial comando --help
+
+== CMD_HELP_PARTIAL ==
+Ejemplos:
+
+    cm partial configure +/fondo-azul.png
+    cm partial update paisaje-1024.png
+    cm partial checkin ojos-verde.png ojos-negro.png
+
+== CMD_DESCRIPTION_PARTIAL_ADD ==
+Añade un ítem al repositorio.
+
+== CMD_USAGE_PARTIAL_ADD ==
+Sintaxis:
+
+    cm partial add [-R | -r | --recursive] [--silent] [--parents] [--ignorefailed] 
+                   [--skipcontentcheck]
+                   [--format=<str-format>] [--errorformat=<str-format>]
+                   <rutas>+
+
+    rutas               Rutas de los ítems a añadir separados por espacios.
+                        Usa comillas (") para especificar rutas con espacios.
+                        Usa * para añadir todo el contenido del directorio 
+                        actual.
+
+Opciones:
+
+    -R                  Añade los ítems recursivamente.
+    --silent            No muestra ninguna salida.
+    --parents           Incluye los directorios padre de los ítems indicados en
+                        la operación.
+    --ignorefailed      Si un ítem no se puede añadir, la operación de add
+                        continuará sin él. Importante: si un directorio no se 
+                        puede añadir, su contenido tampoco se añadirá.
+    --skipcontentcheck  Cuando la extensión no es suficiente para determinar si 
+                        el fichero es de tipo texto o binario, se asumirá que es
+                        binario en lugar de usar el contenido para detectar el
+                        tipo.
+    --format            Devuelve la salida en el formato especificado. Consulta
+                        los ejemplos para más información.
+    --errorformat       En caso de error, devuelve el mensaje en el formato
+                        especificado. Consulta los ejemplos para más información.
+
+== CMD_HELP_PARTIAL_ADD ==
+Notas:
+
+    Requisitos para añadir ítems:
+    - El directorio padre del ítem a añadir debe existir en el repositorio.
+
+Ejemplos:
+
+    cm partial add pic1.png pic2.png
+    (Añade los ítems pic1.png y pic2.png.)
+
+    cm partial add 

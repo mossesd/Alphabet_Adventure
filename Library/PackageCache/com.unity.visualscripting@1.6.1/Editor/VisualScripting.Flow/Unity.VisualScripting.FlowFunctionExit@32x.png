@@ -1,0 +1,23 @@
+" msgid="7522314392003565121">"Роб. мобільний"</string>
+    <string name="phoneTypeWorkPager" msgid="3748332310638505234">"Роб. пейджер"</string>
+    <string name="phoneTypeAssistant" msgid="757550783842231039">"Помічник"</string>
+    <string name="phoneTypeMms" msgid="1799747455131365989">"MMS"</string>
+    <string name="eventTypeCustom" msgid="3257367158986466481">"Указати"</string>
+    <string name="eventTypeBirthday" msgid="7770026752793912283">"День народження"</string>
+    <string name="eventTypeAnniversary" msgid="4684702412407916888">"Річниця"</string>
+    <string name="eventTypeOther" msgid="530671238533887997">"Інші"</string>
+    <string name="emailTypeCustom" msgid="1809435350482181786">"Указати"</string>
+    <string name="emailTypeHome" msgid="1597116303154775999">"Особиста"</string>
+    <string name="emailTypeWork" msgid="2020095414401882111">"Робоча"</string>
+    <string name="emailTypeOther" msgid="5131130857030897465">"Інше"</string>
+    <string name="emailTypeMobile" msgid="787155077375364230">"Мобільна"</string>
+    <string name="postalTypeCustom" msgid="5645590470242939129">"Указати"</string>
+    <string name="postalTypeHome" msgid="7562272480949727912">"Домашня"</string>
+    <string name="postalTypeWork" msgid="8553425424652012826">"Роб."</string>
+    <string name="postalTypeOther" msgid="7094245413678857420">"Інше"</string>
+    <string name="imTypeCustom" msgid="5653384545085765570">"Указати"</string>
+    <string name="imTypeHome" msgid="6996507981044278216">"Дом."</string>
+    <string name="imTypeWork" msgid="2099668940169903123">"Роб."</string>
+    <string name="imTypeOther" msgid="8068447383276219810">"Інше"</string>
+    <string name="imProtocolCustom" msgid="4437878287653764692">"Указати"</string>
+    <string name="imProtocolAim" msgid="40501982

@@ -1,0 +1,127 @@
+��.
+
+== CmdErrorItemInCi ==
+{0} 항목에 대한 변경사항이 체크인되어 취소할 수 없습니다. 
+
+== CmdErrorPrivateItem ==
+작업을 수행할 수 없습니다. {0} 항목은 비공개입니다.
+
+== CmdErrorPrivatePath ==
+작업을 수행할 수 없습니다. 현재 경로는 비공개입니다.
+
+== CmdGenericItemdoesnotexist ==
+{0} 항목이 더 이상 워크스페이스에 존재하지 않습니다.
+
+== CmdItemDoesNotExist ==
+{0}이(가) 존재하지 않습니다.
+
+== CmdErrorLabelIncorrectmarkerspec ==
+잘못된 레이블 사양: {0}
+
+== CommentOutOfDate ==
+편집 중인 검토 코멘트가 더 이상 존재하지 않습니다. 코멘트 뷰를 새로고침하십시오.
+
+== CommentTooLong ==
+코멘트가 너무 깁니다. 현재 길이는 {0}입니다. 허용된 최대 길이는 {1}입니다
+
+== CommitFailedAndRollback ==
+작업이 커밋할 수 없으며 취소되었습니다.
+
+== CommonAncestorSameItem ==
+공통 조상은 같은 항목의 개정에서만 계산될 수 있습니다.
+
+== CommonAncestorSameRev ==
+같은 개정의 공통 조상을 계산할 수 없습니다.
+
+== ConfiguringLanguage ==
+언어 구성 중입니다. 사용할 수 있는 언어는 다음과 같습니다.
+
+== ConfiguringLdap ==
+LDAP 연결 구성 중...
+
+== ConfiguringUp ==
+사용자 및 비밀번호 설정 구성 중 ...
+
+== ConfiguringWorkingMode ==
+사용자 인증 모드를 선택하십시오. 사용할 수 있는 모드는 다음과 같습니다.
+
+== ConflictCannotBeApplied ==
+해당 충돌 해결 방법은 다른 충돌 해결에 따라 달라질 수 있어 적용할 수 없습니다. 다른 순서로 충돌 해결을 시도해보십시오. 충돌 해결 방법이 다음 오류를 반환했습니다. {0}
+
+== ControlInManager ==
+제어 {0}은(는) 이미 그래픽스 관리자에 있습니다.
+
+== ControlNotPrepared ==
+해당 제어는 아직 준비되지 않았습니다. 다시 시도하십시오.
+
+== CouldGetInstanceOf ==
+치명적인 오류: 클래스 {0}의 인스턴스를 가져올 수 없습니다.
+
+== CouldntGetRepositoryFromPath ==
+{0}에서 리포지토리를 가져올 수 없습니다. 항목이 비공개일 수 있습니다.
+
+== CouldntLoadAsm ==
+어셈블리 {0}을(를) 로드할 수 없습니다.
+
+== CsNotFound ==
+지정된 변경 세트 {0}을(를) 찾을 수 없습니다.
+
+== CycleMoveConflict ==
+순환 이동 충돌
+
+== DatabaseInfoMoreThanOneRow ==
+DATABASEINFO 표에는 행이 하나만 있어야 합니다.
+
+== DeactivateUserNotInLicenseList ==
+사용자 {0}님은 활성 사용자가 아닙니다.
+
+== DeleteBlobError ==
+개정 {0}에 대한 데이터(세그먼트 {1})를 리포지토리 {2}에서 삭제할 수 없습니다.
+
+== GetSizeBlobError ==
+개정 {0}에 대한 데이터(세그먼트 {1})의 크기를 리포지토리 {2}에서 가져올 수 없습니다.
+
+== DestNotFound ==
+대상 객체를 찾을 수 없습니다.
+
+== DestinationAlreadyExist ==
+이동할 수 없습니다. 대상 {0}이(가) 이미 있습니다. 항목 덮어쓰기가 허용되지 않습니다
+
+== DestinationDirectoryMustBeCheckedoutToMove ==
+{0}을(를) 이동하려면 대상 디렉터리를 체크아웃해야 합니다.
+
+== DirIdentical ==
+디렉터리가 동일합니다.
+
+== DirectoryAlreadyExists ==
+{0} 디렉터리가 이미 존재합니다.
+
+== DirectoryNotExist ==
+{0} 디렉터리가 존재하지 않습니다.
+
+== DivergentMoveConflict ==
+분기 이동 충돌
+
+== DoesNotExist ==
+{0}이(가) 존재하지 않습니다.
+
+== DomainNotAvailable ==
+도메인 컨트롤러를 사용할 수 없습니다.
+
+== DuplicatedArg ==
+인수 {0}이(가) 중복됩니다.
+
+== ElementIsNotCi ==
+현재 워크스페이스에서 {0} 요소가 체크인되지 않았습니다.
+
+== ElementIsNotCo ==
+현재 워크스페이스에서 {0} 요소가 체크아웃되지 않았습니다.
+
+== English ==
+영어
+
+== ErrorCantCreateDatabase ==
+데이터베이스 {0}을(를) 생성할 수 없습니다. 서버 로그(plastic.server.log)를 확인하십시오. 오류: {1}
+
+== ErrorCantImportInvalidPackage ==
+잘못된 복제 패키지입니다. 잘못된 헤더입니�

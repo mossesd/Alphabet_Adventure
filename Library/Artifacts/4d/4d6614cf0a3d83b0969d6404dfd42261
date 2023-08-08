@@ -1,0 +1,182 @@
+== undefined) {
+      end = buf.length;
+    } else {
+      validateOffset(end, 'end', 0, buf.length);
+    }
+    if (offset >= end)
+      return buf;
+  }
+
+
+  if (typeof value === 'number') {
+    // OOB check
+    const byteLen = TypedArrayPrototypeGetByteLength(buf);
+    const fillLength = end - offset;
+    if (offset > end || fillLength + offset > byteLen)
+      throw new ERR_BUFFER_OUT_OF_BOUNDS();
+
+    TypedArrayPrototypeFill(buf, value, offset, end);
+  } else {
+    const res = bindingFill(buf, value, offset, end, encoding);
+    if (res < 0) {
+      if (res === -1)
+        throw new ERR_INVALID_ARG_VALUE('value', value);
+      throw new ERR_BUFFER_OUT_OF_BOUNDS();
+    }
+  }
+
+  return buf;
+}
+
+Buffer.prototype.write = function write(string, offset, length, encoding) {
+  // Buffer#write(string);
+  if (offset === undefined) {
+    return this.utf8Write(string, 0, this.length);
+  }
+  // Buffer#write(string, encoding)
+  if (length === undefined && typeof offset === 'string') {
+    encoding = offset;
+    length = this.length;
+    offset = 0;
+
+  // Buffer#write(string, offset[, length][, encoding])
+  } else {
+    validateOffset(offset, 'offset', 0, this.length);
+
+    const remaining = this.length - offset;
+
+    if (length === undefined) {
+      length = remaining;
+    } else if (typeof length === 'string') {
+      encoding = length;
+      length = remaining;
+    } else {
+      validateOffset(length, 'length', 0, this.length);
+      if (length > remaining)
+        length = remaining;
+    }
+  }
+
+  if (!encoding)
+    return this.utf8Write(string, offset, length);
+
+  const ops = getEncodingOps(encoding);
+  if (ops === undefined)
+    throw new ERR_UNKNOWN_ENCODING(encoding);
+  return ops.write(this, string, offset, length);
+};
+
+Buffer.prototype.toJSON = function toJSON() {
+  if (this.length > 0) {
+    const data = new Array(this.length);
+    for (let i = 0; i < this.length; ++i)
+      data[i] = this[i];
+    return { type: 'Buffer', data };
+  }
+  return { type: 'Buffer', data: [] };
+};
+
+function adjustOffset(offset, length) {
+  // Use Math.trunc() to convert offset to an integer value that can be larger
+  // than an Int32. Hence, don't use offset | 0 or similar techniques.
+  offset = MathTrunc(offset);
+  if (offset === 0) {
+    return 0;
+  }
+  if (offset < 0) {
+    offset += length;
+    return offset > 0 ? offset : 0;
+  }
+  if (offset < length) {
+    return offset;
+  }
+  return NumberIsNaN(offset) ? 0 : length;
+}
+
+Buffer.prototype.slice = function slice(start, end) {
+  const srcLength = this.length;
+  start = adjustOffset(start, srcLength);
+  end = end !== undefined ? adjustOffset(end, srcLength) : srcLength;
+  const newLength = end > start ? end - start : 0;
+  return new FastBuffer(this.buffer, this.byteOffset + start, newLength);
+};
+
+function swap(b, n, m) {
+  const i = b[n];
+  b[n] = b[m];
+  b[m] = i;
+}
+
+Buffer.prototype.swap16 = function swap16() {
+  // For Buffer.length < 128, it's generally faster to
+  // do the swap in javascript. For larger buffers,
+  // dropping down to the native code is faster.
+  const len = this.length;
+  if (len % 2 !== 0)
+    throw new ERR_INVALID_BUFFER_SIZE('16-bits');
+  if (len < 128) {
+    for (let i = 0; i < len; i += 2)
+      swap(this, i, i + 1);
+    return this;
+  }
+  return _swap16(this);
+};
+
+Buffer.prototype.swap32 = function swap32() {
+  // For Buffer.length < 192, it's generally faster to
+  // do the swap in javascript. For larger buffers,
+  // dropping down to the native code is faster.
+  const len = this.length;
+  if (len % 4 !== 0)
+    throw new ERR_INVALID_BUFFER_SIZE('32-bits');
+  if (len < 192) {
+    for (let i = 0; i < len; i += 4) {
+      swap(this, i, i + 3);
+      swap(this, i + 1, i + 2);
+    }
+    return this;
+  }
+  return _swap32(this);
+};
+
+Buffer.prototype.swap64 = function swap64() {
+  // For Buffer.length < 192, it's generally faster to
+  // do the swap in javascript. For larger buffers,
+  // dropping down to the native code is faster.
+  const len = this.length;
+  if (len % 8 !== 0)
+    throw new ERR_INVALID_BUFFER_SIZE('64-bits');
+  if (len < 192) {
+    for (let i = 0; i < len; i += 8) {
+      swap(this, i, i + 7);
+      swap(this, i + 1, i + 6);
+      swap(this, i + 2, i + 5);
+      swap(this, i + 3, i + 4);
+    }
+    return this;
+  }
+  return _swap64(this);
+};
+
+Buffer.prototype.toLocaleString = Buffer.prototype.toString;
+
+let transcode;
+if (internalBinding('config').hasIntl) {
+  const {
+    icuErrName,
+    transcode: _transcode
+  } = internalBinding('icu');
+
+  // Transcodes the Buffer from one encoding to another, returning a new
+  // Buffer instance.
+  transcode = function transcode(source, fromEncoding, toEncoding) {
+    if (!isUint8Array(source)) {
+      throw new ERR_INVALID_ARG_TYPE('source',
+                                     ['Buffer', 'Uint8Array'], source);
+    }
+    if (source.length === 0) return Buffer.alloc(0);
+
+    fromEncoding = normalizeEncoding(fromEncoding) || fromEncoding;
+    toEncoding = normalizeEncoding(toEncoding) || toEncoding;
+    const result = _transcode(source, fromEncoding, toEncoding);
+    if (typeof resul

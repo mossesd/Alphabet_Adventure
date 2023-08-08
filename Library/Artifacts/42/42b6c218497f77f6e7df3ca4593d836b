@@ -1,0 +1,322 @@
+   vimSyncKey	contained	"\<groupthere\|grouphere\>"	skipwhite nextgroup=vimSyncGroup
+syn match   vimSyncGroup	contained	"\k\+"	skipwhite	nextgroup=vimSynRegPat,vimSyncNone
+syn keyword vimSyncNone	contained	NONE
+
+" Additional IsCommand, here by reasons of precedence {{{2
+" ====================
+syn match vimIsCommand	"<Bar>\s*\a\+"	transparent contains=vimCommand,vimNotation
+
+" Highlighting {{{2
+" ============
+syn cluster vimHighlightCluster	contains=vimHiLink,vimHiClear,vimHiKeyList,vimComment
+syn match   vimHighlight	"\<hi\%[ghlight]\>" skipwhite nextgroup=vimHiBang,@vimHighlightCluster
+syn match   vimHiBang	contained	"!"	  skipwhite nextgroup=@vimHighlightCluster
+
+syn match   vimHiGroup	contained	"\i\+"
+syn case ignore
+syn keyword vimHiAttrib	contained	none bold inverse italic reverse standout underline undercurl
+syn keyword vimFgBgAttrib	contained	none bg background fg foreground
+syn case match
+syn match   vimHiAttribList	contained	"\i\+"	contains=vimHiAttrib
+syn match   vimHiAttribList	contained	"\i\+,"he=e-1	contains=vimHiAttrib nextgroup=vimHiAttribList
+syn case ignore
+syn keyword vimHiCtermColor	contained	black blue brown cyan darkBlue darkcyan darkgray darkgreen darkgrey darkmagenta darkred darkyellow gray green grey lightblue lightcyan lightgray lightgreen lightgrey lightmagenta lightred magenta red white yellow
+
+syn case match
+syn match   vimHiFontname	contained	"[a-zA-Z\-*]\+"
+syn match   vimHiGuiFontname	contained	"'[a-zA-Z\-* ]\+'"
+syn match   vimHiGuiRgb	contained	"#\x\{6}"
+if !exists("g:vimsyntax_noerror")
+ syn match   vimHiCtermError	contained	"[^0-9]\i*"
+endif
+
+" Highlighting: hi group key=arg ... {{{2
+syn cluster vimHiCluster contains=vimHiGroup,vimHiTerm,vimHiCTerm,vimHiStartStop,vimHiCtermFgBg,vimHiGui,vimHiGuiFont,vimHiGuiFgBg,vimHiKeyError,vimNotation
+syn region vimHiKeyList	contained oneline start="\i\+" skip="\\\\\|\\|" end="$\||"	contains=@vimHiCluster
+if !exists("g:vimsyntax_noerror")
+ syn match  vimHiKeyError	contained	"\i\+="he=e-1
+endif
+syn match  vimHiTerm	contained	"\cterm="he=e-1		nextgroup=vimHiAttribList
+syn match  vimHiStartStop	contained	"\c\(start\|stop\)="he=e-1	nextgroup=vimHiTermcap,vimOption
+syn match  vimHiCTerm	contained	"\ccterm="he=e-1		nextgroup=vimHiAttribList
+syn match  vimHiCtermFgBg	contained	"\ccterm[fb]g="he=e-1	nextgroup=vimNumber,vimHiCtermColor,vimFgBgAttrib,vimHiCtermError
+syn match  vimHiGui	contained	"\cgui="he=e-1		nextgroup=vimHiAttribList
+syn match  vimHiGuiFont	contained	"\cfont="he=e-1		nextgroup=vimHiFontname
+syn match  vimHiGuiFgBg	contained	"\cgui\%([fb]g\|sp\)="he=e-1	nextgroup=vimHiGroup,vimHiGuiFontname,vimHiGuiRgb,vimFgBgAttrib
+syn match  vimHiTermcap	contained	"\S\+"		contains=vimNotation
+
+" Highlight: clear {{{2
+syn keyword vimHiClear	contained	clear	nextgroup=vimHiGroup
+
+" Highlight: link {{{2
+syn region vimHiLink	contained oneline matchgroup=vimCommand start="\<\(def\s\+\)\=link\>\|\<def\>" end="$"	contains=vimHiGroup,vimGroup,vimHLGroup,vimNotation
+
+" Control Characters {{{2
+" ==================
+syn match vimCtrlChar	"[--]"
+
+" Beginners - Patterns that involve ^ {{{2
+" =========
+syn match  vimLineComment	+^[ \t:]*".*$+	contains=@vimCommentGroup,vimCommentString,vimCommentTitle
+syn match  vimCommentTitle	'"\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+1	contained contains=vimCommentTitleLeader,vimTodo,@vimCommentGroup
+syn match  vimContinue	"^\s*\\"
+syn region vimString	start="^\s*\\\z(['"]\)" skip='\\\\\|\\\z1' end="\z1" oneline keepend contains=@vimStringGroup,vimContinue
+syn match  vimCommentTitleLeader	'"\s\+'ms=s+1	contained
+
+" Searches And Globals: {{{2
+" ====================
+syn match vimSearch	'^\s*[/?].*'		contains=vimSearchDelim
+syn match vimSearchDelim	'^\s*\zs[/?]\|[/?]$'	contained
+syn region vimGlobal	matchgroup=Statement start='\<g\%[lobal]!\=/' skip='\\.' end='/'
+syn region vimGlobal	matchgroup=Statement start='\<v\%[global]!\=/' skip='\\.' end='/'
+
+" Scripts  : perl,ruby : Benoit Cerrina {{{2
+" =======    python,tcl: Johannes Zellner
+
+" allow users to prevent embedded script syntax highlighting
+" when vim doesn't have perl/python/ruby/tcl support.  Do
+" so by setting g:vimembedscript= 0 in the user's <.vimrc>.
+if !exists("g:vimembedscript")
+ let g:vimembedscript= 1
+endif
+
+" [-- perl --] {{{3
+if (has("perl") || g:vimembedscript) && filereadable(expand("<sfile>:p:h")."/perl.vim")
+ unlet! b:current_syntax
+ syn include @vimPerlScript <sfile>:p:h/perl.vim
+ syn region vimPerlRegion matchgroup=vimScriptDelim start=+pe\%[rl]\s*<<\s*\z(.*\)$+ end=+^\z1$+ contains=@vimPerlScript
+ syn region vimPerlRegion matchgroup=vimScriptDelim start=+pe\%[rl]\s*<<\s*$+ end=+\.$+ contains=@vimPerlScript
+endif
+
+" [-- ruby --] {{{3
+if (has("ruby") || g:vimembedscript) && filereadable(expand("<sfile>:p:h")."/ruby.vim")
+ unlet! b:current_syntax
+ syn include @vimRubyScript <sfile>:p:h/ruby.vim
+ syn region vimRubyRegion matchgroup=vimScriptDelim start=+rub[y]\s*<<\s*\z(.*\)$+ end=+^\z1$+ contains=@vimRubyScript
+ syn region vimRubyRegion matchgroup=vimScriptDelim start=+rub[y]\s*<<\s*$+ end=+\.$+ contains=@vimRubyScript
+endif
+
+" [-- python --] {{{3
+if (has("python") || g:vimembedscript) && filereadable(expand("<sfile>:p:h")."/python.vim")
+ unlet! b:current_syntax
+ syn include @vimPythonScript <sfile>:p:h/python.vim
+ syn region vimPythonRegion matchgroup=vimScriptDelim start=+py\%[thon]\s*<<\s*\z(.*\)$+ end=+^\z1$+ contains=@vimPythonScript
+ syn region vimPythonRegion matchgroup=vimScriptDelim start=+py\%[thon]\s*<<\s*$+ end=+\.$+ contains=@vimPythonScript
+endif
+
+" [-- tcl --] {{{3
+if has("win32") || has("win95") || has("win64") || has("win16")
+ " apparently has("tcl") has been hanging vim on some windows systems with cygwin
+ let trytcl= (&shell !~ '\%(\<bash\>\|\<zsh\>\)\%(\.exe\)\=$') || g:vimembedscript
+else
+ let trytcl= 1
+endif
+if trytcl
+ if (has("tcl") || g:vimembedscript) && filereadable(expand("<sfile>:p:h")."/tcl.vim")
+  unlet! b:current_syntax
+  syn include @vimTclScript <sfile>:p:h/tcl.vim
+  syn region vimTclRegion matchgroup=vimScriptDelim start=+tc[l]\=\s*<<\s*\z(.*\)$+ end=+^\z1$+ contains=@vimTclScript
+  syn region vimTclRegion matchgroup=vimScriptDelim start=+tc[l]\=\s*<<\s*$+ end=+\.$+ contains=@vimTclScript
+ endif
+endif
+unlet trytcl
+
+" [-- mzscheme --] {{{3
+if (has("mzscheme") || g:vimembedscript) && filereadable(expand("<sfile>:p:h")."/scheme.vim")
+ unlet! b:current_syntax
+ let iskKeep= &isk
+ syn include @vimMzSchemeScript <sfile>:p:h/scheme.vim
+ let &isk= iskKeep
+ syn region vimMzSchemeRegion matchgroup=vimScriptDelim start=+mz\%[scheme]\s*<<\s*\z(.*\)$+ end=+^\z1$+ contains=@vimMzSchemeScript
+ syn region vimMzSchemeRegion matchgroup=vimScriptDelim start=+mz\%[scheme]\s*<<\s*$+ end=+\.$+ contains=@vimMzSchemeScript
+endif
+
+" Synchronize (speed) {{{2
+"============
+if exists("g:vim_minlines")
+ exe "syn sync minlines=".g:vim_minlines
+endif
+if exists("g:vim_maxlines")
+ exe "syn sync maxlines=".g:vim_maxlines
+else
+ syn sync maxlines=60
+endif
+syn sync linecont	"^\s\+\\"
+syn sync match vimAugroupSyncA	groupthere NONE	"\<aug\%[roup]\>\s\+[eE][nN][dD]"
+
+" Highlighting Settings {{{2
+" ====================
+
+hi def link vimAuHighlight	vimHighlight
+hi def link vimSubst1	vimSubst
+hi def link vimBehaveModel	vimBehave
+
+if !exists("g:vimsyntax_noerror")
+ hi def link vimBehaveError	vimError
+ hi def link vimCollClassErr	vimError
+ hi def link vimErrSetting	vimError
+ hi def link vimFTError	vimError
+ hi def link vimFunctionError	vimError
+ hi def link vimFunc         	vimError
+ hi def link vimHiAttribList	vimError
+ hi def link vimHiCtermError	vimError
+ hi def link vimHiKeyError	vimError
+ hi def link vimKeyCodeError	vimError
+ hi def link vimMapModErr	vimError
+ hi def link vimSubstFlagErr	vimError
+ hi def link vimSynCaseError	vimError
+endif
+
+hi def link vimAddress	vimMark
+hi def link vimAugroupKey	vimCommand
+hi def link vimAutoCmdOpt	vimOption
+hi def link vimAutoCmd	vimCommand
+hi def link vimAutoSet	vimCommand
+hi def link vimBehave	vimCommand
+hi def link vimCommentString	vimString
+hi def link vimCondHL	vimCommand
+hi def link vimEchoHLNone	vimGroup
+hi def link vimEchoHL	vimCommand
+hi def link vimElseif	vimCondHL
+hi def link vimFgBgAttrib	vimHiAttrib
+hi def link vimFTCmd	vimCommand
+hi def link vimFTOption	vimSynType
+hi def link vimFuncKey	vimCommand
+hi def link vimGroupAdd	vimSynOption
+hi def link vimGroupRem	vimSynOption
+hi def link vimHiCtermFgBg	vimHiTerm
+hi def link vimHiCTerm	vimHiTerm
+hi def link vimHighlight	vimCommand
+hi def link vimHiGroup	vimGroupName
+hi def link vimHiGuiFgBg	vimHiTerm
+hi def link vimHiGuiFont	vimHiTerm
+hi def link vimHiGuiRgb	vimNumber
+hi def link vimHiGui	vimHiTerm
+hi def link vimHiStartStop	vimHiTerm
+hi def link vimHLGroup	vimGroup
+hi def link vimInsert	vimString
+hi def link vimKeyCode	vimSpecFile
+hi def link vimLet	vimCommand
+hi def link vimLineComment	vimComment
+hi def link vimMapBang	vimCommand
+hi def link vimMapModKey	vimFuncSID
+hi def link vimMapMod	vimBracket
+hi def link vimMap	vimCommand
+hi def link vimMarkNumber	vimNumber
+hi def link vimMenuMod	vimMapMod
+hi def link vimMenuNameMore	vimMenuName
+hi def link vimMtchComment	vimComment
+hi def link vimNorm	vimCommand
+hi def link vimNotPatSep	vimString
+hi def link vimPatSepR	vimPatSep
+hi def link vimPatSepZ	vimPatSep
+hi def link vimPatSepErr	vimPatSep
+hi def link vimPatSepZone	vimString
+hi def link vimPlainMark	vimMark
+hi def link vimPlainRegister	vimRegister
+hi def link vimSearch	vimString
+hi def link vimSearchDelim	Statement
+hi def link vimSetMod	vimOption
+hi def link vimSetString	vimString
+hi def link vimSpecFileMod	vimSpecFile
+hi def link vimStringCont	vimString
+hi def link vimSubstTwoBS	vimString
+hi def link vimSubst	vimCommand
+hi def link vimSyncGroupName	vimGroupName
+hi def link vimSyncGroup	vimGroupName
+hi def link vimSynContains	vimSynOption
+hi def link vimSynKeyContainedin	vimSynContains
+hi def link vimSynKeyOpt	vimSynOption
+hi def link vimSynMtchGrp	vimSynOption
+hi def link vimSynMtchOpt	vimSynOption
+hi def link vimSynNextgroup	vimSynOption
+hi def link vimSynNotPatRange	vimSynRegPat
+hi def link vimSynPatRange	vimString
+hi def link vimSynRegOpt	vimSynOption
+hi def link vimSynRegPat	vimString
+hi def link vimSyntax	vimCommand
+hi def link vimSynType	vimSpecial
+hi def link vimUserAttrbCmplt	vimSpecial
+hi def link vimUserAttrbKey	vimOption
+hi def link vimUserAttrb	vimSpecial
+hi def link vimUserCommand	vimCommand
+hi def link vimUserFunc	Normal
+
+hi def link vimAutoEvent	Type
+hi def link vimBracket	Delimiter
+hi def link vimCmplxRepeat	SpecialChar
+hi def link vimCommand	Statement
+hi def link vimComment	Comment
+hi def link vimCommentTitle	PreProc
+hi def link vimContinue	Special
+hi def link vimCtrlChar	SpecialChar
+hi def link vimElseIfErr	Error
+hi def link vimEnvvar	PreProc
+hi def link vimError	Error
+hi def link vimFold	Folded
+hi def link vimFuncName	Function
+hi def link vimFuncSID	Special
+hi def link vimFuncVar	Identifier
+hi def link vimGroup	Type
+hi def link vimGroupSpecial	Special
+hi def link vimHLMod	PreProc
+hi def link vimHiAttrib	PreProc
+hi def link vimHiTerm	Type
+hi def link vimKeyword	Statement
+hi def link vimMark	Number
+hi def link vimMenuName	PreProc
+hi def link vimNotation	Special
+hi def link vimNotFunc	vimCommand
+hi def link vimNumber	Number
+hi def link vimOper	Operator
+hi def link vimOption	PreProc
+hi def link vimOperError	Error
+hi def link vimPatSep	SpecialChar
+hi def link vimPattern	Type
+hi def link vimRegister	SpecialChar
+hi def link vimScriptDelim	Comment
+hi def link vimSep	Delimiter
+hi def link vimSetSep	Statement
+hi def link vimSpecFile	Identifier
+hi def link vimSpecial	Type
+hi def link vimStatement	Statement
+hi def link vimString	String
+hi def link vimSubstDelim	Delimiter
+hi def link vimSubstFlags	Special
+hi def link vimSubstSubstr	SpecialChar
+hi def link vimSynCase	Type
+hi def link vimSynCaseError	Error
+hi def link vimSynError	Error
+hi def link vimSynOption	Special
+hi def link vimSynReg	Type
+hi def link vimSyncC	Type
+hi def link vimSyncError	Error
+hi def link vimSyncKey	Type
+hi def link vimSyncNone	Type
+hi def link vimTodo	Todo
+hi def link vimUserCmdError	Error
+hi def link vimUserAttrbCmpltFunc	Special
+
+" Current Syntax Variable: {{{2
+let b:current_syntax = "vim"
+" vim:ts=18  fdm=marker
+                                                                                                                                      jù      v¤      k0        0.0.0 şÿÿÿ   î   ÿÿ¤2f,¹´ñø‹t^¼ç[Œs  K	         7  €ÿÿÿÿ     €            ¦ €² €                      E €                   Ş  €&          €           . €/          €           8   a €                   Ş  €&          €           . €/          €           † €r €                   Ş  €&      	    €           . €/      
+    €           H €« €ÿÿÿÿ   €          1  €1  €ÿÿÿÿ   @           Ş  € €                  Q  €j  €                  Õ €M   ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   À            Ş  € €                    €j  €ÿÿÿÿ   €             €›  €                   Ş  €›  €                   . €
+ €                   H €
+ €ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   @            Ş  € €                   Q  €j  €                   ñ  €e   ÿÿÿÿ   À           1  €1  €ÿÿÿÿ   €            Ş  € €                    €j  €ÿÿÿÿ   €            w   ›  €ÿÿÿÿ   €            H €   ÿÿÿÿ   €           1  €1  €ÿÿÿÿ    @            Ş  € €   !                Q  €j  €   "                H €’   ÿÿÿÿ#   €           1  €1  €ÿÿÿÿ$   @            Ş  € €   %                Q  €j  €   &                H €›   ÿÿÿÿ'   €           1  €1  €ÿÿÿÿ(   @            Ş  € €   )                Q  €j  €   *                y €
+ €   +                Ş  €&      ,    €           . €/      -    €            €    ÿÿÿÿ.   @          1  €1  €ÿÿÿÿ/               Ş  € €   0               . €j  €   1               Ş  €®      2                 Ş  €»      3                 Ş  €Ê      4                 Ş  €Ø      5                 Ş  €è      6                 Ş  €ò      7                 Ş  €     8                 ¡  €     9                 Ş  €5     :                 Ş  €O     ;                 Ş  €g     <                 Ş  €|     =                 ¡  €     >                 Ş  €     ?                 Ş  €°     @                 Ş  €½     A                 Ş  €Ğ     B                 Ş  €ë     C                 Ş  €ô     D                 Ş  €     E                 Ş  €"     F                 Ş  €4     G                 Ş  €I     H                 Ş  €[     I                 Ş  €k     J                 |       K                 Ş  €      L                 Ş  €­     M                 ¡  €µ     N                 Ş  €¿     O                 Ş  €Ç     P                 Ş  €Ï     Q                 Ş  €×     R                 Ş  €ã     S                 Ş  €î     T                 Ş  €     U                 ¦ €     V                 Ş  €      W                 Ş  €1     X                 Ü €=     Y                 ¡  €K     Z                 ¡  €M     [                 ¡  €O     \                 î €e     ]                 ¡  €K     ^                 ¡  €M     _                 ¡  €t     `                 ¡  €v     a                 Ş  €x     b                 Ş  €     c                 Ş  €ª     d                 ¡  €À     e                 Ş  €Û     f                 Ş  €é     g                 Ş  €ø     h                 Ş  €     i                 Ş  €      j                 Ş  €2     k                 Ş  €F     l                 Ş  €^     m                 Ş  €q     n                 Ş  €‚     o                 Ş  €—     p    @            Õ €©  ÿÿÿÿq    €           1  €1  €ÿÿÿÿr    À            Ş  € €   s                 ¼  j  €ÿÿÿÿt    €            H €Ü  ÿÿÿÿu    €           1  €1  €ÿÿÿÿv   @            Ş  € €   w                Q  €j  €   x                Ş  €k     y                 Ş  €ê     z                 Ş  €[     {                 Ş  €ü     |                 Ş  €î     }                 L  €     ~                 L  €'                      L  €>     €    @            Ş  €K                      L  €i     ‚                 “  §  ÿÿÿÿƒ    €            Õ €µ  ÿÿÿÿ„    €           1  €1  €ÿÿÿÿ…    À            Ş  € €   †                 ¿  j  €ÿÿÿÿ‡    €            H €« €ÿÿÿÿˆ    €           1  €1  €ÿÿÿÿ‰   @            Ş  € €   Š                Q  €j  €   ‹                ñ €Î     Œ                 ¡  €K                      ¡  €M                      ¡  €Õ                      ¡  €Û                      Ş  €1     ‘                 Ü €â     ’                 ¡  €K     “                 ¡  €M     ”                 î €ê     •                 ¡  €K     –                 ¡  €M     —                 ¡  €t     ˜                 ¡  €v     ™                 Õ €ó  ÿÿÿÿš    €           1  €1  €ÿÿÿÿ›    À            Ş  € €   œ                 Õ €j  €ÿÿÿÿ    €           1  €1  €ÿÿÿÿ    @           	 Ş  € €   Ÿ                	 Ü €j  €                    
+ ¡  €K     ¡                
+ ¡  €M     ¢                 Õ €ı  ÿÿÿÿ£    €           1  €1  €ÿÿÿÿ¤    À            Ş  € €   ¥                 Õ €j  €ÿÿÿÿ¦    €           1  €1  €ÿÿÿÿ§    @           	 Ş  € €   ¨                	 Ü €j  €   ©                
+ ¡  €K     ª                
+ ¡  €M     «                 ¡  €     ¬                 Õ €!  ÿÿÿÿ­    €           1  €1  €ÿÿÿÿ®    À            Ş  € €   ¯                 )  j  €ÿÿÿÿ°    €            H €›   ÿÿÿÿ±    À           	1  €1  €ÿÿÿÿ²   @           
+ Ş  € €   ³               
+ Q  €j  €   ´                H €4  ÿÿÿÿµ    À           	1  €1  €ÿÿÿÿ¶   @           
+ Ş  € €   ·               
+ Q  €j  €   ¸                å €9     ¹                	 ¡  €K     º                	 ¡  €M     »                	 ¡  €t     ¼                 å €B     ½                	 ¡  €K     ¾                	 ¡  €M     ¿                	 ¡  €t     À                	 ¡  €v     Á                 ¡  €K     Â                 Ş  €R     Ã                 V  €[     Ä                	 ¦ €a     Å                H €f  ÿÿÿÿÆ    €           1  €1  €ÿÿÿÿÇ   @            Ş  € €   È                Q  €j  €   É                . €q     Ê                 Õ €~  ÿÿÿÿË    €           1  €1  €ÿÿÿÿÌ    @            Ş  € €   Í                 Ü €j  €   Î                 ¡  €K     Ï                 ¡  €M     Ğ                 Õ €‰  ÿÿÿÿÑ    €           1  €1  €ÿÿÿÿÒ    @            Ş  € €   Ó                 Ş  €j  €   Ô                 Õ €“  ÿÿÿÿÕ    À           1  €1  €ÿÿÿÿÖ    @            Ş  € €   ×                 ! €j  €   Ø                 Ş  €K     Ù                 Ş  €M     Ú                 Õ €›  ÿÿÿÿÛ    À           1  €1  €ÿÿÿÿÜ    @            Ş  € €   İ                 ¥  j  €    Ş                 ¡  €²     ß                 ¡  €¼     à                 ¡  €Æ     á                 ¡  €Ğ     â                 Ş  €Ú     ã                 Ş  €ç     ä                 Ş  €ô     å                 Ş  €     æ                 Õ €ó  ÿÿÿÿç    €           1  €1  €ÿÿÿÿè    À            Ş  € €   é                 Õ €j  €ÿÿÿÿê    €           1  €1  €ÿÿÿÿë    @            Ş  € €   ì                 Ü €j  €   í                 ¡  €K     î                 ¡  €M     ï                 Õ €ı  ÿÿÿÿğ    €           1  €1  €ÿÿÿÿñ    À            Ş  € €   ò                 Õ €j  €ÿÿÿÿó    €           1  €1  €ÿÿÿÿô    @            Ş  € €   õ                 Ü €j  €   ö                 ¡  €K     ÷                 ¡  €M     ø                 Õ €!  ÿÿÿÿù    €           1  €1  €ÿÿÿÿú    À            Ş  € €   û                 )  j  €ÿÿÿÿü    €            H €›   ÿÿÿÿı    À           1  €1  €ÿÿÿÿş   @            Ş  € €   ÿ                Q  €j  €                   H €4  ÿÿÿÿ   À           1  €1  €ÿÿÿÿ  @            Ş  € €                  Q  €j  €                  å €9                     ¡  €K                     ¡  €M                     ¡  €t                     å €B     	                ¡  €K     
+                ¡  €M                     ¡  €t                     ¡  €v                     ¡  €K                     Ş  €R                     V  €[                     ¦ €a                    H €f  ÿÿÿÿ   €           1  €1  €ÿÿÿÿ  @            Ş  € €                  Q  €j  €                  . €q                     Õ €~  ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   @            Ş  € €                   Ü €j  €                   ¡  €K                     ¡  €M                     Õ €‰  ÿÿÿÿ   €           1  €1  €ÿÿÿÿ   @            Ş  € €                   Ş  €j  €                    Õ €“  ÿÿÿÿ!   À           1  €1  €ÿÿÿÿ"   @            Ş  € €   #                ! €j  €   $                Ş  €K     %                Ş  €M     &                Õ €›  ÿÿÿÿ'   À           1  €1  €ÿÿÿÿ(   @            Ş  € €   )                ¥  j  €    *                ¡  €²     +                ¡  €¼     ,                ¡  €Æ     -                ¡  €Ğ     .                Ş  €Ú     /                Ş  €ç     0                Ş  €ô     1                Ş  €     2                Õ €  ÿÿÿÿ3   €           1  €1  €ÿÿÿÿ4   À            Ş  € €   5                "  j  €ÿÿÿÿ6   €            ¾ €9     7                Ş  €&      8   €           . €/      9   €           H €›   ÿÿÿÿ:   À           1  €1  €ÿÿÿÿ;  @            Ş  € €   <               Q  €j  €   =               ñ  €A  ÿÿÿÿ>   €           1  €1  €ÿÿÿÿ?   €            Ş  € €   @                 €j  €ÿÿÿÿA   €            H €›  €ÿÿÿÿB   €           1  €1  €ÿÿÿÿC  @            Ş  € €   D               Q  €j  €   E               . €
+ €   F                H €S  ÿÿÿÿG   €           1  €1  €ÿÿÿÿH  @            Ş  € €   I               Q  €j  €   J               f  z  ÿÿÿÿK   €            ƒ    6   L   €            Ş  €·     M                Ş  €È     N                Ş  €Û     O                Ş  €é     P                Ş  €ó     Q                Ş  €ş     R                Ş  €Õ     S                Ş  €Û     T                Ş  €     U                Ş  €     V                Ş  €3     W                Ş  €<     X                Ş  €G     Y                L  €Z     Z                L  €w     [   @            ~  —  
+   \   €            Ş  €Õ     ]                Ş  €Û     ^                L  €°     _                L  €È     `   @            H €Õ  ÿÿÿÿa   €           1  €1  €ÿÿÿÿb  @            Ş  € €   c               Q  €j  €   d               L  €í     e                L  €ş     f   @            H €	  ÿÿÿÿg  €           1  €1  €ÿÿÿÿh  @            Ş  € €   i               Q  €j  €   j               H €$	  ÿÿÿÿk  €           1  €1  €ÿÿÿÿl  @            Ş  € €   m               Q  €j  €   n               H €6	  ÿÿÿÿo  €           1  €1  €ÿÿÿÿp  @            Ş  € €   q               Q  €j  €   r             TextureImporter PPtr<EditorExtension> m_FileID m_PathID PPtr<PrefabInstance> m_InternalIDToNameTable m_ExternalObjects SourceAssetIdentifier type assembly name m_UsedFileIDs m_MipMapMode m_EnableMipMap m_sRGBTexture m_LinearTexture m_FadeOut m_BorderMipMap m_MipMapsPreserveCoverage m_AlphaTestReferenceValue m_MipMapFadeDistanceStart m_MipMapFadeDistanceEnd m_ConvertToNormalMap m_ExternalNormalMap m_HeightScale m_NormalMapFilter m_IsReadable m_StreamingMipmaps m_StreamingMipmapsPriority m_VTOnly m_IgnoreMasterTextureLimit m_GrayScaleToAlpha m_GenerateCubemap m_CubemapConvolution m_SeamlessCubemap m_TextureFormat m_MaxTextureSize GLTextureSettings m_TextureSettings m_FilterMode m_Aniso m_MipBias m_WrapU m_WrapV m_WrapW m_NPOTScale m_Lightmap m_CompressionQuality m_SpriteMode m_SpriteExtrude m_SpriteMeshType m_Alignment m_SpritePivot x y m_SpritePixelsToUnits m_SpriteBorder z w m_SpriteGenerateFallbackPhysicsShape m_AlphaUsage m_AlphaIsTransparency m_SpriteTessellationDetail m_TextureType m_TextureShape m_SingleChannelComponent m_FlipbookRows m_FlipbookColumns m_MaxTextureSizeSet m_CompressionQualitySet m_TextureFormatSet m_IgnorePngGamma m_ApplyGammaDecoding m_CookieLightType m_PlatformSettings TextureImporterPlatformSettings m_BuildTarget m_ResizeAlgorithm m_TextureCompression m_CrunchedCompression m_AllowsAlphaSplitting m_Overridden m_AndroidETC2FallbackOverride m_ForceMaximumCompressionQuality_BC6H_BC7 SpriteSheetMetaData m_SpriteSheet m_Sprites SpriteMetaData m_Rect width height m_Pivot m_Border m_Outline m_PhysicsShape m_TessellationDetail m_Bones SpriteBone guid position rotation length parentId color rgba m_SpriteID m_InternalID m_Vertices m_Indices m_Edges m_Weights BoneWeights4 weight[0] weight[1] weight[2] weight[3] boneIndex[0] boneIndex[1] boneIndex[2] boneIndex[3] m_SecondaryTextures SecondarySpriteTexture texture m_NameFileIdTable m_SpritePackingTag TextureImportOutput m_Output TextureImportInstructions textureImportInstructions compressedFormat uncompressedFormat desiredFormat usageMode colorSpace androidETC2FallbackFormat depth cubeIntermediateSize cubeMode cubeLayout compressionQuality androidETC2FallbackDownscale vtOnly SourceTextureInformation sourceTextureInformation doesTextureContainAlpha sourceWasHDR importInspectorWarnings m_PSDRemoveMatte m_PSDShowRemoveMatteOption m_UserData m_AssetBundleName m_AssetBundleVariant         ÿÿL
+¤ûO~½“é8$I   Ú     j €7  €ÿÿÿÿ     €            ¦ €² €                       E €                   Ş  €          €           . €          €           (   a €                   Ş  €          €           . €          €           † €r €                   Ş  €      	    €           . €      
+    €           H €« €ÿÿÿÿ   €          1  €1  €ÿÿÿÿ   @           Ş  € €                  Q  €j  €                  ‰ €=           €             €Q           €             €Z           €             €c           €             €l           €             €u           €             €~           €             €‡           €             €           €             €™           €             €¢           €             €«           €             €µ           €             €¿           €             €É           €             €Ó           €             €İ           €           Ş  €ç                        L  €ş      !                 L  €     "    @            Ş  €+     #                Ş  €3     $                ¦ €<     %                Ş  €P     &                Ş  €_     '                Ş  €o     (                L  €z     )                 L  €‡     *                L  €˜     +                 L  €³     ,    @            Ş  €Æ     -                 L  €á     .     €           L  €ê     /   @€           Ş  €      0                Ş  €     1                   2     2                 Ş  €D     3                 Ş  €Q     4                 ¡  €Y     5                 Ş  €c     6                 Ş  €k     7                 Ş  €s     8                 Ş  €{     9                 Ş  €Œ     :                 Õ €™  ÿÿÿÿ;    €           1  €1  €ÿÿÿÿ<    @            Ş  € €   =                   €j  €   >                ~ €¨  ÿÿÿÿ?   @            Ş  € €   @                  €j  €   A                ³  Á  ÿÿÿÿB    €            ™ €Î     C                 ¦ € €   D                 H €Õ  ÿÿÿÿE    €           1  €1  €ÿÿÿÿF   @            Ş  € €   G                Q  €j  €   H              PPtr<EditorExtension> m_FileID m_PathID PPtr<PrefabInstance> m_ImageContentsHash bytes[0] bytes[1] bytes[2] bytes[3] bytes[4] bytes[5] bytes[6] bytes[7] bytes[8] bytes[9] bytes[10] bytes[11] bytes[12] bytes[13] bytes[14] bytes[15] m_ForcedFallbackFormat m_DownscaleFallback m_IsAlphaChannelOptional m_Width m_Height m_CompleteImageSize m_MipsStripped m_TextureFormat m_MipCount m_IsReadable m_IsPreProcessed m_IgnoreMasterTextureLimit m_StreamingMipmaps m_StreamingMipmapsPriority m_VTOnly m_AlphaIsTransparency m_ImageCount m_TextureDimension GLTextureSettings m_TextureSettings m_FilterMode m_Aniso m_MipBias m_WrapU m_WrapV m_WrapW m_LightmapFormat m_ColorSpace m_PlatformBlob image data StreamingInfo m_StreamData offset path     Õ    ÿÿÇğ£ÏÔQu§W‡Vvg\   b         7  €ÿÿÿÿ     €            ¦ €² €                      E €                   Ş  €          €           . €&          €           /   a €                   Ş  €          €           . €&          €           † €r €                   Ş  €      	    €           . €&      
+    €           H €« €ÿÿÿÿ   €          1  €1  €ÿÿÿÿ   @           Ş  € €                  Q  €j  €                  ñ €D                       ¡  €K                       ¡  €M                       ¡  €O                       ¡  €U                       Ü €\                       ¡  €K                       ¡  €M                       î €e                       ¡  €K                       ¡  €M                       ¡  €n                       ¡  €p                       ¡  €r                       Ü €‚                       ¡  €K                       ¡  €M                       ¦ €Š                        L  €”      !    @            H €    ÿÿÿÿ"   €€          1  €1  €ÿÿÿÿ#   @€           Ş  € €   $    €           Q  €j  €   %    €           H €¬   ÿÿÿÿ&   €€          1  €1  €ÿÿÿÿ'   @€           Ş  € €   (    €           Q  €j  €   )    €            €¹      *                 Ğ  €›  €   +                 ¦ €É      ,                 ¦ €Ñ      -                 ¦ €Ù      .                 ¦ €á      /                 . €
+ €   0                 Õ €é   ÿÿÿÿ1    €           1  €1  €ÿÿÿÿ2    À            Ş  € €   3                 H €j  €ÿÿÿÿ4    €           1  €1  €ÿÿÿÿ5   @            Ş  € €   6                Q  €j  €   7                õ        8    @            Ş  €      9    €           . €&      :    €             &  ÿÿÿÿ;    €            ¾ €+     <                 Ş  €      =    €           . €&      >    €           ¾ €3     ?                 Ş  €      @    €           . €&      A    €           Õ €@  ÿÿÿÿB    €           1  €1  €ÿÿÿÿC    À            Ş  € €   D                 R  j  €ÿÿÿÿE    €            ¾ €+     F                 Ş  €      G    €           . €&      H    €           H €i  ÿÿÿÿI    À           1  €1  €ÿÿÿÿJ   @            Ş  € €   K                Q  €j  €   L                Õ €n  ÿÿÿÿM   €           1  €1  €ÿÿÿÿN   @            Ş  € €   O                z  j  €0   P                ¦ €‚     Q                ¦ €Œ     R                Ş  €—     S                ¦ €      T                ¦ €«     U                ¦ €·     V                   €Ã     W                å €Í     X                ¡  €K      Y                ¡  €M      Z                ¡  €n      [                å €Ö     \                ¡  €K      ]                ¡  €M      ^                ¡  €n      _                Õ €ß  ÿÿÿÿ`   €           1  €1  €ÿÿÿÿa   @            Ş  € €   b                  €j  €   c                í  ø  ÿÿÿÿd   €            ¦ €     e                Õ €  ÿÿÿÿf   €           1  €1  €ÿÿÿÿg   @            Ş  € €   h                  j  €   i                  €*     j                  €1     k                  €8     l                  €?     m               ~ €I  ÿÿÿÿn   @            Ş  € €   o                  €j  €   p                Õ €T  ÿÿÿÿq   À           1  €1  €ÿÿÿÿr   @            Ş  € €   s                õ  €j  €@   t                ¡  €_     u                ¡  €c     v                ¡  €g     w                ¡  €k     x                ¡  €o     y                ¡  €s     z                ¡  €w     {                ¡  €{     |                ¡  €     }                ¡  €ƒ     ~                ¡  €‡                     ¡  €‹     €                ¡  €                     ¡  €“     ‚                ¡  €—     ƒ                ¡  €›     „                ñ €Ÿ     …                 ¡  €K      †                 ¡  €M      ‡                 ¡  €O      ˆ                 ¡  €U      ‰                 Ü €«     Š                

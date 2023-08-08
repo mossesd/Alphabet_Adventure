@@ -1,0 +1,37 @@
+ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xxzz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, x, z, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxx
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, x); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxy
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, y); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public double4 xyxz
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return new double4(x, y, x, z); }
+        }
+
+
+        /// <summary>Swizzles the vector.</summary>
+        [System.ComponentModel.EditorBrowsable(System

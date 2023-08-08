@@ -1,0 +1,338 @@
+g>
+    <string name="keyguard_accessibility_sim_puk_unlock" msgid="3459003464041899101">"Разблокировка PUK-кода SIM-карты."</string>
+    <string name="keyguard_accessibility_password_unlock" msgid="6130186108581153265">"Пароль"</string>
+    <string name="keyguard_accessibility_pattern_area" msgid="1419570880512350689">"Область ввода графического ключа"</string>
+    <string name="keyguard_accessibility_slide_area" msgid="4331399051142520176">"Область слайдера"</string>
+    <string name="password_keyboard_label_symbol_key" msgid="2716255580853511949">"?123"</string>
+    <string name="password_keyboard_label_alpha_key" msgid="5294837425652726684">"АБВ"</string>
+    <string name="password_keyboard_label_alt_key" msgid="8528261816395508841">"ALT"</string>
+    <string name="granularity_label_character" msgid="8903387663153706317">"символ"</string>
+    <string name="granularity_label_word" msgid="3686589158760620518">"слово"</string>
+    <string name="granularity_label_link" msgid="9007852307112046526">"ссылка"</string>
+    <string name="granularity_label_line" msgid="376204904280620221">"строка"</string>
+    <string name="factorytest_failed" msgid="3190979160945298006">"Не удалось провести стандартный тест"</string>
+    <string name="factorytest_not_system" msgid="5658160199925519869">"Действие FACTORY_TEST поддерживается только для пакетов, установленных в /system/app."</string>
+    <string name="factorytest_no_action" msgid="339252838115675515">"Пакет, обеспечивающий действие FACTORY_TEST, не найден."</string>
+    <string name="factorytest_reboot" msgid="2050147445567257365">"Перезагрузка"</string>
+    <string name="js_dialog_title" msgid="7464775045615023241">"Подтвердите действие на <xliff:g id="TITLE">%s</xliff:g>"</string>
+    <string name="js_dialog_title_default" msgid="3769524569903332476">"JavaScript"</string>
+    <string name="js_dialog_before_unload_title" msgid="7012587995876771246">"Подтверждение действия"</string>
+    <string name="js_dialog_before_unload_positive_button" msgid="4274257182303565509">"Покинуть"</string>
+    <string name="js_dialog_before_unload_negative_button" msgid="3873765747622415310">"Остаться"</string>
+    <string name="js_dialog_before_unload" msgid="7213364985774778744">"<xliff:g id="MESSAGE">%s</xliff:g>\n\nПокинуть эту страницу?"</string>
+    <string name="save_password_label" msgid="9161712335355510035">"Подтвердите"</string>
+    <string name="double_tap_toast" msgid="7065519579174882778">"Совет: нажмите дважды, чтобы увеличить и уменьшить масштаб."</string>
+    <string name="autofill_this_form" msgid="3187132440451621492">"Автозаполнение"</string>
+    <string name="setup_autofill" msgid="5431369130866618567">"Настроить автозаполнение"</string>
+    <string name="autofill_window_title" msgid="4379134104008111961">"Автозаполнение с помощью сервиса \"<xliff:g id="SERVICENAME">%1$s</xliff:g>\""</string>
+    <string name="autofill_address_name_separator" msgid="8190155636149596125">" "</string>
+    <string name="autofill_address_summary_name_format" msgid="3402882515222673691">"$1$2$3"</string>
+    <string name="autofill_address_summary_separator" msgid="760522655085707045">", "</string>
+    <string name="autofill_address_summary_format" msgid="8417010069362125194">"$1$2$3"</string>
+    <string name="autofill_province" msgid="3676846437741893159">"Провинция"</string>
+    <string name="autofill_postal_code" msgid="7034789388968295591">"Почтовый индекс"</string>
+    <string name="autofill_state" msgid="3341725337190434069">"Штат"</string>
+    <string name="autofill_zip_code" msgid="1315503730274962450">"Почтовый индекс"</string>
+    <string name="autofill_county" msgid="7781382735643492173">"Округ"</string>
+    <string name="autofill_island" msgid="5367139008536593734">"Остров"</string>
+    <string name="autofill_district" msgid="6428712062213557327">"Район"</string>
+    <string name="autofill_department" msgid="9047276226873531529">"Департамент"</string>
+    <string name="autofill_prefecture" msgid="7267397763720241872">"Префектура"</string>
+    <string name="autofill_parish" msgid="6847960518334530198">"Округ"</string>
+    <string name="autofill_area" msgid="8289022370678448983">"Область"</string>
+    <string name="autofill_emirate" msgid="2544082046790551168">"Эмират"</string>
+    <string name="permlab_readHistoryBookmarks" msgid="9102293913842539697">"Просмотр закладок и истории поиска"</string>
+    <string name="permdesc_readHistoryBookmarks" msgid="2323799501008967852">"Приложение получит доступ к истории и закладкам браузера. Обратите внимание: браузеры независимых поставщиков или другие приложения для просмотра веб-страниц могут не применять это разрешение."</string>
+    <string name="permlab_writeHistoryBookmarks" msgid="6090259925187986937">"Изменение закладок и истории поиска"</string>
+    <string name="permdesc_writeHistoryBookmarks" product="tablet" msgid="573341025292489065">"Приложение сможет изменять историю или закладки браузера, сохраненные на планшетном ПК, а также удалять и изменять данные браузера. Обратите внимание: браузеры независимых поставщиков или другие приложения для просмотра веб-страниц могут не применять это разрешение."</string>
+    <string name="permdesc_writeHistoryBookmarks" product="tv" msgid="88642768580408561">"Приложение сможет изменять историю или закладки браузера, сохраненные на устройстве Android TV, а также удалять и изменять данные браузера. Обратите внимание: браузеры независимых поставщиков или другие приложения для просмотра веб-страниц не могут пользоваться этим разрешением."</string>
+    <string name="permdesc_writeHistoryBookmarks" product="default" msgid="2245203087160913652">"Приложение сможет изменять историю или закладки браузера, сохраненные на телефоне, а также удалять и изменять данные браузера. Обратите внимание: браузеры независимых поставщиков или другие приложения для просмотра веб-страниц могут не применять это разрешение."</string>
+    <string name="permlab_setAlarm" msgid="1158001610254173567">"Установка будильника"</string>
+    <string name="permdesc_setAlarm" msgid="2185033720060109640">"Приложение сможет настраивать будильник. Функция поддерживается не во всех программах."</string>
+    <string name="permlab_addVoicemail" msgid="4770245808840814471">"Добавление голосовых сообщений"</string>
+    <string name="permdesc_addVoicemail" msgid="5470312139820074324">"Приложение сможет добавлять голосовые сообщения в папку \"Входящие\"."</string>
+    <string name="permlab_writeGeolocationPermissions" msgid="8605631647492879449">"Изменение прав доступа к геоданным в браузере"</string>
+    <string name="permdesc_writeGeolocationPermissions" msgid="5817346421222227772">"Приложение сможет изменять настройки доступа к геоданным в браузере. Вредоносные программы смогут таким образом отправлять информацию о местоположении на любые веб-сайты."</string>
+    <string name="save_password_message" msgid="2146409467245462965">"Вы хотите, чтобы браузер запомнил этот пароль?"</string>
+    <string name="save_password_notnow" msgid="2878327088951240061">"Не сейчас"</string>
+    <string name="save_password_remember" msgid="6490888932657708341">"Запомнить"</string>
+    <string name="save_password_never" msgid="6776808375903410659">"Никогда"</string>
+    <string name="open_permission_deny" msgid="5136793905306987251">"У вас нет доступа к этой странице."</string>
+    <string name="text_copied" msgid="2531420577879738860">"Текст скопирован в буфер обмена."</string>
+    <string name="copied" msgid="4675902854553014676">"Скопировано"</string>
+    <string name="more_item_label" msgid="7419249600215749115">"Ещё"</string>
+    <string name="prepend_shortcut_label" msgid="1743716737502867951">"Меню+"</string>
+    <string name="menu_meta_shortcut_label" msgid="1623390163674762478">"Meta +"</string>
+    <string name="menu_ctrl_shortcut_label" msgid="131911133027196485">"Ctrl +"</string>
+    <string name="menu_alt_shortcut_label" msgid="343761069945250991">"Alt +"</string>
+    <string name="menu_shift_shortcut_label" msgid="5443936876111232346">"Shift +"</string>
+    <string name="menu_sym_shortcut_label" msgid="4037566049061218776">"Sym +"</string>
+    <string name="menu_function_shortcut_label" msgid="2367112760987662566">"Fn +"</string>
+    <string name="menu_space_shortcut_label" msgid="5949311515646872071">"пробел"</string>
+    <string name="menu_enter_shortcut_label" msgid="6709499510082897320">"ввод"</string>
+    <string name="menu_delete_shortcut_label" msgid="4365787714477739080">"удалить"</string>
+    <string name="search_go" msgid="2141477624421347086">"Поиск"</string>
+    <string name="search_hint" msgid="455364685740251925">"Поиск…"</string>
+    <string name="searchview_description_search" msgid="1045552007537359343">"Поиск"</string>
+    <string name="searchview_description_query" msgid="7430242366971716338">"Поисковый запрос"</string>
+    <string name="searchview_description_clear" msgid="1989371719192982900">"Удалить запрос"</string>
+    <string name="searchview_description_submit" msgid="6771060386117334686">"Отправить запрос"</string>
+    <string name="searchview_description_voice" msgid="42360159504884679">"Голосовой поиск"</string>
+    <string name="enable_explore_by_touch_warning_title" msgid="5095399706284943314">"Включить Изучение касанием?"</string>
+    <string name="enable_explore_by_touch_warning_message" product="tablet" msgid="1037295476738940824">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> хочет включить Изучение касанием. Вы сможете прослушивать или просматривать описание элементов, которых касаетесь, и управлять планшетом с помощью жестов."</string>
+    <string name="enable_explore_by_touch_warning_message" product="default" msgid="4312979647356179250">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> хочет включить Изучение касанием. Вы сможете прослушивать или просматривать описание элементов, которых касаетесь, и управлять телефоном с помощью жестов."</string>
+    <string name="oneMonthDurationPast" msgid="4538030857114635777">"1 месяц назад"</string>
+    <string name="beforeOneMonthDurationPast" msgid="8315149541372065392">"Более месяца назад"</string>
+    <plurals name="last_num_days" formatted="false" msgid="687443109145393632">
+      <item quantity="one">За последний <xliff:g id="COUNT_1">%d</xliff:g> день</item>
+      <item quantity="few">За последние <xliff:g id="COUNT_1">%d</xliff:g> дня</item>
+      <item quantity="many">За последние <xliff:g id="COUNT_1">%d</xliff:g> дней</item>
+      <item quantity="other">За последние <xliff:g id="COUNT_1">%d</xliff:g> дня</item>
+    </plurals>
+    <string name="last_month" msgid="1528906781083518683">"Прошлый месяц"</string>
+    <string name="older" msgid="1645159827884647400">"Еще раньше"</string>
+    <string name="preposition_for_date" msgid="2780767868832729599">"<xliff:g id="DATE">%s</xliff:g>"</string>
+    <string name="preposition_for_time" msgid="4336835286453822053">"в <xliff:g id="TIME">%s</xliff:g>"</string>
+    <string name="preposition_for_year" msgid="3149809685340130039">"в <xliff:g id="YEAR">%s</xliff:g> г."</string>
+    <string name="day" msgid="8394717255950176156">"дн."</string>
+    <string name="days" msgid="4570879797423034973">"дн."</string>
+    <string name="hour" msgid="7796325297097314653">"ч."</string>
+    <string name="hours" msgid="8517014849629200683">"ч."</string>
+    <string name="minute" msgid="8369209540986467610">"мин."</string>
+    <string name="minutes" msgid="3456532942641808971">"мин."</string>
+    <string name="second" msgid="9210875257112211713">"с."</string>
+    <string name="seconds" msgid="2175052687727971048">"с."</string>
+    <string name="week" msgid="907127093960923779">"нед."</string>
+    <string name="weeks" msgid="3516247214269821391">"нед."</string>
+    <string name="year" msgid="5182610307741238982">"г."</string>
+    <string name="years" msgid="5797714729103773425">"г."</string>
+    <string name="now_string_shortest" msgid="3684914126941650330">"Сейчас"</string>
+    <plurals name="duration_minutes_shortest" formatted="false" msgid="7519574894537185135">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+    </plurals>
+    <plurals name="duration_hours_shortest" formatted="false" msgid="2838655994500499651">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+    </plurals>
+    <plurals name="duration_days_shortest" formatted="false" msgid="3686058472983158496">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+    </plurals>
+    <plurals name="duration_years_shortest" formatted="false" msgid="8299112348723640338">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> л.</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+    </plurals>
+    <plurals name="duration_minutes_shortest_future" formatted="false" msgid="849196137176399440">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> мин.</item>
+    </plurals>
+    <plurals name="duration_hours_shortest_future" formatted="false" msgid="5386373597343170388">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> ч.</item>
+    </plurals>
+    <plurals name="duration_days_shortest_future" formatted="false" msgid="814754627092787227">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> д.</item>
+    </plurals>
+    <plurals name="duration_years_shortest_future" formatted="false" msgid="7683731800140202145">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> л.</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> г.</item>
+    </plurals>
+    <plurals name="duration_minutes_relative" formatted="false" msgid="6569851308583028344">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> минуту назад</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> минуты назад</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> минут назад</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> минуты назад</item>
+    </plurals>
+    <plurals name="duration_hours_relative" formatted="false" msgid="420434788589102019">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> час назад</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> часа назад</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> часов назад</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> часа назад</item>
+    </plurals>
+    <plurals name="duration_days_relative" formatted="false" msgid="6056425878237482431">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> день назад</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> дня назад</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> дней назад</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> дня назад</item>
+    </plurals>
+    <plurals name="duration_years_relative" formatted="false" msgid="2179998228861172159">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> год назад</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> года назад</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> лет назад</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> года назад</item>
+    </plurals>
+    <plurals name="duration_minutes_relative_future" formatted="false" msgid="5759885720917567723">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> минуту</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> минуты</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> минут</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> минуты</item>
+    </plurals>
+    <plurals name="duration_hours_relative_future" formatted="false" msgid="8963511608507707959">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> час</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> часа</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> часов</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> часа</item>
+    </plurals>
+    <plurals name="duration_days_relative_future" formatted="false" msgid="1964709470979250702">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> день</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> дня</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> дней</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> дня</item>
+    </plurals>
+    <plurals name="duration_years_relative_future" formatted="false" msgid="3985129025134896371">
+      <item quantity="one">через <xliff:g id="COUNT_1">%d</xliff:g> год</item>
+      <item quantity="few">через <xliff:g id="COUNT_1">%d</xliff:g> года</item>
+      <item quantity="many">через <xliff:g id="COUNT_1">%d</xliff:g> лет</item>
+      <item quantity="other">через <xliff:g id="COUNT_1">%d</xliff:g> года</item>
+    </plurals>
+    <string name="VideoView_error_title" msgid="5750686717225068016">"Ошибка"</string>
+    <string name="VideoView_error_text_invalid_progressive_playback" msgid="3782449246085134720">"Это видео не предназначено для потокового воспроизведения на данном устройстве."</string>
+    <string name="VideoView_error_text_unknown" msgid="7658683339707607138">"Не удалось воспроизвести видео."</string>
+    <string name="VideoView_error_button" msgid="5138809446603764272">"ОК"</string>
+    <string name="relative_time" msgid="8572030016028033243">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME">%2$s</xliff:g>"</string>
+    <string name="noon" msgid="8365974533050605886">"полдень"</string>
+    <string name="Noon" msgid="6902418443846838189">"Полдень"</string>
+    <string name="midnight" msgid="3646671134282785114">"полночь"</string>
+    <string name="Midnight" msgid="8176019203622191377">"Полночь"</string>
+    <string name="elapsed_time_short_format_mm_ss" msgid="8689459651807876423">"<xliff:g id="MINUTES">%1$02d</xliff:g>:<xliff:g id="SECONDS">%2$02d</xliff:g>"</string>
+    <string name="elapsed_time_short_format_h_mm_ss" msgid="2302144714803345056">"<xliff:g id="HOURS">%1$d</xliff:g>:<xliff:g id="MINUTES">%2$02d</xliff:g>:<xliff:g id="SECONDS">%3$02d</xliff:g>"</string>
+    <string name="selectAll" msgid="1532369154488982046">"Выбрать все"</string>
+    <string name="cut" msgid="2561199725874745819">"Вырезать"</string>
+    <string name="copy" msgid="5472512047143665218">"Копировать"</string>
+    <string name="failed_to_copy_to_clipboard" msgid="725919885138539875">"Не удалось скопировать текст в буфер обмена"</string>
+    <string name="paste" msgid="461843306215520225">"Вставить"</string>
+    <string name="paste_as_plain_text" msgid="7664800665823182587">"Вставить как обычный текст"</string>
+    <string name="replace" msgid="7842675434546657444">"Заменить"</string>
+    <string name="delete" msgid="1514113991712129054">"Удалить"</string>
+    <string name="copyUrl" msgid="6229645005987260230">"Копировать URL"</string>
+    <string name="selectTextMode" msgid="3225108910999318778">"Выбрать текст"</string>
+    <string name="undo" msgid="3175318090002654673">"Отменить"</string>
+    <string name="redo" msgid="7231448494008532233">"Повторить"</string>
+    <string name="autofill" msgid="511224882647795296">"Автозаполнение"</string>
+    <string name="textSelectionCABTitle" msgid="5151441579532476940">"Выбор текста"</string>
+    <string name="addToDictionary" msgid="8041821113480950096">"Добавить в словарь"</string>
+    <string name="deleteText" msgid="4200807474529938112">"Удалить"</string>
+    <string name="inputMethod" msgid="1784759500516314751">"Способ ввода"</string>
+    <string name="editTextMenuTitle" msgid="857666911134482176">"Операции с текстом"</string>
+    <string name="low_internal_storage_view_title" msgid="9024241779284783414">"Недостаточно памяти"</string>
+    <string name="low_internal_storage_view_text" msgid="8172166728369697835">"Некоторые функции могут не работать"</string>
+    <string name="low_internal_storage_view_text_no_boot" msgid="7368968163411251788">"Недостаточно свободного места для системы. Освободите не менее 250 МБ дискового пространства и перезапустите устройство."</string>
+    <string name="app_running_notification_title" msgid="8985999749231486569">"Приложение \"<xliff:g id="APP_NAME">%1$s</xliff:g>\" выполняется"</string>
+    <string name="app_running_notification_text" msgid="5120815883400228566">"Нажмите, чтобы получить дополнительные данные или выключить приложение."</string>
+    <string name="ok" msgid="2646370155170753815">"ОК"</string>
+    <string name="cancel" msgid="6908697720451760115">"Отмена"</string>
+    <string name="yes" msgid="9069828999585032361">"ОК"</string>
+    <string name="no" msgid="5122037903299899715">"Отмена"</string>
+    <string name="dialog_alert_title" msgid="651856561974090712">"Внимание!"</string>
+    <string name="loading" msgid="3138021523725055037">"Загрузка…"</string>
+    <string name="capital_on" msgid="2770685323900821829">"I"</string>
+    <string name="capital_off" msgid="7443704171014626777">"O"</string>
+    <string name="checked" msgid="9179896827054513119">"отмечено"</string>
+    <string name="not_checked" msgid="7972320087569023342">"не отмечено"</string>
+    <string name="whichApplication" msgid="5432266899591255759">"Что использовать?"</string>
+    <string name="whichApplicationNamed" msgid="6969946041713975681">"Выполнить с помощью приложения \"%1$s\""</string>
+    <string name="whichApplicationLabel" msgid="7852182961472531728">"Выполнить действие"</string>
+    <string name="whichViewApplication" msgid="5733194231473132945">"Открыть с помощью приложения:"</string>
+    <string name="whichViewApplicationNamed" msgid="415164730629690105">"Открыть с помощью приложения \"%1$s\""</string>
+    <string name="whichViewApplicationLabel" msgid="7367556735684742409">"Открыть"</string>
+    <string name="whichOpenHostLinksWith" msgid="7645631470199397485">"Открывать ссылки вида <xliff:g id="HOST">%1$s</xliff:g> с помощью:"</string>
+    <string name="whichOpenLinksWith" msgid="1120936181362907258">"Открывать ссылки с помощью:"</string>
+    <string name="whichOpenLinksWithApp" msgid="6917864367861910086">"Открывать ссылки в браузере <xliff:g id="APPLICATION">%1$s</xliff:g>"</string>
+    <string name="whichOpenHostLinksWithApp" msgid="2401668560768463004">"Открывать ссылки вида <xliff:g id="HOST">%1$s</xliff:g> в браузере <xliff:g id="APPLICATION">%2$s</xliff:g>"</string>
+    <string name="whichGiveAccessToApplicationLabel" msgid="7805857277166106236">"Открыть доступ"</string>
+    <string name="whichEditApplication" msgid="6191568491456092812">"Редактировать с помощью приложения:"</string>
+    <string name="whichEditApplicationNamed" msgid="8096494987978521514">"Редактировать с помощью приложения \"%1$s\""</string>
+    <string name="whichEditApplicationLabel" msgid="1463288652070140285">"Изменить"</string>
+    <string name="whichSendApplication" msgid="4143847974460792029">"Поделиться"</string>
+    <string name="whichSendApplicationNamed" msgid="4470386782693183461">"Поделиться через %1$s"</string>
+    <string name="whichSendApplicationLabel" msgid="7467813004769188515">"Поделиться"</string>
+    <string name="whichSendToApplication" msgid="77101541959464018">"Выберите приложение"</string>
+    <string name="whichSendToApplicationNamed" msgid="3385686512014670003">"Отправка с помощью %1$s"</string>
+    <string name="whichSendToApplicationLabel" msgid="3543240188816513303">"Отправить"</string>
+    <string name="whichHomeApplication" msgid="8276350727038396616">"Выберите главное приложение"</string>
+    <string name="whichHomeApplicationNamed" msgid="5855990024847433794">"Назначьте приложение \"%1$s\" главным"</string>
+    <string name="whichHomeApplicationLabel" msgid="8907334282202933959">"Сделать снимок"</string>
+    <string name="whichImageCaptureApplication" msgid="2737413019463215284">"Делать снимки с помощью:"</string>
+    <string name="whichImageCaptureApplicationNamed" msgid="8820702441847612202">"Сделайте снимок с помощью приложения \"%1$s\""</string>
+    <string name="whichImageCaptureApplicationLabel" msgid="6505433734824988277">"Сделать снимок"</string>
+    <string name="alwaysUse" msgid="3153558199076112903">"По умолчанию для этого действия"</string>
+    <string name="use_a_different_app" msgid="4987790276170972776">"Другое приложение"</string>
+    <string name="clearDefaultHintMsg" msgid="1325866337702524936">"Удаляет настройки по умолчанию в меню \"Настройки &gt; Приложения &gt; Загруженные\"."</string>
+    <string name="chooseActivity" msgid="8563390197659779956">"Выберите действие"</string>
+    <string name="chooseUsbActivity" msgid="2096269989990986612">"Выбор приложения для USB-устройства"</string>
+    <string name="noApplications" msgid="1186909265235544019">"Действие не поддерживается ни в одном приложении."</string>
+    <string name="aerr_application" msgid="4090916809370389109">"В работе приложения \"<xliff:g id="APPLICATION">%1$s</xliff:g>\" произошел сбой"</string>
+    <string name="aerr_process" msgid="4268018696970966407">"Во время процесса \"<xliff:g id="PROCESS">%1$s</xliff:g>\" произошел сбой"</string>
+    <string name="aerr_application_repeated" msgid="7804378743218496566">"В приложении \"<xliff:g id="APPLICATION">%1$s</xliff:g>\" снова произошел сбой"</string>
+    <string name="aerr_process_repeated" msgid="1153152413537954974">"В приложении \"<xliff:g id="PROCESS">%1$s</xliff:g>\" снова произошел сбой"</string>
+    <string name="aerr_restart" msgid="2789618625210505419">"Перезапустить приложение"</string>
+    <string name="aerr_report" msgid="3095644466849299308">"Отправить отзыв"</string>
+    <string name="aerr_close" msgid="3398336821267021852">"Закрыть"</string>
+    <string name="aerr_mute" msgid="2304972923480211376">"Отключить до перезагрузки устройства"</string>
+    <string name="aerr_wait" msgid="3198677780474548217">"Подождать"</string>
+    <string name="aerr_close_app" msgid="8318883106083050970">"Закрыть приложение"</string>
+    <string name="anr_title" msgid="7290329487067300120"></string>
+    <string name="anr_activity_application" msgid="8121716632960340680">"Приложение \"<xliff:g id="APPLICATION">%2$s</xliff:g>\" не отвечает"</string>
+    <string name="anr_activity_process" msgid="3477362583767128667">"Приложение \"<xliff:g id="ACTIVITY">%1$s</xliff:g>\" не отвечает"</string>
+    <string name="anr_application_process" msgid="4978772139461676184">"Приложение \"<xliff:g id="APPLICATION">%1$s</xliff:g>\" не отвечает"</string>
+    <string name="anr_process" msgid="1664277165911816067">"Приложение \"<xliff:g id="PROCESS">%1$s</xliff:g> не отвечает"</string>
+    <string name="force_close" msgid="9035203496368973803">"ОК"</string>
+    <string name="report" msgid="2149194372340349521">"Отправить отчет"</string>
+    <string name="wait" msgid="7765985809494033348">"Подождать"</string>
+    <string name="webpage_unresponsive" msgid="7850879412195273433">"Страница не отвечает.\n\nЗакрыть ее?"</string>
+    <string name="launch_warning_title" msgid="6725456009564953595">"Приложение перенаправлено"</string>
+    <string name="launch_warning_replace" msgid="3073392976283203402">"Приложение <xliff:g id="APP_NAME">%1$s</xliff:g> выполняется."</string>
+    <string name="launch_warning_original" msgid="3332206576800169626">"Изначально было запущено приложение <xliff:g id="APP_NAME">%1$s</xliff:g>."</string>
+    <string name="screen_compat_mode_scale" msgid="8627359598437527726">"Масштаб"</string>
+    <string name="screen_compat_mode_show" msgid="5080361367584709857">"Всегда показывать"</string>
+    <string name="screen_compat_mode_hint" msgid="4032272159093750908">"Включить эту функцию можно в меню \"Настройки &gt; Приложения &gt; Загруженные\"."</string>
+    <string name="unsupported_display_size_message" msgid="7265211375269394699">"Приложение \"<xliff:g id="APP_NAME">%1$s</xliff:g>\" не поддерживает выбранный масштаб изображения на экране и может работать некорректно."</string>
+    <string name="unsupported_display_size_show" msgid="980129850974919375">"Всегда показывать"</string>
+    <string name="unsupported_compile_sdk_message" msgid="7326293500707890537">"Приложение \"<xliff:g id="APP_NAME">%1$s</xliff:g>\" было разработано для несовместимой версии ОС Android и может работать некорректно. Рекомендуем скачать новую версию приложения."</string>
+    <string name="unsupported_compile_sdk_show" msgid="1601210057960312248">"Всегда показывать"</string>
+    <string name="unsupported_compile_sdk_check_update" msgid="1103639989147664456">"Проверить обновления"</string>
+    <string name="smv_application" msgid="3775183542777792638">"Приложение \"<xliff:g id="APPLICATION">%1$s</xliff:g>\" (процесс: <xliff:g id="PROCESS">%2$s</xliff:g>) нарушило собственную политику StrictMode."</string>
+    <string name="smv_process" msgid="1398801497130695446">"Процесс <xliff:g id="PROCESS">%1$s</xliff:g> нарушил собственную политику StrictMode."</string>
+    <string name="android_upgrading_title" product="default" msgid="7279077384220829683">"Обновление телефона…"</string>
+    <string name="android_upgrading_title" product="tablet" msgid="4268417249079938805">"Обновление планшета…"</string>
+    <string name="android_upgrading_title" product="device" msgid="6774767702998149762">"Обновление устройства…"</string>
+    <string name="android_start_title" product="default" msgid="4036708252778757652">"Запуск телефона…"</string>
+    <string name="android_start_title" product="automotive" msgid="7917984412828168079">"Запуск Android…"</string>
+    <string name="android_start_title" product="tablet" msgid="4429767260263190344">"Запуск планшета…"</string>
+    <string name="android_start_title" product="device" msgid="6967413819673299309">"Запуск устройства…"</string>
+    <string name="android_upgrading_fstrim" msgid="3259087575528515329">"Оптимизация хранилища…"</string>
+    <string name="android_upgrading_notification_title" product="default" msgid="3509927005342279257">"Завершение обновления системы…"</string>
+    <string name="app_upgrading_toast" msgid="1016267296049455585">"Обновление приложения \"<xliff:g id="APPLICATION">%1$s</xliff:g>\"…"</string>
+    <string name="android_upgrading_apk" msgid="1339564803894466737">"Оптимизация приложения <xliff:g id="NUMBER_0">%1$d</xliff:g> из <xliff:g id="NUMBER_1">%2$d</xliff:g>."</string>
+    <string name="android_preparing_apk" msgid="589736917792300956">"Подготовка приложения \"<xliff:g id="APPNAME">%1$s</xliff:g>\"..."</string>
+    <string name="android_upgrading_starting_apps" msgid="6206161195076057075">"Запуск приложений."</string>
+    <string name="android_upgrading_complete" msgid="409800058018374746">"Окончание загрузки..."</string>
+    <string name="heavy_weight_notification" msgid="8382784283600329576">"Приложение <xliff:g id="APP">%1$s</xliff:g> запущено"</string>
+    <string name="heavy_weight_notification_detail" msgid="6802247239468404078">"Нажмите, чтобы вернуться в игру."</string>
+    <string name="heavy_weight_switcher_title" msgid="3861984210040100886">"Выберите игру"</string>
+    <string name="heavy_weight_switcher_text" msgid="6814316627367160126">"Чтобы не снижалась производительность, не открывайте больше одной игры."</string>
+    <string name="old_app_action" msgid="725331621042848590">"Вернуться к приложению \"<xliff:g id="OLD_APP">%1$s</xliff:g>\""</string>
+    <string name="new_app_action" msgid="547772182913269801">"Открыть приложение \"<xliff:g id="NEW_APP">%1$s</xliff:g>\""</string>
+    <string name="new_app_description" msgid="1958903080400806644">"Приложение \"<xliff:g id="OLD_APP">%1$s</xliff:g>\" будет закрыто без сохранения."</string>
+    <string name="dump_heap_notification" msgid="5316644945404825032">"Объем памяти процесса \"<xliff:g id="PROC">%1$s</xliff:g>\" превышен"</string>
+    <string name="dump_heap_ready_notification" msgid="2302452262927390268">"Создан дамп кучи для процесса \"<xliff:g id="PROC">%1$s</xliff:g>\"."</string>
+    <string name="dump_heap_notification_detail" msgid="8431586843001054050">"Создан дамп кучи. Нажмите, чтобы отправить его."</string>
+    <string name="dump_heap_title" msgid="436712891722923390

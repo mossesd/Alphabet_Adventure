@@ -1,0 +1,224 @@
+(StringResources, "changeColumnType", {
+        get: function () {
+            return StringResources.GetString("ChangeColumnType");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "changeTypeAllowMergeMessage", {
+        get: function () {
+            return StringResources.GetString("ChangeTypeAllowMergeMessage");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "replaceCurrent", {
+        get: function () {
+            return StringResources.GetString("ReplaceCurrent");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "addNewStep", {
+        get: function () {
+            return StringResources.GetString("AddNewStep");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "learnMore", {
+        get: function () {
+            return StringResources.GetString("LearnMore");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "connectionsTabLabel", {
+        get: function () {
+            return StringResources.GetString("ConnectionsTabLabel");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "queriesTabLabel", {
+        get: function () {
+            return StringResources.GetString("QueriesTabLabel");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "extractValuesFromList", {
+        get: function () {
+            return StringResources.GetString("ExtractValuesFromList");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectADelimiter", {
+        get: function () {
+            return StringResources.GetString("SelectADelimiter");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectNumberOfColumns", {
+        get: function () {
+            return StringResources.GetString("SelectNumberOfColumns");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "concatenateUsingSpecialCharacters", {
+        get: function () {
+            return StringResources.GetString("ConcatenateUsingSpecialCharacters");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "extractValues", {
+        get: function () {
+            return StringResources.GetString("ExtractValues");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "expandToNewRows", {
+        get: function () {
+            return StringResources.GetString("ExpandToNewRows");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "exampleFile", {
+        get: function () {
+            return StringResources.GetString("ExampleFile");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectTheObjectToBeExtractedFromEachFile", {
+        get: function () {
+            return StringResources.GetString("SelectTheObjectToBeExtractedFromEachFile");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "specifyTheSettingsForEachFile", {
+        get: function () {
+            return StringResources.GetString("SpecifyTheSettingsForEachFile");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectValues", {
+        get: function () {
+            return StringResources.GetString("SelectValues");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectValue", {
+        get: function () {
+            return StringResources.GetString("SelectValue");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    StringResources.selectParameterValueMessage = function (p0) {
+        return StringResources.GetString("SelectParameterValueMessage", p0);
+    };
+    StringResources.selectParameterValuesMessage = function (p0) {
+        return StringResources.GetString("SelectParameterValuesMessage", p0);
+    };
+    Object.defineProperty(StringResources, "errorWhenLoadingMoreItems", {
+        get: function () {
+            return StringResources.GetString("ErrorWhenLoadingMoreItems");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "show", {
+        get: function () {
+            return StringResources.GetString("Show");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "showAllParameters", {
+        get: function () {
+            return StringResources.GetString("ShowAllParameters");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "showRequiredParameters", {
+        get: function () {
+            return StringResources.GetString("ShowRequiredParameters");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectAValue", {
+        get: function () {
+            return StringResources.GetString("SelectAValue");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "selectOneOrMoreValues", {
+        get: function () {
+            return StringResources.GetString("SelectOneOrMoreValues");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    StringResources.multipleValuesSelectedTemplate = function (p0) {
+        return StringResources.GetString("MultipleValuesSelectedTemplate", p0);
+    };
+    Object.defineProperty(StringResources, "oneValueSelected", {
+        get: function () {
+            return StringResources.GetString("OneValueSelected");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "exceptionBuilderMessage", {
+        get: function () {
+            return StringResources.GetString("ExceptionBuilderMessage");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "maximize", {
+        get: function () {
+            return StringResources.GetString("Maximize");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "restoreDown", {
+        get: function () {
+            return StringResources.GetString("RestoreDown");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "warningMessage", {
+        get: function () {
+            return StringResources.GetString("WarningMessage");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "optionsCacheManagementMaxSizeText", {
+        get: function () {
+            return StringResources.GetString("OptionsCacheManagementMaxSizeText");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StringResources, "queryReductionTitle", {
+        get: function () {
+            return StringResources.GetString("QueryReductionTitle");
+        },
+        enumerable: true,

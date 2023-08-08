@@ -1,0 +1,49 @@
+rgeKeepingWorkspaceChangesMenuItemContent);
+        }
+
+        void AddDiffActions(GenericMenu menu, IncomingChangesMenuOperations operations)
+        {
+            if (operations.HasFlag(IncomingChangesMenuOperations.DiffYoursWithIncoming))
+                menu.AddItem(mDiffYoursWithIncomingMenuItemContent, false,
+                    DiffYoursWithIncomingMenuItem_Click);
+            else
+                menu.AddDisabledItem(mDiffYoursWithIncomingMenuItemContent);
+
+            if (operations.HasFlag(IncomingChangesMenuOperations.DiffIncomingChanges))
+                menu.AddItem(mDiffIncomingChangesMenuItemContent, false,
+                    DiffIncomingChangesMenuItem_Click);
+            else
+                menu.AddDisabledItem(mDiffIncomingChangesMenuItemContent);
+        }
+
+        void AddMetaActions(GenericMenu menu, IncomingChangesMenuOperations operations)
+        {
+            if (operations.HasFlag(IncomingChangesMenuOperations.DiffYoursWithIncoming))
+                menu.AddItem(mDiffMetaYoursWithIncomingMenuItemContent, false,
+                    DiffMetaYoursWithIncomingMenuItem_Click);
+            else
+                menu.AddDisabledItem(mDiffMetaYoursWithIncomingMenuItemContent);
+
+            if (operations.HasFlag(IncomingChangesMenuOperations.DiffIncomingChanges))
+                menu.AddItem(mDiffMetaIncomingChangesMenuItemContent, false,
+                    DiffMetaIncomingChangesMenuItem_Click);
+            else
+                menu.AddDisabledItem(mDiffMetaIncomingChangesMenuItemContent);
+        }
+
+        GUIContent GetNoActionMenuItemContent()
+        {
+            if (mNoActionMenuItemContent == null)
+            {
+                mNoActionMenuItemContent = new GUIContent(
+                    PlasticLocalization.GetString(
+                        PlasticLocalization.Name.NoActionMenuItem));
+            }
+
+            return mNoActionMenuItemContent;
+        }
+
+        void BuildComponents()
+        {
+            mMergeSelectedFilesMenuItemContent = new GUIContent(
+                PlasticLocalization.GetString(PlasticLocaliz

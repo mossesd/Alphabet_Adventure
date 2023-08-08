@@ -1,0 +1,143 @@
+ag & Asn1Tag.TAG_MASK) > 0x1E)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool GeneralDecodeKnownLengthWithChecks(Stream xdata, long start, long nodeMaxLen)
+        {
+            if (IsGeneralStreamLengthOk(xdata, start, nodeMaxLen))
+            {
+                return GeneralDecodeKnownLength(xdata);
+            }
+
+            return false;
+        }
+
+        private bool IsGeneralStreamLengthOk(Stream xdata, long start, long nodeMaxLen)
+        {
+            if (dataLength >= 0)
+            {
+                lengthFieldBytes = xdata.Position - start;
+
+                if (nodeMaxLen >= (dataLength + TagLength + lengthFieldBytes))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool GeneralDecodeKnownLength(Stream xdata)
+        {
+            if (tag == Asn1Tag.BIT_STRING)
+            {
+                // First byte of BIT_STRING is unused bits.
+                // BIT_STRING data does not include this byte.
+
+                // Fixed by Gustaf Bj�rklund.
+                if (dataLength < 1)
+                {
+                    return false;
+                }
+
+                unusedBits = (byte) xdata.ReadByte();
+                ReadStreamDataDefiniteLength(xdata, (int)(dataLength - 1));
+            }
+            else
+            {
+                ReadStreamDataDefiniteLength(xdata, (int)(dataLength));
+            }
+
+            return true;
+        }
+
+        private void ReadStreamDataDefiniteLength(Stream xdata, int length)
+        {
+            data = new byte[length];
+            xdata.Read(data, 0, (int)(length) );
+        }
+
+        private bool GeneralDecodeIndefiniteLength(Stream xdata, long nodeMaxLen)
+        {
+            if (tag == Asn1Tag.BIT_STRING)
+            {
+                unusedBits = (byte) xdata.ReadByte();
+                nodeMaxLen--;
+            }
+
+            return ReadStreamDataIndefiniteLength(xdata, nodeMaxLen);
+        }
+
+        bool ReadStreamDataIndefiniteLength(Stream xdata, long nodeMaxLen)
+        {
+            var streamPosition = xdata.Position;
+
+            long contentLength = MeasureContentLength(xdata);
+
+            if (contentLength != k_InvalidIndeterminateContentLength && contentLength <= nodeMaxLen)
+            {
+                ReadMeasuredLengthDataFromStart(xdata, streamPosition, contentLength);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        long MeasureContentLength(Stream xdata)
+        {
+            long contentLength = 0;
+            bool firstEocByteFound = false;
+            bool foundEoc = false;
+
+            while (!foundEoc)
+            {
+                var currentByte = xdata.ReadByte();
+
+                if (currentByte == k_EndOfStream)
+                {
+                    foundEoc = true;
+                    contentLength = k_InvalidIndeterminateContentLength;
+                }
+                else if (currentByte == Asn1Tag.TAG_END_OF_CONTENTS)
+                {
+                    if (firstEocByteFound)
+                    {
+                        foundEoc = true;
+                    }
+                    else
+                    {
+                        firstEocByteFound = true;
+                    }
+                }
+                else
+                {
+                    if (firstEocByteFound)
+                    {
+                        firstEocByteFound = false;
+                        contentLength++;
+                    }
+
+                    contentLength++;
+                }
+            }
+
+            return contentLength;
+        }
+
+        void ReadMeasuredLengthDataFromStart(Stream xdata, long startPosition, long length)
+        {
+            xdata.Seek(startPosition, SeekOrigin.Begin);
+
+            data = new byte[length];
+            xdata.Read(data, 0, (int)(length));
+        }
+
+        /// <summary>
+		/// Decode ASN.1 encoded complex data type S

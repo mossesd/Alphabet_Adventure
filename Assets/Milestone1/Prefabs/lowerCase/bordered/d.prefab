@@ -1,0 +1,122 @@
+as key and `true`
+   *                          as value. Used in the SymbolNode to optimize
+   *                          for arguments from user assigned functions
+   *                          (see FunctionAssignmentNode) or special symbols
+   *                          like `end` (see IndexNode).
+   * @return {function} Returns a function which can be called like:
+   *                        evalNode(scope: Object, args: Object, context: *)
+   */
+  FunctionAssignmentNode.prototype._compile = function (math, argNames) {
+    const childArgNames = Object.create(argNames)
+    forEach(this.params, function (param) {
+      childArgNames[param] = true
+    })
+
+    // compile the function expression with the child args
+    const evalExpr = this.expr._compile(math, childArgNames)
+    const name = this.name
+    const params = this.params
+    const signature = join(this.types, ',')
+    const syntax = name + '(' + join(this.params, ', ') + ')'
+
+    return function evalFunctionAssignmentNode (scope, args, context) {
+      const signatures = {}
+      signatures[signature] = function () {
+        const childArgs = Object.create(args)
+
+        for (let i = 0; i < params.length; i++) {
+          childArgs[params[i]] = arguments[i]
+        }
+
+        return evalExpr(scope, childArgs, context)
+      }
+      const fn = typed(name, signatures)
+      fn.syntax = syntax
+
+      setSafeProperty(scope, name, fn)
+
+      return fn
+    }
+  }
+
+  /**
+   * Execute a callback for each of the child nodes of this node
+   * @param {function(child: Node, path: string, parent: Node)} callback
+   */
+  FunctionAssignmentNode.prototype.forEach = function (callback) {
+    callback(this.expr, 'expr', this)
+  }
+
+  /**
+   * Create a new FunctionAssignmentNode having it's childs be the results of calling
+   * the provided callback function for each of the childs of the original node.
+   * @param {function(child: Node, path: string, parent: Node): Node} callback
+   * @returns {FunctionAssignmentNode} Returns a transformed copy of the node
+   */
+  FunctionAssignmentNode.prototype.map = function (callback) {
+    const expr = this._ifNode(callback(this.expr, 'expr', this))
+
+    return new FunctionAssignmentNode(this.name, this.params.slice(0), expr)
+  }
+
+  /**
+   * Create a clone of this node, a shallow copy
+   * @return {FunctionAssignmentNode}
+   */
+  FunctionAssignmentNode.prototype.clone = function () {
+    return new FunctionAssignmentNode(this.name, this.params.slice(0), this.expr)
+  }
+
+  /**
+   * Is parenthesis needed?
+   * @param {Node} node
+   * @param {Object} parenthesis
+   * @private
+   */
+  function needParenthesis (node, parenthesis) {
+    const precedence = operators.getPrecedence(node, parenthesis)
+    const exprPrecedence = operators.getPrecedence(node.expr, parenthesis)
+
+    return (parenthesis === 'all') ||
+      ((exprPrecedence !== null) && (exprPrecedence <= precedence))
+  }
+
+  /**
+   * get string representation
+   * @param {Object} options
+   * @return {string} str
+   */
+  FunctionAssignmentNode.prototype._toString = function (options) {
+    const parenthesis = (options && options.parenthesis) ? options.parenthesis : 'keep'
+    let expr = this.expr.toString(options)
+    if (needParenthesis(this, parenthesis)) {
+      expr = '(' + expr + ')'
+    }
+    return this.name + '(' + this.params.join(', ') + ') = ' + expr
+  }
+
+  /**
+   * Get a JSON representation of the node
+   * @returns {Object}
+   */
+  FunctionAssignmentNode.prototype.toJSON = function () {
+    const types = this.types
+
+    return {
+      mathjs: 'FunctionAssignmentNode',
+      name: this.name,
+      params: this.params.map(function (param, index) {
+        return {
+          name: param,
+          type: types[index]
+        }
+      }),
+      expr: this.expr
+    }
+  }
+
+  /**
+   * Instantiate an FunctionAssignmentNode from its JSON representation
+   * @param {Object} json  An object structured like
+   *                       `{"mathjs": "FunctionAssignmentNode", name: ..., params: ..., expr: ...}`,
+   *                       where m

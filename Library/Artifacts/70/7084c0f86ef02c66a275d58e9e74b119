@@ -1,0 +1,74 @@
+RAW" offset="110932262" length="50027">
+          <Hash alg="SHA256" value="203184F4D3595506A9AA949DC576A12D27A06524CFE947B743D8310FC34FF6F8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18498" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\peoplecommoncontrols.dll" length="4222" time="133269621520000000" attr="128">
+      <Hash alg="SHA256" value="6D649364AB7C09512B62D947875E549D2BB06D61605B01DCA06D73C391E13A8C" />
+      <Delta>
+        <Source type="PA30" offset="110982289" length="4130">
+          <Hash alg="SHA256" value="057C63D0F2B9156EF8E4F86F1534C48572859A95433E59CDB8EECBE39C162E24" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18499" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\windows.ui.shellcommon.pri" length="46996" time="133319985110000000" attr="128">
+      <Hash alg="SHA256" value="924217ACE2883AA7512A46135BE1776AB1125C1EF2B2B63D5DA2A9D9771BD746" />
+      <Delta>
+        <Source type="RAW" offset="110986419" length="46996">
+          <Hash alg="SHA256" value="924217ACE2883AA7512A46135BE1776AB1125C1EF2B2B63D5DA2A9D9771BD746" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18500" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\networkux.dll" length="46262" time="133284071720000000" attr="128">
+      <Hash alg="SHA256" value="D3E4BEF83FD8771B7F5D82F59929750D5F3265F83C7758D21BF97C12D19E4417" />
+      <Delta>
+        <Source type="PA30" offset="111033415" length="45344">
+          <Hash alg="SHA256" value="A87ABC15BB84E560E34A188F588A21DC3FEA94D38A6BC03EF27E4D0021CBD342" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18501" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\windowsinternal.people.peoplepicker.dll" length="10653" time="133269621530000000" attr="128">
+      <Hash alg="SHA256" value="AE5402D778595C6B8783F73BD1B6B9345AE9A2DDFC5BD5440FBC4D97D910A590" />
+      <Delta>
+        <Source type="PA30" offset="111078759" length="9798">
+          <Hash alg="SHA256" value="3B30829377E3439149025B2E2FEABC223BAA5B43D95FA9DB54476A3531253B35" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18502" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\jumpviewui.dll" length="19697" time="133332706940000000" attr="128">
+      <Hash alg="SHA256" value="6F0BDB688071B7F5EEDFEE03D8F60C21747C74660C1138D0C4D5D022BB6C9D86" />
+      <Delta>
+        <Source type="RAW" offset="111088557" length="19697">
+          <Hash alg="SHA256" value="6F0BDB688071B7F5EEDFEE03D8F60C21747C74660C1138D0C4D5D022BB6C9D86" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18503" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\axpicons.ttf" length="52" time="133332636070000000" attr="128">
+      <Hash alg="SHA256" value="DC91DB1A7E743B3E41168E3FE699A1E6E38E13B21BA9E3BA8533FBC59D0AADAC" />
+      <Delta>
+        <Source type="RAW" offset="111108254" length="52">
+          <Hash alg="SHA256" value="DC91DB1A7E743B3E41168E3FE699A1E6E38E13B21BA9E3BA8533FBC59D0AADAC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18504" name="amd64_microsoft-windows-ui-shellcommon-desktop_31bf3856ad364e35_10.0.22621.1928_none_b41c04422e8ba5f9\f\settingsicons.ttf" length="76311" time="133332636070000000" attr="128">
+      <Hash alg="SHA256" value="9669CCBF3F5B21C7FB99E1649FEC052EF547FBDFDA2784B0E7248708C4E2DA6B" />
+      <Delta>
+        <Source type="RAW" offset="111108306" length="76311">
+          <Hash alg="SHA256" value="9669CCBF3F5B21C7FB99E1649FEC052EF547FBDFDA2784B0E7248708C4E2DA6B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18505" name="amd64_microsoft-windows-uiautomationcore_31bf3856ad364e35_10.0.22621.1928_none_8fc98aa4bdda451e\f\uiautomationcore.dll" length="183580" time="133332707010000000" attr="128">
+      <Hash alg="SHA256" value="4FBEF03C143C0FA0D01916F89B514A50ED5DC9DE1764F3F8AA78F27C2246DEB2" />
+      <Delta>
+        <Source type="RAW" offset="111184617" length="183580">
+          <Hash alg="SHA256" value="4FBEF03C143C0FA0D01916F89B514A50ED5DC9DE1764F3F8AA78F27C2246DEB2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="18506" name="wow64_microsoft-windows-uiautomationcore_31bf3856ad364e35_10.0.22621.1928_none_9a1e34f6f23b0719\f\uiautomationcore.dll" length="66505" time="133319986740000000" attr="128">
+      <Hash alg="SHA256" value="495011D447AFB2D98DFCA080C44D42A1C33AF76E7BB6AA119B656171346752BB" />
+      <Delta>
+        <Source type="PA30" offset="111368197" length="65228">
+          <Hash alg="SHA256" value="2D3FBDD4955CCEAC6D5C98C3FBB17031

@@ -1,0 +1,103 @@
+ had the
+following:</p>
+<pre><code>{ &quot;name&quot; : &quot;foo&quot;
+, &quot;config&quot; : { &quot;port&quot; : &quot;8080&quot; } }
+</code></pre><p>and then had a &quot;start&quot; command that then referenced the
+<code>npm_package_config_port</code> environment variable, then the user could
+override that by doing <code>npm config set foo:port 8001</code>.</p>
+<p>See <code><a href="../misc/npm-config.html">npm-config(7)</a></code> and <code><a href="../misc/npm-scripts.html">npm-scripts(7)</a></code> for more on package
+configs.</p>
+<h2 id="dependencies">dependencies</h2>
+<p>Dependencies are specified in a simple object that maps a package name to a
+version range. The version range is a string which has one or more
+space-separated descriptors.  Dependencies can also be identified with a
+tarball or git URL.</p>
+<p><strong>Please do not put test harnesses or transpilers in your
+<code>dependencies</code> object.</strong>  See <code>devDependencies</code>, below.</p>
+<p>See <a href="../misc/semver.html">semver(7)</a> for more details about specifying version ranges.</p>
+<ul>
+<li><code>version</code> Must match <code>version</code> exactly</li>
+<li><code>&gt;version</code> Must be greater than <code>version</code></li>
+<li><code>&gt;=version</code> etc</li>
+<li><code>&lt;version</code></li>
+<li><code>&lt;=version</code></li>
+<li><code>~version</code> &quot;Approximately equivalent to version&quot;  See <a href="../misc/semver.html">semver(7)</a></li>
+<li><code>^version</code> &quot;Compatible with version&quot;  See <a href="../misc/semver.html">semver(7)</a></li>
+<li><code>1.2.x</code> 1.2.0, 1.2.1, etc., but not 1.3.0</li>
+<li><code>http://...</code> See &#39;URLs as Dependencies&#39; below</li>
+<li><code>*</code> Matches any version</li>
+<li><code>&quot;&quot;</code> (just an empty string) Same as <code>*</code></li>
+<li><code>version1 - version2</code> Same as <code>&gt;=version1 &lt;=version2</code>.</li>
+<li><code>range1 || range2</code> Passes if either range1 or range2 are satisfied.</li>
+<li><code>git...</code> See &#39;Git URLs as Dependencies&#39; below</li>
+<li><code>user/repo</code> See &#39;GitHub URLs&#39; below</li>
+<li><code>tag</code> A specific version tagged and published as <code>tag</code>  See <code><a href="../cli/npm-tag.html">npm-tag(1)</a></code></li>
+<li><code>path/path/path</code> See <a href="#local-paths">Local Paths</a> below</li>
+</ul>
+<p>For example, these are all valid:</p>
+<pre><code>{ &quot;dependencies&quot; :
+  { &quot;foo&quot; : &quot;1.0.0 - 2.9999.9999&quot;
+  , &quot;bar&quot; : &quot;&gt;=1.0.2 &lt;2.1.2&quot;
+  , &quot;baz&quot; : &quot;&gt;1.0.2 &lt;=2.3.4&quot;
+  , &quot;boo&quot; : &quot;2.0.1&quot;
+  , &quot;qux&quot; : &quot;&lt;1.0.0 || &gt;=2.3.1 &lt;2.4.5 || &gt;=2.5.2 &lt;3.0.0&quot;
+  , &quot;asd&quot; : &quot;http://asdf.com/asdf.tar.gz&quot;
+  , &quot;til&quot; : &quot;~1.2&quot;
+  , &quot;elf&quot; : &quot;~1.2.3&quot;
+  , &quot;two&quot; : &quot;2.x&quot;
+  , &quot;thr&quot; : &quot;3.3.x&quot;
+  , &quot;lat&quot; : &quot;latest&quot;
+  , &quot;dyl&quot; : &quot;file:../dyl&quot;
+  }
+}
+</code></pre><h3 id="urls-as-dependencies">URLs as Dependencies</h3>
+<p>You may specify a tarball URL in place of a version range.</p>
+<p>This tarball will be downloaded and installed locally to your package at
+install time.</p>
+<h3 id="git-urls-as-dependencies">Git URLs as Dependencies</h3>
+<p>Git urls can be of the form:</p>
+<pre><code>git://github.com/user/project.git#commit-ish
+git+ssh://user@hostname:project.git#commit-ish
+git+ssh://user@hostname/project.git#commit-ish
+git+http://user@hostname/project/blah.git#commit-ish
+git+https://user@hostname/project/blah.git#commit-ish
+</code></pre><p>The <code>commit-ish</code> can be any tag, sha, or branch which can be supplied as
+an argument to <code>git checkout</code>.  The default is <code>master</code>.</p>
+<h2 id="github-urls">GitHub URLs</h2>
+<p>As of version 1.1.65, you can refer to GitHub urls as just &quot;foo&quot;:
+&quot;user/foo-project&quot;.  Just as with git URLs, a <code>commit-ish</code> suffix can be
+included.  For example:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;foo&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;visionmedia/express&quot;,
+    &quot;mocha&quot;: &quot;visionmedia/mocha#4727d357ea&quot;,
+    &quot;module&quot;: &quot;user/repo#feature\/branch&quot;
+  }
+}
+</code></pre><h2 id="local-paths">Local Paths</h2>
+<p>As of version 2.0.0 you can provide a path to a local directory that contains a
+package. Local paths can be saved using <code>npm install -S</code> or
+<code>npm install --save</code>, using any of these forms:</p>
+<pre><code>../foo/bar
+~/foo/bar
+./foo/bar
+/foo/bar
+</code></pre><p>in which case they will be normalized to a relative path and added to your
+<code>package.json</code>. For example:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;baz&quot;,
+  &quot;dependencies&quot;: {
+    &quot;bar&quot;: &quot;file:../foo/bar&quot;
+  }
+}
+</code></pre><p>This feature is helpful for local offline development and creating
+tests that require npm installing where you don&#39;t want to hit an
+external server, but should not be used when publishing packages
+to the public registry.</p>
+<h2 id="devdependencies">devDependencies</h2>
+<p>If someone is planning on downloading and using your module in their
+program, then they probably don&#39;t want or need to download and build
+the external test or documentation framework that you use.</p>
+<p>In this case, it&#39;s best to map these additional items

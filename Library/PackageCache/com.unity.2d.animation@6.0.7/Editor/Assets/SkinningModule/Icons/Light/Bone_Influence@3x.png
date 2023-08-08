@@ -1,0 +1,11 @@
+f.indexOf("<"))throw Error("Selector does not allow '<', got: "+f);var h=f.replace(/('|")((?!\1)[^\r\n\f\\]|\\[\s\S])*\1/g,"");if(!/^[-_a-zA-Z0-9#.:* ,>+~[\]()=\\^$|]+$/.test(h))throw Error("Selector allows only [-_a-zA-Z0-9#.:* ,>+~[\\]()=\\^$|] and strings, got: "+
+f);a:{for(var k={"(":")","[":"]"},l=[],n=0;n<h.length;n++){var p=h[n];if(k[p])l.push(k[p]);else{b:{var r=void 0;for(r in k)if(k[r]==p){r=!0;break b}r=!1}if(r&&l.pop()!=p){h=!1;break a}}}h=0==l.length}if(!h)throw Error("() and [] in selector must be balanced, got: "+f);if(!(e instanceof Kb)){h="";for(var q in e)if(Object.prototype.hasOwnProperty.call(e,q)){if(!/^[-_a-zA-Z0-9]+$/.test(q))throw Error("Name allows only [-_a-zA-Z0-9], got: "+q);k=e[q];null!=k&&(k=Array.isArray(k)?k.map(Mb).join(" "):Mb(k),
+h+=q+":"+k+";")}e=h?new Kb(h,Jb):Lb}e instanceof Kb&&e.constructor===Kb?q=e.i:(Ea(e),q="type_error:SafeStyle");f=f+"{"+q.replace(/</g,"\\3C ")+"}";g.call(d,new Ub(f,Tb))}});
+return Vb(d)}
+function uh(a){return a.filter(function(b){return b instanceof CSSStyleRule||b.type==CSSRule.STYLE_RULE})}
+function wh(a,b,c){a=xh("<style>"+a+"</style>");return null==a||null==a.sheet?Xb:th(a.sheet,void 0!=b?b:null,c)}
+function xh(a){a=pc("<html><head></head><body>"+a+"</body></html>");return(new DOMParser).parseFromString(oc(a),"text/html").body.children[0]}
+function vh(a,b){if(!a)return Lb;var c=document.createElement("div").style;yh(a).forEach(function(d){var e=Qc&&d in sh?d:d.replace(/^-(?:apple|css|epub|khtml|moz|mso?|o|rim|wap|webkit|xv)-(?=[a-z])/i,"");0!=e.lastIndexOf("--",0)&&0!=e.lastIndexOf("var",0)&&(d=oh(a,d),d=Og(e,d,b),null!=d&&ph(c,e,d))});
+return new Kb(c.cssText||"",Jb)}
+function zh(a){var b=Array.from(gh(Wg,a,"getElementsByTagName",["STYLE"])),c=ab(b,function(g){return Za(kh(g).cssRules)});
+c=uh(c);for(var d=[],e=0;e<c.length;e++)d[e]={index:e,Cd:c[e]};d.sort(function(g,h){var k=Hg(g.Cd.selectorTex

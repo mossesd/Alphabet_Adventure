@@ -1,0 +1,628 @@
+tructionEnabledAttribute" /> class and initializes the default settings for <see cref="P:System.EnterpriseServices.ConstructionEnabledAttribute.Enabled" /> and <see cref="P:System.EnterpriseServices.ConstructionEnabledAttribute.Default" />.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.ConstructionEnabledAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ConstructionEnabledAttribute" /> class, setting <see cref="P:System.EnterpriseServices.ConstructionEnabledAttribute.Enabled" /> to the specified value.</summary>
+      <param name="val">true to enable COM+ object construction support; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.ConstructionEnabledAttribute.Default">
+      <summary>Gets or sets a default value for the constructor string.</summary>
+      <returns>The value to be used for the default constructor string. The default is an empty string ("").</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.ConstructionEnabledAttribute.Enabled">
+      <summary>Gets or sets a value indicating whether COM+ object construction support is enabled.</summary>
+      <returns>true if COM+ object construction support is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.ContextUtil">
+      <summary>Obtains information about the COM+ object context. This class cannot be inherited.</summary>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.ActivityId">
+      <summary>Gets a GUID representing the activity containing the component.</summary>
+      <returns>The GUID for an activity if the current context is part of an activity; otherwise, GUID_NULL.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.ApplicationId">
+      <summary>Gets a GUID for the current application.</summary>
+      <returns>The GUID for the current application.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows XP or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.ApplicationInstanceId">
+      <summary>Gets a GUID for the current application instance.</summary>
+      <returns>The GUID for the current application instance.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows XP or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.ContextId">
+      <summary>Gets a GUID for the current context.</summary>
+      <returns>The GUID for the current context.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.DeactivateOnReturn">
+      <summary>Gets or sets the done bit in the COM+ context.</summary>
+      <returns>true if the object is to be deactivated when the method returns; otherwise, false. The default is false.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.DisableCommit">
+      <summary>Sets both the consistent bit and the done bit to false in the COM+ context.</summary>
+      <exception cref="T:System.Runtime.InteropServices.COMException">No COM+ context is available.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.EnableCommit">
+      <summary>Sets the consistent bit to true and the done bit to false in the COM+ context.</summary>
+      <exception cref="T:System.Runtime.InteropServices.COMException">No COM+ context is available. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.GetNamedProperty(System.String)">
+      <summary>Returns a named property from the COM+ context.</summary>
+      <returns>The named property for the context.</returns>
+      <param name="name">The name of the requested property. </param>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.IsCallerInRole(System.String)">
+      <summary>Determines whether the caller is in the specified role.</summary>
+      <returns>true if the caller is in the specified role; otherwise, false.</returns>
+      <param name="role">The name of the role to check. </param>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.IsDefaultContext">
+      <summary>Determines whether the serviced component is activated in the default context. Serviced components that do not have COM+ catalog information are activated in the default context.</summary>
+      <returns>true if the serviced component is activated in the default context; otherwise, false.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.IsInTransaction">
+      <summary>Gets a value that indicates whether the current context is transactional.</summary>
+      <returns>true if the current context is transactional; otherwise, false.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.IsSecurityEnabled">
+      <summary>Gets a value that indicates whether role-based security is active in the current context.</summary>
+      <returns>true if the current context has security enabled; otherwise, false.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.MyTransactionVote">
+      <summary>Gets or sets the consistent bit in the COM+ context.</summary>
+      <returns>One of the <see cref="T:System.EnterpriseServices.TransactionVote" /> values, either Commit or Abort.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later.</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.PartitionId">
+      <summary>Gets a GUID for the current partition.</summary>
+      <returns>The GUID for the current partition.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows XP or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.SetAbort">
+      <summary>Sets the consistent bit to false and the done bit to true in the COM+ context.</summary>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.SetComplete">
+      <summary>Sets the consistent bit and the done bit to true in the COM+ context.</summary>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.EnterpriseServices.ContextUtil.SetNamedProperty(System.String,System.Object)">
+      <summary>Sets the named property for the COM+ context.</summary>
+      <param name="name">The name of the property to set. </param>
+      <param name="value">Object that represents the property value to set.</param>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.SystemTransaction">
+      <summary>Gets the current transaction context.</summary>
+      <returns>A <see cref="T:System.Transactions.Transaction" /> that represents the current transaction context.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.Transaction">
+      <summary>Gets an object describing the current COM+ DTC transaction.</summary>
+      <returns>An object that represents the current transaction.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.EnterpriseServices.ContextUtil.TransactionId">
+      <summary>Gets the GUID of the current COM+ DTC transaction.</summary>
+      <returns>A GUID representing the current COM+ DTC transaction, if one exists.</returns>
+      <exception cref="T:System.Runtime.InteropServices.COMException">There is no COM+ context available. </exception>
+      <exception cref="T:System.PlatformNotSupportedException">The platform is not Windows 2000 or later. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="T:System.EnterpriseServices.DescriptionAttribute">
+      <summary>Sets the description on an assembly (application), component, method, or interface. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.DescriptionAttribute.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.DescriptionAttribute" /> class.</summary>
+      <param name="desc">The description of the assembly (application), component, method, or interface. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.EventClassAttribute">
+      <summary>Marks the attributed class as an event class. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.EventClassAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.EventClassAttribute" /> class.</summary>
+    </member>
+    <member name="P:System.EnterpriseServices.EventClassAttribute.AllowInprocSubscribers">
+      <summary>Gets or sets a value that indicates whether subscribers can be activated in the publisher's process.</summary>
+      <returns>true if subscribers can be activated in the publisher's process; otherwise, false.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.EventClassAttribute.FireInParallel">
+      <summary>Gets or sets a value that indicates whether events are to be delivered to subscribers in parallel.</summary>
+      <returns>true if events are to be delivered to subscribers in parallel; otherwise, false.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.EventClassAttribute.PublisherFilter">
+      <summary>Gets or sets a publisher filter for an event method.</summary>
+      <returns>The publisher filter.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.EventTrackingEnabledAttribute">
+      <summary>Enables event tracking for a component. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.EventTrackingEnabledAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.EventTrackingEnabledAttribute" /> class, enabling event tracking.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.EventTrackingEnabledAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.EventTrackingEnabledAttribute" /> class, optionally disabling event tracking.</summary>
+      <param name="val">true to enable event tracking; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.EventTrackingEnabledAttribute.Value">
+      <summary>Gets the value of the <see cref="P:System.EnterpriseServices.EventTrackingEnabledAttribute.Value" /> property, which indicates whether tracking is enabled.</summary>
+      <returns>true if tracking is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.ExceptionClassAttribute">
+      <summary>Sets the queuing exception class for the queued class. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.ExceptionClassAttribute.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ExceptionClassAttribute" /> class.</summary>
+      <param name="name">The name of the exception class for the player to activate and play back before the message is routed to the dead letter queue. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.ExceptionClassAttribute.Value">
+      <summary>Gets the name of the exception class for the player to activate and play back before the message is routed to the dead letter queue.</summary>
+      <returns>The name of the exception class for the player to activate and play back before the message is routed to the dead letter queue.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.IAsyncErrorNotify">
+      <summary>Implements error trapping on the asynchronous batch work that is submitted by the <see cref="T:System.EnterpriseServices.Activity" /> object.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IAsyncErrorNotify.OnError(System.Int32)">
+      <summary>Handles errors for asynchronous batch work.</summary>
+      <param name="hresult">The HRESULT of the error that occurred while the batch work was running asynchronously. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.IISIntrinsicsAttribute">
+      <summary>Enables access to ASP intrinsic values from <see cref="M:System.EnterpriseServices.ContextUtil.GetNamedProperty(System.String)" />. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IISIntrinsicsAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.IISIntrinsicsAttribute" /> class, enabling access to the ASP intrinsic values.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IISIntrinsicsAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.IISIntrinsicsAttribute" /> class, optionally disabling access to the ASP intrinsic values.</summary>
+      <param name="val">true to enable access to the ASP intrinsic values; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.IISIntrinsicsAttribute.Value">
+      <summary>Gets a value that indicates whether access to the ASP intrinsic values is enabled.</summary>
+      <returns>true if access is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.ImpersonationLevelOption">
+      <summary>Specifies the level of impersonation allowed when calling targets of a server application.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.ImpersonationLevelOption.Default">
+      <summary>Uses the default impersonation level for the specified authentication service. In COM+, this setting is provided by the DefaultImpersonationLevel property in the LocalComputer collection.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.ImpersonationLevelOption.Anonymous">
+      <summary>The client is anonymous to the server. The server process can impersonate the client, but the impersonation token does not contain any information about the client.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.ImpersonationLevelOption.Identify">
+      <summary>The system default level. The server can obtain the client's identity, and the server can impersonate the client to do ACL checks.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.ImpersonationLevelOption.Impersonate">
+      <summary>The server can impersonate the client's security context while acting on behalf of the client. The server can access local resources as the client.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.ImpersonationLevelOption.Delegate">
+      <summary>The most powerful impersonation level. When this level is selected, the server (whether local or remote) can impersonate the client's security context while acting on behalf of the client </summary>
+    </member>
+    <member name="T:System.EnterpriseServices.InheritanceOption">
+      <summary>Indicates whether to create a new context based on the current context or on the information in <see cref="T:System.EnterpriseServices.ServiceConfig" />.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InheritanceOption.Inherit">
+      <summary>The new context is created from the existing context. <see cref="F:System.EnterpriseServices.InheritanceOption.Inherit" /> is the default value for <see cref="P:System.EnterpriseServices.ServiceConfig.Inheritance" />.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InheritanceOption.Ignore">
+      <summary>The new context is created from the default context.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.InstallationFlags">
+      <summary>Flags used with the <see cref="T:System.EnterpriseServices.RegistrationHelper" /> class.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.Default">
+      <summary>Do the default installation, which configures, installs, and registers, and assumes that the application already exists.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.ExpectExistingTypeLib">
+      <summary>Do not export the type library; one can be found either by the generated or supplied type library name.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.CreateTargetApplication">
+      <summary>Creates the target application. An error occurs if the target already exists.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.FindOrCreateTargetApplication">
+      <summary>Creates the application if it does not exist; otherwise use the existing application.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.ReconfigureExistingApplication">
+      <summary>If using an existing application, ensures that the properties on this application match those in the assembly.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.ConfigureComponentsOnly">
+      <summary>Configures components only, do not configure methods or interfaces.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.ReportWarningsToConsole">
+      <summary>When alert text is encountered, writes it to the Console.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.Register">
+      <summary>Should not be used.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.Install">
+      <summary>Should not be used.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.InstallationFlags.Configure">
+      <summary>Should not be used.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.InterfaceQueuingAttribute">
+      <summary>Enables queuing support for the marked interface. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.InterfaceQueuingAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.InterfaceQueuingAttribute" /> class setting the <see cref="P:System.EnterpriseServices.InterfaceQueuingAttribute.Enabled" /> and <see cref="P:System.EnterpriseServices.InterfaceQueuingAttribute.Interface" /> properties to their default values.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.InterfaceQueuingAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.InterfaceQueuingAttribute" /> class, optionally disabling queuing support.</summary>
+      <param name="enabled">true to enable queuing support; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.InterfaceQueuingAttribute.Enabled">
+      <summary>Gets or sets a value indicating whether queuing support is enabled.</summary>
+      <returns>true if queuing support is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.InterfaceQueuingAttribute.Interface">
+      <summary>Gets or sets the name of the interface on which queuing is enabled.</summary>
+      <returns>The name of the interface on which queuing is enabled.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.IPlaybackControl">
+      <summary>Functions in Queued Components in the abnormal handling of server-side playback errors and client-side failures of the Message Queuing delivery mechanism.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IPlaybackControl.FinalClientRetry">
+      <summary>Informs the client-side exception-handling component that all Message Queuing attempts to deliver the message to the server were rejected, and the message ended up on the client-side Xact Dead Letter queue.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IPlaybackControl.FinalServerRetry">
+      <summary>Informs the server-side exception class implementation that all attempts to play back the deferred activation to the server have failed, and the message is about to be moved to its final resting queue.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.IProcessInitControl">
+      <summary>Supports setting the time-out for the <see cref="M:System.EnterpriseServices.IProcessInitializer.Startup(System.Object)" /> method.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IProcessInitControl.ResetInitializerTimeout(System.Int32)">
+      <summary>Sets the number of seconds remaining before the <see cref="M:System.EnterpriseServices.IProcessInitializer.Startup(System.Object)" /> method times out.</summary>
+      <param name="dwSecondsRemaining">The number of seconds that remain before the time taken to execute the start up method times out. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.IProcessInitializer">
+      <summary>Supports methods that can be called when a COM component starts up or shuts down.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IProcessInitializer.Shutdown">
+      <summary>Performs shutdown actions. Called when Dllhost.exe is shut down.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IProcessInitializer.Startup(System.Object)">
+      <summary>Performs initialization at startup. Called when Dllhost.exe is started.</summary>
+      <param name="punkProcessControl">In Microsoft Windows XP, a pointer to the IUnknown interface of the COM component starting up. In Microsoft Windows 2000, this argument is always null. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.IRegistrationHelper">
+      <summary>Installs and configures assemblies in the COM+ catalog.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IRegistrationHelper.InstallAssembly(System.String,System.String@,System.String@,System.EnterpriseServices.InstallationFlags)">
+      <summary>Installs the assembly into the COM+ catalog.</summary>
+      <param name="assembly">The assembly name as a file or the strong name of an assembly in the global assembly cache (GAC). </param>
+      <param name="application">The application parameter can be null. If it is, the name of the application is automatically generated based on the name of the assembly or the ApplicationName attribute. If the application contains an ApplicationID attribute, the attribute takes precedence. </param>
+      <param name="tlb">The name of the output type library (TLB) file, or a string containing null if the registration helper is expected to generate the name. On call completion, the actual name used is placed in the parameter. </param>
+      <param name="installFlags">The installation options specified in the enumeration. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.IRegistrationHelper.UninstallAssembly(System.String,System.String)">
+      <summary>Uninstalls the assembly from the COM+ catalog.</summary>
+      <param name="assembly">The assembly name as a file or the strong name of an assembly in the global assembly cache (GAC). </param>
+      <param name="application">The name of the COM+ application. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.IRemoteDispatch">
+      <summary>Implemented by the <see cref="T:System.EnterpriseServices.ServicedComponent" /> class to determine if the <see cref="T:System.EnterpriseServices.AutoCompleteAttribute" /> class attribute is set to true or false for a remote method invocation.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone(System.String)">
+      <summary>Ensures that, in the COM+ context, the <see cref="T:System.EnterpriseServices.ServicedComponent" /> class object's done bit is set to true after a remote method invocation.</summary>
+      <returns>A string converted from a response object that implements the <see cref="T:System.Runtime.Remoting.Messaging.IMethodReturnMessage" /> interface.</returns>
+      <param name="s">A string to be converted into a request object that implements the <see cref="T:System.Runtime.Remoting.Messaging.IMessage" /> interface.</param>
+    </member>
+    <member name="M:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone(System.String)">
+      <summary>Does not ensure that, in the COM+ context, the <see cref="T:System.EnterpriseServices.ServicedComponent" /> class object's done bit is set to true after a remote method invocation.</summary>
+      <returns>A string converted from a response object implementing the <see cref="T:System.Runtime.Remoting.Messaging.IMethodReturnMessage" /> interface.</returns>
+      <param name="s">A string to be converted into a request object implementing the <see cref="T:System.Runtime.Remoting.Messaging.IMessage" /> interface.</param>
+    </member>
+    <member name="T:System.EnterpriseServices.IServiceCall">
+      <summary>Implements the batch work that is submitted through the activity created by <see cref="T:System.EnterpriseServices.Activity" />.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IServiceCall.OnCall">
+      <summary>Starts the execution of the batch work implemented in this method.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.IServicedComponentInfo">
+      <summary>Implemented by the <see cref="T:System.EnterpriseServices.ServicedComponent" /> class to obtain information about the component via the <see cref="M:System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo(System.Int32@,System.String[]@)" /> method.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo(System.Int32@,System.String[]@)">
+      <summary>Obtains certain information about the <see cref="T:System.EnterpriseServices.ServicedComponent" /> class instance.</summary>
+      <param name="infoMask">A bitmask where 0x00000001 is a key for the serviced component's process ID, 0x00000002 is a key for the application domain ID, and 0x00000004 is a key for the serviced component's remote URI.</param>
+      <param name="infoArray">A string array that may contain any or all of the following, in order: the serviced component's process ID, the application domain ID, and the serviced component's remote URI.</param>
+    </member>
+    <member name="T:System.EnterpriseServices.ITransaction">
+      <summary>Corresponds to the Distributed Transaction Coordinator (DTC) ITransaction interface and is supported by objects obtained through <see cref="P:System.EnterpriseServices.ContextUtil.Transaction" />.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.ITransaction.Abort(System.EnterpriseServices.BOID@,System.Int32,System.Int32)">
+      <summary>Aborts the transaction.</summary>
+      <param name="pboidReason">An optional <see cref="T:System.EnterpriseServices.BOID" /> that indicates why the transaction is being aborted. This parameter can be null, indicating that no reason for the abort is provided. </param>
+      <param name="fRetaining">Must be false. </param>
+      <param name="fAsync">When <paramref name="fAsync" /> is true, an asynchronous abort is performed and the caller must use ITransactionOutcomeEvents to learn the outcome of the transaction. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.ITransaction.Commit(System.Int32,System.Int32,System.Int32)">
+      <summary>Commits the transaction.</summary>
+      <param name="fRetaining">Must be false. </param>
+      <param name="grfTC">A value taken from the OLE DB enumeration XACTTC. </param>
+      <param name="grfRM">Must be zero. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.ITransaction.GetTransactionInfo(System.EnterpriseServices.XACTTRANSINFO@)">
+      <summary>Returns information about a transaction object.</summary>
+      <param name="pinfo">Pointer to the caller-allocated <see cref="T:System.EnterpriseServices.XACTTRANSINFO" /> structure that will receive information about the transaction. Must not be null. </param>
+    </member>
+    <member name="T:System.EnterpriseServices.JustInTimeActivationAttribute">
+      <summary>Turns just-in-time (JIT) activation on or off. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.JustInTimeActivationAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.JustInTimeActivationAttribute" /> class. The default constructor enables just-in-time (JIT) activation.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.JustInTimeActivationAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.JustInTimeActivationAttribute" /> class, optionally allowing the disabling of just-in-time (JIT) activation by passing false as the parameter.</summary>
+      <param name="val">true to enable JIT activation; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.JustInTimeActivationAttribute.Value">
+      <summary>Gets the value of the <see cref="T:System.EnterpriseServices.JustInTimeActivationAttribute" /> setting.</summary>
+      <returns>true if JIT activation is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.LoadBalancingSupportedAttribute">
+      <summary>Determines whether the component participates in load balancing, if the component load balancing service is installed and enabled on the server.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.LoadBalancingSupportedAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.LoadBalancingSupportedAttribute" /> class, specifying load balancing support.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.LoadBalancingSupportedAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.LoadBalancingSupportedAttribute" /> class, optionally disabling load balancing support.</summary>
+      <param name="val">true to enable load balancing support; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.LoadBalancingSupportedAttribute.Value">
+      <summary>Gets a value that indicates whether load balancing support is enabled.</summary>
+      <returns>true if load balancing support is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.MustRunInClientContextAttribute">
+      <summary>Forces the attributed object to be created in the context of the creator, if possible. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.MustRunInClientContextAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.MustRunInClientContextAttribute" /> class, requiring creation of the object in the context of the creator.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.MustRunInClientContextAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.MustRunInClientContextAttribute" /> class, optionally not creating the object in the context of the creator.</summary>
+      <param name="val">true to create the object in the context of the creator; otherwise, false. </param>
+    </member>
+    <member name="P:System.EnterpriseServices.MustRunInClientContextAttribute.Value">
+      <summary>Gets a value that indicates whether the attributed object is to be created in the context of the creator.</summary>
+      <returns>true if the object is to be created in the context of the creator; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.ObjectPoolingAttribute">
+      <summary>Enables and configures object pooling for a component. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ObjectPoolingAttribute" /> class and sets the <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.Enabled" />, <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MaxPoolSize" />, <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MinPoolSize" />, and <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.CreationTimeout" /> properties to their default values.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.#ctor(System.Boolean)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ObjectPoolingAttribute" /> class and sets the <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.Enabled" /> property.</summary>
+      <param name="enable">true to enable object pooling; otherwise, false. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.#ctor(System.Boolean,System.Int32,System.Int32)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ObjectPoolingAttribute" /> class and sets the <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.Enabled" />, <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MaxPoolSize" />, and <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MinPoolSize" /> properties.</summary>
+      <param name="enable">true to enable object pooling; otherwise, false. </param>
+      <param name="minPoolSize">The minimum pool size.</param>
+      <param name="maxPoolSize">The maximum pool size.</param>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.#ctor(System.Int32,System.Int32)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.ObjectPoolingAttribute" /> class and sets the <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MaxPoolSize" /> and <see cref="P:System.EnterpriseServices.ObjectPoolingAttribute.MinPoolSize" /> properties.</summary>
+      <param name="minPoolSize">The minimum pool size. </param>
+      <param name="maxPoolSize">The maximum pool size. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.AfterSaveChanges(System.Collections.Hashtable)">
+      <summary>Called internally by the .NET Framework infrastructure while installing and configuring assemblies in the COM+ catalog.</summary>
+      <returns>true if the method has made changes.</returns>
+      <param name="info">A hash table that contains internal objects referenced by internal keys.</param>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.Apply(System.Collections.Hashtable)">
+      <summary>Called internally by the .NET Framework infrastructure while applying the <see cref="T:System.EnterpriseServices.ObjectPoolingAttribute" /> class attribute to a serviced component.</summary>
+      <returns>true if the method has made changes.</returns>
+      <param name="info">A hash table that contains an internal object to which object pooling properties are applied, referenced by an internal key.</param>
+    </member>
+    <member name="P:System.EnterpriseServices.ObjectPoolingAttribute.CreationTimeout">
+      <summary>Gets or sets the length of time to wait for an object to become available in the pool before throwing an exception. This value is in milliseconds.</summary>
+      <returns>The time-out value in milliseconds.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.ObjectPoolingAttribute.Enabled">
+      <summary>Gets or sets a value that indicates whether object pooling is enabled.</summary>
+      <returns>true if object pooling is enabled; otherwise, false. The default is true.</returns>
+    </member>
+    <member name="M:System.EnterpriseServices.ObjectPoolingAttribute.IsValidTarget(System.String)">
+      <summary>Called internally by the .NET Framework infrastructure while installing and configuring assemblies in the COM+ catalog.</summary>
+      <returns>true if the attribute is applied to a serviced component class.</returns>
+      <param name="s">A string generated by the .NET Framework infrastructure that is checked for a special value that indicates a serviced component.</param>
+    </member>
+    <member name="P:System.EnterpriseServices.ObjectPoolingAttribute.MaxPoolSize">
+      <summary>Gets or sets the value for the maximum size of the pool.</summary>
+      <returns>The maximum number of objects in the pool.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.ObjectPoolingAttribute.MinPoolSize">
+      <summary>Gets or sets the value for the minimum size of the pool.</summary>
+      <returns>The minimum number of objects in the pool.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.PartitionOption">
+      <summary>Indicates the context in which to run the COM+ partition.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PartitionOption.Ignore">
+      <summary>The enclosed context runs in the Global Partition. <see cref="F:System.EnterpriseServices.PartitionOption.Ignore" /> is the default setting for <see cref="P:System.EnterpriseServices.ServiceConfig.PartitionOption" /> when <see cref="P:System.EnterpriseServices.ServiceConfig.Inheritance" /> is set to <see cref="F:System.EnterpriseServices.InheritanceOption.Ignore" />.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PartitionOption.Inherit">
+      <summary>The enclosed context runs in the current containing COM+ partition. This is the default setting for <see cref="P:System.EnterpriseServices.ServiceConfig.PartitionOption" /> when <see cref="P:System.EnterpriseServices.ServiceConfig.Inheritance" /> is set to <see cref="F:System.EnterpriseServices.InheritanceOption.Inherit" />.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PartitionOption.New">
+      <summary>The enclosed context runs in a COM+ partition that is different from the current containing partition.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.PrivateComponentAttribute">
+      <summary>Identifies a component as a private component that is only seen and activated by components in the same application. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.PrivateComponentAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.PrivateComponentAttribute" /> class.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.PropertyLockMode">
+      <summary>Specifies the mode for accessing shared properties in the shared property group manager.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PropertyLockMode.SetGet">
+      <summary>Locks a property during a get or set, assuring that every get or set operation on a shared property is atomic.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PropertyLockMode.Method">
+      <summary>Locks all the properties in the shared property group for exclusive use by the caller, as long as the caller's current method is executing.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.PropertyReleaseMode">
+      <summary>Specifies the release mode for the properties in the new shared property group.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PropertyReleaseMode.Standard">
+      <summary>When all clients have released their references on the property group, the property group is automatically destroyed. This is the default COM mode.</summary>
+    </member>
+    <member name="F:System.EnterpriseServices.PropertyReleaseMode.Process">
+      <summary>The property group is not destroyed until the process in which it was created has terminated.</summary>
+    </member>
+    <member name="T:System.EnterpriseServices.RegistrationConfig">
+      <summary>Provides configuration information for installing assemblies into the COM+ catalog.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.RegistrationConfig.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.RegistrationConfig" /> class.</summary>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.Application">
+      <summary>Gets or sets the name of the COM+ application in which the assembly is to be installed.</summary>
+      <returns>The name of the COM+ application in which the assembly is to be installed.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.ApplicationRootDirectory">
+      <summary>Gets or sets the name of the root directory of the application.</summary>
+      <returns>The name of the root directory of the application.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.AssemblyFile">
+      <summary>Gets or sets the file name of the assembly to install.</summary>
+      <returns>The file name of the assembly to install.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.InstallationFlags">
+      <summary>Gets or sets a flag that indicates how to install the assembly.</summary>
+      <returns>One of the <see cref="T:System.EnterpriseServices.InstallationFlags" /> values.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.Partition">
+      <summary>Gets or sets the name of the COM+ partition.</summary>
+      <returns>The name of the COM+ partition.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationConfig.TypeLibrary">
+      <summary>Gets or sets the name of the output Type Library Exporter (Tlbexp.exe) file.</summary>
+      <returns>The name of the output Type Library Exporter (Tlbexp.exe) file.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.RegistrationErrorInfo">
+      <summary>Retrieves extended error information about methods related to multiple COM+ objects. This also includes methods that install, import, and export COM+ applications and components. This class cannot be inherited.</summary>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationErrorInfo.ErrorCode">
+      <summary>Gets the error code for the object or file.</summary>
+      <returns>The error code for the object or file.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationErrorInfo.ErrorString">
+      <summary>Gets the description of the <see cref="P:System.EnterpriseServices.RegistrationErrorInfo.ErrorCode" />.</summary>
+      <returns>The description of the <see cref="P:System.EnterpriseServices.RegistrationErrorInfo.ErrorCode" />.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationErrorInfo.MajorRef">
+      <summary>Gets the key value for the object that caused the error, if applicable.</summary>
+      <returns>The key value for the object that caused the error, if applicable.</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationErrorInfo.MinorRef">
+      <summary>Gets a precise specification of the item that caused the error, such as a property name.</summary>
+      <returns>A precise specification of the item, such as a property name, that caused the error. If multiple errors occurred, or this does not apply, <see cref="P:System.EnterpriseServices.RegistrationErrorInfo.MinorRef" /> returns the string "&lt;Invalid&gt;".</returns>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationErrorInfo.Name">
+      <summary>Gets the name of the object or file that caused the error.</summary>
+      <returns>The name of the object or file that caused the error.</returns>
+    </member>
+    <member name="T:System.EnterpriseServices.RegistrationException">
+      <summary>The exception that is thrown when a registration error is detected.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.RegistrationException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.RegistrationException" /> class.</summary>
+    </member>
+    <member name="M:System.EnterpriseServices.RegistrationException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.RegistrationException" /> class with a specified error message.</summary>
+      <param name="msg">The message displayed to the client when the exception is thrown. </param>
+    </member>
+    <member name="M:System.EnterpriseServices.RegistrationException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:System.EnterpriseServices.RegistrationException" /> class with a specified error message and nested exception.</summary>
+      <param name="msg">The message displayed to the client when the exception is thrown. </param>
+      <param name="inner">The nested exception.</param>
+    </member>
+    <member name="P:System.EnterpriseServices.RegistrationException.ErrorInfo">
+      <summary>Gets an array of <see cref="T:System.EnterpriseServices.RegistrationErrorInfo" /> objects that describe registration errors.</summary>
+      <returns>The array of <see cref="T:System.EnterpriseServices.RegistrationErrorInfo" /> objects.</returns>
+    </member>
+    <member name="M:System.EnterpriseServices.RegistrationException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object with the error information in <see cref="T:System.EnterpriseServices.RegistrationErrorInfo" />.</summary>
+      <param name="info">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object that contains serialized object data. </param>
+      <param name="ctx">The contextual information about the source or destination. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="info" /> parameter is null. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="T:System.Enter

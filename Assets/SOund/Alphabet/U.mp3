@@ -1,0 +1,143 @@
+ apply fog
+  return c;
+}
+
+
+#endif
+
+// -------- variant for: _EMISSION SOFTPARTICLES_ON SHADOWS_SHADOWMASK PROCEDURAL_INSTANCING_ON _METALLICGLOSSMAP _FADING_ON 
+#if defined(_EMISSION) && defined(SOFTPARTICLES_ON) && defined(SHADOWS_SHADOWMASK) && defined(PROCEDURAL_INSTANCING_ON) && defined(_METALLICGLOSSMAP) && defined(_FADING_ON) && !defined(EFFECT_BUMP) && !defined(INSTANCING_ON) && !defined(_ALPHABLEND_ON) && !defined(_ALPHAMODULATE_ON) && !defined(_ALPHAPREMULTIPLY_ON) && !defined(_ALPHATEST_ON) && !defined(_NORMALMAP) && !defined(_REQUIRE_UV2)
+// Surface shader code generated based on:
+// vertex modifier: 'vert'
+// writes to per-pixel normal: no
+// writes to emission: YES
+// writes to occlusion: no
+// needs world space reflection vector: no
+// needs world space normal vector: no
+// needs screen space position: no
+// needs world space position: no
+// needs view direction: no
+// needs world space view direction: no
+// needs world space position for lighting: YES
+// needs world space view direction for lighting: YES
+// needs world space view direction for lightmaps: no
+// needs vertex color: YES
+// needs VFACE: no
+// needs SV_IsFrontFace: no
+// passes tangent-to-world matrix to pixel shader: no
+// reads from normal: no
+// 0 texcoords actually used
+#include "UnityCG.cginc"
+//Shader does not support lightmap thus we always want to fallback to SH.
+#undef UNITY_SHOULD_SAMPLE_SH
+#define UNITY_SHOULD_SAMPLE_SH (!defined(UNITY_PASS_FORWARDADD) && !defined(UNITY_PASS_PREPASSBASE) && !defined(UNITY_PASS_SHADOWCASTER) && !defined(UNITY_PASS_META))
+#include "Lighting.cginc"
+#include "UnityPBSLighting.cginc"
+#include "AutoLight.cginc"
+
+#define INTERNAL_DATA
+#define WorldReflectionVector(data,normal) data.worldRefl
+#define WorldNormalVector(data,normal) normal
+
+// Original surface shader snippet:
+#line 142 ""
+#ifdef DUMMY_PREPROCESSOR_TO_WORK_AROUND_HLSL_COMPILER_LINE_HANDLING
+#endif
+/* UNITY: Original start of shader */
+        //vertInstancingSetup writes to global, not allowed with DXC
+        //#pragma never_use_dxc
+        //#pragma surface surf Standard nolightmap nometa noforwardadd keepalpha vertex:vert
+        //#pragma multi_compile __ SOFTPARTICLES_ON
+        //#pragma multi_compile __ SHADOWS_SHADOWMASK
+        //#pragma multi_compile_instancing
+        //#pragma instancing_options procedural:vertInstancingSetup
+        //#pragma target 3.0
+
+        //#pragma shader_feature_local_fragment _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON _ALPHAMODULATE_ON
+        //#pragma shader_feature_local_fragment _METALLICGLOSSMAP
+        //#pragma shader_feature_local _NORMALMAP
+        //#pragma shader_feature_fragment _EMISSION
+        //#pragma shader_feature_local _FADING_ON
+        //#pragma shader_feature_local _REQUIRE_UV2
+        //#pragma shader_feature_local EFFECT_BUMP
+
+        #include "UnityStandardParticles.cginc"
+        
+
+// vertex-to-fragment interpolation data
+// no lightmaps:
+#ifndef LIGHTMAP_ON
+// half-precision fragment shader registers:
+#ifdef UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS
+#define FOG_COMBINED_WITH_WORLD_POS
+struct v2f_surf {
+  UNITY_POSITION(pos);
+  float3 worldNormal : TEXCOORD0;
+  float4 worldPos : TEXCOORD1;
+  fixed4 color : COLOR0;
+  float2 custompack0 : TEXCOORD2; // texcoord
+  float4 custompack1 : TEXCOORD3; // projectedPosition
+  #if UNITY_SHOULD_SAMPLE_SH
+  half3 sh : TEXCOORD4; // SH
+  #endif
+  UNITY_LIGHTING_COORDS(5,6)
+  UNITY_VERTEX_INPUT_INSTANCE_ID
+  UNITY_VERTEX_OUTPUT_STEREO
+};
+#endif
+// high-precision fragment shader registers:
+#ifndef UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS
+struct v2f_surf {
+  UNITY_POSITION(pos);
+  float3 worldNormal : TEXCOORD0;
+  float3 worldPos : TEXCOORD1;
+  fixed4 color : COLOR0;
+  float2 custompack0 : TEXCOORD2; // texcoord
+  float4 custompack1 : TEXCOORD3; // projectedPosition
+  #if UNITY_SHOULD_SAMPLE_SH
+  half3 sh : TEXCOORD4; // SH
+  #endif
+  UNITY_FOG_COORDS(5)
+  UNITY_SHADOW_COORDS(6)
+  UNITY_VERTEX_INPUT_INSTANCE_ID
+  UNITY_VERTEX_OUTPUT_STEREO
+};
+#endif
+#endif
+// with lightmaps:
+#ifdef LIGHTMAP_ON
+// half-precision fragment shader registers:
+#ifdef UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS
+#define FOG_COMBINED_WITH_WORLD_POS
+struct v2f_surf {
+  UNITY_POSITION(pos);
+  float3 worldNormal : TEXCOORD0;
+  float4 worldPos : TEXCOORD1;
+  fixed4 color : COLOR0;
+  float2 custompack0 : TEXCOORD2; // texcoord
+  float4 custompack1 : TEXCOORD3; // projectedPosition
+  float4 lmap : TEXCOORD4;
+  UNITY_LIGHTING_COORDS(5,6)
+  UNITY_VERTEX_INPUT_INSTANCE_ID
+  UNITY_VERTEX_OUTPUT_STEREO
+};
+#endif
+// high-precision fragment shader registers:
+#ifndef UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS
+struct v2f_surf {
+  UNITY_POSITION(pos);
+  float3 worldNormal : TEXCOORD0;
+  float3 worldPos : TEXCOORD1;
+  fixed4 color : COLOR0;
+  float2 custompack0 : TEXCOORD2; // texcoord
+  float4 custompack1 : TEXCOORD3; // projectedPosition
+  float4 lmap : TEXCOORD4;
+  UNITY_FOG_COORDS(5)
+  UNITY_SHADOW_COORDS(6)
+  UNITY_VERTEX_INPUT_INSTANCE_ID
+  UNITY_VERTEX_OUTPUT_STEREO
+};
+#endif
+#endif
+
+// vertex shader

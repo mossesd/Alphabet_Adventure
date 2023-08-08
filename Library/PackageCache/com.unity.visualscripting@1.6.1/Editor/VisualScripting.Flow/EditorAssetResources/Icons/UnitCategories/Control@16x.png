@@ -1,0 +1,13 @@
+pe" use="optional" />
+                                                                        <xs:anyAttribute namespace="http://schemas.microsoft.com/XML-Document-Transform" processContents="strict" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="bookmarkResumptionQueries" vs:help="configuration/system.serviceModel/tracking/profiles/trackingProfile/workflow/bookmarkResumptionQueries">
+                                                                    <xs:complexType>
+                                                                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                                                            <xs:element name="bookmarkResumptionQuery" vs:help="configuration/system.serviceModel/tracking/profiles/trackingProfile/workflow/bookmarkResumptionQueries/bookmarkResumptionQuery">
+                                                                                <xs:complexType>
+                                                                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                                                                        <xs:element name="annotations" vs:help="configuration/system.serviceModel/tracking/profiles/trackingProfile/workflow/bookmarkResumptionQueries/bookmarkResumptionQuery/annotations">
+                                                                                            <xs:complexType>
+          

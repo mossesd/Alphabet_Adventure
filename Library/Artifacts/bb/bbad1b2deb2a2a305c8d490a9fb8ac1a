@@ -1,0 +1,48 @@
+1674124518282666955">"Laitetta ladataan USB-yhteyden kautta"</string>
+    <string name="usb_supplying_notification_title" msgid="5378546632408101811">"Ladataan yhdistettyä laitetta USB:n kautta"</string>
+    <string name="usb_mtp_notification_title" msgid="1065989144124499810">"USB-tiedostonsiirto on käytössä"</string>
+    <string name="usb_ptp_notification_title" msgid="5043437571863443281">"PTP USB:n kautta on käytössä"</string>
+    <string name="usb_tether_notification_title" msgid="8828527870612663771">"Internetin jakaminen USB:n kautta on käytössä"</string>
+    <string name="usb_midi_notification_title" msgid="7404506788950595557">"MIDI USB:n kautta on käytössä"</string>
+    <string name="usb_accessory_notification_title" msgid="1385394660861956980">"USB-lisälaite yhdistetty"</string>
+    <string name="usb_notification_message" msgid="4715163067192110676">"Näet lisää vaihtoehtoja napauttamalla."</string>
+    <string name="usb_power_notification_message" msgid="7284765627437897702">"Ladataan yhdistettyä laitetta. Napauta nähdäksesi lisää vaihtoehtoja."</string>
+    <string name="usb_unsupported_audio_accessory_title" msgid="2335775548086533065">"Analoginen äänilaite havaittu"</string>
+    <string name="usb_unsupported_audio_accessory_message" msgid="1300168007129796621">"Liitetty laite ei ole yhteensopiva puhelimen kanssa. Napauta, niin näet lisätietoja."</string>
+    <string name="adb_active_notification_title" msgid="408390247354560331">"USB-vianetsintä yhdistetty"</string>
+    <string name="adb_active_notification_message" msgid="5617264033476778211">"Laita USB-vianetsintä pois päältä napauttamalla"</string>
+    <string name="adb_active_notification_message" product="tv" msgid="6624498401272780855">"Poista USB-vianetsintä käytöstä valitsemalla tämä."</string>
+    <string name="adbwifi_active_notification_title" msgid="6147343659168302473">"Langaton virheenkorjaus yhdistetty"</string>
+    <string name="adbwifi_active_notification_message" msgid="930987922852867972">"Poista langaton virheenkorjaus käytöstä napauttamalla"</string>
+    <string name="adbwifi_active_notification_message" product="tv" msgid="8633421848366915478">"Poista langaton virheenkorjaus käytöstä valitsemalla tämä."</string>
+    <string name="test_harness_mode_notification_title" msgid="2282785860014142511">"Testikehystila käytössä"</string>
+    <string name="test_harness_mode_notification_message" msgid="3039123743127958420">"Palauta tehdasasetukset, niin voit poistaa testikehystilan käytöstä."</string>
+    <string name="console_running_notification_title" msgid="6087888939261635904">"Sarjakonsoli käytössä"</string>
+    <string name="console_running_notification_message" msgid="7892751888125174039">"Tämä vaikuttaa suorituskykyyn. Jos haluat poistaa toiminnon käytöstä, tarkista käynnistysohjelma."</string>
+    <string name="usb_contaminant_detected_title" msgid="4359048603069159678">"Nestettä tai likaa USB-portissa"</string>
+    <string name="usb_contaminant_detected_message" msgid="7346100585390795743">"USB-portti poistetaan käytöstä automaattisesti. Napauta nähdäksesi lisätietoja."</string>
+    <string name="usb_contaminant_not_detected_title" msgid="2651167729563264053">"USB-portin käyttö on sallittu"</string>
+    <string name="usb_contaminant_not_detected_message" msgid="892863190942660462">"Puhelin ei enää havaitse nesteitä eikä likaa."</string>
+    <string name="taking_remote_bugreport_notification_title" msgid="1582531382166919850">"Luodaan virheraporttia…"</string>
+    <string name="share_remote_bugreport_notification_title" msgid="6708897723753334999">"Jaetaanko virheraportti?"</string>
+    <string name="sharing_remote_bugreport_notification_title" msgid="3077385149217638550">"Jaetaan virheraporttia…"</string>
+    <string name="share_remote_bugreport_notification_message_finished" msgid="7325635795739260135">"Järjestelmänvalvoja pyysi virheraporttia voidakseen auttaa laitteen vianetsinnässä. Sovelluksia ja tietoja voidaan jakaa."</string>
+    <string name="share_remote_bugreport_action" msgid="7630880678785123682">"JAA"</string>
+    <string name="decline_remote_bugreport_action" msgid="4040894777519784346">"HYLKÄÄ"</string>
+    <string name="select_input_method" msgid="3971267998568587025">"Valitse syöttötapa"</string>
+    <string name="show_ime" msgid="6406112007347443383">"Pidä näytöllä, kun fyysinen näppäimistö on aktiivinen"</string>
+    <string name="hardware" msgid="1800597768237606953">"Näytä virtuaalinen näppäimistö"</string>
+    <string name="select_keyboard_layout_notification_title" msgid="4427643867639774118">"Määritä fyysinen näppäimistö"</string>
+    <string name="select_keyboard_layout_notification_message" msgid="8835158247369158154">"Valitse kieli ja asettelu koskettamalla."</string>
+    <string name="fast_scroll_alphabet" msgid="8854435958703888376">" ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ"</string>
+    <string name="fast_scroll_numeric_alphabet" msgid="2529539945421557329">" 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</string>
+    <string name="alert_windows_notification_channel_group_name" msgid="6063891141815714246">"Näkyminen muiden päällä"</string>
+    <string name="alert_windows_notification_channel_name" msgid="3437528564303192620">"<xliff:g id="NAME">%s</xliff:g> näkyy muiden sovellusten päällä"</string>
+    <string name="alert_windows_notification_title" msgid="6331662751095228536">"<xliff:g id="NAME">%s</xliff:g> näkyy sovellusten päällä"</string>
+    <string name="alert_windows_notification_message" msgid="6538171456970725333">"Jos et halua, että <xliff:g id="NAME">%s</xliff:g> voi käyttää tätä ominaisuutta, avaa asetukset napauttamalla ja poista se käytöstä."</string>
+    <string name="alert_windows_notification_turn_off_action" msgid="7805857234839123780">"Poista käytöstä"</string>
+    <string name="ext_media_checking_notification_title" msgid="8299199995416510094">"<xliff:g id="NAME">%s</xliff:g> tarkastetaan…"</string>
+    <string name="ext_media_checking_notification_message" msgid="2231566971425375542">"Tarkastetaan nykyistä sisältöä"</string>
+    <string name="ext_media_new_notification_title" msgid="3517407571407687677">"Uusi <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="ext_media_new_notification_title" product="automotive" msgid="9085349544984742727">"<xliff:g id="NAME">%s</xliff:g> ei toimi"</string>
+    <string name="ex

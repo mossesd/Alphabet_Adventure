@@ -1,0 +1,61 @@
+utput.
+  if 'actions' in target_dict:
+    for action in target_dict['actions']:
+      _ExtractSourcesFromAction(action, base_path, base_path_components,
+                                results)
+  if 'rules' in target_dict:
+    for rule in target_dict['rules']:
+      _ExtractSourcesFromAction(rule, base_path, base_path_components, results)
+
+  return results
+
+
+class Target(object):
+  """Holds information about a particular target:
+  deps: set of Targets this Target depends upon. This is not recursive, only the
+    direct dependent Targets.
+  match_status: one of the MatchStatus values.
+  back_deps: set of Targets that have a dependency on this Target.
+  visited: used during iteration to indicate whether we've visited this target.
+    This is used for two iterations, once in building the set of Targets and
+    again in _GetBuildTargets().
+  name: fully qualified name of the target.
+  requires_build: True if the target type is such that it needs to be built.
+    See _DoesTargetTypeRequireBuild for details.
+  added_to_compile_targets: used when determining if the target was added to the
+    set of targets that needs to be built.
+  in_roots: true if this target is a descendant of one of the root nodes.
+  is_executable: true if the type of target is executable.
+  is_static_library: true if the type of target is static_library.
+  is_or_has_linked_ancestor: true if the target does a link (eg executable), or
+    if there is a target in back_deps that does a link."""
+  def __init__(self, name):
+    self.deps = set()
+    self.match_status = MATCH_STATUS_TBD
+    self.back_deps = set()
+    self.name = name
+    # TODO(sky): I don't like hanging this off Target. This state is specific
+    # to certain functions and should be isolated there.
+    self.visited = False
+    self.requires_build = False
+    self.added_to_compile_targets = False
+    self.in_roots = False
+    self.is_executable = False
+    self.is_static_library = False
+    self.is_or_has_linked_ancestor = False
+
+
+class Config(object):
+  """Details what we're looking for
+  files: set of files to search for
+  targets: see file description for details."""
+  def __init__(self):
+    self.files = []
+    self.targets = set()
+    self.additional_compile_target_names = set()
+    self.test_target_names = set()
+
+  def Init(self, params):
+    """Initializes Config. This is a separate method as it raises an exception
+    if there is a parse error."""
+    generator_flags = param

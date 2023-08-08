@@ -1,0 +1,26 @@
+ar staticKeySet = module$contents$goog$object_createSet(staticKeys.map(function(request) {
+    return request.url;
+  }));
+  return actionEntries.map(function(entry) {
+    var uri = goog$asserts$assert(entry.JSC$24520_getUri()), normalizedUri = module$exports$docs$serviceworker$cache$CacheUrlUtil$normalizeUrl(uri);
+    return (void 0).match(new Request(normalizedUri)).then(function(response) {
+      if (null == response) {
+        return new module$exports$docs$serviceworker$cache$CacheStatus$CacheStatus();
+      }
+      var inlineManifest = module$exports$docs$serviceworker$cache$CacheUtil$CacheUtil$parseInlineCacheManifestIfPresent(response);
+      if (null == inlineManifest) {
+        return new module$exports$docs$serviceworker$cache$CacheStatus$CacheStatus();
+      }
+      var resourceEntriesUris = jspb$internal$jspb_adapters$getRepeatedWrapperField(inlineManifest, jspb$$docs$0serviceworker$0MutableResourceCacheEntry, 1).map(function(resourceEntry) {
+        return jspb$internal$jspb_adapters$getStringFieldNullable(resourceEntry, 2);
+      });
+      module$exports$docs$serviceworker$cache$CacheCompleteChecker$CacheCompleteChecker$areEntriesInCacheKeySet_(resourceEntriesUris, staticKeySet);
+      var isConsistent = !0;
+      jspb$internal$jspb_adapters$getInt32FieldNullable(inlineManifest, 2) != (void 0).JSC$24517_getReleaseNumber_legacyNullable() && (goog$log$warning(JSCompiler_StaticMethods_checkCacheCompleteForActions_$self.JSC$14384_logger_, "Action inline manifest version is not consistent."), isConsistent = !1);
+      return new module$exports$docs$serviceworker$cache$CacheStatus$CacheStatus(!0, isConsistent);
+    });
+  });
+}
+;
+// Input 11818
+function module$contents$docs$offline$client$debug$DebugPage_DebugPage(flagService, performanceManager, in

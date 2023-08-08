@@ -1,0 +1,61 @@
+              
+            }
+        }
+
+        bool shouldProduceGameObject
+        {
+            get { return m_CharacterMode && m_MosaicLayers && spriteImportMode == SpriteImportMode.Multiple; }
+        }
+
+        bool shouldResliceFromLayer
+        {
+            get { return m_ResliceFromLayer && m_MosaicLayers && spriteImportMode == SpriteImportMode.Multiple; }
+        }
+
+        bool characterMode
+        {
+            get { return mosaicMode && m_CharacterMode; }
+        }
+
+        float definitionScale
+        {
+            get
+            {
+                float definitionScaleW = importData.importedTextureWidth / (float)textureActualWidth;
+                float definitionScaleH = importData.importedTextureHeight / (float)textureActualHeight;
+                return Mathf.Min(definitionScaleW, definitionScaleH);
+            }
+        }
+
+        internal static Vector2 GetPivotPoint(Rect rect, SpriteAlignment alignment, Vector2 customPivot)
+        {
+            switch (alignment)
+            {
+                case SpriteAlignment.TopLeft:
+                    return new Vector2(rect.xMin, rect.yMax);
+
+                case SpriteAlignment.TopCenter:
+                    return new Vector2(rect.center.x, rect.yMax);
+
+                case SpriteAlignment.TopRight:
+                    return new Vector2(rect.xMax, rect.yMax);
+
+                case SpriteAlignment.LeftCenter:
+                    return new Vector2(rect.xMin, rect.center.y);
+
+                case SpriteAlignment.Center:
+                    return new Vector2(rect.center.x, rect.center.y);
+
+                case SpriteAlignment.RightCenter:
+                    return new Vector2(rect.xMax, rect.center.y);
+
+                case SpriteAlignment.BottomLeft:
+                    return new Vector2(rect.xMin, rect.yMin);
+
+                case SpriteAlignment.BottomCenter:
+                    return new Vector2(rect.center.x, rect.yMin);
+
+                case SpriteAlignment.BottomRight:
+                    return new Vector2(rect.xMax, rect.yMin);
+
+                case SpriteAlignment.Custo

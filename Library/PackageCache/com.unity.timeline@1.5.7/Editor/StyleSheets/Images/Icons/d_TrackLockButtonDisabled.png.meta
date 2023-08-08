@@ -1,0 +1,67 @@
+: true
+    });
+
+    Object.defineProperty(StringResources, "loginDialogDetails", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'Use the account provided by your work or school to use with Office 365.'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("loginDialogDetails");
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    Object.defineProperty(StringResources, "createAccountLinkText", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'Need an account?'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("createAccountLinkText");
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    Object.defineProperty(StringResources, "msOnlineAuthSignedInStatus", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'You're already signed in.'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("msOnlineAuthSignedInStatus");
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    Object.defineProperty(StringResources, "msOnlineAuthNotSignedInStatus", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'You aren't signed in. Please sign in.'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("msOnlineAuthNotSignedInStatus");
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    Object.defineProperty(StringResources, "msOnlineAuthSignInAsDifferentUserButtonText", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'Sign in as different user'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("msOnlineAuthSignInAsDifferentUserButtonText");
+        },
+        enumerable: true,
+        configurable: true
+    });
+
+    Object.defineProperty(StringResources, "msOnlineAuthSignInButtonText", {
+        /// <summary>
+        ///   Looks up a localized string similar to 'Sign in'.
+        /// </summary>
+        get: function () {
+            return StringResources.GetString("msOnlineAuthSignInButtonText");
+        },
+        enumerable: true,
+        configurable: tru

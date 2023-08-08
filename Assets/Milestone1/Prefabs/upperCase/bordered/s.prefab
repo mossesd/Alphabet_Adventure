@@ -1,0 +1,93 @@
+� 수 없습니다. 작업을 중단합니다.
+
+== RepositoriesDontMatch ==
+지정된 리포지토리가 일치하지 않습니다.
+
+== RepositoryWasntUpgradedCorrectly ==
+리포지토리 {0}이(가) 올바르게 업그레이드되지 않았습니다. 문제를 해결하기 전까지 해당 리포지토리를 사용할 수 없습니다.
+
+== RepspecsDontMatch ==
+변경 세트 사양이나 경로와 레이블 사양이 같은 리포지토리를 참조하지 않습니다.
+
+== RequestWkNotFound ==
+요청한 워크스페이스를 찾을 수 없습니다.
+
+== ResolvespecItemNotFound ==
+resolveSpec에서 항목을 찾을 수 없습니다({0}).
+
+== RestoreItemidAlreadyExists ==
+이 항목은 이미 이 경로에 있습니다. 복원할 필요가 없습니다.
+
+== RestoreItemnameAlreadyExists ==
+다른 항목이 이 경로에 해당 이름으로 있습니다. 새로운 이름을 선택해야 합니다.
+
+== RevIsNotANumber ==
+지정된 개정이 숫자가 아닙니다. {0}.
+
+== RevNoCreated ==
+새 개정을 생성할 수 없습니다. {0}.
+
+== RevNotCreatedForCopy ==
+복사 작업을 위한 새 개정을 생성할 수 없습니다.
+
+== RevNotFoundInRep ==
+리포지토리 {1}에서 개정 {0}을(를) 찾을 수 없습니다.
+
+== RevisionCantBeFound ==
+개정 {0}을(를) 찾을 수 없습니다.
+
+== RevisionLoadedTwiceOnTree ==
+개정 {0}이(가) '{2}' 및 '{3}'의 변경 세트 {1}에 두 번 로드됩니다. 지원팀에 문의하십시오.
+
+== RevisionNotCo ==
+개정 {0}은(는) 체크아웃되지 않았습니다.
+
+== RevisionToReloadNotFound ==
+다시 로드할 개정을 찾을 수 없습니다
+
+== RevtreeNoRevsToShow ==
+{0} 항목에 대한 개정 트리를 표시할 수 없습니다.
+
+== RootitemNumLocated ==
+RootItem은 리포지토리 내에서 고유해야 합니다. {0}을(를) 찾았습니다.
+
+== SaveBeforeAdd ==
+Plastic에 추가하기 전에 저장해야 합니다.
+
+== ScriptVersionNotValid ==
+{1} 서버의 {0} 버전은 {2}입니다. {3} 버전으로 업그레이드하십시오. 
+
+== SecuredPathMovedCollission ==
+기존 사용자 권한이 소스 경로와 대상 경로에서 달라 '{0}'에서 '{1}'(으)로 이동할 수 없습니다.
+
+== SecurityCantActivateUser ==
+사용자 {0}을(를) 활성화할 권한이 없습니다. 이 작업을 완료하려면 리포지토리 서버 관리자여야 합니다.
+
+== SecurityCantArchive ==
+개정을 보관할 권한이 없습니다. 이 작업을 완료하려면 리포지토리 서버 관리자여야 합니다.
+
+== SecurityCantDeactivateUser ==
+사용자 {0}을(를) 비활성화할 권한이 없습니다. 이 작업을 완료하려면 리포지토리 서버 관리자여야 합니다.
+
+== SecurityCantInheritItself ==
+객체를 해당 객체의 ACL에서 상속할 수 없습니다. 반복이 발견되었습니다.
+
+== SecurityCantMergeChange ==
+이 병합을 수행할 권한이 없습니다. 소스 기여자 내 특정 변경사항에 대한 읽기 권한이 없습니다.
+
+== SecurityCantRunExecquery ==
+관리자만 'execquery'를 실행할 수 있습니다. 관리자가 아니므로 'execquery'를 실행할 수 없습니다.
+
+== SecurityIdUnknown ==
+사용자 ID {0}을(를) 알 수 없어 변환할 수 없습니다.
+
+== SecurityIncompatibleObjects ==
+지정한 객체는 부모 객체에서 상속될 수 없습니다. 해당 객체는 호환되지 않습니다.
+
+== SecurityInvalidPassword ==
+잘못된 비밀번호입니다. 사용자/비밀번호 구성을 검토하십시오.
+
+== SecurityTokenExpired ==
+LDAP 토큰 만료됨: 사용자: {0}.
+
+== SecurityNewParentI

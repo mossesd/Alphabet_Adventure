@@ -1,0 +1,129 @@
+/>
+      <Delta>
+        <Source type="RAW" offset="36258517" length="793">
+          <Hash alg="SHA256" value="B208BAF61E5D6B9EC676653049E560DB23ABA9B948F4FAD4EC55D4F23FBCD156" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13083" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-6-ul-oob-rtm.xrm-ms" length="794" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="028AE592D5300FF1CE6CEB716F48BFB5A6372D9B5D6D8A1EC3F7D32635409A6F" />
+      <Delta>
+        <Source type="RAW" offset="36259310" length="794">
+          <Hash alg="SHA256" value="028AE592D5300FF1CE6CEB716F48BFB5A6372D9B5D6D8A1EC3F7D32635409A6F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13084" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-3-ul-store-rtm.xrm-ms" length="789" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="27B4A661C04F51AD3E48D67CA75BC84F003D60D84E65FD3A52A4CD1C39EC9AA6" />
+      <Delta>
+        <Source type="RAW" offset="36260104" length="789">
+          <Hash alg="SHA256" value="27B4A661C04F51AD3E48D67CA75BC84F003D60D84E65FD3A52A4CD1C39EC9AA6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13085" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-2-pl-rtm.xrm-ms" length="795" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="AA554DE9BF6B64165BEA5502AC33F06EF0E71E680040E74FA1B6FE8990892AD3" />
+      <Delta>
+        <Source type="RAW" offset="36260893" length="795">
+          <Hash alg="SHA256" value="AA554DE9BF6B64165BEA5502AC33F06EF0E71E680040E74FA1B6FE8990892AD3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13086" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-1-ul-phn-rtm.xrm-ms" length="797" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="C2A90C0A376C46623C6AD4FE43A6E73A9E407F7DA0E62C40EA4F0E6FD680631B" />
+      <Delta>
+        <Source type="RAW" offset="36261688" length="797">
+          <Hash alg="SHA256" value="C2A90C0A376C46623C6AD4FE43A6E73A9E407F7DA0E62C40EA4F0E6FD680631B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13087" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-oem-nonslp-1-pl-rtm.xrm-ms" length="793" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="166E4963FAD3F71AE23C2FC3617CD6C70D9EDEC9334DD3B959A830AECBAB60AD" />
+      <Delta>
+        <Source type="RAW" offset="36262485" length="793">
+          <Hash alg="SHA256" value="166E4963FAD3F71AE23C2FC3617CD6C70D9EDEC9334DD3B959A830AECBAB60AD" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13088" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-6-ul-store-rtm.xrm-ms" length="797" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="05BFEE4BF81E167B79C9B56B6244001984F844B4E1253CD67D875726EC3FA2FD" />
+      <Delta>
+        <Source type="RAW" offset="36263278" length="797">
+          <Hash alg="SHA256" value="05BFEE4BF81E167B79C9B56B6244001984F844B4E1253CD67D875726EC3FA2FD" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13089" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-oem-nonslp-1-ul-store-rtm.xrm-ms" length="790" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="2E7F641A407E916B5C202B98936AF5D4A1F6A2F080129FBED04A248FCAF0A786" />
+      <Delta>
+        <Source type="RAW" offset="36264075" length="790">
+          <Hash alg="SHA256" value="2E7F641A407E916B5C202B98936AF5D4A1F6A2F080129FBED04A248FCAF0A786" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13090" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-oem-dm-1-ul-phn-rtm.xrm-ms" length="798" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="4425A9243EEA7C70A0531665E61F9E4C5A9B742435722EE237EE58ABF2A5BCE2" />
+      <Delta>
+        <Source type="RAW" offset="36264865" length="798">
+          <Hash alg="SHA256" value="4425A9243EEA7C70A0531665E61F9E4C5A9B742435722EE237EE58ABF2A5BCE2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13091" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-6-pl-rtm.xrm-ms" length="794" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="9C39EB98525A30C3B4733C8FDC14E2DEA8A74848266EAB996AD73C845E28B695" />
+      <Delta>
+        <Source type="RAW" offset="36265663" length="794">
+          <Hash alg="SHA256" value="9C39EB98525A30C3B4733C8FDC14E2DEA8A74848266EAB996AD73C845E28B695" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13092" name="amd64_microsoft-windows-s..-enterprise-license_31bf3856ad364e35_10.0.22621.1635_none_20948ea369006087\f\enterprise-volume-csvlk-1-ul-oob-rtm.xrm-ms" length="793" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="EA4FC8EF4F36D33E0EB59BB494038904FE5173480679AED5BB0D73465180F514" />
+      <Delta>
+        <Source type="RAW" offset="36266457" length="793">
+          <Hash alg="SHA256" value="EA4FC8EF4F36D33E0EB59BB494038904FE5173480679AED5BB0D73465180F514" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13093" name="amd64_microsoft-windows-s..erpriseeval-license_31bf3856ad364e35_10.0.22621.1635_none_01a25206c0f39a0d\f\enterpriseeval-retail-tb-eval-1-ul-oob-rtm.xrm-ms" length="785" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="16EC01E13A6D93FD2C0A07A10309345A0F75E6860CD14C13066E662FCF059248" />
+      <Delta>
+        <Source type="RAW" offset="36267250" length="785">
+          <Hash alg="SHA256" value="16EC01E13A6D93FD2C0A07A10309345A0F75E6860CD14C13066E662FCF059248" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13094" name="amd64_microsoft-windows-s..erpriseeval-license_31bf3856ad364e35_10.0.22621.1635_none_01a25206c0f39a0d\f\enterpriseeval-retail-tb-eval-1-pl-rtm.xrm-ms" length="792" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="CDC9E1F4CB64E41D5D88890D50C48350DD07F0CC2904BDD2ECD37F2ED205C4EB" />
+      <Delta>
+        <Source type="RAW" offset="36268035" length="792">
+          <Hash alg="SHA256" value="CDC9E1F4CB64E41D5D88890D50C48350DD07F0CC2904BDD2ECD37F2ED205C4EB" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13095" name="amd64_microsoft-windows-s..erpriseeval-license_31bf3856ad364e35_10.0.22621.1635_none_01a25206c0f39a0d\f\enterpriseeval-ppdlic.xrm-ms" length="448" time="133332636000000000" attr="128">
+      <Hash alg="SHA256" value="A993BAF7E149690434E4BACE1AAB1FC0DF853128B4988DFE66DCC914378C8DCA" />
+      <Delta>
+        <Source type="RAW" offset="36268827" length="448">
+          <Hash alg="SHA256" value="A993BAF7E149690434E4BACE1AAB1FC0DF853128B4988DFE66DCC914378C8DCA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13096" name="amd64_microsoft-windows-s..erpriseeval-license_31bf3856ad364e35_10.0.22621.1635_none_01a25206c0f39a0d\f\defaultppd-enterpriseeval-ppdlic.xrm-ms" length="560" time="133332636000000000" attr="128">
+      <Hash alg="SHA256" value="9A2BA2BA88D0BF8A13604E18BDCBB6600F01AADA0298862B6B9CE95326198066" />
+      <Delta>
+        <Source type="RAW" offset="36269275" length="560">
+          <Hash alg="SHA256" value="9A2BA2BA88D0BF8A13604E18BDCBB6600F01AADA0298862B6B9CE95326198066" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13097" name="amd64_microsoft-windows-s..enterpriseg-license_31bf3856ad364e35_10.0.22621.1635_none_fcab55db02450b92\f\enterpriseg-volume-mak-1-ul-phn-rtm.xrm-ms" length="800" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="ED0A44433724A41B1A32CF63B9672650C3A4DACBA7D6452146EFB5A1975B3CA6" />
+      <Delta>
+        <Source type="RAW" offset="36269835" length="800">
+          <Hash alg="SHA256" value="ED0A44433724A41B1A32CF63B9672650C3A4DACBA7D6452146EFB5A1975B3CA6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="13098" name="amd64_microsoft-windows-s..enterpriseg-license_31bf3856ad364e35_10.0.22621.1635_none_fcab55db02450b92\f\enterpriseg-volume-gvlk-1-ul-rtm.xrm-ms" length="791" time="133332634800000000" attr="128">
+      <Hash alg="SHA256" value="72BA2400D5859BC1A05180ADF6AF9824BB855A6407A51BB0C2

@@ -1,0 +1,48 @@
+ment />
+
+    <declare-styleable name="PropertyAnimator">
+        <!-- Name of the property being animated. -->
+        <attr name="propertyName" format="string"/>
+        <!-- Name of the property being animated as the X coordinate of the pathData. -->
+        <attr name="propertyXName" format="string"/>
+        <!-- Name of the property being animated as the Y coordinate of the pathData. -->
+        <attr name="propertyYName" format="string"/>
+        <!-- The path used to animate the properties in the ObjectAnimator. -->
+        <attr name="pathData"/>
+    </declare-styleable>
+
+
+    <!-- ========================== -->
+    <!-- AnimatorSet class attributes -->
+    <!-- ========================== -->
+    <eat-comment />
+
+    <declare-styleable name="AnimatorSet">
+        <!-- Name of the property being animated. -->
+        <attr name="ordering">
+            <!-- child animations should be played together. -->
+            <enum name="together" value="0" />
+            <!-- child animations should be played sequentially, in the same order as the xml. -->
+            <enum name="sequentially" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!-- ========================== -->
+    <!-- State attributes           -->
+    <!-- ========================== -->
+    <eat-comment />
+
+    <!-- Set of framework-provided states that may be specified on a Drawable. Actual usage of
+         states may vary between view implementations, as documented on the individual state
+         attributes. -->
+    <declare-styleable name="DrawableStates">
+        <!-- State value for {@link android.graphics.drawable.StateListDrawable StateListDrawable},
+             set when a view has input focus. -->
+        <attr name="state_focused" format="boolean" />
+        <!-- State value for {@link android.graphics.drawable.StateListDrawable StateListDrawable},
+             set when a view's window has input focus. -->
+        <attr name="state_window_focused" format="boolean" />
+        <!-- State value for {@link android.graphics.drawable.StateListDrawable StateListDrawable},
+             set when a view is enabled. -->
+        <attr name="state_enabled" format="boolean" />
+        <!-- State iden

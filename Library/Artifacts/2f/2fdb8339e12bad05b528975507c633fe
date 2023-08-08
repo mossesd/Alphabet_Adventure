@@ -1,0 +1,193 @@
+       if (RuleMatches(rule, position, tilemap, false, true))
+                {
+                    transform = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1f, -1f, 1f));
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns a random transform matrix given the random transform rule.
+        /// </summary>
+        /// <param name="type">Random transform rule.</param>
+        /// <param name="original">The original transform matrix.</param>
+        /// <param name="perlinScale">The Perlin Scale factor of the Tile.</param>
+        /// <param name="position">Position of the Tile on the Tilemap.</param>
+        /// <returns>A random transform matrix.</returns>
+        public virtual Matrix4x4 ApplyRandomTransform(TilingRuleOutput.Transform type, Matrix4x4 original, float perlinScale, Vector3Int position)
+        {
+            float perlin = GetPerlinValue(position, perlinScale, 200000f);
+            switch (type)
+            {
+                case TilingRuleOutput.Transform.MirrorXY:
+                    return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Math.Abs(perlin - 0.5) > 0.25 ? 1f : -1f, perlin < 0.5 ? 1f : -1f, 1f));
+                case TilingRuleOutput.Transform.MirrorX:
+                    return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(perlin < 0.5 ? 1f : -1f, 1f, 1f));
+                case TilingRuleOutput.Transform.MirrorY:
+                    return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1f, perlin < 0.5 ? 1f : -1f, 1f));
+                case TilingRuleOutput.Transform.Rotated:
+                    int angle = Mathf.Clamp(Mathf.FloorToInt(perlin * m_RotationCount), 0, m_RotationCount - 1) * m_RotationAngle;
+                    return Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, -angle), Vector3.one);
+            }
+            return original;
+        }
+
+        /// <summary>
+        /// Returns custom fields for this RuleTile
+        /// </summary>
+        /// <param name="isOverrideInstance">Whether override fields are returned</param>
+        /// <returns>Custom fields for this RuleTile</returns>
+        public FieldInfo[] GetCustomFields(bool isOverrideInstance)
+        {
+            return this.GetType().GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                .Where(field => typeof(RuleTile).GetField(field.Name) == null)
+                .Where(field => field.IsPublic || field.IsDefined(typeof(SerializeField)))
+                .Where(field => !field.IsDefined(typeof(HideInInspector)))
+                .Where(field => !isOverrideInstance || !field.IsDefined(typeof(DontOverride)))
+                .ToArray();
+        }
+
+        /// <summary>
+        /// Checks if there is a match given the neighbor matching rule and a Tile.
+        /// </summary>
+        /// <param name="neighbor">Neighbor matching rule.</param>
+        /// <param name="other">Tile to match.</param>
+        /// <returns>True if there is a match, False if not.</returns>
+        public virtual bool RuleMatch(int neighbor, TileBase other)
+        {
+            if (other is RuleOverrideTile ot)
+                other = ot.m_InstanceTile;
+
+            switch (neighbor)
+            {
+                case TilingRuleOutput.Neighbor.This: return other == this;
+                case TilingRuleOutput.Neighbor.NotThis: return other != this;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if there is a match given the neighbor matching rule and a Tile with a rotation angle.
+        /// </summary>
+        /// <param name="rule">Neighbor matching rule.</param>
+        /// <param name="position">Position of the Tile on the Tilemap.</param>
+        /// <param name="tilemap">Tilemap to match.</param>
+        /// <param name="angle">Rotation angle for matching.</param>
+        /// <returns>True if there is a match, False if not.</returns>
+        public bool RuleMatches(TilingRule rule, Vector3Int position, ITilemap tilemap, int angle)
+        {
+            var minCount = Math.Min(rule.m_Neighbors.Count, rule.m_NeighborPositions.Count);
+            for (int i = 0; i < minCount ; i++)
+            {
+                int neighbor = rule.m_Neighbors[i];
+                Vector3Int positionOffset = GetRotatedPosition(rule.m_NeighborPositions[i], angle);
+                TileBase other = tilemap.GetTile(GetOffsetPosition(position, positionOffset));
+                if (!RuleMatch(neighbor, other))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if there is a match given the neighbor matching rule and a Tile with mirrored axii.
+        /// </summary>
+        /// <param name="rule">Neighbor matching rule.</param>
+        /// <param name="position">Position of the Tile on the Tilemap.</param>
+        /// <param name="tilemap">Tilemap to match.</param>
+        /// <param name="mirrorX">Mirror X Axis for matching.</param>
+        /// <param name="mirrorY">Mirror Y Axis for matching.</param>
+        /// <returns>True if there is a match, False if not.</returns>
+        public bool RuleMatches(TilingRule rule, Vector3Int position, ITilemap tilemap, bool mirrorX, bool mirrorY)
+        {
+            var minCount = Math.Min(rule.m_Neighbors.Count, rule.m_NeighborPositions.Count);
+            for (int i = 0; i < minCount; i++)
+            {
+                int neighbor = rule.m_Neighbors[i];
+                Vector3Int positionOffset = GetMirroredPosition(rule.m_NeighborPositions[i], mirrorX, mirrorY);
+                TileBase other = tilemap.GetTile(GetOffsetPosition(position, positionOffset));
+                if (!RuleMatch(neighbor, other))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Gets a rotated position given its original position and the rotation in degrees. 
+        /// </summary>
+        /// <param name="position">Original position of Tile.</param>
+        /// <param name="rotation">Rotation in degrees.</param>
+        /// <returns>Rotated position of Tile.</returns>
+        public virtual Vector3Int GetRotatedPosition(Vector3Int position, int rotation)
+        {
+            switch (rotation)
+            {
+                case 0:
+                    return position;
+                case 90:
+                    return new Vector3Int(position.y, -position.x, 0);
+                case 180:
+                    return new Vector3Int(-position.x, -position.y, 0);
+                case 270:
+                    return new Vector3Int(-position.y, position.x, 0);
+            }
+            return position;
+        }
+
+        /// <summary>
+        /// Gets a mirrored position given its original position and the mirroring axii.
+        /// </summary>
+        /// <param name="position">Original position of Tile.</param>
+        /// <param name="mirrorX">Mirror in the X Axis.</param>
+        /// <param name="mirrorY">Mirror in the Y Axis.</param>
+        /// <returns>Mirrored position of Tile.</returns>
+        public virtual Vector3Int GetMirroredPosition(Vector3Int position, bool mirrorX, bool mirrorY)
+        {
+            if (mirrorX)
+                position.x *= -1;
+            if (mirrorY)
+                position.y *= -1;
+            return position;
+        }
+
+        /// <summary>
+        /// Get the offset for the given position with the given offset.
+        /// </summary>
+        /// <param name="position">Position to offset.</param>
+        /// <param name="offset">Offset for the position.</param>
+        /// <returns>The offset position.</returns>
+        public virtual Vector3Int GetOffsetPosition(Vector3Int position, Vector3Int offset)
+        {
+            return position + offset;
+        }
+
+        /// <summary>
+        /// Get the reversed offset for the given position with the given offset.
+        /// </summary>
+        /// <param name="position">Position to offset.</param>
+        /// <param name="offset">Offset for the position.</param>
+        /// <returns>The reversed offset position.</returns>
+        public virtual Vector3Int GetOffsetPositionReverse(Vector3Int position, Vector3Int offset)
+        {
+            return position - offset;
+        }
+    }
+}
+                       RuleTile   UnityEngine                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  D=      IË      Dp        0.0.0 ˛ˇˇˇ   Ó   ˇˇ§2f,π¥Ò¯ãt^ºÁ[ås  K	         7  Äˇˇˇˇ     Ä            ¶ Ä≤ Ä                      E Ä                   ﬁ  Ä&          Ä           . Ä/          Ä           8   a Ä                   ﬁ  Ä&          Ä           . Ä/          Ä           Ü Är Ä                   ﬁ  Ä&      	    Ä           . Ä/      
+    Ä           H Ä´ Äˇˇˇˇ   Ä          1  Ä1  Äˇˇˇˇ   @           ﬁ  Ä Ä                  Q  Äj  Ä                  ’ ÄM   ˇˇˇˇ   Ä           1  Ä1  Äˇˇˇˇ   ¿            ﬁ  Ä Ä                    Äj  Äˇˇˇˇ   Ä             Äõ  Ä                   ﬁ  Äõ  Ä                   . Ä
+ Ä                   H Ä
+ Äˇˇˇˇ   Ä           1  Ä1  Äˇˇˇˇ   @            ﬁ  Ä Ä                   Q  Äj  Ä                   Ò  Äe   ˇˇˇˇ   ¿           1  Ä1  Äˇˇˇˇ   Ä            ﬁ  Ä Ä                    Äj  Äˇˇˇˇ   Ä            w   õ  Äˇˇˇˇ   Ä            H Äç   ˇˇˇˇ   Ä           1  Ä1  Äˇˇˇˇ    @            ﬁ  Ä Ä   !                Q  Äj  Ä   "                H Äí   ˇˇˇˇ#   Ä           1  Ä1  Äˇˇˇˇ$   @            ﬁ  Ä Ä   %                Q  Äj  Ä   &                H Äõ   ˇˇˇˇ'   Ä           1  Ä1  Äˇˇˇˇ(   @            ﬁ  Ä Ä   )                Q  Äj  Ä   *                y Ä
+ Ä   +                ﬁ  Ä&      ,    Ä           . Ä/      -    Ä            Ä†   ˇˇˇˇ.   @          1  Ä1  Äˇˇˇˇ/               ﬁ  Ä Ä   0               . Äj  Ä   1               ﬁ  ÄÆ      2                 ﬁ  Äª      3                 ﬁ  Ä       4                 ﬁ  Äÿ      5                 ﬁ  ÄË      6                 ﬁ  ÄÚ      7                 ﬁ  Ä     8                 °  Ä     9                 ﬁ  Ä5     :                 ﬁ  ÄO     ;                 ﬁ  Äg     <                 ﬁ  Ä|     =                 °  Äê     >                 ﬁ  Äû     ?                 ﬁ  Ä∞     @                 ﬁ  ÄΩ     A                 ﬁ  Ä–     B                 ﬁ  ÄÎ     C                 ﬁ  ÄÙ     D                 ﬁ  Ä     E                 ﬁ  Ä"     F                 ﬁ  Ä4     G                 ﬁ  ÄI     H                 ﬁ  Ä[     I                 ﬁ  Äk     J                 |  é     K                 ﬁ  Ä†     L                 ﬁ  Ä≠     M                 °  Äµ     N                 ﬁ  Äø     O                 ﬁ  Ä«     P                 ﬁ  Äœ     Q                 ﬁ  Ä◊     R                 ﬁ  Ä„     S                 ﬁ  ÄÓ     T                 ﬁ  Ä     U                 ¶ Ä     V                 ﬁ  Ä      W                 ﬁ  Ä1     X                 ‹ Ä=     Y                 °  ÄK     Z                 °  ÄM     [                 °  ÄO     \                 Ó Äe     ]                 °  ÄK     ^                 °  ÄM     _                 °  Ät     `                 °  Äv     a                 ﬁ  Äx     b                 ﬁ  Äù     c                 ﬁ  Ä™     d                 °  Ä¿     e                 ﬁ  Ä€     f                 ﬁ  ÄÈ     g                 ﬁ  Ä¯     h                 ﬁ  Ä     i                 ﬁ  Ä      j                 ﬁ  Ä2     k                 ﬁ  ÄF     l                 ﬁ  Ä^     m                 ﬁ  Äq     n                 ﬁ  ÄÇ     o                 ﬁ  Äó     p    @            ’ Ä©  ˇˇˇˇq    Ä           1  Ä1  Äˇˇˇˇr    ¿            ﬁ  Ä Ä   s                 º  j  Äˇˇˇˇt    Ä            H Ä‹  ˇˇˇˇu    Ä           1  Ä1  Äˇˇˇˇv   @            ﬁ  Ä Ä   w                Q  Äj  Ä   x                ﬁ  Äk     y                 ﬁ  ÄÍ     z                 ﬁ  Ä[     {                 ﬁ  Ä¸     |                 ﬁ  ÄÓ     }                 L  Ä     ~                 L  Ä'                      L  Ä>     Ä    @            ﬁ  ÄK     Å                 L  Äi     Ç                 ì  ß  ˇˇˇˇÉ    Ä            ’ Äµ  ˇˇˇˇÑ    Ä           1  Ä1  ÄˇˇˇˇÖ    ¿            ﬁ  Ä Ä   Ü                 ø  j  Äˇˇˇˇá    Ä            H Ä´ Äˇˇˇˇà    Ä           1  Ä1  Äˇˇˇˇâ   @            ﬁ  Ä Ä   ä                Q  Äj  Ä   ã                Ò ÄŒ     å                 °  ÄK     ç                 °  ÄM     é                 °  Ä’     è                 °  Ä€     ê                 ﬁ  Ä1     ë                 ‹ Ä‚     í                 °  ÄK     ì                 °  ÄM     î                 Ó ÄÍ     ï                 °  ÄK     ñ                 °  ÄM     ó                 °  Ät     ò                 °  Äv     ô                 ’ ÄÛ  ˇˇˇˇö    Ä           1  Ä1  Äˇˇˇˇõ    ¿            ﬁ  Ä Ä   ú                 ’ Äj  Äˇˇˇˇù    Ä           1  Ä1  Äˇˇˇˇû    @           	 ﬁ  Ä Ä   ü                	 ‹ Äj  Ä   †                
+ °  ÄK     °                
+ °  ÄM     ¢                 ’ Ä˝  ˇˇˇˇ£    Ä           1  Ä1  Äˇˇˇˇ§    ¿            ﬁ  Ä Ä   •                 ’ Äj  Äˇˇˇˇ¶    Ä           1  Ä1  Äˇˇˇˇß    @           	 ﬁ  Ä Ä   ®                	 ‹ Äj  Ä   ©                
+ °  ÄK     ™                
+ °  ÄM     ´                 °  Ä     ¨                 ’ Ä!  ˇˇˇˇ≠    Ä           1  Ä1  ÄˇˇˇˇÆ    ¿            ﬁ  Ä Ä   Ø                 )  j  Äˇˇˇˇ∞    Ä            H Äõ   ˇˇˇˇ±    ¿           	1  Ä1  Äˇˇˇˇ≤   @           
+ ﬁ  Ä Ä   ≥               
+ Q  Äj  Ä   ¥                H Ä4  ˇˇˇˇµ    ¿           	1  Ä1  Äˇˇˇˇ∂   @           
+ ﬁ  Ä Ä   ∑               
+ Q  Äj  Ä   ∏                Â Ä9     π                	 °  ÄK     ∫                	 °  ÄM     ª                	 °  Ät     º                 Â ÄB     Ω                	 °  ÄK     æ                	 °  ÄM     ø                	 °  Ät     ¿                	 °  Äv     ¡                 °  ÄK     ¬                 ﬁ  ÄR     √                 V  Ä[     ƒ                	 ¶ Äa     ≈                H Äf  ˇˇˇˇ∆    Ä           1  Ä1  Äˇˇˇˇ«   @            ﬁ  Ä Ä   »                Q  Äj  Ä   …                . Äq           

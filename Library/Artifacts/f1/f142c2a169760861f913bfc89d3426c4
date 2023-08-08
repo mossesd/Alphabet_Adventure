@@ -1,0 +1,38 @@
+ type) or mvar (a type parameter of a generic method).-or-<paramref name="metadataToken" /> identifies a property or event.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="metadataToken" /> is not a valid token in the scope of the current module.</exception>
+    </member>
+    <member name="M:System.Reflection.Module.ResolveMember(System.Int32,System.Type[],System.Type[])">
+      <summary>Returns the type or member identified by the specified metadata token, in the context defined by the specified generic type parameters.</summary>
+      <returns>A <see cref="T:System.Reflection.MemberInfo" /> object representing the type or member that is identified by the specified metadata token.</returns>
+      <param name="metadataToken">A metadata token that identifies a type or member in the module.</param>
+      <param name="genericTypeArguments">An array of <see cref="T:System.Type" /> objects representing the generic type arguments of the type where the token is in scope, or null if that type is not generic. </param>
+      <param name="genericMethodArguments">An array of <see cref="T:System.Type" /> objects representing the generic type arguments of the method where the token is in scope, or null if that method is not generic.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="metadataToken" /> is not a token for a type or member in the scope of the current module.-or-<paramref name="metadataToken" /> is a MethodSpec or TypeSpec whose signature contains element type var (a type parameter of a generic type) or mvar (a type parameter of a generic method), and the necessary generic type arguments were not supplied for either or both of <paramref name="genericTypeArguments" /> and <paramref name="genericMethodArguments" />.-or-<paramref name="metadataToken" /> identifies a property or event.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="metadataToken" /> is not a valid token in the scope of the current module.</exception>
+    </member>
+    <member name="M:System.Reflection.Module.ResolveMethod(System.Int32)">
+      <summary>Returns the method or constructor identified by the specified metadata token.</summary>
+      <returns>A <see cref="T:System.Reflection.MethodBase" /> object representing the method or constructor that is identified by the specified metadata token.</returns>
+      <param name="metadataToken">A metadata token that identifies a method or constructor in the module.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="metadataToken" /> is not a token for a method or constructor in the scope of the current module.-or-<paramref name="metadataToken" /> is a MethodSpec whose signature contains element type var (a type parameter of a generic type) or mvar (a type parameter of a generic method).</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="metadataToken" /> is not a valid token in the scope of the current module.</exception>
+    </member>
+    <member name="M:System.Reflection.Module.ResolveMethod(System.Int32,System.Type[],System.Type[])">
+      <summary>Returns the method or constructor identified by the specified metadata token, in the context defined by the specified generic type parameters. </summary>
+      <returns>A <see cref="T:System.Reflection.MethodBase" /> object representing the method that is identified by the specified metadata token.</returns>
+      <param name="metadataToken">A metadata token that identifies a method or constructor in the module.</param>
+      <param name="genericTypeArguments">An array of <see cref="T:System.Type" /> objects representing the generic type arguments of the type where the token is in scope, or null if that type is not generic. </param>
+      <param name="genericMethodArguments">An array of <see cref="T:System.Type" /> objects representing the generic type arguments of the method where the token is in scope, or null if that method is not generic.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="metadataToken" /> is not a token for a method or constructor in the scope of the current module.-or-<paramref name="metadataToken" /> is a MethodSpec whose signature contains element type var (a type parameter of a generic type) or mvar (a type parameter of a generic method), and the necessary generic type arguments were not supplied for either or both of <paramref name="genericTypeArguments" /> and <paramref name="genericMethodArguments" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="metadataToken" /> is not a valid token in the scope of the current module.</exception>
+    </member>
+    <member name="M:System.Reflection.Module.ResolveSignature(System.Int32)">
+      <summary>Returns the signature blob identified by a metadata token.</summary>
+      <ret

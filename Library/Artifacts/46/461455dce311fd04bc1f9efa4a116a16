@@ -1,0 +1,56 @@
+/exception>
+        /// <seealso cref="GetMenuCommandTypes{TContext}(Type)" />
+        public static IElementAdderMenuCommand<TContext>[] GetMenuCommands<TContext>(Type contractType)
+        {
+            var commandTypes = GetMenuCommandTypes<TContext>(contractType);
+            var commands = new IElementAdderMenuCommand<TContext>[commandTypes.Length];
+            for (var i = 0; i < commandTypes.Length; ++i)
+            {
+                commands[i] = (IElementAdderMenuCommand<TContext>)Activator.CreateInstance(commandTypes[i]);
+            }
+            return commands;
+        }
+
+        #endregion
+
+        #region Concrete Element Types
+
+        private static Dictionary<Type, Type[]> s_ConcreteElementTypes = new Dictionary<Type, Type[]>();
+
+        private static IEnumerable<Type> GetConcreteElementTypesHelper(Type contractType)
+        {
+            if (contractType == null)
+            {
+                throw new ArgumentNullException(nameof(contractType));
+            }
+
+            Type[] concreteTypes;
+            if (!s_ConcreteElementTypes.TryGetValue(contractType, out concreteTypes))
+            {
+                concreteTypes =
+                    (from a in AppDomain.CurrentDomain.GetAssemblies()
+                     from t in a.GetTypesSafely()
+                     where t.IsClass && !t.IsAbstract && contractType.IsAssignableFrom(t)
+                     orderby t.Name
+                     select t
+                    ).ToArray();
+                s_ConcreteElementTypes[contractType] = concreteTypes;
+            }
+
+            return concreteTypes;
+        }
+
+        /// <summary>
+        /// Gets a filtered array of the concrete element types that implement the
+        /// specified <paramref name="contractType" />.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///     A type is excluded from the resulting array when one or more of the
+        ///     specified <paramref name="filters" /> returns a value of <c>false</c>.
+        ///     </para>
+        /// </remarks>
+        /// <param name="contractType">Contract type of addable elements.</param>
+        /// <param name="filters">An array of zero or more filters.</param>
+        /// <returns>
+        /// An array of zero or more conc

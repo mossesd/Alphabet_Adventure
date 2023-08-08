@@ -1,0 +1,376 @@
+
+                deleteGroup.Add(element);
+                this.Widget(element).ExpandDeleteGroup(deleteGroup);
+            }
+
+            foreach (var element in deleteGroup.OrderByDescending(e => e.dependencyOrder))
+            {
+                if (this.Widget(element).canDelete)
+                {
+                    UndoUtility.RecordEditedObject("Delete Graph Element");
+                    graph.elements.Remove(element);
+                    selection.Remove(element);
+                    deleted = true;
+                }
+            }
+
+            if (deleted)
+            {
+                GUI.changed = true;
+                e.TryUse();
+            }
+        }
+
+        private void HandleDeleting()
+        {
+            if (e.IsValidateCommand("Delete"))
+            {
+                if (selection.Count > 0)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Delete"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Delete);
+
+                DeleteSelection();
+            }
+            else if (e.IsKeyDown(KeyCode.Delete))
+            {
+                DeleteSelection();
+            }
+        }
+
+        #endregion
+
+
+        #region Clipboard
+
+        public virtual void ShrinkCopyGroup(HashSet<IGraphElement> copyGroup) { }
+
+        private DateTime lastPasteTime;
+
+        private void HandleClipboard()
+        {
+            if (e.IsValidateCommand("Copy"))
+            {
+                if (GraphClipboard.canCopySelection)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Copy"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Copy);
+
+                GraphClipboard.CopySelection();
+            }
+
+            if (e.IsValidateCommand("Cut"))
+            {
+                if (GraphClipboard.canCopySelection)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Cut"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Cut);
+
+                GraphClipboard.CutSelection();
+            }
+
+            if (e.IsValidateCommand("Paste"))
+            {
+                if (GraphClipboard.canPaste && (DateTime.Now - lastPasteTime).TotalSeconds >= 0.25)
+                {
+                    e.ValidateCommand();
+                }
+            }
+            else if (e.IsExecuteCommand("Paste"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Paste);
+
+                GraphClipboard.Paste();
+                lastPasteTime = DateTime.Now;
+            }
+
+            if (e.IsValidateCommand("Duplicate"))
+            {
+                if (GraphClipboard.canDuplicateSelection && (DateTime.Now - lastPasteTime).TotalSeconds >= 0.25)
+                {
+                    e.Use();
+                }
+            }
+            else if (e.IsExecuteCommand("Duplicate"))
+            {
+                HotkeyUsageAnalytics.HotkeyUsed(HotkeyUsageAnalytics.Hotkey.Duplicate);
+
+                GraphClipboard.DuplicateSelection();
+                lastPasteTime = DateTime.Now;
+            }
+        }
+
+        #endregion
+
+
+        #region Context
+
+        protected IEnumerable<DropdownOption> GetExtendedContextOptions()
+        {
+            foreach (var item in context.extensions.SelectMany(extension => extension.contextMenuItems).OrderBy(item => item.label))
+            {
+                yield return new DropdownOption(item.action, item.label);
+            }
+        }
+
+        protected virtual IEnumerable<DropdownOption> GetContextOptions()
+        {
+            foreach (var extendedOption in GetExtendedContextOptions())
+            {
+                yield return extendedOption;
+            }
+
+            if (GraphClipboard.canCopySelection)
+            {
+                yield return new DropdownOption((Action)GraphClipboard.CopySelection, "Copy Selection");
+                yield return new DropdownOption((Action)GraphClipboard.CutSelection, "Cut Selection");
+            }
+
+            if (GraphClipboard.canDuplicateSelection)
+            {
+                yield return new DropdownOption((Action)GraphClipboard.DuplicateSelection, "Duplicate Selection");
+            }
+
+            if (selection.Count > 0)
+            {
+                yield return new DropdownOption((Action)DeleteSelection, "Delete Selection");
+            }
+
+            if (GraphClipboard.canPasteOutside)
+            {
+                yield return new DropdownOption((Action<Vector2>)((position) => GraphClipboard.PasteOutside(true, position)), "Paste");
+            }
+        }
+
+        protected virtual void OnContext()
+        {
+            var contextOptions = this.GetContextOptions().ToArray();
+
+            delayCall += () =>
+            {
+                var _mousePosition = mousePosition;
+
+                LudiqGUI.Dropdown
+                    (
+                        e.mousePosition,
+                        delegate (object _action)
+                        {
+                            delayCall += () =>
+                            {
+                                if (_action is Action action)
+                                {
+                                    action.Invoke();
+                                }
+                                else if (_action is Action<Vector2> positionedAction)
+                                {
+                                    positionedAction.Invoke(_mousePosition);
+                                }
+                            };
+                        },
+                        contextOptions,
+                        null
+                    );
+            };
+        }
+
+        private void HandleContext()
+        {
+            if (e.IsContextClick)
+            {
+                OnContext();
+                e.Use();
+            }
+        }
+
+        #endregion
+
+
+        #region Layout
+
+        public IEnumerable<IGraphElementWidget> alignableAndDistributable
+        {
+            get
+            {
+                // [BOLT-1112]
+                // Filter elements with a null graph reference as deserialization may occurs while parsing the list.
+                // After deserialization elements are cleaned up before rebuilding the graph.
+                // see Graph.OnAfterDependenciesDeserialized
+                return selection
+                    .Where(element => element.graph != null)
+                    .Select(this.Widget)
+                    .Where(element => element.canAlignAndDistribute);
+            }
+        }
+
+        public void Align(AlignOperation operation)
+        {
+            UndoUtility.RecordEditedObject("Align Graph Elements");
+
+            var alignable = alignableAndDistributable;
+
+            var area = GraphGUI.CalculateArea(alignable);
+
+            foreach (var widget in alignable)
+            {
+                var position = widget.position;
+                var width = position.width;
+                var height = position.height;
+
+                switch (operation)
+                {
+                    case AlignOperation.AlignLeftEdges:
+                        position.xMin = area.xMin;
+
+                        break;
+
+                    case AlignOperation.AlignCenters:
+                        position.xMin = area.xMin + (area.width / 2) - (width / 2);
+
+                        break;
+
+                    case AlignOperation.AlignRightEdges:
+                        position.xMin = area.xMax - width;
+
+                        break;
+
+                    case AlignOperation.AlignTopEdges:
+                        position.yMin = area.yMin;
+
+                        break;
+
+                    case AlignOperation.AlignMiddles:
+                        position.yMin = area.yMin + (area.height / 2) - (height / 2);
+
+                        break;
+
+                    case AlignOperation.AlignBottomEdges:
+                        position.yMin = area.yMax - height;
+
+                        break;
+                }
+
+                position.width = width;
+                position.height = height;
+                widget.position = position.PixelPerfect();
+                widget.Reposition();
+            }
+        }
+
+        public void Distribute(DistributeOperation operation)
+        {
+            UndoUtility.RecordEditedObject("Distribute Graph Elements");
+
+            var distributable = alignableAndDistributable;
+
+            switch (operation)
+            {
+                case DistributeOperation.DistributeLeftEdges:
+                    distributable = distributable.OrderBy(editor => editor.position.xMin);
+
+                    break;
+
+                case DistributeOperation.DistributeCenters:
+                    distributable = distributable.OrderBy(editor => editor.position.center.x);
+
+                    break;
+
+                case DistributeOperation.DistributeRightEdges:
+                    distributable = distributable.OrderBy(editor => editor.position.xMax);
+
+                    break;
+
+                case DistributeOperation.DistributeHorizontalGaps:
+                    distributable = distributable.OrderBy(editor => editor.position.xMin);
+
+                    break;
+
+                case DistributeOperation.DistributeTopEdges:
+                    distributable = distributable.OrderBy(editor => editor.position.yMin);
+
+                    break;
+
+                case DistributeOperation.DistributeMiddles:
+                    distributable = distributable.OrderBy(editor => editor.position.center.y);
+
+                    break;
+
+                case DistributeOperation.DistributeBottomEdges:
+                    distributable = distributable.OrderBy(editor => editor.position.yMax);
+
+                    break;
+
+                case DistributeOperation.DistributeVerticalGaps:
+                    distributable = distributable.OrderBy(editor => editor.position.yMin);
+
+                    break;
+            }
+
+            var index = 0;
+            var count = distributable.Count();
+            var first = distributable.First();
+            var last = distributable.Last();
+            var currentX = first.position.xMin;
+            var currentY = first.position.yMin;
+            var innerTotalWidth = distributable.Skip(1).Take(count - 2).Sum(innerEditor => innerEditor.position.width);
+            var innerTotalHeight = distributable.Skip(1).Take(count - 2).Sum(innerEditor => innerEditor.position.height);
+            var horizontalGap = ((last.position.xMin - first.position.xMax) - innerTotalWidth) / (count - 1);
+            var verticalGap = ((last.position.yMin - first.position.yMax) - innerTotalHeight) / (count - 1);
+
+            foreach (var widget in distributable)
+            {
+                var ratio = (float)index / (count - 1);
+
+                var position = widget.position;
+                var width = position.width;
+                var height = position.height;
+
+                switch (operation)
+                {
+                    case DistributeOperation.DistributeLeftEdges:
+                        position.xMin = first.position.xMin + (ratio * (last.position.xMin - first.position.xMin));
+                        position.xMax = position.xMin + width;
+
+                        break;
+
+                    case DistributeOperation.DistributeCenters:
+                        position.xMin = first.position.center.x + (ratio * (last.position.center.x - first.position.center.x)) - (width / 2);
+                        position.xMax = position.xMin + width;
+
+                        break;
+
+                    case DistributeOperation.DistributeRightEdges:
+                        position.xMax = last.position.xMax - ((1 - ratio) * (last.position.xMax - first.position.xMax));
+                        position.xMin = position.xMax - width;
+
+                        break;
+
+                    case DistributeOperation.DistributeHorizontalGaps:
+                        position.xMin = currentX;
+                        position.xMax = position.xMin + width;
+                        currentX = position.xMax + horizontalGap;
+
+                        break;
+
+                    case DistributeOperation.DistributeTopEdges:
+                        position.yMin = first.position.yMin + (ratio * (last.position.yMin - first.position.yMin));
+                        position.yMax = position.yMin + height;
+
+                        break;
+
+                    case DistributeOperation.DistributeMiddles:
+                        position.yMin = first.position.center.y + (ratio * (last.position.center.y - first.position.center.y)) - (height / 2);
+                        position.yMax = position.yMin + height;
+
+         

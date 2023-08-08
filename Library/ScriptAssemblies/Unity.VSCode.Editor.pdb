@@ -1,0 +1,437 @@
+렉터리
+
+== MsgItemAdded ==
+Plastic이 제어하며 최근에 추가되었습니다.
+
+== MsgItemAddedNotOnDisk ==
+Plastic이 제어하며 최근에 추가되었으나 디스크에 없습니다.
+
+== MsgItemChanged ==
+Plastic이 제어하며 로컬에서 변경되었습니다.
+
+== MsgItemCheckedin ==
+Plastic이 제어하며 체크인되었습니다.
+
+== MsgItemCheckedinNotOnDisk ==
+Plastic이 제어하며 체크인되었으나 디스크에 없습니다.
+
+== MsgItemCheckedout ==
+Plastic이 제어하며 체크아웃되었습니다.
+
+== MsgItemCheckedoutNotOnDisk ==
+Plastic이 제어하며 체크아웃되었으나 디스크에 없습니다.
+
+== MsgItemIgnored ==
+무시되었습니다.
+
+== MsgItemNotOnDisk ==
+디스크에 없습니다.
+
+== MsgItemPrivate ==
+비공개입니다.
+
+== MsgItemStatus ==
+{0} 항목은 {1}입니다
+
+== MsgLinkFile ==
+링크
+
+== MsgPendingDstMergelink ==
+{1}@{2}@{3}에 있는 cs:{0}(으)로
+
+== MsgPendingMergelink ==
+{2}@{3}@{4}에 있는 cs:{1}의 {0}
+
+== MsgPrivFile ==
+파일
+
+== MsgPrivate ==
+비공개
+
+== MsgTextFile ==
+텍스트
+
+== MsgUnknown ==
+알 수 없음
+
+== MsgWorkspaceWorkingInfo ==
+
+      리포지토리: {0}
+브랜치: {1}
+      레이블: {2}
+    
+
+== Multiple ==
+다수
+
+== NameAlreadyInDirectory ==
+{0} 이름이 이미 디렉터리에 있습니다
+
+== NameNotValid ==
+{0} 이름이 더 이상 유효하지 않습니다
+
+== NewBrNameParamNotBrspec ==
+새 이름 매개 변수에 브랜치 사양이 아닌 브랜치 이름이 포함되어야 합니다
+
+== NewNameFor ==
+{0}의 새 이름: 
+
+== NewNameInstead ==
+{0}을(를) 대신할 새 이름: 
+
+== No ==
+아니요
+
+== NoChangesApplied ==
+적용된 변경사항이 없음
+
+== NoChangesInWk ==
+워크스페이스 {0}에 변경사항이 없습니다
+
+== NoErrorsDetected ==
+감지된 오류가 없습니다.
+
+== NoValidAnswers ==
+n;아니요
+
+== NodeChangeAdded ==
+{0} 추가됨
+
+== NodeChangeCopied ==
+{0} 복사됨
+
+== NodeChangeDeleted ==
+{0} 삭제됨
+
+== NodeChangeModified ==
+수정됨 {0}
+
+== NodeChangeModifiedAndMoved ==
+{0}에서 {1}(으)로 수정 및 이동됨
+
+== NodeChangeMoved ==
+{0}에서 {1}(으)로 이동
+
+== NodeChangeReplaced ==
+{0} 교체됨
+
+== NotMergedFile ==
+병합되지 않은 파일 {0}/{1}: {2}
+
+== Of ==
+/
+
+== OldRenameRenameNames ==
+기존 이름 {0}, 변경된 첫 번째 이름 {1}, 변경된 두 번째 이름 {2}
+
+== On ==
+다음에:
+
+== OnlyModifiedOnSource ==
+소스에서만 수정된 파일 {0}/{1}개 처리됨: {2}
+
+== OperationAbandoned ==
+중단됨
+
+== OperationDisabled ==
+이 작업은 Plastic SCM 5.0에서 비활성화됩니다
+
+== OperationStartingFetch ==
+가져오기 시작
+
+== OperationStartingPush ==
+내보내기 시작
+
+== Owner ==
+소유자
+
+== PasswordCantBeEmpty ==
+비밀번호는 반드시 입력해야 합니다. 비밀번호가 설정되지 않았습니다.
+
+== PasswordCorrectlySet ==
+비밀번호가 올바르게 설정되었습니다
+
+== PasswordDoesntMatch ==
+비밀번호가 일치하지 않습니다. 비밀번호가 설정되지 않았습니다.
+
+== PathInConflictWarningMessage ==
+병합 작업 중에 경로가 이미 사용 중이었으므로 '{0}' 항목의 이름이 '{1}'(으)로 변경되었습니다
+
+== PathNotFound ==
+병합 충돌에 경로 {0}이(가) 없습니다
+
+== PathNotFoundInDiff ==
+비교 세트에 경로 {0}이(가) 없습니다
+
+== PathNotUnique ==
+경로 '{0}'이(가) 고유하지 않습니다. 이는 다음 중 하나를 의미할 수 있습니다...
+
+== PathsFsLocked ==
+일부 파일이나 디렉터리가 다른 프로그램에 의해 잠겨 있어 작업을 시작할 수 없습니다. 프로그램을 닫고 다시 시도하십시오.
+
+== PendingMergeLinks ==
+대기 중인 병합 링크
+
+== PerformingSwitch ==
+전환 작업 수행 중...
+
+== PermissionKey ==
+권한
+
+== Private ==
+비공개
+
+== ProcessingBranches ==
+브랜치 처리 중
+
+== ProcessingDirectoryConflicts ==
+디렉터리 충돌 처리 중
+
+== ProcessingDirectoryOperations ==
+디렉터리 작업 처리 중
+
+== ProcessingDirectoryOperationsApplyingFsProtections ==
+디렉터리 작업 처리 중(파일 시스템 보호 적용)
+
+== ProcessingDirectoryOperationsDownloadingRevisions ==
+디렉터리 작업 처리 중(개정 다운로드)
+
+== ProcessingDirectoryOperationsUpdatingWorkspace ==
+디렉터리 작업 처리 중(워크스페이스 업데이트)
+
+== PushingAcls ==
+ACL 내보내기 중
+
+== PushingAttributes ==
+속성 내보내기 중
+
+== PushingBranches ==
+브랜치 내보내기 중
+
+== PushingChangesets ==
+변경 세트 내보내기 중
+
+== PushingChildren ==
+트리 내보내기 중
+
+== PushingFinished ==
+메타데이터 내보내기 완료
+
+== PushingItems ==
+항목 내보내기 중
+
+== PushingLabels ==
+레이블 내보내기 중
+
+== PushingLinks ==
+링크 내보내기 중
+
+== PushingMetadata ==
+메타데이터 내보내기 중
+
+== PushingMoveRealizations ==
+이동 내보내기 중
+
+== PushingReferences ==
+참조 내보내기 중
+
+== PushingRevisions ==
+개정 내보내기 중
+
+== Read ==
+객체 읽기 가능 여부 제어
+
+== ReconcilingAcls ==
+ACL 조정 중
+
+== ReconcilingObjects ==
+객체 조정 중
+
+== RemoveTubeSucceeded ==
+Tube {0} -> {1}이(가) 올바르게 제거되었습니다.
+
+== Removed ==
+제거됨
+
+== RemovedLocally ==
+로컬에서 제거됨
+
+== Rename ==
+객체 이름 변경 가능 여부 제어
+
+== RenamedOldNameConflict ==
+한 항목이 아직 사용 중인 이름으로 변경되었습니다.
+
+== RenamedRenamedConflict ==
+한 항목의 이름이 양측 기여자 측에서 변경되었습니다.
+
+== RenamedSameNameConflict ==
+두 항목이 같은 이름으로 변경되었습니다
+
+== RenamedToDownloadFile ==
+새 버전을 다운로드하기 위해 {0} 파일의 이름이 변경됩니다. 변경 세트:{1}
+
+== RenamesNotValidIntroduce ==
+변경된 이름이 더 이상 유효하지 않습니다. 새 이름을 직접 입력해야 합니다
+
+== Replaced ==
+교체됨
+
+== Replicateread ==
+복제 읽기 작업 제어
+
+== Replicatewrite ==
+복제 쓰기 작업 제어
+
+== ReportCmdMsgFileChangedInWk ==
+파일이 Unity VCS 제어를 벗어나 워크스페이스에서 변경되었으며, 따라서 데이터가 유지되었습니다. 항목이 최신 상태가 아닙니다. 업데이트하려면 해당 항목을 강제로 업데이트하십시오
+
+== ReportCmdMsgUpdateStoringCheckout ==
+이 항목의 체크아웃된 데이터를 안전하게 저장
+
+== Repository ==
+리포지토리
+
+== RepositorySpec ==
+리포지토리 사양
+
+== ResolutionConfigured ==
+구성된 해결 방법으로 충돌을 해결했습니다.
+
+== ResolvedCreatedConflict ==
+{1} 충돌이 해결된 후 {0} 충돌이 생성되었습니다
+
+== ResolvedRemovedConflict ==
+{1} 충돌이 해결된 후 {0} 충돌이 제거되었습니다
+
+== ReviewStatusReviewed ==
+검토됨
+
+== ReviewStatusReworkRequired ==
+재작업 필요
+
+== ReviewStatusUnderReview ==
+검토 중
+
+== RevisionCheckedout ==
+로컬
+
+== RevisionHistoryOf ==
+{0}의 개정 내역
+
+== RevisionNotExists ==
+개정이 없습니다
+
+== RevisionNotFound ==
+로드할 개정을 찾을 수 없습니다
+
+== RevisionNumber ==
+개정 번호
+
+== RevisionSpec ==
+개정 사양
+
+== RevisionType ==
+개정 유형
+
+== Rm ==
+리포지토리에서 파일 및 디렉터리 제거 가능 여부 제어
+
+== Rmattr ==
+사용자가 속성을 제거하도록 허용
+
+== Rmchangeset ==
+해당 브랜치에서 변경 세트 제거 가능 여부 제어
+
+== Rmlabel ==
+사용자가 레이블을 제거하도록 허용
+
+== Rmrepository ==
+사용자가 리포지토리를 제거하도록 허용
+
+== Rmtrigger ==
+사용자가 트리거를 제거하도록 허용
+
+== SearchingForChanged ==
+워크스페이스에서 변경된 항목 검색 중...
+
+== Second ==
+두 번째
+
+== SelectorNoChanges ==
+변경사항이 없습니다.
+
+== Server ==
+서버
+
+== SetConfigSucceeded ==
+Plastic Tube 구성이 올바르게 설정되었습니다.
+
+== SettingNewSelector ==
+새 선택기 설정 중...
+
+== ShareRepoSucceeded ==
+리포지토리 '{0}'이(가) 올바르게 공유되었습니다.
+
+== Shelve ==
+임시 저장
+
+== Skip ==
+건너뛰기
+
+== Source ==
+소스
+
+== SourceDestinationChanged ==
+{0} 항목이 소스에서 변경되었으나, 해당 내용이 소스와 대상에서 동일하기 때문에 병합 중에 취소되었습니다
+
+== SourceDestinationChangedFsprotection ==
+{0} 항목의 파일 시스템 보호가 소스에서 변경되었으나, 해당 변경사항이 소스와 대상에서 동일하기 때문에 병합 중에 취소되었습니다
+
+== SourceDestinationDeleted ==
+{0} 항목이 소스에서 삭제되었으나, 해당 항목이 이미 대상에서 삭제되었기 때문에 병합 중에 취소되었습니다
+
+== SourceDestinationMoved ==
+{0} 파일이 소스와 대상에서 같은 위치로 이동했기 때문에 이동이 취소됩니다. {1}에서 {2}(으)로 이동됨
+
+== SrcContributor ==
+소스 변경 세트: {0}(브랜치 {1})
+
+== StartResolveConflict ==
+다음 충돌을 해결할 예정:
+
+== StatColLastmod ==
+마지막으로 수정된 날짜
+
+== StatColPath ==
+경로
+
+== StatColSimilarity ==
+유사도
+
+== StatColSize ==
+크기
+
+== StatColStatus ==
+상태
+
+== StatusKey ==
+상태
+
+== StatusPerfWarningChanged ==
+변경된 파일을 찾는 데 너무 긴 시간이 소요되었습니다. 성능 팁: {0}
+
+== StatusPerfWarningMoved ==
+이동된 파일을 계산하는 데 너무 긴 시간이 소요되었습니다. 비공개/제거된 파일이 너무 많습니다. 성능 팁: {0}
+
+== StatusPerfWarningPrivates ==
+비공개 파일이 너무 많아 성능에 영향을 줄 수 있습니다. 비공개 파일을 무시하는 방법: {0}
+
+== SubtractiveIntervalMerge ==
+차감식 간격 병합
+
+== SubtractiveMerge ==
+차감식 병합
+
+== SubtractiveNeeded ==
+{0}

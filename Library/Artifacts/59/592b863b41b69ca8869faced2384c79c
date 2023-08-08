@@ -1,0 +1,97 @@
+ attr="128">
+      <Hash alg="SHA256" value="CA48B75A8A28FE8E323CCB87C6CDFB8DDAA822621ACE8CFEFF7A096AF2E4B110" />
+      <Delta>
+        <Source type="RAW" offset="19307322" length="65">
+          <Hash alg="SHA256" value="CA48B75A8A28FE8E323CCB87C6CDFB8DDAA822621ACE8CFEFF7A096AF2E4B110" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8227" name="amd64_microsoft-hyper-v-v..izationv2.resources_31bf3856ad364e35_10.0.22621.963_zh-cn_8aa91c752c6323ef\f\windowsvirtualization.v2.mfl" length="66" time="133332635950000000" attr="128">
+      <Hash alg="SHA256" value="584D905CEAA204122A4EF9A7B48A85D8409229BDBC48B39F05B06AC08F8549DE" />
+      <Delta>
+        <Source type="RAW" offset="19307387" length="66">
+          <Hash alg="SHA256" value="584D905CEAA204122A4EF9A7B48A85D8409229BDBC48B39F05B06AC08F8549DE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8228" name="amd64_microsoft-hyper-v-v..rvcluster.resources_31bf3856ad364e35_10.0.22621.963_zh-tw_8873e9a73229a602\f\windowshypervcluster.v2.mfl" length="65" time="133332635950000000" attr="128">
+      <Hash alg="SHA256" value="4937B1B8DBB9D6F4E087A04E1ED33CAA24AA67C933451243EE2603293C94AFE4" />
+      <Delta>
+        <Source type="RAW" offset="19307453" length="65">
+          <Hash alg="SHA256" value="4937B1B8DBB9D6F4E087A04E1ED33CAA24AA67C933451243EE2603293C94AFE4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8229" name="amd64_microsoft-hyper-v-v..izationv2.resources_31bf3856ad364e35_10.0.22621.963_zh-tw_8ea559cb29d4005f\f\windowsvirtualization.v2.mfl" length="66" time="133332635950000000" attr="128">
+      <Hash alg="SHA256" value="37DAE449B20CE35AFE6C55BB7FB875896CF6393B37CF5583EFCA1218EE8AC748" />
+      <Delta>
+        <Source type="RAW" offset="19307518" length="66">
+          <Hash alg="SHA256" value="37DAE449B20CE35AFE6C55BB7FB875896CF6393B37CF5583EFCA1218EE8AC748" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8230" name="amd64_dual_brltty.inf_31bf3856ad364e35_10.0.22621.1105_none_af5651f3e0e1d1ac\n\brltty.inf" length="2967" time="133120813830000000" attr="128">
+      <Hash alg="SHA256" value="0880D3B03FAFF48F2450AF40709702732C2F541BD3916A4617B58A8C688B5BCC" />
+      <Delta>
+        <Source type="RAW" offset="19307584" length="2967">
+          <Hash alg="SHA256" value="0880D3B03FAFF48F2450AF40709702732C2F541BD3916A4617B58A8C688B5BCC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8231" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\ok9ibres.dll" length="115" time="133332634670000000" attr="128">
+      <Hash alg="SHA256" value="7BABAEDE711BFB4A1937B4BCAEF49163B15F9553B1C3A0190E19B10592B1BBD1" />
+      <Delta>
+        <Source type="RAW" offset="19310551" length="115">
+          <Hash alg="SHA256" value="7BABAEDE711BFB4A1937B4BCAEF49163B15F9553B1C3A0190E19B10592B1BBD1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8232" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\ttyres.dll" length="798" time="133332634670000000" attr="128">
+      <Hash alg="SHA256" value="75D99E706A71491A96A3348E6B5E5ABB59A702C910106849A90BFF33AF7280D6" />
+      <Delta>
+        <Source type="RAW" offset="19310666" length="798">
+          <Hash alg="SHA256" value="75D99E706A71491A96A3348E6B5E5ABB59A702C910106849A90BFF33AF7280D6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8233" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\ttyui.dll" length="915" time="133332707110000000" attr="128">
+      <Hash alg="SHA256" value="D7B02BCE7494252AD1C5C16BA1B6F75EEBCE63D55DB18A4E183455B62E117772" />
+      <Delta>
+        <Source type="RAW" offset="19311464" length="915">
+          <Hash alg="SHA256" value="D7B02BCE7494252AD1C5C16BA1B6F75EEBCE63D55DB18A4E183455B62E117772" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8234" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\prnge001.inf" length="59" time="133332634670000000" attr="128">
+      <Hash alg="SHA256" value="50D810B89C33D7D3512FA0A34371E8934530C091BA7C17FB86468D21563DE898" />
+      <Delta>
+        <Source type="RAW" offset="19312379" length="59">
+          <Hash alg="SHA256" value="50D810B89C33D7D3512FA0A34371E8934530C091BA7C17FB86468D21563DE898" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8235" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\prnge001.cat" length="3561" time="133332634670000000" attr="128">
+      <Hash alg="SHA256" value="D36482A18629B81FE741FD1154CFAE53D4F791D1F04F392A883DFE383570EE43" />
+      <Delta>
+        <Source type="RAW" offset="19312438" length="3561">
+          <Hash alg="SHA256" value="D36482A18629B81FE741FD1154CFAE53D4F791D1F04F392A883DFE383570EE43" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8236" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\tty.dll" length="159" time="133332707110000000" attr="128">
+      <Hash alg="SHA256" value="A13295E5A291E114F403CF00B578A509C5FAD21B39A2071FEEB2C94C8F518491" />
+      <Delta>
+        <Source type="RAW" offset="19315999" length="159">
+          <Hash alg="SHA256" value="A13295E5A291E114F403CF00B578A509C5FAD21B39A2071FEEB2C94C8F518491" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8237" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\msgenbw.ppd" length="51" time="133332634670000000" attr="128">
+      <Hash alg="SHA256" value="4104D6D7283ABB93B98C66036F32D48713909778AF57A8DA3B699058D6CEEEA6" />
+      <Delta>
+        <Source type="RAW" offset="19316158" length="51">
+          <Hash alg="SHA256" value="4104D6D7283ABB93B98C66036F32D48713909778AF57A8DA3B699058D6CEEEA6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="8238" name="amd64_dual_prnge001.inf_31bf3856ad364e35_10.0.22621.1105_none_21a7977b2e9cabd2\f\amd64\genibm9w.gpd" length="52" time="13333263467000

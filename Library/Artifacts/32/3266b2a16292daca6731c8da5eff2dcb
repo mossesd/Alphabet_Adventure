@@ -1,0 +1,449 @@
+Events.UnityEvent.AddListener(UnityEngine.Events.UnityAction)">
+      <summary>
+        <para>Add a non persistent listener to the UnityEvent.</para>
+      </summary>
+      <param name="call">Callback function.</param>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEvent.#ctor">
+      <summary>
+        <para>Constructor.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEvent.Invoke">
+      <summary>
+        <para>Invoke all registered callbacks (runtime and persistent).</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEvent.RemoveListener(UnityEngine.Events.UnityAction)">
+      <summary>
+        <para>Remove a non persistent listener from the UnityEvent. If you have added the same listener multiple times, this method will remove all occurrences of it.</para>
+      </summary>
+      <param name="call">Callback function.</param>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEvent`1">
+      <summary>
+        <para>One argument version of UnityEvent.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEvent`2">
+      <summary>
+        <para>Two argument version of UnityEvent.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEvent`3">
+      <summary>
+        <para>Three argument version of UnityEvent.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEvent`4">
+      <summary>
+        <para>Four argument version of UnityEvent.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEventBase">
+      <summary>
+        <para>Abstract base class for UnityEvents.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetPersistentEventCount">
+      <summary>
+        <para>Get the number of registered persistent listeners.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetPersistentListenerState(System.Int32)">
+      <summary>
+        <para>Returns the execution state of a persistent listener.</para>
+      </summary>
+      <param name="index">Index of the listener to query.</param>
+      <returns>
+        <para>Execution state of the persistent listener.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetPersistentMethodName(System.Int32)">
+      <summary>
+        <para>Get the target method name of the listener at index index.</para>
+      </summary>
+      <param name="index">Index of the listener to query.</param>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetPersistentTarget(System.Int32)">
+      <summary>
+        <para>Get the target component of the listener at index index.</para>
+      </summary>
+      <param name="index">Index of the listener to query.</param>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetValidMethodInfo(System.Object,System.String,System.Type[])">
+      <summary>
+        <para>Given an object, function name, and a list of argument types; find the method that matches.</para>
+      </summary>
+      <param name="obj">Object to search for the method.</param>
+      <param name="functionName">Function name to search for.</param>
+      <param name="argumentTypes">Argument types for the function.</param>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.GetValidMethodInfo(System.Type,System.String,System.Type[])">
+      <summary>
+        <para>Given an object type, function name, and a list of argument types; find the method that matches.</para>
+      </summary>
+      <param name="objectType">Object type to search for the method.</param>
+      <param name="functionName">Function name to search for.</param>
+      <param name="argumentTypes">Argument types for the function.</param>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.RemoveAllListeners">
+      <summary>
+        <para>Remove all non-persistent (ie created from script) listeners  from the event.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Events.UnityEventBase.SetPersistentListenerState(System.Int32,UnityEngine.Events.UnityEventCallState)">
+      <summary>
+        <para>Modify the execution state of a persistent listener.</para>
+      </summary>
+      <param name="index">Index of the listener to query.</param>
+      <param name="state">State to set.</param>
+    </member>
+    <member name="T:UnityEngine.Events.UnityEventCallState">
+      <summary>
+        <para>Controls the scope of UnityEvent callbacks.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Events.UnityEventCallState.EditorAndRuntime">
+      <summary>
+        <para>Callback is always issued.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Events.UnityEventCallState.Off">
+      <summary>
+        <para>Callback is not issued.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Events.UnityEventCallState.RuntimeOnly">
+      <summary>
+        <para>Callback is only issued in the Runtime and Editor playmode.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.EventType">
+      <summary>
+        <para>Types of UnityGUI input and processing events.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.mouseDown">
+      <summary>
+        <para>An event that is called when the mouse is clicked.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.mouseDrag">
+      <summary>
+        <para>An event that is called when the mouse is clicked and dragged.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.mouseUp">
+      <summary>
+        <para>An event that is called when the mouse is no longer being clicked.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.ContextClick">
+      <summary>
+        <para>User has right-clicked (or control-clicked on the mac).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.DragExited">
+      <summary>
+        <para>Editor only: drag &amp; drop operation exited.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.DragPerform">
+      <summary>
+        <para>Editor only: drag &amp; drop operation performed.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.DragUpdated">
+      <summary>
+        <para>Editor only: drag &amp; drop operation updated.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.ExecuteCommand">
+      <summary>
+        <para>Execute a special command (eg. copy &amp; paste).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.Ignore">
+      <summary>
+        <para>Event should be ignored.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.KeyDown">
+      <summary>
+        <para>A keyboard key was pressed.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.KeyUp">
+      <summary>
+        <para>A keyboard key was released.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.Layout">
+      <summary>
+        <para>A layout event.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseDown">
+      <summary>
+        <para>Mouse button was pressed.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseDrag">
+      <summary>
+        <para>Mouse was dragged.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseEnterWindow">
+      <summary>
+        <para>Mouse entered a window (Editor views only).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseLeaveWindow">
+      <summary>
+        <para>Mouse left a window (Editor views only).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseMove">
+      <summary>
+        <para>Mouse was moved (Editor views only).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.MouseUp">
+      <summary>
+        <para>Mouse button was released.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.Repaint">
+      <summary>
+        <para>A repaint event. One is sent every frame.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.ScrollWheel">
+      <summary>
+        <para>The scroll wheel was moved.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchDown">
+      <summary>
+        <para>Direct manipulation device (finger, pen) touched the screen.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchEnter">
+      <summary>
+        <para>Direct manipulation device (finger, pen) moving into the window (drag).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchLeave">
+      <summary>
+        <para>Direct manipulation device (finger, pen) moved out of the window (drag).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchMove">
+      <summary>
+        <para>Direct manipulation device (finger, pen) moved on the screen (drag).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchStationary">
+      <summary>
+        <para>Direct manipulation device (finger, pen) stationary event (long touch down).</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.TouchUp">
+      <summary>
+        <para>Direct manipulation device (finger, pen) left the screen.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.Used">
+      <summary>
+        <para>Already processed event.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventType.ValidateCommand">
+      <summary>
+        <para>Validates a special command (e.g. copy &amp; paste).</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.ExcludeFromObjectFactoryAttribute">
+      <summary>
+        <para>Add this attribute to a class to prevent the class and its inherited classes from being created with ObjectFactory methods.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.ExcludeFromObjectFactoryAttribute.#ctor">
+      <summary>
+        <para>Default constructor.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.ExcludeFromPresetAttribute">
+      <summary>
+        <para>Add this attribute to a class to prevent creating a Preset from the instances of the class.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.ExecuteAlways">
+      <summary>
+        <para>Makes instances of a script always execute, both as part of Play Mode and when editing.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.ExecuteInEditMode">
+      <summary>
+        <para>Makes all instances of a script execute in Edit Mode.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.ExitGUIException">
+      <summary>
+        <para>An exception that will prevent all subsequent immediate mode GUI functions from evaluating for the remainder of the GUI loop.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Experimental.AI.NavMeshLocation">
+      <summary>
+        <para>A world position that is guaranteed to be on the surface of the NavMesh.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Experimental.AI.NavMeshLocation.polygon">
+      <summary>
+        <para>Unique identifier for the node in the NavMesh to which the world position has been mapped.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Experimental.AI.NavMeshLocation.position">
+      <summary>
+        <para>A world position that sits precisely on the surface of the NavMesh or along its links.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Experimental.AI.NavMeshPolyTypes">
+      <summary>
+        <para>The types of nodes in the navigation data.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Experimental.AI.NavMeshPolyTypes.Ground">
+      <summary>
+        <para>Type of node in the NavMesh representing one surface polygon.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Experimental.AI.NavMeshPolyTypes.OffMeshConnection">
+      <summary>
+        <para>Type of node in the NavMesh representing a point-to-point connection between two positions on the NavMesh surface.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Experimental.AI.NavMeshQuery">
+      <summary>
+        <para>Object used for doing navigation operations in a NavMeshWorld.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.BeginFindPath(UnityEngine.Experimental.AI.NavMeshLocation,UnityEngine.Experimental.AI.NavMeshLocation,System.Int32,Unity.Collections.NativeArray`1&lt;System.Single&gt;)">
+      <summary>
+        <para>Initiates a pathfinding operation between two locations on the NavMesh.</para>
+      </summary>
+      <param name="costs">Array of custom cost values for all of the 32 possible area types. Each value must be at least 1.0f. This parameter is optional and defaults to the area costs configured in the project settings. See Also: NavMesh.GetAreaCost.</param>
+      <param name="areaMask">Bitmask with values of 1 set at the indices for areas that can be traversed, and values of 0 for areas that are not traversable. This parameter is optional and defaults to NavMesh.AllAreas, if omitted. See Also:.</param>
+      <param name="start">The start location on the NavMesh for the path.</param>
+      <param name="end">The location on the NavMesh where the path ends.</param>
+      <returns>
+        <para>InProgress if the operation was successful and the query is ready to search for a path.
+
+Failure if the query's NavMeshWorld or any of the received parameters are no longer valid.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.CreateLocation(UnityEngine.Vector3,UnityEngine.Experimental.AI.PolygonId)">
+      <summary>
+        <para>Returns a valid NavMeshLocation for a position and a polygon provided by the user.</para>
+      </summary>
+      <param name="position">World position of the NavMeshLocation to be created.</param>
+      <param name="polygon">Valid identifier for the NavMesh node.</param>
+      <returns>
+        <para>Object containing the desired position and NavMesh node.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.#ctor(UnityEngine.Experimental.AI.NavMeshWorld,Unity.Collections.Allocator,System.Int32)">
+      <summary>
+        <para>Creates the NavMeshQuery object and allocates memory to store NavMesh node information, if required.</para>
+      </summary>
+      <param name="world">NavMeshWorld object used as an entry point to the collection of NavMesh objects. This object that can be used by query operations.</param>
+      <param name="allocator">Label indicating the desired life time of the object. (Known issue: Currently allocator has no effect).</param>
+      <param name="pathNodePoolSize">The number of nodes temporarily stored in the query during search operations. The maximum number of nodes is 65,535. By default, if unspecified, the number of nodes is set to 0.</param>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.Dispose">
+      <summary>
+        <para>Destroys the NavMeshQuery and deallocates all memory used by it.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.EndFindPath(System.Int32&amp;)">
+      <summary>
+        <para>Obtains the number of nodes in the path that has been computed during a successful NavMeshQuery.UpdateFindPath operation.</para>
+      </summary>
+      <param name="pathSize">A reference to an int which will be set to the number of NavMesh nodes in the found path.</param>
+      <returns>
+        <para>Success when the number of nodes in the path was retrieved correctly.
+
+PartialPath when a path was found but it falls short of the desired end location.
+
+Failure when the path size can not be evaluated because the preceding call to UpdateFindPath was not successful.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetAgentTypeIdForPolygon(UnityEngine.Experimental.AI.PolygonId)">
+      <summary>
+        <para>Returns the identifier of the agent type the NavMesh was baked for or for which the link has been configured.</para>
+      </summary>
+      <param name="polygon">Identifier of a node from a NavMesh surface or link.</param>
+      <returns>
+        <para>Agent type identifier.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetEdgesAndNeighbors(UnityEngine.Experimental.AI.PolygonId,Unity.Collections.NativeSlice`1&lt;UnityEngine.Vector3&gt;,Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.PolygonId&gt;,Unity.Collections.NativeSlice`1&lt;System.Byte&gt;,System.Int32&amp;,System.Int32&amp;)">
+      <summary>
+        <para>Retrieves the vertices of a given node and the PolygonId|identifiers of all the navigation nodes to which it connects.</para>
+      </summary>
+      <param name="node">Identifier of a node from a NavMesh surface, for which the vertices and neighbors need to be retrieved.</param>
+      <param name="edgeVertices">The result buffer that contains the world positions describing the geometry of the input navigation node. It can have zero capacity.
+
+NavMeshPolyTypes.Ground|Polygonal nodes of the NavMesh have a minimum of 3 and a maximum of 6 vertices.
+
+NavMeshPolyTypes.OffMeshConnection|OffMeshConnection nodes are always represented by 4 vertices, regardless of their width.</param>
+      <param name="neighbors">The result buffer that holds the identifiers of all the navigation nodes immediately reachable from the given node. It can have zero capacity.</param>
+      <param name="edgeIndices">The helper result buffer that maps each neighbor node to an edge of the given node.  It can have zero capacity.
+
+The index of an element in edgeIndices is also an index in the neighbors array and the value of that edgeIndices element is an index in the edgeVertices array.</param>
+      <param name="verticesCount">The total number of vertices that describe the geometry of the input node. This is independent of the capacity of the vertices result buffer.</param>
+      <param name="neighborsCount">The total number of navigation nodes the input node connects to. This is independent of the capacity of the result buffers (neighbors and edgeIndices).</param>
+      <returns>
+        <para>Success if Unity can evaluate the neighbors and vertices of the specified node, regardless of the result. The verticesCount and neighborsCount are always valid in this case.
+
+Failure if Unity can not use the node identifier to retrieve the neighbors or geometry information. Unity does not modify any of the five result parameters (edgeVertices, neighbors, edgeIndices, verticesCount or neighborsCount) in this case.
+
+InvalidParam is part of the returned flags if the specified navigation node is not NavMeshQuery.IsValid|valid in the query's NavMeshWorld.
+
+BufferTooSmall is part of the PathQueryStatus flags, that Unity returns from this function, when any of the result buffers you provide are not large enough to hold all the neighbor nodes the input node connects to or all of its edge vertices.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPathResult(Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.PolygonId&gt;)">
+      <summary>
+        <para>Copies into the provided array the list of NavMesh nodes that form the path found by the NavMeshQuery operation.</para>
+      </summary>
+      <param name="path">Data array to be filled with the sequence of NavMesh nodes that comprises the found path.</param>
+      <returns>
+        <para>Number of path nodes successfully copied into the provided array.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPolygonType(UnityEngine.Experimental.AI.PolygonId)">
+      <summary>
+        <para>Returns whether the NavMesh node is a polygon or a link.</para>
+      </summary>
+      <param name="polygon">Identifier of a node from a NavMesh surface or link.</param>
+      <returns>
+        <para>Ground when the node is a polygon on a NavMesh surface.
+
+OffMeshConnection when the node is a.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPortalPoints(UnityEngine.Experimental.AI.PolygonId,UnityEngine.Experimental.AI.PolygonId,UnityEngine.Vector3&amp;,UnityEngine.Vector3&amp;)">
+      <summary>
+        <para>Obtains the end points of the line segment common to two adjacent NavMesh nodes.</para>
+      </summary>
+      <param name="polygon">First NavMesh node.</param>
+      <param name="neighbourPolygon">Second NavMesh node.</param>
+      <param name="left">One of the world points for the resulting separation edge which must be passed through when traversing between the two specified nodes. This point is the left side of the edge when traversing from the first node to the second.</param>
+      <param name="right">One of the world points for the resulting separation edge which must be passed through when traversing between the two specified nodes. This point is the right side of the edge when traversing from the first node to the second.</param>
+      <returns>
+        <para>True if a connection exists between the two NavMesh nodes.
+False if no connection exists between the two NavMesh nodes.</para>
+      </returns>
+ 

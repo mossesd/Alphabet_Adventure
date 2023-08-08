@@ -1,0 +1,418 @@
+btener o 
+                            porque están en conflicto con los cambios del servidor)
+                            son descartados y el checkin continúa sin ellos.
+    --machinereadable       Muestra el resultado en un formato fácil de parsear.
+    --startlineseparator    Usado con '--machinereadable', indica cómo deben
+                            empezar las líneas del resultado.
+    --endlineseparator      Usado con '--machinereadable', indica cómo deben
+                            terminar las líneas del resultado.
+    --fieldseparator        Usado con '--machinereadable', indica cómo deben
+                            separarse los campos de cada línea resultante.
+
+== CMD_HELP_PARTIAL_CHECKIN ==
+Notas:
+
+    - Si no se especifican [opciones] ni [rutas], la operación involucrará a
+    todos los cambios pendientes en el espacio de trabajo.
+    - La operación de protección se aplica siempre recursivamente desde la
+    ruta indicada.
+    - Requisitos para proteger un ítem:
+      - El ítem debe estar controlado por Unity VCS.
+      - El ítem ha de estar desprotegido.
+      - Si un ítem ha sido cambiado pero no desprotegido, no es necesario
+        especificar la opción --applychanged, salvo que en las rutas a ser
+        protegidas se incluyan directorios o rutas con wildcards ('*').
+
+    La revisión ha de tener cambios. Es decir, no se pueden proteger los
+    mismos datos.
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+
+Ejemplos:
+
+    cm partial checkin figura.png paisaje.png
+    (Protege los ítems figura.png and paisaje.png.)
+
+    cm partial checkin . -commentsfile=micomentario.txt
+    (Protege los ítems de la ruta actual y aplica el comentario existente en el
+    fichero micomentario.txt.)
+
+    cm partial ci fondo.png -c="Nuevo fondo añadido" --keeplock
+    (Protege el ítem fondo.png, incluye el comentario especificado y mantiene el
+    bloqueo.)
+
+    cm partial checkin --applychanged
+    (Protege todos los cambios pendientes en el espacio de trabajo.)
+    
+    cm partial checkin link --symlink
+    (Proteger el fichero de symlink y no al que apunta.)
+
+== CMD_DESCRIPTION_PARTIAL_CHECKOUT ==
+Desprotege los ítems dejándolos preparados para ser modificados.
+
+== CMD_USAGE_PARTIAL_CHECKOUT ==
+Síntaxis:
+
+    cm partial checkout | co [<ruta>+] [--resultformat=str_format] 
+                     [--silent] [--ignorefailed]
+
+Opciones:
+
+    ruta                Rutas de los ítems a desproteger, separados por 
+                        espacios.
+                        Usa comillas (") para especificar rutas con espacios.
+                        Usa . para aplicar la operación de checkout al 
+                        directorio actual.
+    --resultformat      Devuelve la salida en el formato especificado.
+    --silent            No muestra ninguna salida.
+    --ignorefailed      Si un ítem no se puede desproteger/bloquear (no se puede
+                        hacer un checkout exclusivo), la operación de checkout
+                        continuará sin él.
+
+== CMD_HELP_PARTIAL_CHECKOUT ==
+Notas: 
+
+    Para desproteger un ítem:
+    - El ítem debe estar controlado por Unity VCS.
+    - El ítem debe estar protegido.
+        
+    Si se han configurado bloqueos en el servidor (existe el fichero lock.conf),
+    entonces cada vez que se produzca una desprotección, Unity VCS comprobará si
+    se aplica alguna de las reglas. Si es así, la ruta permanecerá en checkout
+    exclusivo (bloqueada), con lo que nadie podrá desprotegerlo simultáneamente.
+    Puedes obtener todos los bloqueos del servidor usando 'cm listlocks'.
+    Lee la documentación Administrator Guide para más información.
+
+Examples:
+
+    cm partial checkout imagen1.png imagen2.png
+    (Desprotege los ítems imagen1.png and imagen2.png.)
+    
+    cm partial co *.png
+    (Desprotege todos los ítems png.)
+
+    cm partial checkout . 
+    (Desprotege el directorio actual.)
+    
+    cm partial checkout -R c:\workspace\paisaje
+    (Desprotege recursivamente el directorio paisaje.)
+
+    cm partial co diseño01.png --exclusive 
+    (Desprotege el ítem exclusivamente.)
+
+== CMD_DESCRIPTION_PARTIAL_CONFIGURE ==
+Permite configurar tu espacio de trabajo, cargando o descargando elementos.
+
+== CMD_USAGE_PARTIAL_CONFIGURE ==
+Sintaxis:
+
+    cm partial configure <+|-ruta>+ [--silent] [--ignorefailed] [--ignorecase]
+                                    [--restorefulldirs]
+                                    [--machinereadable [--startlineseparator=<sep>]
+                                      [--endlineseparator=<sep>] [--fieldseparator=<sep>]]
+
+    ruta           Rutas a cargar o descargar, separadas por espacios. 
+                   Usa comillas (") para especificar rutas con espacios.
+                   Todas las rutas deben comenzar con "/".
+
+Opciones:
+
+    --silent              No muestra ninguna salida.
+    --ignorefailed        Ignora cualquier error durante la operación.
+    --ignorecase          Ignora mayúsculas y minúsculas. Con esta opción el
+                          comando funcionará para "/Data/Textures" incluso si el
+                          usuario indica "/data/teXtures".
+    --restorefulldirs     Resetea una configuración de directorio incorrecta
+                          (ocurre cuando una operación no parcial es ejecutada en
+                          un espacio de trabajo parcial).
+                          Los directorios de esta lista se configuran por
+                          completo (full check), lo que significa que bajarán
+                          automáticamente el nuevo contenido durante el update.
+                          Esta operación no descarga ningún fichero, simplemente
+                          restaura la configuración de directorio en un espacio
+                          de trabajo parcial.
+    --machinereadable     Muestra el resultado en un formato fácil de parsear.
+    --startlineseparator  Usado con '--machinereadable', indica cómo deben
+                          empezar las líneas del resultado.
+    --endlineseparator    Usado con '--machinereadable', indica cómo deben
+                          terminar las líneas del resultado.
+    --fieldseparator      Usado con '--machinereadable', indica cómo deben
+                          separarse los campos de cada línea resultante.
+
+== CMD_HELP_PARTIAL_CONFIGURE ==
+Notas:
+
+    El comando siempre asume recursividad.
+
+Ejemplos:
+
+    cm partial configure +/paisaje-gris.png
+    (Carga paisaje-gris.png.)
+
+    cm partial configure -/paisaje-negro.png
+    (Descarga paisaje-negro.)
+
+    cm partial configure +/textura -/textura/textura01.png
+    (Carga todo el contenido del directorio textura excepto textura01.png.)
+
+    cm partial configure -/
+    (Descarga todo el directorio de trabajo.)
+
+    cm partial configure -/ +/
+    (Carga todo el directorio de trabajo.)
+
+    cm partial configure +/figura-64.png --ignorefailed
+    (Carga figura-64.png, estuviera o no ya cargado previamente.)
+
+    cm partial configure +/ --restorefulldirs
+    (Fija todos los directorios para que descarguen el nuevo contenido automáticamente.)
+
+    cm partial configure +/src/lib --restorefulldirs
+    (Fija sólo /src/lib y sus subdirectorios para que descarguen el nuevo contenido automáticamente.)
+
+== CMD_DESCRIPTION_PARTIAL_MOVE ==
+Mueve o renombra un archivo o directorio.
+
+== CMD_USAGE_PARTIAL_MOVE ==
+Sintaxis:
+
+    cm partial move | mv src_path dst_path [--format=str_format]
+
+    src_path            Ruta origen del ítem.
+    dst_path            Ruta destino del ítem.
+
+Options:
+
+    --format            Devuelve la salida en el formato especificado.
+
+== CMD_HELP_PARTIAL_MOVE ==
+Notas:
+
+    Este comando mueve o renombra un ítem en el repositorio.
+    Los cambios también se aplican localmente.
+    
+    Si la ruta de origen es un fichero, el destino puede ser un fichero o un
+    directorio. En el primer caso, el fichero se renombra. En el segundo, el
+    fichero se renombra.
+    Si la ruta de origen en un directorio, el destino ha de serlo también.
+
+    El ítem a mover o renombrar debe existir.
+
+    Formato:
+        {0}             Ruta de origen.
+        {1}             Ruta de destino.
+
+Examples:
+
+    cm partial move fichero.png fichero-azul.png
+    (Renombra el ítem.)
+
+    cm partial mv .\fichero-azul.png .\azulFicheros
+    (Mueve fichero-azul.png a azulFicheros.)
+
+    cm partial move .\diseño .\marketing
+    (Renombra un directorio.)
+
+== CMD_DESCRIPTION_PARTIAL_REMOVE ==
+Borra un ítem del control de versiones.
+
+== CMD_USAGE_PARTIAL_REMOVE ==
+Sintaxis:
+
+    cm partial remove | rm <ruta>+ [--nodisk]
+
+    ruta            Ítems a borrar, separados por espacios.
+                    Usa comillas (") para especificar rutas con espacios.
+
+Opciones:
+
+    --nodisk            Borra del control de versiones, pero mantiene el ítem en
+                        disco.
+
+== CMD_HELP_PARTIAL_REMOVE ==
+Notas:
+
+    Los ítems se borran de disco. Los ítems borrados son borrados del directorio
+    padre en el control de versiones.
+
+    Requisitos:
+    - El ítem debe estar controlado.
+
+Ejemplos:
+
+    cm partial remove src
+    (Borra src. Si src es un directorio, equivale a ejecutar: 
+    cm partial remove -R src.)
+
+    cm partial remove c:\workspace\pic01.png --nodisk
+    (Borra pic01.png del control de versiones, pero lo mantiene en el disco.)
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET ==
+Use este comando para administrar shelvesets parciales.
+
+== CMD_USAGE_PARTIAL_SHELVESET ==
+Sintaxis:
+
+    cm partial shelveset | shelve <command> [options]
+
+Comandos:
+
+    create | mk
+    apply
+    delete | rm
+
+    Para obtener más información sobre cada comando:
+    cm partial shelveset <command> --usage
+    cm partial shelveset <command> --help
+
+== CMD_HELP_PARTIAL_SHELVESET ==
+Ejemplos:
+
+    cm partial shelveset create -c="my comment"
+    cm partial shelveset apply sh:3
+	cm partial shelveset delete sh:5
+	
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_CREATE ==
+Almacena los cambios pendientes escogidos.
+
+== CMD_USAGE_PARTIAL_SHELVESET_CREATE ==
+Sintaxis:
+
+    cm partial shelveset | shelve create | mk [<item_path>[ ...]]
+                            [-c=<str_comment> | -commentsfile=<comments_file>]
+                            [--applychanged] [--symlink] [--ignorefailed]
+                            [--machinereadable [--startlineseparator=<sep>]
+                              [--endlineseparator=<sep>] [--fieldseparator=<sep>]]
+
+Opciones:
+
+    -c                      Añade un comentario al shelveset creado en la operación
+                            de protección.
+    -commentsfile           Añade el comentario existente en el fichero especificado
+                            al shelveset creado en la operación de protección.
+    --applychanged          Protege los ítems cambiados localmente junto con los 
+                            ítems desprotegidos.
+    --symlink               Realizar la operación de shelve sobre el fichero de
+                            link y no al que apunta.
+    --ignorefailed          Los cambios locales que no se pueden aplicar (porque el
+                            bloqueo (checkout exclusivo) no se puede obtener o 
+                            porque están en conflicto con los cambios del servidor)
+                            son descartados y el shelve continúa sin ellos.
+    --machinereadable       Muestra el resultado en un formato fácil de parsear.
+    --startlineseparator    Usado con '--machinereadable', indica cómo deben
+                            empezar las líneas del resultado.
+    --endlineseparator      Usado con '--machinereadable', indica cómo deben
+                            terminar las líneas del resultado.
+    --fieldseparator        Usado con '--machinereadable', indica cómo deben
+                            separarse los campos de cada línea resultante.
+
+== CMD_HELP_PARTIAL_SHELVESET_CREATE ==
+El comando partial shelveset create almacena los ítems en checkout especificados
+    dentro del repositorio. De este modo el contenido queda almacenado en el
+    servidor sin necesidad de hacer checkin.
+
+Notas:
+
+    - Si no se especifican [opciones] ni [rutas], la operación involucrará a
+    todos los cambios pendientes en el espacio de trabajo.
+    - La operación de protección se aplica siempre recursivamente desde la
+    ruta indicada.
+    - La operacion de creación de protección es la operación por defecto, 
+    lo que significa que si no se especifica ninguna otra, el comando tratará 
+    de ejecutar una nueva creación de protección.
+    - Requisitos para proteger un ítem:
+      - El ítem debe estar controlado por Unity VCS.
+      - El ítem ha de estar desprotegido.
+      - Si un ítem ha sido cambiado pero no desprotegido, no es necesario
+        especificar la opción --applychanged, salvo que en las rutas a ser
+        protegidas se incluyan directorios o rutas con wildcards ('*').
+
+    La revisión ha de tener cambios. Es decir, no se pueden proteger los
+    mismos datos.
+
+    Configure la variable de entorno PLASTICEDITOR para especificar un editor
+    para escribir el comentario. Si la variable de entorno PLASTICEDITOR está
+    configurada pero no se indica ningún comentario, el editor se abrirá para
+    que pueda escribir el comentario.
+
+Ejemplos:
+
+    cm partial shelveset figura.png paisaje.png
+    (Crea un nuevo shelveset con los ítems figura.png and paisaje.png.)
+
+    cm partial shelveset . -commentsfile=micomentario.txt
+    (Crea un nuevo shelveset con los ítems de la ruta actual y aplica el 
+    comentario existente en el fichero micomentario.txt.)
+
+    cm partial shelve fondo.png -c="Nuevo fondo añadido"
+    (Crea un nuevo shelveset el ítem fondo.png, incluye el comentario 
+    especificado.)
+
+    cm partial shelveset --applychanged
+    (Crea un nuevo shelveset con todos los cambios locales junto con los 
+    cambios controlados	pendientes en el espacio de trabajo.)
+    
+    cm partial shelveset link --symlink
+    (Crea un nuevo shelveset con fichero de symlink, en lugar del fichero al 
+    que apunta.)
+	
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_APPLY ==
+El comando partial shelveset apply restaura los contenidos almancenados en el
+repositorio.
+
+== CMD_USAGE_PARTIAL_SHELVESET_APPLY ==
+Sintaxis:
+    cm partial shelveset apply shelve_spec [opciones]
+
+    shelve_spec: Restaura los contenidos almancenados en el repositorio
+    identificados por "shelve_spec"
+
+Opciones:
+    --encoding=codificación: Especifica la codificación de los ficheros de
+      origen (por ejemplo, UTF-8 o Unicode)
+    --comparisonmethod=tipo: cualquiera de las siguientes opciones:
+      ignoreeol:               Ignora diferencias de final de línea.
+      ignorewhitespaces:       Ignora diferencias de espacios en blanco.
+      ignoreeolandwhitespaces: Ignora diferencias de final de línea y espacios en
+                               blanco.
+      recognizeall:            Detecta diferencias de final de línea y espacios en
+                               blanco.
+
+== CMD_HELP_PARTIAL_SHELVESET_APPLY ==
+El comando partial shelveset apply restaura los contenidos almancenados en el
+repositorio.
+
+Ejemplo: Aplicar un shelve almacenado en el repositorio:
+
+    cm partial shelveset apply sh:3	
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_DELETE ==
+Borra un shelveset.
+
+== CMD_USAGE_PARTIAL_SHELVESET_DELETE ==
+Sintaxis:
+    cm partial shelveset delete shelve_spec
+
+    shelve_spec: Elimina los contenidos almancenados en el repositorio
+    identificados por "shelve_spec"
+
+== CMD_HELP_PARTIAL_SHELVESET_DELETE ==
+El comando partial shelveset delete borra un shelveset creado anteriormente.
+
+Ejemplo: 
+
+    cm partial shelveset delete sh:3
+    (Elimina un shelveset almacenado en el repositorio.)
+
+
+== CMD_DESCRIPTION_PARTIAL_SWITCH ==
+Establece la rama especificada como rama de trabajo.
+
+== CMD_USAGE_PARTIAL_SWITCH ==
+Sintaxis:
+
+    cm switch branch_spec [--report | --silent] [--workspace=path] [--noinput]
+    

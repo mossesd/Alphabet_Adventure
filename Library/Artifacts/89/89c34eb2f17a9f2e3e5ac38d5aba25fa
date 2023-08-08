@@ -1,0 +1,312 @@
+ negocie por sua conta e risco!"
+   },
+   "importTokensCamelCase": {
+      "message": "Importar tokens"
+   },
+   "imported": {
+      "description": "status showing that an account has been fully loaded into the keyring",
+      "message": "Importada"
+   },
+   "infuraBlockedNotification": {
+      "description": "$1 is a clickable link with with text defined by the 'here' key",
+      "message": "Não foi possível conectar a MetaMask com o servidor do blockchain. Revise possíveis motivos $1."
+   },
+   "initialTransactionConfirmed": {
+      "message": "Sua transação inicial foi confirmada pela rede. Clique em OK para voltar."
+   },
+   "insufficientBalance": {
+      "message": "Saldo insuficiente."
+   },
+   "insufficientFunds": {
+      "message": "Não há fundos suficientes."
+   },
+   "insufficientFundsForGas": {
+      "message": "Fundos insuficientes para o gás"
+   },
+   "insufficientTokens": {
+      "message": "Tokens insuficientes."
+   },
+   "invalidAddress": {
+      "message": "Endereço inválido"
+   },
+   "invalidAddressRecipient": {
+      "message": "O endereço do destinatário é inválido"
+   },
+   "invalidAddressRecipientNotEthNetwork": {
+      "message": "Não é uma rede de ETH; configurar em minúsculas"
+   },
+   "invalidBlockExplorerURL": {
+      "message": "URL inválido do Block Explorer"
+   },
+   "invalidChainIdTooBig": {
+      "message": "ID de cadeia inválido. O ID de cadeia é muito grande."
+   },
+   "invalidCustomNetworkAlertContent1": {
+      "description": "$1 is the name/identifier of the network.",
+      "message": "O ID de cadeia da rede personalizada “$1” precisa ser digitado novamente."
+   },
+   "invalidCustomNetworkAlertContent2": {
+      "message": "Para proteger você contra provedores de rede mal-intencionados ou defeituosos, os IDs de cadeia agora são obrigatórios para todas as redes personalizadas."
+   },
+   "invalidCustomNetworkAlertContent3": {
+      "description": "$1 is a link to https://chainid.network",
+      "message": "Acesse Configurações > Rede e informe o ID de cadeia. Encontre os IDs de cadeia das redes mais populares em $1."
+   },
+   "invalidCustomNetworkAlertTitle": {
+      "message": "Rede personalizada inválida"
+   },
+   "invalidHexNumber": {
+      "message": "Número hexadecimal inválido."
+   },
+   "invalidHexNumberLeadingZeros": {
+      "message": "Número hexadecimal inválido. Elimine os zeros à esquerda."
+   },
+   "invalidIpfsGateway": {
+      "message": "Gateway IPFS inválido: o valor deve ser um URL válido"
+   },
+   "invalidNumber": {
+      "message": "Número inválido. Informe um número decimal ou hexadecimal com o prefixo “0x”."
+   },
+   "invalidNumberLeadingZeros": {
+      "message": "Número inválido. Elimine os zeros à esquerda."
+   },
+   "invalidRPC": {
+      "message": "URL inválido da RPC"
+   },
+   "invalidSeedPhrase": {
+      "message": "Frase de Recuperação Secreta inválida"
+   },
+   "jsDeliver": {
+      "message": "jsDeliver"
+   },
+   "jsonFile": {
+      "description": "format for importing an account",
+      "message": "Arquivo JSON"
+   },
+   "keystone": {
+      "message": "Keystone"
+   },
+   "knownAddressRecipient": {
+      "message": "Endereço de contrato conhecido."
+   },
+   "knownTokenWarning": {
+      "message": "Essa ação editará os tokens já listados na sua carteira, que podem ser usado para praticar phishing contra você. Só aprove se você tiver certeza de que quer alterar o que esses tokens representam."
+   },
+   "lastConnected": {
+      "message": "Conectado pela última vez em"
+   },
+   "learnCancelSpeeedup": {
+      "description": "$1 is link to cancel or speed up transactions",
+      "message": "Saiba como $1"
+   },
+   "learnMore": {
+      "message": "mais informações"
+   },
+   "learnMoreAboutGas": {
+      "description": "$1 will be replaced by the learnMore translation key",
+      "message": "Quer $1 sobre o gás?"
+   },
+   "learnMoreUpperCase": {
+      "message": "Mais informações"
+   },
+   "learnScamRisk": {
+      "message": "golpes e riscos de segurança."
+   },
+   "ledgerAccountRestriction": {
+      "message": "Você precisa usar sua última conta antes de adicionar uma nova."
+   },
+   "ledgerConnectionInstructionCloseOtherApps": {
+      "message": "Encerre qualquer outro software conectado ao seu dispositivo e, em seguida, clique aqui para atualizar."
+   },
+   "ledgerConnectionInstructionHeader": {
+      "message": "Antes de clicar em confirmar:"
+   },
+   "ledgerConnectionInstructionStepFour": {
+      "message": "Ative \"dados de contrato inteligente\" ou \"assinatura cega\" no seu dispositivo Ledger"
+   },
+   "ledgerConnectionInstructionStepOne": {
+      "message": "Ative Utilizar Ledger Live em Configurações > Avançado"
+   },
+   "ledgerConnectionInstructionStepThree": {
+      "message": "Conecte o seu dispositivo Ledger e selecione o app Ethereum"
+   },
+   "ledgerConnectionInstructionStepTwo": {
+      "message": "Abra e desbloqueie o app Ledger Live"
+   },
+   "ledgerConnectionPreferenceDescription": {
+      "description": "A description that appears above a dropdown where users can select between up to three options - Ledger Live, U2F or WebHID - depending on what is supported in their browser. $1 is the recommended browser option, it will be either WebHID or U2f. $2 is a link to an article where users can learn more, but will be the translation of the learnMore message.",
+      "message": "Personalize como conectar sua Ledger à MetaMask. Recomenda-se utilizar $1, mas há outras opções. Leia mais aqui: $2"
+   },
+   "ledgerDeviceOpenFailureMessage": {
+      "message": "Não foi possível abrir o dispositivo Ledger. Seu Ledger pode não estar conectado a outros softwares. Feche o Ledger Live ou outros aplicativos conectados ao seu dispositivo Ledger e tente reconectar."
+   },
+   "ledgerLive": {
+      "description": "The name of a desktop app that can be used with your ledger device. We can also use it to connect a users Ledger device to MetaMask.",
+      "message": "Ledger Live"
+   },
+   "ledgerLiveApp": {
+      "message": "Aplicativo Ledger Live"
+   },
+   "ledgerLocked": {
+      "message": "Não é possível conectar ao dispositivo Ledger. Certifique-se de que seu dispositivo esteja desbloqueado e que o aplicativo Ethereum esteja aberto."
+   },
+   "ledgerTimeout": {
+      "message": "O Ledger Live está demorando muito para responder ou a conexão expirou. Certifique-se de que o aplicativo do Ledger Live esteja aberto e que seu dispositivo esteja desbloqueado."
+   },
+   "ledgerTransportChangeWarning": {
+      "message": "Se o seu aplicativo do Ledger Live estiver aberto, desconecte qualquer conexão aberta com o Ledger Live e feche o aplicativo do Ledger Live."
+   },
+   "ledgerWebHIDNotConnectedErrorMessage": {
+      "description": "An error message shown to the user during the hardware connect flow.",
+      "message": "O dispositivo ledger não foi conectado. Se deseja conectar seu Ledger, clique em \"Continuar\" novamente e aprove a conexão HID"
+   },
+   "likeToImportTokens": {
+      "message": "Você gostaria de importar esses tokens?"
+   },
+   "lineaGoerli": {
+      "message": "Rede de testes Linea Goerli"
+   },
+   "link": {
+      "message": "Link"
+   },
+   "links": {
+      "message": "Links"
+   },
+   "loadMore": {
+      "message": "Carregar mais"
+   },
+   "loading": {
+      "message": "Carregando..."
+   },
+   "loadingTokens": {
+      "message": "Carregando tokens..."
+   },
+   "localhost": {
+      "message": "Host local 8545"
+   },
+   "lock": {
+      "message": "Bloquear"
+   },
+   "low": {
+      "message": "Baixa"
+   },
+   "lowGasSettingToolTipMessage": {
+      "description": "$1 is key 'low' separated here so that it can be passed in with bold font-weight",
+      "message": "Use $1 para aguardar um preço mais baixo. As estimativas de tempo são muito menos exatas, pois os preços são relativamente imprevisíveis."
+   },
+   "lowLowercase": {
+      "message": "baixa"
+   },
+   "mainnet": {
+      "message": "Mainnet do Ethereum"
+   },
+   "makeAnotherSwap": {
+      "message": "Criar nova troca"
+   },
+   "makeSureNoOneWatching": {
+      "description": "Warning to users to be care while creating and saving their new Secret Recovery Phrase",
+      "message": "Confirme que não há ninguém observando a sua tela"
+   },
+   "max": {
+      "message": "Máx"
+   },
+   "maxBaseFee": {
+      "message": "Taxa de base máxima"
+   },
+   "maxFee": {
+      "message": "Taxa máxima"
+   },
+   "maxPriorityFee": {
+      "message": "Taxa de prioridade máxima"
+   },
+   "medium": {
+      "message": "Mercado"
+   },
+   "mediumGasSettingToolTipMessage": {
+      "description": "$1 is key 'medium' (text: 'Market') separated here so that it can be passed in with bold font-weight",
+      "message": "Use $1 para um processamento rápido pelo preço atual de mercado."
+   },
+   "memo": {
+      "message": "nota"
+   },
+   "message": {
+      "message": "Mensagem"
+   },
+   "metaMaskConnectStatusParagraphOne": {
+      "message": "Agora você tem mais controle sobre as conexões da sua conta na MetaMask."
+   },
+   "metaMaskConnectStatusParagraphThree": {
+      "message": "Clique para gerenciar suas contas conectadas."
+   },
+   "metaMaskConnectStatusParagraphTwo": {
+      "message": "O botão de status da conexão mostra se o website que você está visitando está conectado à conta selecionada no momento."
+   },
+   "metamaskSwapsOfflineDescription": {
+      "message": "O MetaMask Swaps está em manutenção. Verifique novamente mais tarde."
+   },
+   "metamaskVersion": {
+      "message": "Versão da MetaMask"
+   },
+   "mismatchedChainLinkText": {
+      "description": "Serves as link text for the 'mismatchedChain' key. This text will be embedded inside the translation for that key.",
+      "message": "verifique os detalhes da rede"
+   },
+   "mustSelectOne": {
+      "message": "Selecione pelo menos 1 token."
+   },
+   "name": {
+      "message": "Nome"
+   },
+   "needHelp": {
+      "description": "$1 represents `needHelpLinkText`, the text which goes in the help link",
+      "message": "Precisa de ajuda? Contate $1"
+   },
+   "needHelpFeedback": {
+      "message": "Compartilhe seu feedback"
+   },
+   "needHelpLinkText": {
+      "message": "Suporte da MetaMask"
+   },
+   "needHelpSubmitTicket": {
+      "message": "Envie um chamado"
+   },
+   "needImportFile": {
+      "description": "User is important an account and needs to add a file to continue",
+      "message": "É preciso selecionar um arquivo para importar."
+   },
+   "negativeETH": {
+      "message": "Não é possível enviar valores negativos de ETH."
+   },
+   "networkDetails": {
+      "message": "Detalhes da rede"
+   },
+   "networkIsBusy": {
+      "message": "A rede está ocupada. Os preços de gás estão altos e as estimativas estão menos exatas."
+   },
+   "networkName": {
+      "message": "Nome da rede"
+   },
+   "networkNameBSC": {
+      "message": "BSC"
+   },
+   "networkNameDefinition": {
+      "message": "O nome associado a essa rede."
+   },
+   "networkNameEthereum": {
+      "message": "Ethereum"
+   },
+   "networkNamePolygon": {
+      "message": "Polygon"
+   },
+   "networkNameTestnet": {
+      "message": "Testnet"
+   },
+   "networkSettingsChainIdDescription": {
+      "message": "O ID da cadeia é usado para assinar transações. É preciso ser igual ao ID da cadeia retornado pela rede. Você pode informar um número decimal ou um número hexadecimal com prefixo “0x”, mas exibiremos o número em casas decimais."
+   },
+   "networkStatus": {
+      "message": "Status da rede"
+   },
+   "networkStatusBaseFeeTooltip": {
+      "description": "$1 and $2 are bold text for Medium and Aggressive respectively.",
+      "message": "A taxa de base é definida pela rede e muda a cada 13 ou 14 segundos. Nossas opções $1 e $2 têm em conta os aumentos súbi

@@ -1,0 +1,1361 @@
+118" length="774">
+          <Hash alg="SHA256" value="1039C4BB91FA6AEA0CE1AD2CC7833129BB2A9FBF3240F1D7F618CF04302393C1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15860" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_be9110eee670667a\f\devicesflowbroker.dll.mui" length="473" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="2D99D7A6361560458A931B90285573EB1A7E730968746E4DB02764A8FB632E3B" />
+      <Delta>
+        <Source type="RAW" offset="66513892" length="473">
+          <Hash alg="SHA256" value="2D99D7A6361560458A931B90285573EB1A7E730968746E4DB02764A8FB632E3B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15861" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_675d589784fa6de3\f\resources.sv-se.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="E4B82F91B9EC4F1C180CD367DDB9D77E2B2517F102D7A78505FE29AAA34BD0BA" />
+      <Delta>
+        <Source type="RAW" offset="66514365" length="50">
+          <Hash alg="SHA256" value="E4B82F91B9EC4F1C180CD367DDB9D77E2B2517F102D7A78505FE29AAA34BD0BA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15862" name="amd64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_a05383d5eadec66d\f\wldap32.dll.mui" length="1504" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7CE3B5F537685642DC9807725E4165CDF3F048FB2608529C52233C98F2F1F926" />
+      <Delta>
+        <Source type="RAW" offset="66514415" length="1504">
+          <Hash alg="SHA256" value="7CE3B5F537685642DC9807725E4165CDF3F048FB2608529C52233C98F2F1F926" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15863" name="wow64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_aaa82e281f3f8868\f\wldap32.dll.mui" length="1504" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7CE3B5F537685642DC9807725E4165CDF3F048FB2608529C52233C98F2F1F926" />
+      <Delta>
+        <Source type="RAW" offset="66515919" length="1504">
+          <Hash alg="SHA256" value="7CE3B5F537685642DC9807725E4165CDF3F048FB2608529C52233C98F2F1F926" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15864" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_b42105ed7ff8e87d\f\taskmgr.exe.mui" length="171" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="CB504411775F964B00C327A785979E9B63CFA15960B2F1247A1D6C6E1F75EB83" />
+      <Delta>
+        <Source type="RAW" offset="66517423" length="171">
+          <Hash alg="SHA256" value="CB504411775F964B00C327A785979E9B63CFA15960B2F1247A1D6C6E1F75EB83" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15865" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_e8635d9ea579990d\n\wmplayer.exe.mui" length="1198" time="133284068070000000" attr="128">
+      <Hash alg="SHA256" value="1F9E993D17D94FE6B78169122A9D205914CE0FCFD40C50A44E180137C7C7482D" />
+      <Delta>
+        <Source type="RAW" offset="66517594" length="1198">
+          <Hash alg="SHA256" value="1F9E993D17D94FE6B78169122A9D205914CE0FCFD40C50A44E180137C7C7482D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15866" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_e8635d9ea579990d\n\wmploc.dll.mui" length="59931" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="5D5363FF6CBD54C584EA17A4A57DDC43BEE033C664D7DE2057ADBCF443FB4BAE" />
+      <Delta>
+        <Source type="RAW" offset="66518792" length="59931">
+          <Hash alg="SHA256" value="5D5363FF6CBD54C584EA17A4A57DDC43BEE033C664D7DE2057ADBCF443FB4BAE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15867" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_ff4615efc9725042\f\msdt.exe.mui" length="528" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="AFE60492C167480BC5F3426A53BF10636E4561542C6ED7DA07A61F4EC8A25F3B" />
+      <Delta>
+        <Source type="RAW" offset="66578723" length="528">
+          <Hash alg="SHA256" value="AFE60492C167480BC5F3426A53BF10636E4561542C6ED7DA07A61F4EC8A25F3B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15868" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_b5108620f164efdd\n\logoncli.dll.mui" length="2419" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="0523681201D68F07A51D668F4ADBB7816C925BF39E30B0A6F48F847D5A46C2BB" />
+      <Delta>
+        <Source type="RAW" offset="66579251" length="2419">
+          <Hash alg="SHA256" value="0523681201D68F07A51D668F4ADBB7816C925BF39E30B0A6F48F847D5A46C2BB" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15869" name="amd64_microsoft-windows-s..-netlogon.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_f4ab1f62e2a7d731\f\netlogon.dll.mui" length="2238" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="0C02A710EAD442F60796D1C1F700724E88DF6DFBB83BCAEACF8BCB7B9BBF0685" />
+      <Delta>
+        <Source type="RAW" offset="66581670" length="2238">
+          <Hash alg="SHA256" value="0C02A710EAD442F60796D1C1F700724E88DF6DFBB83BCAEACF8BCB7B9BBF0685" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15870" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_7d553f277bc8b6ca\f\resources.sv-se.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="4EDD99553C0FCA8E36E20576BC4DE76A81086CA995B90D09F3B358489E3653F2" />
+      <Delta>
+        <Source type="RAW" offset="66583908" length="50">
+          <Hash alg="SHA256" value="4EDD99553C0FCA8E36E20576BC4DE76A81086CA995B90D09F3B358489E3653F2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15871" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_e4b2c418f0fa43b7\f\settingshandlers_devices.dll.mui" length="169" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="430261A7A645611BE15B2C4D85B4AF8FFE92B7EEC021EECEE3F9F45B24ACCB12" />
+      <Delta>
+        <Source type="RAW" offset="66583958" length="169">
+          <Hash alg="SHA256" value="430261A7A645611BE15B2C4D85B4AF8FFE92B7EEC021EECEE3F9F45B24ACCB12" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15872" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_c6cec69121111c46\f\windows.ui.settingshandlers-nt.sv-se.pri" length="26543" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="67312E8FA84E3F80679D19C39E3C3937DB8A6ECD71FAE6D1E34351C288E3A717" />
+      <Delta>
+        <Source type="RAW" offset="66584127" length="26543">
+          <Hash alg="SHA256" value="67312E8FA84E3F80679D19C39E3C3937DB8A6ECD71FAE6D1E34351C288E3A717" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15873" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_7805456c6b535b9d\f\settingshandlers_onecore_powerandsleep.dll.mui" length="1059" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="BEC827AFF38407C620BD25CD3112DFF564A5B44562BBFFC6D01FD4FEDE9AF220" />
+      <Delta>
+        <Source type="RAW" offset="66610670" length="1059">
+          <Hash alg="SHA256" value="BEC827AFF38407C620BD25CD3112DFF564A5B44562BBFFC6D01FD4FEDE9AF220" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15874" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_sv-se_e5a635a73dbe0857\f\win32kbase.sys.mui" length="514" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="E8E524F5CFB0D7D18EDC96B0482C02454368D434D0067A90E46B7F3827858F82" />
+      <Delta>
+        <Source type="RAW" offset="66611729" length="514">
+          <Hash alg="SHA256" value="E8E524F5CFB0D7D18EDC96B0482C02454368D434D0067A90E46B7F3827858F82" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15875" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_sv-se_2b2a53c3d5786858\f\inetcpl.cpl.mui" length="402" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="4C90860A97EABED9617AED11B3EFF16FAD570409788DA6543555F082C1F9AA32" />
+      <Delta>
+        <Source type="RAW" offset="66612243" length="402">
+          <Hash alg="SHA256" value="4C90860A97EABED9617AED11B3EFF16FAD570409788DA6543555F082C1F9AA32" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15876" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_th-th_c65dadf72600570b\f\ddores.dll.mui" length="397" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="3967ACA7F3B4B7C46F6F2D526D8F97B08452C4CB71970557C31E1A03E9097ADF" />
+      <Delta>
+        <Source type="RAW" offset="66612645" length="397">
+          <Hash alg="SHA256" value="3967ACA7F3B4B7C46F6F2D526D8F97B08452C4CB71970557C31E1A03E9097ADF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15877" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_th-th_74eff2c298ea445e\f\microsoft.bluetooth.userservice.dll.mui" length="388" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="42FB45A65B8A56E05BE977049C63D376BEAA6FA3D7B308218D74998115F27417" />
+      <Delta>
+        <Source type="RAW" offset="66613042" length="388">
+          <Hash alg="SHA256" value="42FB45A65B8A56E05BE977049C63D376BEAA6FA3D7B308218D74998115F27417" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15878" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_th-th_eb61bd0b8055937e\f\custominstallexec.exe.mui" length="168" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="282FBF8650C19485BDAA99CE7DD16F50292C94D8AE5D2C418F18B3804DA568AC" />
+      <Delta>
+        <Source type="RAW" offset="66613430" length="168">
+          <Hash alg="SHA256" value="282FBF8650C19485BDAA99CE7DD16F50292C94D8AE5D2C418F18B3804DA568AC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15879" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_th-th_eb61bd0b8055937e\f\appxdeploymentserver.dll.mui" length="780" time="133284071970000000" attr="128">
+      <Hash alg="SHA256" value="FA81E97CE43B8BAD9E80724F30D34196EEFB22F9C44E79486455215FD1A03580" />
+      <Delta>
+        <Source type="RAW" offset="66613598" length="780">
+          <Hash alg="SHA256" value="FA81E97CE43B8BAD9E80724F30D34196EEFB22F9C44E79486455215FD1A03580" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15880" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_th-th_639b32a1d7b523bb\f\devicesflowbroker.dll.mui" length="482" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7C25A7461F6D0B689673BD7A6425A7B7C054B70F9E516AD539D9EC153A4ED60B" />
+      <Delta>
+        <Source type="RAW" offset="66614378" length="482">
+          <Hash alg="SHA256" value="7C25A7461F6D0B689673BD7A6425A7B7C054B70F9E516AD539D9EC153A4ED60B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15881" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_th-th_0c677a4a763f2b24\f\resources.th-th.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="61DE9194088B65D5A496B82411C6BE581A4D7755CE63F50ED1EFCD7BAEE8C2D4" />
+      <Delta>
+        <Source type="RAW" offset="66614860" length="50">
+          <Hash alg="SHA256" value="61DE9194088B65D5A496B82411C6BE581A4D7755CE63F50ED1EFCD7BAEE8C2D4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15882" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_th-th_592b27a0713da5be\f\taskmgr.exe.mui" length="172" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="4B5805DAE2F8CD4A23D280953B2211A82EDBEE89A80D8EEAD974805CD7D7DAC0" />
+      <Delta>
+        <Source type="RAW" offset="66614910" length="172">
+          <Hash alg="SHA256" value="4B5805DAE2F8CD4A23D280953B2211A82EDBEE89A80D8EEAD974805CD7D7DAC0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15883" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_th-th_8d6d7f5196be564e\n\wmploc.dll.mui" length="59488" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="627F27E30D7E343EE462DB41AE9F3ADC90489FF8F11B5E075A70D8899E183224" />
+      <Delta>
+        <Source type="RAW" offset="66615082" length="59488">
+          <Hash alg="SHA256" value="627F27E30D7E343EE462DB41AE9F3ADC90489FF8F11B5E075A70D8899E183224" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15884" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_th-th_8d6d7f5196be564e\n\wmplayer.exe.mui" length="1287" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="7ADB8D9A772FE26A91F904F62C288DC74A3F267424484175E8143D876D404FB8" />
+      <Delta>
+        <Source type="RAW" offset="66674570" length="1287">
+          <Hash alg="SHA256" value="7ADB8D9A772FE26A91F904F62C288DC74A3F267424484175E8143D876D404FB8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15885" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_th-th_a45037a2bab70d83\f\msdt.exe.mui" length="549" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="2B5AF18EDFDE101BAD372AB82CA18D127F4CA95D12758A58A78CCF212B17E082" />
+      <Delta>
+        <Source type="RAW" offset="66675857" length="549">
+          <Hash alg="SHA256" value="2B5AF18EDFDE101BAD372AB82CA18D127F4CA95D12758A58A78CCF212B17E082" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15886" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_th-th_5a1aa7d3e2a9ad1e\n\logoncli.dll.mui" length="2383" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="50B1387F024DD1D62828D8EEC53725B4503BCC7CDE2781AA617272B7AEB4DC23" />
+      <Delta>
+        <Source type="RAW" offset="66676406" length="2383">
+          <Hash alg="SHA256" value="50B1387F024DD1D62828D8EEC53725B4503BCC7CDE2781AA617272B7AEB4DC23" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15887" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_th-th_225f60da6d0d740b\f\resources.th-th.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="7734DEECFDF6D634EF29F75B3E4049D24D56198BEE2E8DD9CD0D13984A6F2286" />
+      <Delta>
+        <Source type="RAW" offset="66678789" length="50">
+          <Hash alg="SHA256" value="7734DEECFDF6D634EF29F75B3E4049D24D56198BEE2E8DD9CD0D13984A6F2286" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15888" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_th-th_89bce5cbe23f00f8\f\settingshandlers_devices.dll.mui" length="168" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="D27FD8053C5D99E786864873E730CA53E03FE52A715698785AC00ECF84CD6675" />
+      <Delta>
+        <Source type="RAW" offset="66678839" length="168">
+          <Hash alg="SHA256" value="D27FD8053C5D99E786864873E730CA53E03FE52A715698785AC00ECF84CD6675" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15889" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_th-th_6bd8e8441255d987\f\windows.ui.settingshandlers-nt.th-th.pri" length="26199" time="133284071970000000" attr="128">
+      <Hash alg="SHA256" value="4F80B78B36D35CB868FFE6BE91065FF1E1713B10F058F4868BBBC2C1AFFC8271" />
+      <Delta>
+        <Source type="RAW" offset="66679007" length="26199">
+          <Hash alg="SHA256" value="4F80B78B36D35CB868FFE6BE91065FF1E1713B10F058F4868BBBC2C1AFFC8271" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15890" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_th-th_1d0f671f5c9818de\f\settingshandlers_onecore_powerandsleep.dll.mui" length="1023" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="B94DC7851D06B41B33ECCB93BE746B51BD40B8CCC7FE946B9BD8D7DF707AE8D2" />
+      <Delta>
+        <Source type="RAW" offset="66705206" length="1023">
+          <Hash alg="SHA256" value="B94DC7851D06B41B33ECCB93BE746B51BD40B8CCC7FE946B9BD8D7DF707AE8D2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15891" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_th-th_8ab0575a2f02c598\f\win32kbase.sys.mui" length="517" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="6CACF97A6A5392388C99020C76F51BD83C16699CD73767E48AF441C00C3B4791" />
+      <Delta>
+        <Source type="RAW" offset="66706229" length="517">
+          <Hash alg="SHA256" value="6CACF97A6A5392388C99020C76F51BD83C16699CD73767E48AF441C00C3B4791" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15892" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_th-th_d0347576c6bd2599\f\inetcpl.cpl.mui" length="415" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="3799784D405FD721FDCB06B60569DC988EB7E2C699E616CB63C13771993D29E2" />
+      <Delta>
+        <Source type="RAW" offset="66706746" length="415">
+          <Hash alg="SHA256" value="3799784D405FD721FDCB06B60569DC988EB7E2C699E616CB63C13771993D29E2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15893" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_ca60d68b23779bbb\f\ddores.dll.mui" length="404" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="AD9F2DD276F3D9F7756BE5969D0318A339E8DD83D724DCE99F4516A3F48FC2B7" />
+      <Delta>
+        <Source type="RAW" offset="66707161" length="404">
+          <Hash alg="SHA256" value="AD9F2DD276F3D9F7756BE5969D0318A339E8DD83D724DCE99F4516A3F48FC2B7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15894" name="amd64_microsoft-onecore-b..h-bthserv.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_aeebaac576c27c5c\f\bthserv.dll.mui" length="464" time="133284071940000000" attr="128">
+      <Hash alg="SHA256" value="E920075850574A2273FB31D9DFFB12C3FF24BC5DC005757D60CDFD46388F1917" />
+      <Delta>
+        <Source type="RAW" offset="66707565" length="464">
+          <Hash alg="SHA256" value="E920075850574A2273FB31D9DFFB12C3FF24BC5DC005757D60CDFD46388F1917" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15895" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_78f31b569661890e\f\microsoft.bluetooth.userservice.dll.mui" length="385" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="CD9C670D586C898B3CE76CE25A614DD04EE8F6E32298EC44AB4214A9522BF38A" />
+      <Delta>
+        <Source type="RAW" offset="66708029" length="385">
+          <Hash alg="SHA256" value="CD9C670D586C898B3CE76CE25A614DD04EE8F6E32298EC44AB4214A9522BF38A" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15896" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_ef64e59f7dccd82e\f\custominstallexec.exe.mui" length="168" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="4500425E3E0A6F38FCFF9690BE74ADBB37F12D131198C924F9EC8139EAD5A200" />
+      <Delta>
+        <Source type="RAW" offset="66708414" length="168">
+          <Hash alg="SHA256" value="4500425E3E0A6F38FCFF9690BE74ADBB37F12D131198C924F9EC8139EAD5A200" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15897" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_ef64e59f7dccd82e\f\appxdeploymentserver.dll.mui" length="795" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="C58145F45699CED1EA3D7DA786758FCB644D34B964D947B6FC1892442079E67D" />
+      <Delta>
+        <Source type="RAW" offset="66708582" length="795">
+          <Hash alg="SHA256" value="C58145F45699CED1EA3D7DA786758FCB644D34B964D947B6FC1892442079E67D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15898" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_679e5b35d52c686b\f\devicesflowbroker.dll.mui" length="468" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="98F33F62065F5C68AB318B991D7483E330747583DEED868861347E80057C37E3" />
+      <Delta>
+        <Source type="RAW" offset="66709377" length="468">
+          <Hash alg="SHA256" value="98F33F62065F5C68AB318B991D7483E330747583DEED868861347E80057C37E3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15899" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_106aa2de73b66fd4\f\resources.tr-tr.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="7EE60EAFE6D057E17FAAC275A5C01222946BA4D8A65DA2FFC4E3AF7EE98F0F79" />
+      <Delta>
+        <Source type="RAW" offset="66709845" length="50">
+          <Hash alg="SHA256" value="7EE60EAFE6D057E17FAAC275A5C01222946BA4D8A65DA2FFC4E3AF7EE98F0F79" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15900" name="amd64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_4960ce1cd99ac85e\f\wldap32.dll.mui" length="1522" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="73374980126B6247AE6704D392AAE41CBC9B61EC2E2D8CE09107E2413727FF35" />
+      <Delta>
+        <Source type="RAW" offset="66709895" length="1522">
+          <Hash alg="SHA256" value="73374980126B6247AE6704D392AAE41CBC9B61EC2E2D8CE09107E2413727FF35" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15901" name="wow64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_53b5786f0dfb8a59\f\wldap32.dll.mui" length="1522" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="73374980126B6247AE6704D392AAE41CBC9B61EC2E2D8CE09107E2413727FF35" />
+      <Delta>
+        <Source type="RAW" offset="66711417" length="1522">
+          <Hash alg="SHA256" value="73374980126B6247AE6704D392AAE41CBC9B61EC2E2D8CE09107E2413727FF35" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15902" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_5d2e50346eb4ea6e\f\taskmgr.exe.mui" length="172" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="759D241AB9648D4D2CC09FDE68D2EBCD034D005CEFF9FD8A370A3F00B8B8AD25" />
+      <Delta>
+        <Source type="RAW" offset="66712939" length="172">
+          <Hash alg="SHA256" value="759D241AB9648D4D2CC09FDE68D2EBCD034D005CEFF9FD8A370A3F00B8B8AD25" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15903" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_9170a7e594359afe\n\wmploc.dll.mui" length="61744" time="133284068090000000" attr="128">
+      <Hash alg="SHA256" value="D84A1E46627FA8CE4C7562988C5A28FFC50AFC63AE4A4E58968AFC03BC3B0119" />
+      <Delta>
+        <Source type="RAW" offset="66713111" length="61744">
+          <Hash alg="SHA256" value="D84A1E46627FA8CE4C7562988C5A28FFC50AFC63AE4A4E58968AFC03BC3B0119" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15904" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_9170a7e594359afe\n\wmplayer.exe.mui" length="1241" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="C97A527373AA917AA70C7CCD936DE6E573D31F53E8380DA7DB5830A9E2C9A567" />
+      <Delta>
+        <Source type="RAW" offset="66774855" length="1241">
+          <Hash alg="SHA256" value="C97A527373AA917AA70C7CCD936DE6E573D31F53E8380DA7DB5830A9E2C9A567" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15905" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_a8536036b82e5233\f\msdt.exe.mui" length="541" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="A09A64E8A7207BB4AD3854ED6669CF4EB6DA4BAFBC0D61AA3EAD7F4F4C327E2F" />
+      <Delta>
+        <Source type="RAW" offset="66776096" length="541">
+          <Hash alg="SHA256" value="A09A64E8A7207BB4AD3854ED6669CF4EB6DA4BAFBC0D61AA3EAD7F4F4C327E2F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15906" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_5e1dd067e020f1ce\n\logoncli.dll.mui" length="2377" time="133284068090000000" attr="128">
+      <Hash alg="SHA256" value="F86AAFEDE0B9C089E495A007817AC49169C167A9631362C0BD3C0282A42B9E55" />
+      <Delta>
+        <Source type="RAW" offset="66776637" length="2377">
+          <Hash alg="SHA256" value="F86AAFEDE0B9C089E495A007817AC49169C167A9631362C0BD3C0282A42B9E55" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15907" name="amd64_microsoft-windows-s..-netlogon.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_9db869a9d163d922\f\netlogon.dll.mui" length="2276" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="14B4E5133AF5A1EFA1689543F4F665103CE97D615C8422562D47308FD6B60DB1" />
+      <Delta>
+        <Source type="RAW" offset="66779014" length="2276">
+          <Hash alg="SHA256" value="14B4E5133AF5A1EFA1689543F4F665103CE97D615C8422562D47308FD6B60DB1" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15908" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_2662896e6a84b8bb\f\resources.tr-tr.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="EC40B61DEC601705604AACE83DAE01B739DA07A1262D6D56DB329A83BBE0034A" />
+      <Delta>
+        <Source type="RAW" offset="66781290" length="50">
+          <Hash alg="SHA256" value="EC40B61DEC601705604AACE83DAE01B739DA07A1262D6D56DB329A83BBE0034A" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15909" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_8dc00e5fdfb645a8\f\settingshandlers_devices.dll.mui" length="168" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="A82BA3CC515E03C5CCDA33787709194463D4168BC3A136BFB3F81137A929B68E" />
+      <Delta>
+        <Source type="RAW" offset="66781340" length="168">
+          <Hash alg="SHA256" value="A82BA3CC515E03C5CCDA33787709194463D4168BC3A136BFB3F81137A929B68E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15910" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_6fdc10d80fcd1e37\f\windows.ui.settingshandlers-nt.tr-tr.pri" length="26298" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="D0C36DB0007DCAF660ED8874F58309BC624B47F589B223DC60597DAF32354CDD" />
+      <Delta>
+        <Source type="RAW" offset="66781508" length="26298">
+          <Hash alg="SHA256" value="D0C36DB0007DCAF660ED8874F58309BC624B47F589B223DC60597DAF32354CDD" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15911" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_21128fb35a0f5d8e\f\settingshandlers_onecore_powerandsleep.dll.mui" length="1072" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="F85B6D1D25AB2A6AF0A79A35181300A87DDFB22760826ED594267E0AAAC37F04" />
+      <Delta>
+        <Source type="RAW" offset="66807806" length="1072">
+          <Hash alg="SHA256" value="F85B6D1D25AB2A6AF0A79A35181300A87DDFB22760826ED594267E0AAAC37F04" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15912" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_tr-tr_8eb37fee2c7a0a48\f\win32kbase.sys.mui" length="487" time="133284071940000000" attr="128">
+      <Hash alg="SHA256" value="A03CD5F17B7006FC29C750FC1FAF7900A26683176E170AF8B371346A1C407409" />
+      <Delta>
+        <Source type="RAW" offset="66808878" length="487">
+          <Hash alg="SHA256" value="A03CD5F17B7006FC29C750FC1FAF7900A26683176E170AF8B371346A1C407409" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15913" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_tr-tr_d4379e0ac4346a49\f\inetcpl.cpl.mui" length="441" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="5AA1650E3C91B155DA36308A53F4B9D5FC16AD3CC2BBC1BC6C58E6BB7A979A36" />
+      <Delta>
+        <Source type="RAW" offset="66809365" length="441">
+          <Hash alg="SHA256" value="5AA1650E3C91B155DA36308A53F4B9D5FC16AD3CC2BBC1BC6C58E6BB7A979A36" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15914" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_6640b9321aa8c207\f\ddores.dll.mui" length="409" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="D43179FE873F5BB1A2F67E25FE38C69BD2B6E6903B176ABAB2547AB1AEAD6FE8" />
+      <Delta>
+        <Source type="RAW" offset="66809806" length="409">
+          <Hash alg="SHA256" value="D43179FE873F5BB1A2F67E25FE38C69BD2B6E6903B176ABAB2547AB1AEAD6FE8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15915" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_14d2fdfd8d92af5a\f\microsoft.bluetooth.userservice.dll.mui" length="415" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="4812791767A17CF37E1EA0ECA9578919A94A0FA741477BA4F7C0B9C2BC37A778" />
+      <Delta>
+        <Source type="RAW" offset="66810215" length="415">
+          <Hash alg="SHA256" value="4812791767A17CF37E1EA0ECA9578919A94A0FA741477BA4F7C0B9C2BC37A778" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15916" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_8b44c84674fdfe7a\f\custominstallexec.exe.mui" length="168" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="5D81FE70672D11AF8CBB4139B0FE213911FBB746E8EFD87E5E24665B1C9CA678" />
+      <Delta>
+        <Source type="RAW" offset="66810630" length="168">
+          <Hash alg="SHA256" value="5D81FE70672D11AF8CBB4139B0FE213911FBB746E8EFD87E5E24665B1C9CA678" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15917" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_8b44c84674fdfe7a\f\appxdeploymentserver.dll.mui" length="780" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7EFB6B5D306B38052165BB4767DA2C81383F4370B3EDEC82DCC765BB29FCF703" />
+      <Delta>
+        <Source type="RAW" offset="66810798" length="780">
+          <Hash alg="SHA256" value="7EFB6B5D306B38052165BB4767DA2C81383F4370B3EDEC82DCC765BB29FCF703" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15918" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_037e3ddccc5d8eb7\f\devicesflowbroker.dll.mui" length="536" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="03C75A4828DBAB5438444CF945986484DC511F2CF483343BACCEE08E75408500" />
+      <Delta>
+        <Source type="RAW" offset="66811578" length="536">
+          <Hash alg="SHA256" value="03C75A4828DBAB5438444CF945986484DC511F2CF483343BACCEE08E75408500" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15919" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_ac4a85856ae79620\f\resources.uk-ua.pri" length="90" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="89E287C782E5E567974A072BE5642917230EB981A21372974AAE5BFB979357D8" />
+      <Delta>
+        <Source type="RAW" offset="66812114" length="90">
+          <Hash alg="SHA256" value="89E287C782E5E567974A072BE5642917230EB981A21372974AAE5BFB979357D8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15920" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_f90e32db65e610ba\f\taskmgr.exe.mui" length="172" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="435EAE6932AF367895794B0F38F271AEBFF075EF35D89D621D9E258E3D485FC6" />
+      <Delta>
+        <Source type="RAW" offset="66812204" length="172">
+          <Hash alg="SHA256" value="435EAE6932AF367895794B0F38F271AEBFF075EF35D89D621D9E258E3D485FC6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15921" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_2d508a8c8b66c14a\n\wmploc.dll.mui" length="63248" time="133284068270000000" attr="128">
+      <Hash alg="SHA256" value="92328DC49FBD1827E63A8372E6CB855B22EEFED08DF3A855D3E19EBA8E025F0D" />
+      <Delta>
+        <Source type="RAW" offset="66812376" length="63248">
+          <Hash alg="SHA256" value="92328DC49FBD1827E63A8372E6CB855B22EEFED08DF3A855D3E19EBA8E025F0D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15922" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_2d508a8c8b66c14a\n\wmplayer.exe.mui" length="1293" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="BC2E1E390D5BC745114A79D6BFE31CFD31674C19255952D94DC405CBA380884C" />
+      <Delta>
+        <Source type="RAW" offset="66875624" length="1293">
+          <Hash alg="SHA256" value="BC2E1E390D5BC745114A79D6BFE31CFD31674C19255952D94DC405CBA380884C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15923" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_443342ddaf5f787f\f\msdt.exe.mui" length="523" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="C63492A49BC6914A8823FA30DEA2D6BB9E56FA05310C8C49DB21600A0F3D3AC0" />
+      <Delta>
+        <Source type="RAW" offset="66876917" length="523">
+          <Hash alg="SHA256" value="C63492A49BC6914A8823FA30DEA2D6BB9E56FA05310C8C49DB21600A0F3D3AC0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15924" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_f9fdb30ed752181a\n\logoncli.dll.mui" length="2486" time="133284068080000000" attr="128">
+      <Hash alg="SHA256" value="6D12082A5B64291FB4A9554C3DD426B991A8908701202BC56EB2603A1E69D251" />
+      <Delta>
+        <Source type="RAW" offset="66877440" length="2486">
+          <Hash alg="SHA256" value="6D12082A5B64291FB4A9554C3DD426B991A8908701202BC56EB2603A1E69D251" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15925" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_c2426c1561b5df07\f\resources.uk-ua.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="C298500678D57AA76B56DD56360940613893B01275DCF71776F56B5050D2E4D7" />
+      <Delta>
+        <Source type="RAW" offset="66879926" length="50">
+          <Hash alg="SHA256" value="C298500678D57AA76B56DD56360940613893B01275DCF71776F56B5050D2E4D7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15926" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_299ff106d6e76bf4\f\settingshandlers_devices.dll.mui" length="168" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="4AFBF97ADFB1BAB9B52EFB5E7ACAC8C70D6BB5DB480D0E90BAB4A03A518D693F" />
+      <Delta>
+        <Source type="RAW" offset="66879976" length="168">
+          <Hash alg="SHA256" value="4AFBF97ADFB1BAB9B52EFB5E7ACAC8C70D6BB5DB480D0E90BAB4A03A518D693F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15927" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_0bbbf37f06fe4483\f\windows.ui.settingshandlers-nt.uk-ua.pri" length="26595" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="FBB402A9BBF25853D6B694FE00474724A144BF85B6639189C074EF9ECE6FBFAB" />
+      <Delta>
+        <Source type="RAW" offset="66880144" length="26595">
+          <Hash alg="SHA256" value="FBB402A9BBF25853D6B694FE00474724A144BF85B6639189C074EF9ECE6FBFAB" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15928" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_bcf2725a514083da\f\settingshandlers_onecore_powerandsleep.dll.mui" length="1092" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="43D13620DFC40D270C02D1EA1DA870C5D4D41A1EAC470E97E51939DE6EE18621" />
+      <Delta>
+        <Source type="RAW" offset="66906739" length="1092">
+          <Hash alg="SHA256" value="43D13620DFC40D270C02D1EA1DA870C5D4D41A1EAC470E97E51939DE6EE18621" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15929" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_uk-ua_2a93629523ab3094\f\win32kbase.sys.mui" length="496" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="0E243030DCDEA29DD95C0116DED107D4CD86690D59083870D1F64D56AA21C597" />
+      <Delta>
+        <Source type="RAW" offset="66907831" length="496">
+          <Hash alg="SHA256" value="0E243030DCDEA29DD95C0116DED107D4CD86690D59083870D1F64D56AA21C597" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15930" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_uk-ua_701780b1bb659095\f\inetcpl.cpl.mui" length="1523" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="842ACE35B7EBE520441DF1EE75274C36C64D6C27BA03ECCA52A0A05C4064844B" />
+      <Delta>
+        <Source type="RAW" offset="66908327" length="1523">
+          <Hash alg="SHA256" value="842ACE35B7EBE520441DF1EE75274C36C64D6C27BA03ECCA52A0A05C4064844B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15931" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_0f3863a10974fbda\f\ddores.dll.mui" length="384" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="8567BCBB937945C191416B01D154D38570DD2FD4C9814CA4DD80FD20D23C4A36" />
+      <Delta>
+        <Source type="RAW" offset="66909850" length="384">
+          <Hash alg="SHA256" value="8567BCBB937945C191416B01D154D38570DD2FD4C9814CA4DD80FD20D23C4A36" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15932" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_bdcaa86c7c5ee92d\f\microsoft.bluetooth.userservice.dll.mui" length="364" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="BC326E2CC46F8FF4AFB6AAB352B2D696B5EF0A8FB62CD820A5985499E6491FB9" />
+      <Delta>
+        <Source type="RAW" offset="66910234" length="364">
+          <Hash alg="SHA256" value="BC326E2CC46F8FF4AFB6AAB352B2D696B5EF0A8FB62CD820A5985499E6491FB9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15933" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_343c72b563ca384d\f\custominstallexec.exe.mui" length="170" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="48FBB78153E70229C1D97BF62A99847E3B64B2F34B37A3A9E2ACE882BBDEAA4F" />
+      <Delta>
+        <Source type="RAW" offset="66910598" length="170">
+          <Hash alg="SHA256" value="48FBB78153E70229C1D97BF62A99847E3B64B2F34B37A3A9E2ACE882BBDEAA4F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15934" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_343c72b563ca384d\f\appxdeploymentserver.dll.mui" length="779" time="133284071970000000" attr="128">
+      <Hash alg="SHA256" value="B3FB572887F70FDB768DC14F53F587FA2CBF885F6688AF56BD3C98997CDF5C1B" />
+      <Delta>
+        <Source type="RAW" offset="66910768" length="779">
+          <Hash alg="SHA256" value="B3FB572887F70FDB768DC14F53F587FA2CBF885F6688AF56BD3C98997CDF5C1B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15935" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_ac75e84bbb29c88a\f\devicesflowbroker.dll.mui" length="482" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="248A3CB53A5813CB961842BB9107A2D75177FEBB4FE1D07178D60D71098DC041" />
+      <Delta>
+        <Source type="RAW" offset="66911547" length="482">
+          <Hash alg="SHA256" value="248A3CB53A5813CB961842BB9107A2D75177FEBB4FE1D07178D60D71098DC041" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15936" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_55422ff459b3cff3\f\resources.vi-vn.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A5A7928199458F9F831966AFF8104D5D46C0C0ABF51E97BC8CC44639B164FA1B" />
+      <Delta>
+        <Source type="RAW" offset="66912029" length="50">
+          <Hash alg="SHA256" value="A5A7928199458F9F831966AFF8104D5D46C0C0ABF51E97BC8CC44639B164FA1B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15937" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_a205dd4a54b24a8d\f\taskmgr.exe.mui" length="171" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="B0C41BDB0096380F83F3A8143615BF44FC7428FE52F7B7754467171EC2969296" />
+      <Delta>
+        <Source type="RAW" offset="66912079" length="171">
+          <Hash alg="SHA256" value="B0C41BDB0096380F83F3A8143615BF44FC7428FE52F7B7754467171EC2969296" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15938" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_d64834fb7a32fb1d\n\wmploc.dll.mui" length="64205" time="133284068270000000" attr="128">
+      <Hash alg="SHA256" value="D4DE372DEAB4D88F754C3282C7AB299404159B52D5BD6AE45CFFFB74A9CD1E24" />
+      <Delta>
+        <Source type="RAW" offset="66912250" length="64205">
+          <Hash alg="SHA256" value="D4DE372DEAB4D88F754C3282C7AB299404159B52D5BD6AE45CFFFB74A9CD1E24" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15939" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_d64834fb7a32fb1d\n\wmplayer.exe.mui" length="1191" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="EF5C6E7E34AFF2FE89A69590809571D095CF2F4B2AAE62DE519304FC7217489D" />
+      <Delta>
+        <Source type="RAW" offset="66976455" length="1191">
+          <Hash alg="SHA256" value="EF5C6E7E34AFF2FE89A69590809571D095CF2F4B2AAE62DE519304FC7217489D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15940" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_a2f55d7dc61e51ed\n\logoncli.dll.mui" length="2088" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="B0E41C0118EBC23CBF144AB728518DEA6C4E79B2CFFA31A96804922C889EC339" />
+      <Delta>
+        <Source type="RAW" offset="66977646" length="2088">
+          <Hash alg="SHA256" value="B0E41C0118EBC23CBF144AB728518DEA6C4E79B2CFFA31A96804922C889EC339" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15941" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_6b3a1684508218da\f\resources.vi-vn.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="D7A079FD5C7FE2C305CB5CE269A4D50CF67B555294CB845A61A7F1B79E55ED1E" />
+      <Delta>
+        <Source type="RAW" offset="66979734" length="50">
+          <Hash alg="SHA256" value="D7A079FD5C7FE2C305CB5CE269A4D50CF67B555294CB845A61A7F1B79E55ED1E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15942" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_d2979b75c5b3a5c7\f\settingshandlers_devices.dll.mui" length="168" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="F068F8A9F504C359947DA0ECF33826EAB76AD73ABA2F9C495FF6D7CC7DD7C9DE" />
+      <Delta>
+        <Source type="RAW" offset="66979784" length="168">
+          <Hash alg="SHA256" value="F068F8A9F504C359947DA0ECF33826EAB76AD73ABA2F9C495FF6D7CC7DD7C9DE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15943" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_b4b39dedf5ca7e56\f\windows.ui.settingshandlers-nt.vi-vn.pri" length="26139" time="133284071970000000" attr="128">
+      <Hash alg="SHA256" value="29F44A254AD94E1EADB4C82034BDC105167B64F4553F6A5E8A0534EF356C0EAF" />
+      <Delta>
+        <Source type="RAW" offset="66979952" length="26139">
+          <Hash alg="SHA256" value="29F44A254AD94E1EADB4C82034BDC105167B64F4553F6A5E8A0534EF356C0EAF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15944" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_vi-vn_65ea1cc9400cbdad\f\settingshandlers_onecore_powerandsleep.dll.mui" length="1095" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="B3E1DB5C78D23FCCF19BFC926B311F5F81EAB25CB45173EC42E1863FDD0799EA" />
+      <Delta>
+        <Source type="RAW" offset="67006091" length="1095">
+          <Hash alg="SHA256" value="B3E1DB5C78D23FCCF19BFC926B311F5F81EAB25CB45173EC42E1863FDD0799EA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15945" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_vi-vn_190f2b20aa31ca68\f\inetcpl.cpl.mui" length="384" time="133284071970000000" attr="128">
+      <Hash alg="SHA256" value="9C63281F678C6D16068F656BA387454D0D03D4E5DD1C1A070BD2B691ADB25694" />
+      <Delta>
+        <Source type="RAW" offset="67007186" length="384">
+          <Hash alg="SHA256" value="9C63281F678C6D16068F656BA387454D0D03D4E5DD1C1A070BD2B691ADB25694" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15946" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_9bbdf488d3af6dda\f\ddores.dll.mui" length="375" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="EAEBC84FB6C813BAB68F9578B8F81903B6C9B5974DA0267B5C36C5212EA8B668" />
+      <Delta>
+        <Source type="RAW" offset="67007570" length="375">
+          <Hash alg="SHA256" value="EAEBC84FB6C813BAB68F9578B8F81903B6C9B5974DA0267B5C36C5212EA8B668" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15947" name="amd64_microsoft-onecore-b..h-bthserv.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_8048c8c326fa4e7b\f\bthserv.dll.mui" length="470" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="66DB740F3CDEB752091C534F75610101D961A1487160DF8F66F582AAB46651BE" />
+      <Delta>
+        <Source type="RAW" offset="67007945" length="470">
+          <Hash alg="SHA256" value="66DB740F3CDEB752091C534F75610101D961A1487160DF8F66F582AAB46651BE" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15948" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_4a50395446995b2d\f\microsoft.bluetooth.userservice.dll.mui" length="362" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="45B6BA6E74EE274EEE4A46D74DB757DDBF636A65D09CB404D816FEC9594C48F0" />
+      <Delta>
+        <Source type="RAW" offset="67008415" length="362">
+          <Hash alg="SHA256" value="45B6BA6E74EE274EEE4A46D74DB757DDBF636A65D09CB404D816FEC9594C48F0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15949" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_c0c2039d2e04aa4d\f\custominstallexec.exe.mui" length="169" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="074C520222654842DC630A95A0163D3A988BC4116BD3E1AACE606EE2BF815F36" />
+      <Delta>
+        <Source type="RAW" offset="67008777" length="169">
+          <Hash alg="SHA256" value="074C520222654842DC630A95A0163D3A988BC4116BD3E1AACE606EE2BF815F36" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15950" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_c0c2039d2e04aa4d\f\appxdeploymentserver.dll.mui" length="801" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="5721FFB5F2A00A4DD12E96372CD26CAB8882FD6260249B1774D04F5FD753DD96" />
+      <Delta>
+        <Source type="RAW" offset="67008946" length="801">
+          <Hash alg="SHA256" value="5721FFB5F2A00A4DD12E96372CD26CAB8882FD6260249B1774D04F5FD753DD96" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15951" name="amd64_microsoft-windows-d..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_ac962d885e983b6c\f\windows.ui.devicesflow.zh-cn.pri" length="5171" time="133332634870000000" attr="128">
+      <Hash alg="SHA256" value="838806B3FEB30ED828962C86964FFE2EC74BBAEC7D89C2CC196F47C203ACF3C7" />
+      <Delta>
+        <Source type="RAW" offset="67009747" length="5171">
+          <Hash alg="SHA256" value="838806B3FEB30ED828962C86964FFE2EC74BBAEC7D89C2CC196F47C203ACF3C7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15952" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_38fb793385643a8a\f\devicesflowbroker.dll.mui" length="445" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="7BC7FFF11353C8ACB6E7AB0E4A193F4D656E26882EEC80CFE0465787A32FB844" />
+      <Delta>
+        <Source type="RAW" offset="67014918" length="445">
+          <Hash alg="SHA256" value="7BC7FFF11353C8ACB6E7AB0E4A193F4D656E26882EEC80CFE0465787A32FB844" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15953" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_e1c7c0dc23ee41f3\f\resources.zh-cn.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A66BDC00EADB7C2A60C70C428BE415C51873408918C3DDFCFABB10D54E5D78C7" />
+      <Delta>
+        <Source type="RAW" offset="67015363" length="50">
+          <Hash alg="SHA256" value="A66BDC00EADB7C2A60C70C428BE415C51873408918C3DDFCFABB10D54E5D78C7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15954" name="amd64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_1abdec1a89d29a7d\f\wldap32.dll.mui" length="1247" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="24C46FB567E80826E88DB9369A0BB75A44D0275821010A820FBD20D695632CBF" />
+      <Delta>
+        <Source type="RAW" offset="67015413" length="1247">
+          <Hash alg="SHA256" value="24C46FB567E80826E88DB9369A0BB75A44D0275821010A820FBD20D695632CBF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15955" name="wow64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_2512966cbe335c78\f\wldap32.dll.mui" length="1247" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="24C46FB567E80826E88DB9369A0BB75A44D0275821010A820FBD20D695632CBF" />
+      <Delta>
+        <Source type="RAW" offset="67016660" length="1247">
+          <Hash alg="SHA256" value="24C46FB567E80826E88DB9369A0BB75A44D0275821010A820FBD20D695632CBF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15956" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_2e8b6e321eecbc8d\f\taskmgr.exe.mui" length="172" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="AF8EA486BAB87ABC62C88C356C62BEF7ADA47DD9BB700A0DD22367F9B035834D" />
+      <Delta>
+        <Source type="RAW" offset="67017907" length="172">
+          <Hash alg="SHA256" value="AF8EA486BAB87ABC62C88C356C62BEF7ADA47DD9BB700A0DD22367F9B035834D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15957" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_62cdc5e3446d6d1d\n\wmploc.dll.mui" length="53811" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="67468F01844D792482492E5417A1C26ECA856C605522EDAEB9949B5884765A8C" />
+      <Delta>
+        <Source type="RAW" offset="67018079" length="53811">
+          <Hash alg="SHA256" value="67468F01844D792482492E5417A1C26ECA856C605522EDAEB9949B5884765A8C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15958" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_62cdc5e3446d6d1d\n\wmplayer.exe.mui" length="1157" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="6C0EB335E7820874F345419A284C1FA31D3A1254150D0A9C8DCF161228B1598C" />
+      <Delta>
+        <Source type="RAW" offset="67071890" length="1157">
+          <Hash alg="SHA256" value="6C0EB335E7820874F345419A284C1FA31D3A1254150D0A9C8DCF161228B1598C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15959" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_79b07e3468662452\f\msdt.exe.mui" length="520" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7FABB47F73048F16466FE4E6DCE488EDE7A1C56430A68C13B452B8917E1C49E5" />
+      <Delta>
+        <Source type="RAW" offset="67073047" length="520">
+          <Hash alg="SHA256" value="7FABB47F73048F16466FE4E6DCE488EDE7A1C56430A68C13B452B8917E1C49E5" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15960" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_2f7aee659058c3ed\n\logoncli.dll.mui" length="2023" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="56FCFC029079F8487469F48A9F3C363812C4F498EEAEED5344F038CB2DB686A6" />
+      <Delta>
+        <Source type="RAW" offset="67073567" length="2023">
+          <Hash alg="SHA256" value="56FCFC029079F8487469F48A9F3C363812C4F498EEAEED5344F038CB2DB686A6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15961" name="amd64_microsoft-windows-s..-netlogon.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_6f1587a7819bab41\f\netlogon.dll.mui" length="1855" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="285C365294C67783A21F523FA9891BD67F835EA0A084C3C0DFAFD46BF37AF781" />
+      <Delta>
+        <Source type="RAW" offset="67075590" length="1855">
+          <Hash alg="SHA256" value="285C365294C67783A21F523FA9891BD67F835EA0A084C3C0DFAFD46BF37AF781" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15962" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_f7bfa76c1abc8ada\f\resources.zh-cn.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="AAA4C29F3CFE31DEEEC7F72EA76062D8FFD95729EA0EF14EE6AB5288295E2281" />
+      <Delta>
+        <Source type="RAW" offset="67077445" length="50">
+          <Hash alg="SHA256" value="AAA4C29F3CFE31DEEEC7F72EA76062D8FFD95729EA0EF14EE6AB5288295E2281" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15963" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_5f1d2c5d8fee17c7\f\settingshandlers_devices.dll.mui" length="168" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="4E037175793072F34A97E0894DFEF5089494713D2990DDFABD9BDDB5F3CB410B" />
+      <Delta>
+        <Source type="RAW" offset="67077495" length="168">
+          <Hash alg="SHA256" value="4E037175793072F34A97E0894DFEF5089494713D2990DDFABD9BDDB5F3CB410B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15964" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_41392ed5c004f056\f\windows.ui.settingshandlers-nt.zh-cn.pri" length="25425" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="DB2BA80A1C03A68C2FFA2DF089FDB32BFD538630CCFCFE1D9E84B551D2436A4B" />
+      <Delta>
+        <Source type="RAW" offset="67077663" length="25425">
+          <Hash alg="SHA256" value="DB2BA80A1C03A68C2FFA2DF089FDB32BFD538630CCFCFE1D9E84B551D2436A4B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15965" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_f26fadb10a472fad\f\settingshandlers_onecore_powerandsleep.dll.mui" length="876" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="2D0E900D811FCC442ADC1B8424C252B4B490B131B295370894F9519C583D02BF" />
+      <Delta>
+        <Source type="RAW" offset="67103088" length="876">
+          <Hash alg="SHA256" value="2D0E900D811FCC442ADC1B8424C252B4B490B131B295370894F9519C583D02BF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15966" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_zh-cn_60109debdcb1dc67\f\win32kbase.sys.mui" length="476" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="2DAD0A2AEA8CFE475F393A23C27D77E5F5F669DF199617F1138B93DA11DF9409" />
+      <Delta>
+        <Source type="RAW" offset="67103964" length="476">
+          <Hash alg="SHA256" value="2DAD0A2AEA8CFE475F393A23C27D77E5F5F669DF199617F1138B93DA11DF9409" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15967" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_zh-cn_a594bc08746c3c68\f\inetcpl.cpl.mui" length="411" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="1D2D4296FA9474FEAD4705601E1087F4A9DA7794AF5889DD43EA03CB32C7E777" />
+      <Delta>
+        <Source type="RAW" offset="67104440" length="411">
+          <Hash alg="SHA256" value="1D2D4296FA9474FEAD4705601E1087F4A9DA7794AF5889DD43EA03CB32C7E777" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15968" name="amd64_ddores.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_9fba31ded1204a4a\f\ddores.dll.mui" length="373" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="949BF95AF9CCAD90361987CA2C865FD9CDB29A0EA40F6A68303AF2E4E51E66DC" />
+      <Delta>
+        <Source type="RAW" offset="67104851" length="373">
+          <Hash alg="SHA256" value="949BF95AF9CCAD90361987CA2C865FD9CDB29A0EA40F6A68303AF2E4E51E66DC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15969" name="amd64_microsoft-onecore-b..h-bthserv.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_84450619246b2aeb\f\bthserv.dll.mui" length="455" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="54D29679F83BB0B4A76EE82F34FBC55DB5D0DF5EE5E8E5C19F83401405D94AB7" />
+      <Delta>
+        <Source type="RAW" offset="67105224" length="455">
+          <Hash alg="SHA256" value="54D29679F83BB0B4A76EE82F34FBC55DB5D0DF5EE5E8E5C19F83401405D94AB7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15970" name="amd64_microsoft-onecoreua..erservice.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_4e4c76aa440a379d\f\microsoft.bluetooth.userservice.dll.mui" length="363" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="685C36E072B3732B17EDEFF78CA8F19E0601B6A41AB6AEC85B22A36993BD27F3" />
+      <Delta>
+        <Source type="RAW" offset="67105679" length="363">
+          <Hash alg="SHA256" value="685C36E072B3732B17EDEFF78CA8F19E0601B6A41AB6AEC85B22A36993BD27F3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15971" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_c4be40f32b7586bd\f\appxdeploymentserver.dll.mui" length="786" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="E31317E7B41F2074422ADBC39FDB8479E955B2BB351B7754ACA9C959DB7D9A9B" />
+      <Delta>
+        <Source type="RAW" offset="67106042" length="786">
+          <Hash alg="SHA256" value="E31317E7B41F2074422ADBC39FDB8479E955B2BB351B7754ACA9C959DB7D9A9B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15972" name="amd64_microsoft-windows-a..nt-server.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_c4be40f32b7586bd\f\custominstallexec.exe.mui" length="169" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="A5B73731A06123AAC3C9B4FA810579B3C6B2AA1A20C6368B200CCB9335264D3F" />
+      <Delta>
+        <Source type="RAW" offset="67106828" length="169">
+          <Hash alg="SHA256" value="A5B73731A06123AAC3C9B4FA810579B3C6B2AA1A20C6368B200CCB9335264D3F" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15973" name="amd64_microsoft-windows-d..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_b0926ade5c0917dc\f\windows.ui.devicesflow.zh-tw.pri" length="5265" time="133332634880000000" attr="128">
+      <Hash alg="SHA256" value="482C8FE4169B62C504383C1AB014F582687EE76CBD795983AED27126E012F156" />
+      <Delta>
+        <Source type="RAW" offset="67106997" length="5265">
+          <Hash alg="SHA256" value="482C8FE4169B62C504383C1AB014F582687EE76CBD795983AED27126E012F156" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15974" name="amd64_microsoft-windows-d..lowbroker.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_3cf7b68982d516fa\f\devicesflowbroker.dll.mui" length="453" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="F4CBCB993F39A9F33F0DCB3A1BAC1DBA85B8CD17E05F4A1CBCEF42C5A1C0AF4A" />
+      <Delta>
+        <Source type="RAW" offset="67112262" length="453">
+          <Hash alg="SHA256" value="F4CBCB993F39A9F33F0DCB3A1BAC1DBA85B8CD17E05F4A1CBCEF42C5A1C0AF4A" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15975" name="amd64_microsoft-windows-i..in.deploy.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_e5c3fe32215f1e63\f\resources.zh-tw.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="5119D08175DAF58AD605944DB7C68E7C8FB56EB1232EC460A2CD8A55522C8C17" />
+      <Delta>
+        <Source type="RAW" offset="67112715" length="50">
+          <Hash alg="SHA256" value="5119D08175DAF58AD605944DB7C68E7C8FB56EB1232EC460A2CD8A55522C8C17" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15976" name="amd64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_1eba2970874376ed\f\wldap32.dll.mui" length="1302" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="40E212C51B70D2BBEDCC1477FF27B2ECF6C5C124F0072AAF2F9F846EEFC10846" />
+      <Delta>
+        <Source type="RAW" offset="67112765" length="1302">
+          <Hash alg="SHA256" value="40E212C51B70D2BBEDCC1477FF27B2ECF6C5C124F0072AAF2F9F846EEFC10846" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15977" name="wow64_microsoft-windows-ldap-client.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_290ed3c2bba438e8\f\wldap32.dll.mui" length="1302" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="40E212C51B70D2BBEDCC1477FF27B2ECF6C5C124F0072AAF2F9F846EEFC10846" />
+      <Delta>
+        <Source type="RAW" offset="67114067" length="1302">
+          <Hash alg="SHA256" value="40E212C51B70D2BBEDCC1477FF27B2ECF6C5C124F0072AAF2F9F846EEFC10846" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15978" name="amd64_microsoft-windows-l..skmanager.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_3287ab881c5d98fd\f\taskmgr.exe.mui" length="172" time="133284071950000000" attr="128">
+      <Hash alg="SHA256" value="5D9EEAA720F63D155BA98857EDFBAF98FDB6E66C7C92255ACBD4BB919D1C506E" />
+      <Delta>
+        <Source type="RAW" offset="67115369" length="172">
+          <Hash alg="SHA256" value="5D9EEAA720F63D155BA98857EDFBAF98FDB6E66C7C92255ACBD4BB919D1C506E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15979" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_66ca033941de498d\n\wmplayer.exe.mui" length="1161" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="7D6520FE23B3604D473114E8A147DED117F038E60F7080E5FF1D71590956872E" />
+      <Delta>
+        <Source type="RAW" offset="67115541" length="1161">
+          <Hash alg="SHA256" value="7D6520FE23B3604D473114E8A147DED117F038E60F7080E5FF1D71590956872E" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15980" name="amd64_microsoft-windows-m..ayer-core.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_66ca033941de498d\n\wmploc.dll.mui" length="54342" time="133284068090000000" attr="128">
+      <Hash alg="SHA256" value="94025FF4640E29B1404C32EC97379B2C7B36F93A88352BE3EC92B8199309E126" />
+      <Delta>
+        <Source type="RAW" offset="67116702" length="54342">
+          <Hash alg="SHA256" value="94025FF4640E29B1404C32EC97379B2C7B36F93A88352BE3EC92B8199309E126" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15981" name="amd64_microsoft-windows-msdt.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_7dacbb8a65d700c2\f\msdt.exe.mui" length="521" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="A2725D8E56240B3A3718BA9B1FF3E70EB46B133F280EEE08F4D385268136B371" />
+      <Delta>
+        <Source type="RAW" offset="67171044" length="521">
+          <Hash alg="SHA256" value="A2725D8E56240B3A3718BA9B1FF3E70EB46B133F280EEE08F4D385268136B371" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15982" name="amd64_microsoft-windows-s..on-netapi.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_33772bbb8dc9a05d\n\logoncli.dll.mui" length="2064" time="133284068260000000" attr="128">
+      <Hash alg="SHA256" value="10B1F67D70F6B73FCEC93D883BB92B85E3917D4B7A3C2D0E97529DC683BFAB92" />
+      <Delta>
+        <Source type="RAW" offset="67171565" length="2064">
+          <Hash alg="SHA256" value="10B1F67D70F6B73FCEC93D883BB92B85E3917D4B7A3C2D0E97529DC683BFAB92" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15983" name="amd64_microsoft-windows-s..-netlogon.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_7311c4fd7f0c87b1\f\netlogon.dll.mui" length="1863" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="FFA5250E325B7CB45C4D8896C736D7FEF1A29FEDE83548EB01B221C63FBFF80B" />
+      <Delta>
+        <Source type="RAW" offset="67173629" length="1863">
+          <Hash alg="SHA256" value="FFA5250E325B7CB45C4D8896C736D7FEF1A29FEDE83548EB01B221C63FBFF80B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15984" name="amd64_microsoft-windows-s...appxmain.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_fbbbe4c2182d674a\f\resources.zh-tw.pri" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="963852931887CBD048A1E09C015D87A99509A409509A93B6558288C6A4B4EC85" />
+      <Delta>
+        <Source type="RAW" offset="67175492" length="50">
+          <Hash alg="SHA256" value="963852931887CBD048A1E09C015D87A99509A409509A93B6558288C6A4B4EC85" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15985" name="amd64_microsoft-windows-s..s-devices.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_631969b38d5ef437\f\settingshandlers_devices.dll.mui" length="168" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="B8F43AF857E73C48784B42DB62750E65875A3789BCDF52E0C82D8D4A76F7D9FF" />
+      <Delta>
+        <Source type="RAW" offset="67175542" length="168">
+          <Hash alg="SHA256" value="B8F43AF857E73C48784B42DB62750E65875A3789BCDF52E0C82D8D4A76F7D9FF" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15986" name="amd64_microsoft-windows-s..ndlers-nt.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_45356c2bbd75ccc6\f\windows.ui.settingshandlers-nt.zh-tw.pri" length="25567" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="D87456F3D0FB954BCEF2696D6501D37CE517AECE2DE80D57B7C3E88A495326ED" />
+      <Delta>
+        <Source type="RAW" offset="67175710" length="25567">
+          <Hash alg="SHA256" value="D87456F3D0FB954BCEF2696D6501D37CE517AECE2DE80D57B7C3E88A495326ED" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15987" name="amd64_microsoft-windows-s..randsleep.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_f66beb0707b80c1d\f\settingshandlers_onecore_powerandsleep.dll.mui" length="839" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="7ADE52D8C40F96F969246542A6501069DC3A36CF266818212EA6C587BC7849EA" />
+      <Delta>
+        <Source type="RAW" offset="67201277" length="839">
+          <Hash alg="SHA256" value="7ADE52D8C40F96F969246542A6501069DC3A36CF266818212EA6C587BC7849EA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15988" name="amd64_microsoft-windows-win32kbase.resources_31bf3856ad364e35_10.0.22621.1778_zh-tw_640cdb41da22b8d7\f\win32kbase.sys.mui" length="485" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="371E9F6C74942689F9368BC2635154EAAA6C8769D202FDFEAA0971F7461D1EE7" />
+      <Delta>
+        <Source type="RAW" offset="67202116" length="485">
+          <Hash alg="SHA256" value="371E9F6C74942689F9368BC2635154EAAA6C8769D202FDFEAA0971F7461D1EE7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15989" name="amd64_microsoft-windows-i..trolpanel.resources_31bf3856ad364e35_11.0.22621.1778_zh-tw_a990f95e71dd18d8\f\inetcpl.cpl.mui" length="424" time="133284071960000000" attr="128">
+      <Hash alg="SHA256" value="94EE0168CB1E7C39BFB5BB6468168F3D6DEFC0298D13D02F68D4CE9040376C7C" />
+      <Delta>
+        <Source type="RAW" offset="67202601" length="424">
+          <Hash alg="SHA256" value="94EE0168CB1E7C39BFB5BB6468168F3D6DEFC0298D13D02F68D4CE9040376C7C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15990" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\ntprint.cat" length="3880" time="133307284100000000" attr="128">
+      <Hash alg="SHA256" value="02A78E7ACB09548A600EDA680483254FF277D5E058744F294F5EE0C0CBE973BC" />
+      <Delta>
+        <Source type="RAW" offset="67203025" length="3880">
+          <Hash alg="SHA256" value="02A78E7ACB09548A600EDA680483254FF277D5E058744F294F5EE0C0CBE973BC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15991" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\p6disp.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="CF52C4E3EB58CBEC27A0C405498B12ECC4237D5CFFC5B74C9C797209979AF654" />
+      <Delta>
+        <Source type="RAW" offset="67206905" length="52">
+          <Hash alg="SHA256" value="CF52C4E3EB58CBEC27A0C405498B12ECC4237D5CFFC5B74C9C797209979AF654" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15992" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pjl.gpd" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="627C058D2F9187040997257F362D8A03C6FE093F160ED9A68AE1C32BE127C998" />
+      <Delta>
+        <Source type="RAW" offset="67206957" length="50">
+          <Hash alg="SHA256" value="627C058D2F9187040997257F362D8A03C6FE093F160ED9A68AE1C32BE127C998" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15993" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pclxl.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="F18F9E892F56C46C2B65EC52CC1B45966EB9EE5E7096B84323AE318186BDEC55" />
+      <Delta>
+        <Source type="RAW" offset="67207007" length="52">
+          <Hash alg="SHA256" value="F18F9E892F56C46C2B65EC52CC1B45966EB9EE5E7096B84323AE318186BDEC55" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15994" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pscript.ntf" length="54" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="73CF8EFEFFE2F1E30249D3E86461A6B9437A211F0374359D9121C54E2DC3AC23" />
+      <Delta>
+        <Source type="RAW" offset="67207059" length="54">
+          <Hash alg="SHA256" value="73CF8EFEFFE2F1E30249D3E86461A6B9437A211F0374359D9121C54E2DC3AC23" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15995" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\locale.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="5F962FD6959A10C87FD90630B74FC20ADF27F3D5AFD62DFA0DC22782C4F0DEF2" />
+      <Delta>
+        <Source type="RAW" offset="67207113" length="52">
+          <Hash alg="SHA256" value="5F962FD6959A10C87FD90630B74FC20ADF27F3D5AFD62DFA0DC22782C4F0DEF2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15996" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\stdnames.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="273365E41B1EE527750B1FDE75F2067E03B25601535C2C75535A94EBDA9AD8B7" />
+      <Delta>
+        <Source type="RAW" offset="67207165" length="52">
+          <Hash alg="SHA256" value="273365E41B1EE527750B1FDE75F2067E03B25601535C2C75535A94EBDA9AD8B7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15997" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\ps_schm.gdl" length="51" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="868476FBDB35B0F0DA7164AB2BB425C82EC5D154DFED6A0CCC0CCC831A850315" />
+      <Delta>
+        <Source type="RAW" offset="67207217" length="51">
+          <Hash alg="SHA256" value="868476FBDB35B0F0DA7164AB2BB425C82EC5D154DFED6A0CCC0CCC831A850315" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15998" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\ps5ui.dll" length="22221" time="133332706970000000" attr="128">
+      <Hash alg="SHA256" value="FF014ACDA4FB5B10061ED33408D7ED4E48738DC8560994107DA5888D45126AC4" />
+      <Delta>
+        <Source type="RAW" offset="67207268" length="22221">
+          <Hash alg="SHA256" value="FF014ACDA4FB5B10061ED33408D7ED4E48738DC8560994107DA5888D45126AC4" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="15999" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\stddtype.gdl" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="ABEF8790B944247459DBC82F7685DA27F867D8A00CA4C22CB5E4B0F90DB8D411" />
+      <Delta>
+        <Source type="RAW" offset="67229489" length="52">
+          <Hash alg="SHA256" value="ABEF8790B944247459DBC82F7685DA27F867D8A00CA4C22CB5E4B0F90DB8D411" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16000" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pcl5eres.dll" length="116" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="6ABF7C68B1240FE43976A691486B13A70AFC78891E8588D0DC6AB96F15BCB6D2" />
+      <Delta>
+        <Source type="RAW" offset="67229541" length="116">
+          <Hash alg="SHA256" value="6ABF7C68B1240FE43976A691486B13A70AFC78891E8588D0DC6AB96F15BCB6D2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16001" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\msxpsinc.gpd" length="48" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="C9B8FAD813948F0CB94960339BDDDCE511B6E93B22F0F7F8F3111E7617AA7F38" />
+      <Delta>
+        <Source type="RAW" offset="67229657" length="48">
+          <Hash alg="SHA256" value="C9B8FAD813948F0CB94960339BDDDCE511B6E93B22F0F7F8F3111E7617AA7F38" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16002" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\unires.dll" length="1168" time="133307284100000000" attr="128">
+      <Hash alg="SHA256" value="1295944863A38705C5D5085EF94305AC03932D0BF3AEAF817DF8C9DBA4284BCD" />
+      <Delta>
+        <Source type="RAW" offset="67229705" length="1168">
+          <Hash alg="SHA256" value="1295944863A38705C5D5085EF94305AC03932D0BF3AEAF817DF8C9DBA4284BCD" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16003" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\unidrvui.dll" length="5314" time="133307284110000000" attr="128">
+      <Hash alg="SHA256" value="3AE664EC0A366AD0985B23059EAAEAED6A44D60A18EC0C10EFD64C02E24ED79F" />
+      <Delta>
+        <Source type="PA30" offset="67230873" length="5081">
+          <Hash alg="SHA256" value="61AD6D9FDA24D178C3127A2C18B5DAD1ED87ACF4EDA0E8D41BD18820359BE280" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16004" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pjlmon.dll" length="164" time="133332706950000000" attr="128">
+      <Hash alg="SHA256" value="BB5415967F8B913D2569240A652D90C335E209BED05C1B0A93DA2925557E3899" />
+      <Delta>
+        <Source type="RAW" offset="67235954" length="164">
+          <Hash alg="SHA256" value="BB5415967F8B913D2569240A652D90C335E209BED05C1B0A93DA2925557E3899" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16005" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pclxl.dll" length="115" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A4DDA18A4F34CAE46542F7EA8A8A1D34DB3EE83C7DEEF362F9E8CEA19BF96805" />
+      <Delta>
+        <Source type="RAW" offset="67236118" length="115">
+          <Hash alg="SHA256" value="A4DDA18A4F34CAE46542F7EA8A8A1D34DB3EE83C7DEEF362F9E8CEA19BF96805" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16006" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\unidrv.dll" length="176" time="133332706950000000" attr="128">
+      <Hash alg="SHA256" value="F8079CCB0DEB2B6AE1E81B14D0AB4E2152118AC38404B4C223184E953F1CF74A" />
+      <Delta>
+        <Source type="RAW" offset="67236233" length="176">
+          <Hash alg="SHA256" value="F8079CCB0DEB2B6AE1E81B14D0AB4E2152118AC38404B4C223184E953F1CF74A" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16007" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\ntprint.inf" length="61" time="133307266540000000" attr="128">
+      <Hash alg="SHA256" value="96E75F7C99D28412AAA73484C3F8D1B00C1B319082C22C34C8070F18CAFB1E84" />
+      <Delta>
+        <Source type="RAW" offset="67236409" length="61">
+          <Hash alg="SHA256" value="96E75F7C99D28412AAA73484C3F8D1B00C1B319082C22C34C8070F18CAFB1E84" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16008" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pcl4res.dll" length="115" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A34E5BDE97DBD3792FBFB17AE0567ACCAE6CA5142EFF32F84EF5E332E82ABA06" />
+      <Delta>
+        <Source type="RAW" offset="67236470" length="115">
+          <Hash alg="SHA256" value="A34E5BDE97DBD3792FBFB17AE0567ACCAE6CA5142EFF32F84EF5E332E82ABA06" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16009" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\stdschem.gdl" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="29CD638A89A5261A23E84BD800AB923A5C2777E65B568AD9119B6A85844D81FC" />
+      <Delta>
+        <Source type="RAW" offset="67236585" length="52">
+          <Hash alg="SHA256" value="29CD638A89A5261A23E84BD800AB923A5C2777E65B568AD9119B6A85844D81FC" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16010" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\p6font.gpd" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A12B38431C7A5D3D87BFB247325663DE192B10F60878C929F226238F43C5476C" />
+      <Delta>
+        <Source type="RAW" offset="67236637" length="50">
+          <Hash alg="SHA256" value="A12B38431C7A5D3D87BFB247325663DE192B10F60878C929F226238F43C5476C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16011" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\mxdwdrv.dll" length="12442" time="133332706950000000" attr="128">
+      <Hash alg="SHA256" value="373DDF61A253028B2141F6339D5100995F20EE93B98EB8240987E483A720C26D" />
+      <Delta>
+        <Source type="RAW" offset="67236687" length="12442">
+          <Hash alg="SHA256" value="373DDF61A253028B2141F6339D5100995F20EE93B98EB8240987E483A720C26D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16012" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\unidrv.hlp" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="AA09DDC377096E6F7F9D104A6B231CDDDFAE9DC1562ED34CE3EE5C4AC3043A35" />
+      <Delta>
+        <Source type="RAW" offset="67249129" length="52">
+          <Hash alg="SHA256" value="AA09DDC377096E6F7F9D104A6B231CDDDFAE9DC1562ED34CE3EE5C4AC3043A35" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16013" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\stdschmx.gdl" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="F8FCAE3E4043EB0318C1FA2FFC8BE922F04585E38CA94AEBCA8C78BBDBEB4507" />
+      <Delta>
+        <Source type="RAW" offset="67249181" length="50">
+          <Hash alg="SHA256" value="F8FCAE3E4043EB0318C1FA2FFC8BE922F04585E38CA94AEBCA8C78BBDBEB4507" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16014" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pscrptfe.ntf" length="54" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="F77D6B61F8B487D482FB0BB037BAAD6338F77D505325753BCA39CA507966A7F9" />
+      <Delta>
+        <Source type="RAW" offset="67249231" length="54">
+          <Hash alg="SHA256" value="F77D6B61F8B487D482FB0BB037BAAD6338F77D505325753BCA39CA507966A7F9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16015" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\ttfsub.gpd" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="140DF0609457D624106E0621A52EA869C6C2CA710CA391481548E2D4AF275E00" />
+      <Delta>
+        <Source type="RAW" offset="67249285" length="50">
+          <Hash alg="SHA256" value="140DF0609457D624106E0621A52EA869C6C2CA710CA391481548E2D4AF275E00" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16016" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\msxpsinc.ppd" length="48" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="2039CCD87AF636C83B463348322E5A6A563E28CF813BA8D71D449822FA18D6C6" />
+      <Delta>
+        <Source type="RAW" offset="67249335" length="48">
+          <Hash alg="SHA256" value="2039CCD87AF636C83B463348322E5A6A563E28CF813BA8D71D449822FA18D6C6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16017" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pscript.hlp" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="78D9EAC8AC56C5D0D9988D48A94445610C397271301A08B70AA5BE8221AF9BB2" />
+      <Delta>
+        <Source type="RAW" offset="67249383" length="52">
+          <Hash alg="SHA256" value="78D9EAC8AC56C5D0D9988D48A94445610C397271301A08B70AA5BE8221AF9BB2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16018" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pcl5ures.dll" length="264" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="9AB07A531C059DDFED7A49CE162570A4410EC3E2B381866E7AF0A02FBBB5C8DB" />
+      <Delta>
+        <Source type="RAW" offset="67249435" length="264">
+          <Hash alg="SHA256" value="9AB07A531C059DDFED7A49CE162570A4410EC3E2B381866E7AF0A02FBBB5C8DB" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16019" name="amd64_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_c4db792fc5484cc4\f\amd64\pscript5.dll" length="4407" time="133332706960000000" attr="128">
+      <Hash alg="SHA256" value="1C92DEC57AE5B939C3FA391EBFDF5661D993C681E28DB4E07A103ED867AC55B6" />
+      <Delta>
+        <Source type="RAW" offset="67249699" length="4407">
+          <Hash alg="SHA256" value="1C92DEC57AE5B939C3FA391EBFDF5661D993C681E28DB4E07A103ED867AC55B6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16020" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\msxpsinc.gpd" length="48" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="C9B8FAD813948F0CB94960339BDDDCE511B6E93B22F0F7F8F3111E7617AA7F38" />
+      <Delta>
+        <Source type="RAW" offset="67254106" length="48">
+          <Hash alg="SHA256" value="C9B8FAD813948F0CB94960339BDDDCE511B6E93B22F0F7F8F3111E7617AA7F38" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16021" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\pjlmon.dll" length="182" time="133332707100000000" attr="128">
+      <Hash alg="SHA256" value="D61F96AEEA00F2E54E6BCBABF13E7CCE8128E45FE29C25BD3991DCDABED04A6D" />
+      <Delta>
+        <Source type="RAW" offset="67254154" length="182">
+          <Hash alg="SHA256" value="D61F96AEEA00F2E54E6BCBABF13E7CCE8128E45FE29C25BD3991DCDABED04A6D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16022" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\p6disp.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="CF52C4E3EB58CBEC27A0C405498B12ECC4237D5CFFC5B74C9C797209979AF654" />
+      <Delta>
+        <Source type="RAW" offset="67254336" length="52">
+          <Hash alg="SHA256" value="CF52C4E3EB58CBEC27A0C405498B12ECC4237D5CFFC5B74C9C797209979AF654" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16023" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\p6font.gpd" length="50" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="A12B38431C7A5D3D87BFB247325663DE192B10F60878C929F226238F43C5476C" />
+      <Delta>
+        <Source type="RAW" offset="67254388" length="50">
+          <Hash alg="SHA256" value="A12B38431C7A5D3D87BFB247325663DE192B10F60878C929F226238F43C5476C" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16024" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\stddtype.gdl" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="ABEF8790B944247459DBC82F7685DA27F867D8A00CA4C22CB5E4B0F90DB8D411" />
+      <Delta>
+        <Source type="RAW" offset="67254438" length="52">
+          <Hash alg="SHA256" value="ABEF8790B944247459DBC82F7685DA27F867D8A00CA4C22CB5E4B0F90DB8D411" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16025" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\stdnames.gpd" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="273365E41B1EE527750B1FDE75F2067E03B25601535C2C75535A94EBDA9AD8B7" />
+      <Delta>
+        <Source type="RAW" offset="67254490" length="52">
+          <Hash alg="SHA256" value="273365E41B1EE527750B1FDE75F2067E03B25601535C2C75535A94EBDA9AD8B7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16026" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\pscript.hlp" length="52" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="78D9EAC8AC56C5D0D9988D48A94445610C397271301A08B70AA5BE8221AF9BB2" />
+      <Delta>
+        <Source type="RAW" offset="67254542" length="52">
+          <Hash alg="SHA256" value="78D9EAC8AC56C5D0D9988D48A94445610C397271301A08B70AA5BE8221AF9BB2" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16027" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\pcl5eres.dll" length="116" time="133332636030000000" attr="128">
+      <Hash alg="SHA256" value="15C141C8A1B6D13BA39ABCDEC461092F23A55326DFA7E681FB1F685DD7827696" />
+      <Delta>
+        <Source type="RAW" offset="67254594" length="116">
+          <Hash alg="SHA256" value="15C141C8A1B6D13BA39ABCDEC461092F23A55326DFA7E681FB1F685DD7827696" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16028" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\ntprint.cat" length="3904" time="133307266550000000" attr="128">
+      <Hash alg="SHA256" value="F3A31EB9D4259B27EFFC674E69205E7FD09356DA9CEA412A8C5A0961586CE35D" />
+      <Delta>
+        <Source type="RAW" offset="67254710" length="3904">
+          <Hash alg="SHA256" value="F3A31EB9D4259B27EFFC674E69205E7FD09356DA9CEA412A8C5A0961586CE35D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="16029" name="x86_dual_ntprint.inf_31bf3856ad364e35_10.0.22621.1848_none_68bcddac0ceadb8e\f\i386\unidrvui.dll" length="3752" time="133332707110000000" attr="128">
+      <Hash alg="SHA256" value="901091A6EF8DDE059C62CD2D4276B5EB909A7B6AD419BE1087DF4DA4A1F45258" />
+      <Delta>
+        <Source type="RAW" offset="67258614" length="3752"

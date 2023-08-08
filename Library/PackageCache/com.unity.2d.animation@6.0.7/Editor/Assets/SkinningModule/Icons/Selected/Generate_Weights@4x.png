@@ -1,0 +1,42 @@
+# combined-stream
+
+A stream that emits multiple other streams one after another.
+
+**NB** Currently `combined-stream` works with streams vesrion 1 only. There is ongoing effort to switch this library to streams version 2. Any help is welcome. :) Meanwhile you can explore other libraries that provide streams2 support with more or less compatability with `combined-stream`.
+
+- [combined-stream2](https://www.npmjs.com/package/combined-stream2): A drop-in streams2-compatible replacement for the combined-stream module.
+
+- [multistream](https://www.npmjs.com/package/multistream): A stream that emits multiple other streams one after another.
+
+## Installation
+
+``` bash
+npm install combined-stream
+```
+
+## Usage
+
+Here is a simple example that shows how you can use combined-stream to combine
+two files into one:
+
+``` javascript
+var CombinedStream = require('combined-stream');
+var fs = require('fs');
+
+var combinedStream = CombinedStream.create();
+combinedStream.append(fs.createReadStream('file1.txt'));
+combinedStream.append(fs.createReadStream('file2.txt'));
+
+combinedStream.pipe(fs.createWriteStream('combined.txt'));
+```
+
+While the example above works great, it will pause all source streams until
+they are needed. If you don't want that to happen, you can set `pauseStreams`
+to `false`:
+
+``` javascript
+var CombinedStream = require('combined-stream');
+var fs = require('fs');
+
+var combinedStream = CombinedStream.create({pauseStreams: false});
+combinedStream.append

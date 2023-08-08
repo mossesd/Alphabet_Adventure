@@ -1,0 +1,161 @@
+_dialog_title" msgid="4017995837692622933">"Käytetäänkö esteettömyyden pikanäppäintä?"</string>
+    <string name="accessibility_shortcut_toogle_warning" msgid="4161716521310929544">"Kun pikanäppäin on käytössä, voit käynnistää esteettömyystoiminnon pitämällä molempia äänenvoimakkuuspainikkeita painettuna kolmen sekunnin ajan."</string>
+    <string name="accessibility_shortcut_multiple_service_warning_title" msgid="8417489297036013065">"Laitetaanko esteettömyysominaisuudet päälle?"</string>
+    <string name="accessibility_shortcut_multiple_service_warning" msgid="3740723309483706911">"Molempien äänenvoimakkuuspainikkeiden painaminen muutaman sekunnin ajan laittaa esteettömyysominaisuudet päälle. Tämä voi muuttaa laitteesi toimintaa.\n\nNykyiset ominaisuudet:\n<xliff:g id="SERVICE">%1$s</xliff:g>\nVoit muuttaa valittuja ominaisuuksia kohdassa Asetukset &gt; Esteettömyys."</string>
+    <string name="accessibility_shortcut_multiple_service_list" msgid="6935581470716541531">"	• <xliff:g id="SERVICE">%1$s</xliff:g>\n"</string>
+    <string name="accessibility_shortcut_single_service_warning_title" msgid="2819109500943271385">"Laitetaanko <xliff:g id="SERVICE">%1$s</xliff:g> päälle?"</string>
+    <string name="accessibility_shortcut_single_service_warning" msgid="6363127705112844257">"Molempien äänenvoimakkuuspainikkeiden pitkään painaminen laittaa päälle esteettömyysominaisuuden <xliff:g id="SERVICE">%1$s</xliff:g>. Tämä voi muuttaa laitteesi toimintaa.\n\nVoit muuttaa tätä pikanäppäintä kohdassa Asetukset &gt; Esteettömyys."</string>
+    <string name="accessibility_shortcut_on" msgid="5463618449556111344">"Laita päälle"</string>
+    <string name="accessibility_shortcut_off" msgid="3651336255403648739">"Älä laita päälle"</string>
+    <string name="accessibility_shortcut_menu_item_status_on" msgid="6608392117189732543">"PÄÄLLÄ"</string>
+    <string name="accessibility_shortcut_menu_item_status_off" msgid="5531598275559472393">"EI PÄÄLLÄ"</string>
+    <string name="accessibility_enable_service_title" msgid="3931558336268541484">"Saako <xliff:g id="SERVICE">%1$s</xliff:g> laitteesi täyden käyttöoikeuden?"</string>
+    <string name="accessibility_enable_service_encryption_warning" msgid="8603532708618236909">"Jos <xliff:g id="SERVICE">%1$s</xliff:g> otetaan käyttöön, laitteesi ei käytä näytön lukitusta tiedon salauksen parantamiseen."</string>
+    <string name="accessibility_service_warning_description" msgid="291674995220940133">"Täysi käyttöoikeus sopii esteettömyyssovelluksille, mutta ei useimmille sovelluksille."</string>
+    <string name="accessibility_service_screen_control_title" msgid="190017412626919776">"Näytön katselu ja ohjaus"</string>
+    <string name="accessibility_service_screen_control_description" msgid="6946315917771791525">"Se voi lukea kaiken näytön sisällön ja näyttää sisältöä kaikista sovelluksista."</string>
+    <string name="accessibility_service_action_perform_title" msgid="779670378951658160">"Toimintojen näkeminen ja suorittaminen"</string>
+    <string name="accessibility_service_action_perform_description" msgid="2718852014003170558">"Se voi seurata toimintaasi sovelluksella tai laitteistoanturilla ja käyttää sovelluksia puolestasi."</string>
+    <string name="accessibility_dialog_button_allow" msgid="2092558122987144530">"Salli"</string>
+    <string name="accessibility_dialog_button_deny" msgid="4129575637812472671">"Estä"</string>
+    <string name="accessibility_select_shortcut_menu_title" msgid="6002726538854613272">"Aloita ominaisuuden käyttö napauttamalla sitä:"</string>
+    <string name="accessibility_edit_shortcut_menu_button_title" msgid="239446795930436325">"Valitse ominaisuudet, joita käytetään esteettömyyspainikkeella"</string>
+    <string name="accessibility_edit_shortcut_menu_volume_title" msgid="1077294237378645981">"Valitse ominaisuudet, joita käytetään äänenvoimakkuuspikanäppäimellä"</string>
+    <string name="accessibility_uncheck_legacy_item_warning" msgid="8047830891064817447">"<xliff:g id="SERVICE_NAME">%s</xliff:g> on laitettu pois päältä"</string>
+    <string name="edit_accessibility_shortcut_menu_button" msgid="8885752738733772935">"Muokkaa pikakuvakkeita"</string>
+    <string name="done_accessibility_shortcut_menu_button" msgid="3668407723770815708">"Valmis"</string>
+    <string name="disable_accessibility_shortcut" msgid="5806091378745232383">"Poista pikanäppäin käytöstä"</string>
+    <string name="leave_accessibility_shortcut_on" msgid="6543362062336990814">"Käytä pikanäppäintä"</string>
+    <string name="color_inversion_feature_name" msgid="326050048927789012">"Käänteiset värit"</string>
+    <string name="color_correction_feature_name" msgid="3655077237805422597">"Värinkorjaus"</string>
+    <string name="accessibility_shortcut_enabling_service" msgid="5473495203759847687">"Äänenvoimakkuuspainikkeita painettiin pitkään. <xliff:g id="SERVICE_NAME">%1$s</xliff:g> laitettiin päälle."</string>
+    <string name="accessibility_shortcut_disabling_service" msgid="8675244165062700619">"Äänenvoimakkuuspainikkeita painettiin pitkään. <xliff:g id="SERVICE_NAME">%1$s</xliff:g> laitettiin pois päältä."</string>
+    <string name="accessibility_shortcut_spoken_feedback" msgid="4228997042855695090">"Voit käyttää palvelua <xliff:g id="SERVICE_NAME">%1$s</xliff:g> painamalla molempia äänenvoimakkuuspainikkeita kolmen sekunnin ajan"</string>
+    <string name="accessibility_button_prompt_text" msgid="8343213623338605305">"Valitse ominaisuus, jonka esteettömyyspainike aktivoi:"</string>
+    <string name="accessibility_gesture_prompt_text" msgid="8742535972130563952">"Valitse ominaisuus, jota käytetään esteettömyyseleellä (pyyhkäise näytön alalaidasta ylös kahdella sormella):"</string>
+    <string name="accessibility_gesture_3finger_prompt_text" msgid="5211827854510660203">"Valitse ominaisuus, jota käytetään esteettömyyseleellä (pyyhkäise näytön alalaidasta ylös kolmella sormella):"</string>
+    <string name="accessibility_button_instructional_text" msgid="8853928358872550500">"Vaihda ominaisuuksien välillä painamalla esteettömyyspainiketta pitkään."</string>
+    <string name="accessibility_gesture_instructional_text" msgid="9196230728837090497">"Vaihda ominaisuuksien välillä pyyhkäisemällä ylös kahdella sormella ja koskettamalla pitkään."</string>
+    <string name="accessibility_gesture_3finger_instructional_text" msgid="3425123684990193765">"Vaihda ominaisuuksien välillä pyyhkäisemällä ylös kolmella sormella ja koskettamalla pitkään."</string>
+    <string name="accessibility_magnification_chooser_text" msgid="1502075582164931596">"Suurennus"</string>
+    <string name="user_switched" msgid="7249833311585228097">"Nykyinen käyttäjä: <xliff:g id="NAME">%1$s</xliff:g>."</string>
+    <string name="user_switching_message" msgid="1912993630661332336">"Vaihdetaan käyttäjään <xliff:g id="NAME">%1$s</xliff:g>…"</string>
+    <string name="user_logging_out_message" msgid="7216437629179710359">"<xliff:g id="NAME">%1$s</xliff:g> kirjautuu ulos…"</string>
+    <string name="owner_name" msgid="8713560351570795743">"Omistaja"</string>
+    <string name="error_message_title" msgid="4082495589294631966">"Virhe"</string>
+    <string name="error_message_change_not_allowed" msgid="843159705042381454">"Järjestelmänvalvoja ei salli tätä muutosta."</string>
+    <string name="app_not_found" msgid="3429506115332341800">"Tätä toimintoa käsittelevää sovellusta ei löydy"</string>
+    <string name="revoke" msgid="5526857743819590458">"Peruuta"</string>
+    <string name="mediasize_iso_a0" msgid="7039061159929977973">"ISO A0"</string>
+    <string name="mediasize_iso_a1" msgid="4063589931031977223">"ISO A1"</string>
+    <string name="mediasize_iso_a2" msgid="2779860175680233980">"ISO A2"</string>
+    <string name="mediasize_iso_a3" msgid="3683469257246970630">"ISO A3"</string>
+    <string name="mediasize_iso_a4" msgid="752903572302658845">"ISO A4"</string>
+    <string name="mediasize_iso_a5" msgid="3020439171949376572">"ISO A5"</string>
+    <string name="mediasize_iso_a6" msgid="6503671662530738180">"ISO A6"</string>
+    <string name="mediasize_iso_a7" msgid="8488649018955763878">"ISO A7"</string>
+    <string name="mediasize_iso_a8" msgid="3380506944389571030">"ISO A8"</string>
+    <string name="mediasize_iso_a9" msgid="7000627318995334730">"ISO A9"</string>
+    <string name="mediasize_iso_a10" msgid="4091511972200388310">"ISO A10"</string>
+    <string name="mediasize_iso_b0" msgid="2057859571254103889">"ISO B0"</string>
+    <string name="mediasize_iso_b1" msgid="4931975244795236924">"ISO B1"</string>
+    <string name="mediasize_iso_b2" msgid="4701978611340339483">"ISO B2"</string>
+    <string name="mediasize_iso_b3" msgid="3509735449039761603">"ISO B3"</string>
+    <string name="mediasize_iso_b4" msgid="486628178454656526">"ISO B4"</string>
+    <string name="mediasize_iso_b5" msgid="2507554073053511267">"ISO B5"</string>
+    <string name="mediasize_iso_b6" msgid="344189428571954711">"ISO B6"</string>
+    <string name="mediasize_iso_b7" msgid="7266158663658064799">"ISO B7"</string>
+    <string name="mediasize_iso_b8" msgid="5229204010533786299">"ISO B8"</string>
+    <string name="mediasize_iso_b9" msgid="2925910409602493256">"ISO B9"</string>
+    <string name="mediasize_iso_b10" msgid="8590530019536996218">"ISO B10"</string>
+    <string name="mediasize_iso_c0" msgid="6504734131385460314">"ISO C0"</string>
+    <string name="mediasize_iso_c1" msgid="1751671704929443684">"ISO C1"</string>
+    <string name="mediasize_iso_c2" msgid="2935473413647925667">"ISO C2"</string>
+    <string name="mediasize_iso_c3" msgid="6835637985527663396">"ISO C3"</string>
+    <string name="mediasize_iso_c4" msgid="3000965043023118958">"ISO C4"</string>
+    <string name="mediasize_iso_c5" msgid="3846339505379333795">"ISO C5"</string>
+    <string name="mediasize_iso_c6" msgid="8663097559661858303">"ISO C6"</string>
+    <string name="mediasize_iso_c7" msgid="4469290754678239705">"ISO C7"</string>
+    <string name="mediasize_iso_c8" msgid="1949330679635319183">"ISO C8"</string>
+    <string name="mediasize_iso_c9" msgid="3716843356839880581">"ISO C9"</string>
+    <string name="mediasize_iso_c10" msgid="2113667674722450076">"ISO C10"</string>
+    <string name="mediasize_na_letter" msgid="1947253006814499213">"Letter (279 mm x 216 mm)"</string>
+    <string name="mediasize_na_gvrnmt_letter" msgid="4056220626420245955">"Government Letter (203 mm x 267 mm)"</string>
+    <string name="mediasize_na_legal" msgid="8356233803828931150">"Legal (216 mm x 356 mm)"</string>
+    <string name="mediasize_na_junior_legal" msgid="3398084874757748531">"Junior Legal (203 mm x 127 mm)"</string>
+    <string name="mediasize_na_ledger" msgid="1819497882853940248">"Ledger (432 mm x 279 mm)"</string>
+    <string name="mediasize_na_tabloid" msgid="6792611672983574375">"Tabloid (279 mm x 432 mm)"</string>
+    <string name="mediasize_na_index_3x5" msgid="990821038991491710">"Index Card (76 mm x 127 mm)"</string>
+    <string name="mediasize_na_index_4x6" msgid="4414381976602032401">"Index Card (102 mm x 152 mm)"</string>
+    <string name="mediasize_na_index_5x8" msgid="4499341583361946948">"Index Card (127 mm x 203 mm)"</string>
+    <string name="mediasize_na_monarch" msgid="4396943937986136896">"Monarch (184 mm x 267 mm)"</string>
+    <string name="mediasize_na_quarto" msgid="2119101847712239885">"Quarto (203 mm x 254 mm)"</string>
+    <string name="mediasize_na_foolscap" msgid="5011612828564394648">"Foolscap (203 mm x 330 mm)"</string>
+    <string name="mediasize_chinese_roc_8k" msgid="411670106572707544">"ROC 8K (270 mm x 390 mm)"</string>
+    <string name="mediasize_chinese_roc_16k" msgid="7496706798725321898">"ROC 16K (195 mm x 270 mm)"</string>
+    <string name="mediasize_chinese_prc_1" msgid="946949835711037253">"PRC 1 (102 mm x 165 mm)"</string>
+    <string name="mediasize_chinese_prc_2" msgid="4704308592895046237">"PRC 2 (102 mm x 176 mm)"</string>
+    <string name="mediasize_chinese_prc_3" msgid="1082996050478581675">"PRC 3 (125 mm x 176 mm)"</string>
+    <string name="mediasize_chinese_prc_4" msgid="7865122849174932948">"PRC 4 (110 mm x 208 mm)"</string>
+    <string name="mediasize_chinese_prc_5" msgid="852020506971633186">"PRC 5 (110 mm x 220 mm)"</string>
+    <string name="mediasize_chinese_prc_6" msgid="3399567254628077606">"PRC 6 (120 m x 320 mm)"</string>
+    <string name="mediasize_chinese_prc_7" msgid="2804330751361491000">"PRC 7 (160 mm x 230 mm)"</string>
+    <string name="mediasize_chinese_prc_8" msgid="7988760621340084314">"PRC 8 (120 mm x 309 mm)"</string>
+    <string name="mediasize_chinese_prc_9" msgid="90266288020939533">"PRC 9 (120 mm x 309 mm)"</string>
+    <string name="mediasize_chinese_prc_10" msgid="7721316829399772162">"PRC 10 (324 mm x 458 mm)"</string>
+    <string name="mediasize_chinese_prc_16k" msgid="7471455177845043180">"PRC 16K (146 mm x 215 mm)"</string>
+    <string name="mediasize_chinese_om_pa_kai" msgid="6305242012782587594">"Pa Kai (146 mm x 215 mm)"</string>
+    <string name="mediasize_chinese_om_dai_pa_kai" msgid="8133982147973309032">"Dai Pa Kai (275 mm x 395 mm)"</string>
+    <string name="mediasize_chinese_om_jurro_ku_kai" msgid="5888548906612445289">"Jurro Ku Kai (275 mm x 395 mm)"</string>
+    <string name="mediasize_japanese_jis_b10" msgid="6761433476186549691">"JIS B10 (32 mm x 45 mm)"</string>
+    <string name="mediasize_japanese_jis_b9" msgid="6011047111717561836">"JIS B9 (45 mm x 64 mm)"</string>
+    <string name="mediasize_japanese_jis_b8" msgid="1541865115368043069">"JIS B8 (64 mm x 91 mm)"</string>
+    <string name="mediasize_japanese_jis_b7" msgid="8300341273885698803">"JIS B7 (91 mm x 128 mm)"</string>
+    <string name="mediasize_japanese_jis_b6" msgid="4329528623016980657">"JIS B6 (128 mm x 182 mm)"</string>
+    <string name="mediasize_japanese_jis_b5" msgid="7340334955358311979">"JIS B5 (182 mm x 257 mm)"</string>
+    <string name="mediasize_japanese_jis_b4" msgid="7403538361394953235">"JIS B4 (257 mm x 364 mm)"</string>
+    <string name="mediasize_japanese_jis_b3" msgid="9024287678505132047">"JIS B3 (364 mm x 515 mm)"</string>
+    <string name="mediasize_japanese_jis_b2" msgid="5151340021154579154">"JIS B2 (515 mm x 728 mm)"</string>
+    <string name="mediasize_japanese_jis_b1" msgid="2709589944170908250">"JIS B1 (728 mm x 1 030 mm)"</string>
+    <string name="mediasize_japanese_jis_b0" msgid="1209735840926222618">"JIS B0 (1 030 mm x 1 456 mm)"</string>
+    <string name="mediasize_japanese_jis_exec" msgid="2137738196058117115">"JIS Exec (216 mm x 330 mm)"</string>
+    <string name="mediasize_japanese_chou4" msgid="2533204016634398713">"Chou4 (90 mm x 205 mm)"</string>
+    <string name="mediasize_japanese_chou3" msgid="5976745918096025459">"Chou3 (120 mm x 235 mm)"</string>
+    <string name="mediasize_japanese_chou2" msgid="6841260581434101675">"Chou2 (111,1 mm x 146 mm)"</string>
+    <string name="mediasize_japanese_hagaki" msgid="2112968853810337326">"Hagaki (100 mm x 148 mm)"</string>
+    <string name="mediasize_japanese_oufuku" msgid="1575013107082530108">"Oufuku (148 mm x 200 mm)"</string>
+    <string name="mediasize_japanese_kahu" msgid="7290232592648122042">"Kahu (240 mm x 322,1 mm)"</string>
+    <string name="mediasize_japanese_kaku2" msgid="7477551750461028312">"Kaku2 (240 mm x 332 mm)"</string>
+    <string name="mediasize_japanese_you4" msgid="5552111912684384833">"You4 (105 mm x 235 mm)"</string>
+    <string name="mediasize_unknown_portrait" msgid="3817016220446495613">"Tuntematon pystykoko"</string>
+    <string name="mediasize_unknown_landscape" msgid="1584741567225095325">"Tuntematon vaakakoko"</string>
+    <string name="write_fail_reason_cancelled" msgid="2344081488493969190">"Peruutettu"</string>
+    <string name="write_fail_reason_cannot_write" msgid="432118118378451508">"Sisällön kirjoittamisessa tapahtui virhe"</string>
+    <string name="reason_unknown" msgid="5599739807581133337">"tuntematon"</string>
+    <string name="reason_service_unavailable" msgid="5288405248063804713">"Tulostuspalvelu ei ole käytössä"</string>
+    <string name="print_service_installed_title" msgid="6134880817336942482">"Palvelu <xliff:g id="NAME">%s</xliff:g> asennettu"</string>
+    <string name="print_service_installed_message" msgid="7005672469916968131">"Ota käyttöön napauttamalla"</string>
+    <string name="restr_pin_enter_admin_pin" msgid="1199419462726962697">"Anna järjestelmänvalvojan PIN-koodi"</string>
+    <string name="restr_pin_enter_pin" msgid="373139384161304555">"Anna PIN-koodi"</string>
+    <string name="restr_pin_incorrect" msgid="3861383632940852496">"Virheellinen"</string>
+    <string name="restr_pin_enter_old_pin" msgid="7537079094090650967">"Nykyinen PIN-koodi"</string>
+    <string name="restr_pin_enter_new_pin" msgid="3267614461844565431">"Uusi PIN-koodi"</string>
+    <string name="restr_pin_confirm_pin" msgid="7143161971614944989">"Vahvista uusi PIN-koodi"</string>
+    <string name="restr_pin_create_pin" msgid="917067613896366033">"Luo uusi PIN-koodi rajoitusten muokkaamista varten"</string>
+    <string name="restr_pin_error_doesnt_match" msgid="7063392698489280556">"PIN-koodit eivät vastaa toisiaan. Yritä uudelleen."</string>
+    <string name="restr_pin_error_too_short" msgid="1547007808237941065">"PIN-koodi on liian lyhyt. Vähimmäispituus on neljä merkkiä."</string>
+    <plurals name="restr_pin_countdown" formatted="false" msgid="4427486903285216153">
+      <item quantity="other">Yritä uudelleen <xliff:g id="COUNT">%d</xliff:g> sekunnin kuluttua</item>
+      <item quantity="one">Yritä uudelleen 1 sekunnin kuluttua</item>
+    </plurals>
+    <string name="restr_pin_try_later" msgid="5897719962541636727">"Yritä myöhemmin uudelleen"</string>
+    <string name="immersive_cling_title" msgid="2307034298721541791">"Koko ruudun tilassa"</string>
+    <string name="immersive_cling_description" msgid="7092737175345204832">"Sulje palkki pyyhkäisemällä alas ruudun ylälaidasta."</string>
+    <string name="immersive_cling_positive" msgid="7047498036346489883">"Selvä"</string>
+    <string name="done_label" msgid="7283767013231718521">"Valmis"</string>
+    <string name="hour_picker_description" msgid="5153757582093524635">"Tuntien ympyränmuotoinen liukusäädin"</string>
+    <string name="minute_picker_description" msgid="9029797023621927294">"Minuuttien ympyränmuotoinen liukusäädin"</string>
+    <string name="select_hours" msgid="5982889657313147347">"Valitse tunnit"</string>
+    <string name="select_minutes" msgid="9157401137441014032">"Valitse minuutit"</string>
+    <string name="select_day" msgid="2060371240117403147">"Valitse kuukausi ja päivä"</string>
+    <string name

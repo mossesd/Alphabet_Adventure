@@ -1,0 +1,108 @@
+ = 0; viewId < m_Views.Length; ++viewId)
+                    {
+                        ViewState viewState = m_Views[viewId];
+                        ViewResources tmpResources = viewId == 0 ? camResources.tmpView0 : camResources.tmpView1;
+                        RunPass(viewState, cmdBuffer, viewData, tmpResources);
+                        cmdBuffer.CopyTexture(tmpResources.output, 0, camResources.resources.output, viewId);
+                    }
+                }
+                else
+                {
+                    RunPass(m_Views[activeViewId], cmdBuffer, viewData, camResources.resources);
+                }
+            }
+
+            public void Cleanup(CommandBuffer cmdBuffer)
+            {
+                if (m_Views == null)
+                    return;
+
+                foreach (var v in m_Views)
+                    v.Cleanup(cmdBuffer);
+
+                m_Views = null;
+            }
+        }
+
+        private bool HasCameraStateExpired(CameraState cameraState)
+        {
+            return (m_FrameId - cameraState.LastFrameId) >= sMaximumFrameExpiration;
+        }
+
+        private void ProcessInvalidCameras()
+        {
+            foreach (KeyValuePair<CameraKey, CameraState> kv in m_CameraStates)
+            {
+                if (kv.Value.IsAlive() && !HasCameraStateExpired(kv.Value))
+                    continue;
+
+                m_InvalidCameraKeys.Add(kv.Key);
+            }
+        }
+
+        private void CleanupCameraStates()
+        {
+            if (m_InvalidCameraKeys.Count == 0)
+                return;
+
+            m_CommandBuffer.Clear();
+            foreach (var invalidKey in m_InvalidCameraKeys)
+            {
+                if (!m_CameraStates.TryGetValue(invalidKey, out var cameraState))
+                    continue;
+
+                cameraState.Cleanup(m_CommandBuffer);
+                m_CameraStates.Remove(invalidKey);
+            }
+            Graphics.ExecuteCommandBuffer(m_CommandBuffer);
+            m_InvalidCameraKeys.Clear();
+        }
+
+        private static CameraKey m_SelectedCameraKey;
+        private float ScaleFn()
+        {
+            CameraState cameraState = null;
+            if (!m_CameraStates.TryGetValue(m_SelectedCameraKey, out cameraState))
+                return 100.0f;
+
+            if (cameraState.ViewStates == null || cameraState.ViewStates.Length == 0)
+                return 100.0f;
+
+            var viewState = cameraState.ViewStates[0];
+            if (!viewState.useAutomaticSettings)
+                return 100.0f;
+
+            var optimalSettings = viewState.OptimalSettingsRequestData.optimalSettings;
+            var targetViewport = viewState.OptimalSettingsRequestData.viewport;
+            float suggestedPercentageX = (float)optimalSettings.outRenderWidth / targetViewport.width;
+            float suggestedPercentageY = (float)optimalSettings.outRenderHeight / targetViewport.height;
+            return Mathf.Min(suggestedPercentageX, suggestedPercentageY) * 100.0f;
+        }
+
+        private void InternalNVIDIASetupDRSScaling(bool enableAutomaticSettings, Camera camera, XRPass xrPass, ref GlobalDynamicResolutionSettings dynamicResolutionSettings)
+        {
+            if (m_Device == null)
+                return;
+
+            var cameraKey = new CameraKey(camera);
+            CameraState cameraState = null;
+            if (!m_CameraStates.TryGetValue(cameraKey, out cameraState))
+                return;
+
+            if (cameraState.ViewStates == null || cameraState.ViewStates.Length == 0)
+                return;
+
+            if (cameraState.ViewStates[0].DLSSContext == null)
+                return;
+
+            var usedQuality = cameraState.ViewStates[0].DLSSContext.initData.quality;
+            Rect finalViewport = xrPass != null && xrPass.enabled ? xrPass.GetViewport() : new Rect(camera.pixelRect.x, camera.pixelRect.y, camera.pixelWidth, camera.pixelHeight);
+            NVIDIA.OptimalDLSSSettingsData optimalSettings = new NVIDIA.OptimalDLSSSettingsData();
+            m_Device.GetOptimalSettings((uint)finalViewport.width, (uint)finalViewport.height, usedQuality, out optimalSettings);
+
+            foreach (var view in cameraState.ViewStates)
+            {
+                if (view == null)
+                    continue;
+
+                vi

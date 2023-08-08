@@ -1,0 +1,448 @@
+ uint3x2(1304301133, 704045745, 345012334, 1253134152, 325772538, 855127202);
+            bool3x2 r2 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r2, a2 != b2);
+
+            uint a3 = (793668881);
+            uint3x2 b3 = uint3x2(1584481616, 1101301152, 276853534, 987168816, 1258105989, 362645228);
+            bool3x2 r3 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r3, a3 != b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(1486550609, 1779244308, 1602148045, 1614085440, 1975613414, 942838342);
+            uint3x2 b0 = uint3x2(97842578, 536551311, 413528975, 1838293684, 1283898480, 1456599961);
+            bool3x2 r0 = bool3x2(false, false, false, true, false, true);
+            TestUtils.AreEqual(r0, a0 < b0);
+
+            uint3x2 a1 = uint3x2(1092279031, 373677431, 1419098312, 337757077, 1081797900, 1336745069);
+            uint3x2 b1 = uint3x2(1080278602, 529676676, 156584048, 117348799, 246927124, 1916615924);
+            bool3x2 r1 = bool3x2(false, true, false, false, false, true);
+            TestUtils.AreEqual(r1, a1 < b1);
+
+            uint3x2 a2 = uint3x2(840685445, 1220554047, 2013681746, 192965012, 532043965, 1000693402);
+            uint3x2 b2 = uint3x2(1731071394, 1328098431, 1014995792, 480319327, 1765937053, 1333997067);
+            bool3x2 r2 = bool3x2(true, true, false, true, true, true);
+            TestUtils.AreEqual(r2, a2 < b2);
+
+            uint3x2 a3 = uint3x2(927236048, 1215860000, 780607596, 1882056852, 1354146545, 2135295778);
+            uint3x2 b3 = uint3x2(688515308, 1856106947, 1303906227, 646821776, 1169473993, 316770064);
+            bool3x2 r3 = bool3x2(false, true, true, false, false, false);
+            TestUtils.AreEqual(r3, a3 < b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(796797557, 670113454, 933579492, 278884514, 318174822, 1117630673);
+            uint b0 = (746564682);
+            bool3x2 r0 = bool3x2(false, true, false, true, true, false);
+            TestUtils.AreEqual(r0, a0 < b0);
+
+            uint3x2 a1 = uint3x2(741886928, 1030849597, 1546212312, 1718582899, 1648393417, 1857132231);
+            uint b1 = (1990922600);
+            bool3x2 r1 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r1, a1 < b1);
+
+            uint3x2 a2 = uint3x2(1909506562, 952084157, 1303736668, 845460171, 979430272, 1368236640);
+            uint b2 = (1294006045);
+            bool3x2 r2 = bool3x2(false, true, false, true, true, false);
+            TestUtils.AreEqual(r2, a2 < b2);
+
+            uint3x2 a3 = uint3x2(24980695, 659552739, 1058492383, 165694933, 1204097259, 922212691);
+            uint b3 = (1434668705);
+            bool3x2 r3 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r3, a3 < b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_scalar_wide()
+        {
+            uint a0 = (186400299);
+            uint3x2 b0 = uint3x2(1881344229, 813834467, 1254886626, 1353590345, 1412343685, 1555571443);
+            bool3x2 r0 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r0, a0 < b0);
+
+            uint a1 = (1540508298);
+            uint3x2 b1 = uint3x2(1735458634, 135888070, 1643818742, 248291654, 1739560105, 728539891);
+            bool3x2 r1 = bool3x2(true, false, true, false, true, false);
+            TestUtils.AreEqual(r1, a1 < b1);
+
+            uint a2 = (480507742);
+            uint3x2 b2 = uint3x2(1696553040, 540223931, 1840493353, 146833656, 798115946, 2002002066);
+            bool3x2 r2 = bool3x2(true, true, true, false, true, true);
+            TestUtils.AreEqual(r2, a2 < b2);
+
+            uint a3 = (1011261705);
+            uint3x2 b3 = uint3x2(783550942, 1093071215, 598253401, 1432416562, 1863582169, 103622950);
+            bool3x2 r3 = bool3x2(false, true, false, true, true, false);
+            TestUtils.AreEqual(r3, a3 < b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(2087717754, 1725569452, 1298066182, 1693943616, 1319019629, 70674491);
+            uint3x2 b0 = uint3x2(85148514, 293632137, 1151128249, 409440398, 1115020183, 1508500597);
+            bool3x2 r0 = bool3x2(true, true, true, true, true, false);
+            TestUtils.AreEqual(r0, a0 > b0);
+
+            uint3x2 a1 = uint3x2(1042499725, 1002821508, 1021857133, 1744374599, 821751047, 467646903);
+            uint3x2 b1 = uint3x2(1834583302, 1755218534, 1788761753, 1128238489, 834223713, 1578743290);
+            bool3x2 r1 = bool3x2(false, false, false, true, false, false);
+            TestUtils.AreEqual(r1, a1 > b1);
+
+            uint3x2 a2 = uint3x2(2029731638, 1377214212, 1207816926, 474621063, 20781266, 366593779);
+            uint3x2 b2 = uint3x2(1647150256, 1756397855, 1131080201, 1208965204, 1495161099, 1283714281);
+            bool3x2 r2 = bool3x2(true, false, true, false, false, false);
+            TestUtils.AreEqual(r2, a2 > b2);
+
+            uint3x2 a3 = uint3x2(2068457387, 10181449, 793634464, 144474612, 99947390, 930377263);
+            uint3x2 b3 = uint3x2(908051907, 412849651, 815822687, 730271942, 40756039, 883326140);
+            bool3x2 r3 = bool3x2(true, false, false, false, true, true);
+            TestUtils.AreEqual(r3, a3 > b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(1208626274, 239697208, 1979453345, 1253474001, 1590192876, 1487911635);
+            uint b0 = (1715176566);
+            bool3x2 r0 = bool3x2(false, false, true, false, false, false);
+            TestUtils.AreEqual(r0, a0 > b0);
+
+            uint3x2 a1 = uint3x2(1673945595, 222749855, 1433540517, 566635217, 1773305960, 1850273578);
+            uint b1 = (1662650098);
+            bool3x2 r1 = bool3x2(true, false, false, false, true, true);
+            TestUtils.AreEqual(r1, a1 > b1);
+
+            uint3x2 a2 = uint3x2(206147145, 333381537, 1905567362, 2053577491, 570397194, 2128431130);
+            uint b2 = (325913453);
+            bool3x2 r2 = bool3x2(false, true, true, true, true, true);
+            TestUtils.AreEqual(r2, a2 > b2);
+
+            uint3x2 a3 = uint3x2(1735325311, 1663525234, 1972984241, 1587865063, 488268523, 121921923);
+            uint b3 = (529971908);
+            bool3x2 r3 = bool3x2(true, true, true, true, false, false);
+            TestUtils.AreEqual(r3, a3 > b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_scalar_wide()
+        {
+            uint a0 = (480938827);
+            uint3x2 b0 = uint3x2(1824731899, 921496110, 586859044, 946430596, 1231356727, 1390167458);
+            bool3x2 r0 = bool3x2(false, false, false, false, false, false);
+            TestUtils.AreEqual(r0, a0 > b0);
+
+            uint a1 = (1785807092);
+            uint3x2 b1 = uint3x2(28949024, 2037899283, 595656760, 1778095771, 1233500439, 1696302238);
+            bool3x2 r1 = bool3x2(true, false, true, true, true, true);
+            TestUtils.AreEqual(r1, a1 > b1);
+
+            uint a2 = (1445965340);
+            uint3x2 b2 = uint3x2(484020151, 1586962841, 1361740714, 265628948, 2003122957, 332267433);
+            bool3x2 r2 = bool3x2(true, false, true, true, false, true);
+            TestUtils.AreEqual(r2, a2 > b2);
+
+            uint a3 = (1128353075);
+            uint3x2 b3 = uint3x2(377919478, 982113135, 1117675960, 630865591, 1550679736, 895945757);
+            bool3x2 r3 = bool3x2(true, true, true, true, false, true);
+            TestUtils.AreEqual(r3, a3 > b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_equal_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(154092149, 1515170149, 1083970332, 785807178, 1401094881, 310537627);
+            uint3x2 b0 = uint3x2(77984380, 1712054191, 1566203809, 254834519, 450519938, 389457083);
+            bool3x2 r0 = bool3x2(false, true, true, false, false, true);
+            TestUtils.AreEqual(r0, a0 <= b0);
+
+            uint3x2 a1 = uint3x2(868328962, 1990816725, 2035349541, 457043352, 1123282035, 1001842946);
+            uint3x2 b1 = uint3x2(1298669505, 207343167, 1214449047, 2059561026, 896534357, 1897470050);
+            bool3x2 r1 = bool3x2(true, false, false, true, false, true);
+            TestUtils.AreEqual(r1, a1 <= b1);
+
+            uint3x2 a2 = uint3x2(1387761992, 195272789, 659549000, 888761458, 283706617, 1790185840);
+            uint3x2 b2 = uint3x2(521075677, 1848221945, 374708019, 1573731118, 2093466449, 1660210829);
+            bool3x2 r2 = bool3x2(false, true, false, true, true, false);
+            TestUtils.AreEqual(r2, a2 <= b2);
+
+            uint3x2 a3 = uint3x2(899029812, 848317418, 1743712447, 1504407474, 1798441490, 1902791952);
+            uint3x2 b3 = uint3x2(1568778785, 1352157589, 1212771905, 1457525058, 1493446008, 1784768208);
+            bool3x2 r3 = bool3x2(true, true, false, false, false, false);
+            TestUtils.AreEqual(r3, a3 <= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_equal_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(1479531977, 1427983411, 415250630, 1245345407, 1112546666, 1072990632);
+            uint b0 = (2004563877);
+            bool3x2 r0 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r0, a0 <= b0);
+
+            uint3x2 a1 = uint3x2(1579912858, 1070894375, 509818792, 1910488590, 85452501, 518127023);
+            uint b1 = (101048307);
+            bool3x2 r1 = bool3x2(false, false, false, false, true, false);
+            TestUtils.AreEqual(r1, a1 <= b1);
+
+            uint3x2 a2 = uint3x2(1246249980, 1964410699, 1968139888, 1191853379, 662096238, 1140643434);
+            uint b2 = (1097326500);
+            bool3x2 r2 = bool3x2(false, false, false, false, true, false);
+            TestUtils.AreEqual(r2, a2 <= b2);
+
+            uint3x2 a3 = uint3x2(754434551, 995927387, 974873240, 1773400038, 497436329, 1825940497);
+            uint b3 = (155343473);
+            bool3x2 r3 = bool3x2(false, false, false, false, false, false);
+            TestUtils.AreEqual(r3, a3 <= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_less_equal_scalar_wide()
+        {
+            uint a0 = (1899193992);
+            uint3x2 b0 = uint3x2(915011820, 980913757, 1337699683, 1476321359, 1102143668, 660493983);
+            bool3x2 r0 = bool3x2(false, false, false, false, false, false);
+            TestUtils.AreEqual(r0, a0 <= b0);
+
+            uint a1 = (184664508);
+            uint3x2 b1 = uint3x2(381579707, 1954892821, 1295090571, 1440368586, 1696003686, 88708652);
+            bool3x2 r1 = bool3x2(true, true, true, true, true, false);
+            TestUtils.AreEqual(r1, a1 <= b1);
+
+            uint a2 = (1332251857);
+            uint3x2 b2 = uint3x2(1310713644, 2112132784, 48951945, 1888568027, 39340955, 1108242207);
+            bool3x2 r2 = bool3x2(false, true, false, true, false, false);
+            TestUtils.AreEqual(r2, a2 <= b2);
+
+            uint a3 = (260777425);
+            uint3x2 b3 = uint3x2(593122164, 291471959, 253457314, 1264570386, 699618012, 927735863);
+            bool3x2 r3 = bool3x2(true, true, false, true, true, true);
+            TestUtils.AreEqual(r3, a3 <= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_equal_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(8538378, 2131749726, 265427108, 523609761, 994991818, 839709564);
+            uint3x2 b0 = uint3x2(903145828, 1697992986, 1432491982, 169789504, 1059357300, 1744255222);
+            bool3x2 r0 = bool3x2(false, true, false, true, false, false);
+            TestUtils.AreEqual(r0, a0 >= b0);
+
+            uint3x2 a1 = uint3x2(101288202, 1886280970, 2032074826, 631221455, 1456286159, 961342752);
+            uint3x2 b1 = uint3x2(1606584463, 1905414425, 1448794969, 136181998, 1678754836, 2069656857);
+            bool3x2 r1 = bool3x2(false, false, true, true, false, false);
+            TestUtils.AreEqual(r1, a1 >= b1);
+
+            uint3x2 a2 = uint3x2(424526026, 788481984, 1662488497, 870326690, 708712581, 1260182701);
+            uint3x2 b2 = uint3x2(398982689, 243317404, 740939613, 1894753119, 301760792, 1260647988);
+            bool3x2 r2 = bool3x2(true, true, true, false, true, false);
+            TestUtils.AreEqual(r2, a2 >= b2);
+
+            uint3x2 a3 = uint3x2(1165630721, 138247561, 1108650168, 1933222913, 672493999, 1541402159);
+            uint3x2 b3 = uint3x2(3608523, 52576030, 903420465, 1648820371, 627296845, 1679808907);
+            bool3x2 r3 = bool3x2(true, true, true, true, true, false);
+            TestUtils.AreEqual(r3, a3 >= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_equal_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(2049236663, 182691143, 634973382, 1197012109, 439837565, 1367606469);
+            uint b0 = (1061998015);
+            bool3x2 r0 = bool3x2(true, false, false, true, false, true);
+            TestUtils.AreEqual(r0, a0 >= b0);
+
+            uint3x2 a1 = uint3x2(1108037359, 1898505669, 411667685, 1998610091, 4652390, 996159180);
+            uint b1 = (351147187);
+            bool3x2 r1 = bool3x2(true, true, true, true, false, true);
+            TestUtils.AreEqual(r1, a1 >= b1);
+
+            uint3x2 a2 = uint3x2(2111455181, 96217144, 814085575, 1525995206, 1293933760, 1732973229);
+            uint b2 = (727766399);
+            bool3x2 r2 = bool3x2(true, false, true, true, true, true);
+            TestUtils.AreEqual(r2, a2 >= b2);
+
+            uint3x2 a3 = uint3x2(1473283041, 1023753195, 1373738074, 518164359, 717850464, 1765188600);
+            uint b3 = (899444524);
+            bool3x2 r3 = bool3x2(true, true, true, false, false, true);
+            TestUtils.AreEqual(r3, a3 >= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_greater_equal_scalar_wide()
+        {
+            uint a0 = (1859811087);
+            uint3x2 b0 = uint3x2(1070365918, 1783869452, 830091760, 377157428, 327199016, 90384229);
+            bool3x2 r0 = bool3x2(true, true, true, true, true, true);
+            TestUtils.AreEqual(r0, a0 >= b0);
+
+            uint a1 = (1154649706);
+            uint3x2 b1 = uint3x2(376758501, 1079802834, 2054742898, 1328349472, 434061447, 951207723);
+            bool3x2 r1 = bool3x2(true, true, false, false, true, true);
+            TestUtils.AreEqual(r1, a1 >= b1);
+
+            uint a2 = (598695892);
+            uint3x2 b2 = uint3x2(975131651, 1714007943, 177416473, 1267232721, 31082860, 216791741);
+            bool3x2 r2 = bool3x2(false, false, true, false, true, true);
+            TestUtils.AreEqual(r2, a2 >= b2);
+
+            uint a3 = (119054289);
+            uint3x2 b3 = uint3x2(1905107583, 89559116, 55041824, 691334141, 462326883, 1658303669);
+            bool3x2 r3 = bool3x2(false, true, true, false, false, false);
+            TestUtils.AreEqual(r3, a3 >= b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_add_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(2135171378, 21433296, 1954723494, 683604307, 1054212315, 1762680995);
+            uint3x2 b0 = uint3x2(1013431952, 366718162, 359290756, 1393163294, 1962236872, 1263270041);
+            uint3x2 r0 = uint3x2(3148603330, 388151458, 2314014250, 2076767601, 3016449187, 3025951036);
+            TestUtils.AreEqual(r0, a0 + b0);
+
+            uint3x2 a1 = uint3x2(1963655852, 1257853062, 2043493600, 976898058, 1915056423, 121374462);
+            uint3x2 b1 = uint3x2(1862666629, 1077447887, 821693806, 487316539, 350922520, 1583012528);
+            uint3x2 r1 = uint3x2(3826322481, 2335300949, 2865187406, 1464214597, 2265978943, 1704386990);
+            TestUtils.AreEqual(r1, a1 + b1);
+
+            uint3x2 a2 = uint3x2(1218855698, 700538222, 1702057277, 1788251699, 1534939160, 398651016);
+            uint3x2 b2 = uint3x2(1951595076, 1024851344, 874302782, 1383969588, 1767968088, 900721406);
+            uint3x2 r2 = uint3x2(3170450774, 1725389566, 2576360059, 3172221287, 3302907248, 1299372422);
+            TestUtils.AreEqual(r2, a2 + b2);
+
+            uint3x2 a3 = uint3x2(1674272498, 374510467, 824322986, 1217622199, 1122376670, 642613771);
+            uint3x2 b3 = uint3x2(1659790033, 1792273749, 443844328, 633981449, 2010244807, 335566991);
+            uint3x2 r3 = uint3x2(3334062531, 2166784216, 1268167314, 1851603648, 3132621477, 978180762);
+            TestUtils.AreEqual(r3, a3 + b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_add_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(665815972, 1783729250, 1591678394, 1284528538, 977850224, 71069732);
+            uint b0 = (1334043849);
+            uint3x2 r0 = uint3x2(1999859821, 3117773099, 2925722243, 2618572387, 2311894073, 1405113581);
+            TestUtils.AreEqual(r0, a0 + b0);
+
+            uint3x2 a1 = uint3x2(1138577680, 565982008, 1246759684, 1088001167, 57252642, 678921480);
+            uint b1 = (1200356017);
+            uint3x2 r1 = uint3x2(2338933697, 1766338025, 2447115701, 2288357184, 1257608659, 1879277497);
+            TestUtils.AreEqual(r1, a1 + b1);
+
+            uint3x2 a2 = uint3x2(625943813, 1470648741, 1490096953, 1467033531, 182608093, 1707296407);
+            uint b2 = (512157429);
+            uint3x2 r2 = uint3x2(1138101242, 1982806170, 2002254382, 1979190960, 694765522, 2219453836);
+            TestUtils.AreEqual(r2, a2 + b2);
+
+            uint3x2 a3 = uint3x2(1703724354, 653973063, 1139546735, 1834005844, 184572739, 1980578280);
+            uint b3 = (1333833947);
+            uint3x2 r3 = uint3x2(3037558301, 1987807010, 2473380682, 3167839791, 1518406686, 3314412227);
+            TestUtils.AreEqual(r3, a3 + b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_add_scalar_wide()
+        {
+            uint a0 = (359966320);
+            uint3x2 b0 = uint3x2(2146146202, 767103309, 851002415, 311531406, 1491262941, 1016891373);
+            uint3x2 r0 = uint3x2(2506112522, 1127069629, 1210968735, 671497726, 1851229261, 1376857693);
+            TestUtils.AreEqual(r0, a0 + b0);
+
+            uint a1 = (1954228994);
+            uint3x2 b1 = uint3x2(1671335850, 727870747, 551151834, 1390261152, 1699060326, 115021619);
+            uint3x2 r1 = uint3x2(3625564844, 2682099741, 2505380828, 3344490146, 3653289320, 2069250613);
+            TestUtils.AreEqual(r1, a1 + b1);
+
+            uint a2 = (1964440175);
+            uint3x2 b2 = uint3x2(440700758, 1556692550, 185414255, 933106731, 1217866784, 729761881);
+            uint3x2 r2 = uint3x2(2405140933, 3521132725, 2149854430, 2897546906, 3182306959, 2694202056);
+            TestUtils.AreEqual(r2, a2 + b2);
+
+            uint a3 = (1742597318);
+            uint3x2 b3 = uint3x2(1090109152, 1467373815, 1066072609, 138237856, 634834665, 993603553);
+            uint3x2 r3 = uint3x2(2832706470, 3209971133, 2808669927, 1880835174, 2377431983, 2736200871);
+            TestUtils.AreEqual(r3, a3 + b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_sub_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(1410318491, 1097280168, 1827039044, 28881338, 328720965, 875487868);
+            uint3x2 b0 = uint3x2(1315897366, 799052018, 1580289673, 1094686261, 1954325726, 1197734816);
+            uint3x2 r0 = uint3x2(94421125, 298228150, 246749371, 3229162373, 2669362535, 3972720348);
+            TestUtils.AreEqual(r0, a0 - b0);
+
+            uint3x2 a1 = uint3x2(212936325, 231977215, 1740021315, 2011295463, 48079003, 591379285);
+            uint3x2 b1 = uint3x2(229886366, 915679176, 1746884850, 918743925, 1007797419, 257421324);
+            uint3x2 r1 = uint3x2(4278017255, 3611265335, 4288103761, 1092551538, 3335248880, 333957961);
+            TestUtils.AreEqual(r1, a1 - b1);
+
+            uint3x2 a2 = uint3x2(1125909359, 1842588095, 848561896, 614448464, 2067598029, 1618238416);
+            uint3x2 b2 = uint3x2(287249342, 1617287463, 1653916102, 123586847, 502107404, 672875302);
+            uint3x2 r2 = uint3x2(838660017, 225300632, 3489613090, 490861617, 1565490625, 945363114);
+            TestUtils.AreEqual(r2, a2 - b2);
+
+            uint3x2 a3 = uint3x2(318516219, 1090119767, 1991095823, 949592162, 1951912339, 1457818751);
+            uint3x2 b3 = uint3x2(1256481116, 1975569142, 1794443030, 1327558915, 330955394, 1596041731);
+            uint3x2 r3 = uint3x2(3357002399, 3409517921, 196652793, 3917000543, 1620956945, 4156744316);
+            TestUtils.AreEqual(r3, a3 - b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_sub_wide_scalar()
+        {
+            uint3x2 a0 = uint3x2(1508669340, 1594795463, 266707545, 643102647, 287705008, 1475644328);
+            uint b0 = (998008471);
+            uint3x2 r0 = uint3x2(510660869, 596786992, 3563666370, 3940061472, 3584663833, 477635857);
+            TestUtils.AreEqual(r0, a0 - b0);
+
+            uint3x2 a1 = uint3x2(1113286221, 2082174113, 1108005498, 304369206, 999244508, 1806482044);
+            uint b1 = (979450511);
+            uint3x2 r1 = uint3x2(133835710, 1102723602, 128554987, 3619885991, 19793997, 827031533);
+            TestUtils.AreEqual(r1, a1 - b1);
+
+            uint3x2 a2 = uint3x2(1994553647, 1482736902, 266654115, 1470212363, 1190349300, 958542155);
+            uint b2 = (2101812429);
+            uint3x2 r2 = uint3x2(4187708514, 3675891769, 2459808982, 3663367230, 3383504167, 3151697022);
+            TestUtils.AreEqual(r2, a2 - b2);
+
+            uint3x2 a3 = uint3x2(1185075537, 499527536, 1612473406, 1696960099, 1287292743, 1360229454);
+            uint b3 = (1738124835);
+            uint3x2 r3 = uint3x2(3741917998, 3056369997, 4169315867, 4253802560, 3844135204, 3917071915);
+            TestUtils.AreEqual(r3, a3 - b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_sub_scalar_wide()
+        {
+            uint a0 = (893369501);
+            uint3x2 b0 = uint3x2(2051906184, 1699714311, 442603706, 1735141684, 274533585, 811580259);
+            uint3x2 r0 = uint3x2(3136430613, 3488622486, 450765795, 3453195113, 618835916, 81789242);
+            TestUtils.AreEqual(r0, a0 - b0);
+
+            uint a1 = (1196354320);
+            uint3x2 b1 = uint3x2(1524097023, 533621527, 2080845793, 143958837, 1620668660, 1135989346);
+            uint3x2 r1 = uint3x2(3967224593, 662732793, 3410475823, 1052395483, 3870652956, 60364974);
+            TestUtils.AreEqual(r1, a1 - b1);
+
+            uint a2 = (1367044745);
+            uint3x2 b2 = uint3x2(554088609, 552670373, 1265516124, 1254902543, 1857695581, 1619865274);
+            uint3x2 r2 = uint3x2(812956136, 814374372, 101528621, 112142202, 3804316460, 4042146767);
+            TestUtils.AreEqual(r2, a2 - b2);
+
+            uint a3 = (1313559400);
+            uint3x2 b3 = uint3x2(99812999, 843597298, 420111239, 1299949060, 531009038, 1103306550);
+            uint3x2 r3 = uint3x2(1213746401, 469962102, 893448161, 13610340, 782550362, 210252850);
+            TestUtils.AreEqual(r3, a3 - b3);
+        }
+
+        [TestCompiler]
+        public static void uint3x2_operator_mul_wide_wide()
+        {
+            uint3x2 a0 = uint3x2(61417577, 219585476, 1362520891, 1511084277, 1481211272, 58211871);
+            uint3x2 b0 = uint3x2(578042444, 1620527213, 200516468, 309339115, 542853019, 299467282);
+            uint3x2 r0 = uint3x2(2868103468, 1326

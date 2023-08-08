@@ -1,0 +1,43 @@
+vent.GetPooled(m_PointerEvent))
+            {
+                SendEvent(e, eventData);
+            }
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (m_Panel == null || !ReadPointerData(m_PointerEvent, eventData, PointerEventType.Up))
+                return;
+
+            using (var e = PointerUpEvent.GetPooled(m_PointerEvent))
+            {
+                SendEvent(e, eventData);
+
+                if (e.pressedButtons == 0)
+                    PointerDeviceState.SetPlayerPanelWithSoftPointerCapture(e.pointerId, null);
+            }
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (m_Panel == null || !ReadPointerData(m_PointerEvent, eventData, PointerEventType.Down))
+                return;
+
+            if (eventSystem != null)
+                eventSystem.SetSelectedGameObject(selectableGameObject);
+
+            using (var e = PointerDownEvent.GetPooled(m_PointerEvent))
+            {
+                SendEvent(e, eventData);
+
+                PointerDeviceState.SetPlayerPanelWithSoftPointerCapture(e.pointerId, m_Panel);
+            }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (m_Panel == null || !ReadPointerData(m_PointerEvent, eventData))
+                return;
+
+            // If a pointer exit is called while the pointer is still on top of this object, it means
+            // there's something else removing the pointer, so we might need to send a Poi

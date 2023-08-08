@@ -1,0 +1,16 @@
+me to check.</param>
+    </member>
+    <member name="M:System.ServiceModel.Security.SecurityAlgorithmSuite.IsDigestAlgorithmSupported(System.String)">
+      <summary>Indicates whether a digest algorithm is supported.</summary>
+      <returns>true if the digest algorithm is supported; otherwise, false.</returns>
+      <param name="algorithm">The algorithm name to check.</param>
+    </member>
+    <member name="M:System.ServiceModel.Security.SecurityAlgorithmSuite.IsEncryptionAlgorithmSupported(System.String)">
+      <summary>Indicates whether an encryption algorithm is supported.</summary>
+      <returns>true if the encryption algorithm is supported; otherwise, false.</returns>
+      <param name="algorithm">The algorithm name to check.</param>
+    </member>
+    <member name="M:System.ServiceModel.Security.SecurityAlgorithmSuite.IsEncryptionKeyDerivationAlgorithmSupported(System.String)">
+      <summary>Indicates whether an encryption key derivation algorithm is supported.</summary>
+      <returns>true if the encryption key derivation algorithm is supported; otherwise, false.</returns>
+      <param name

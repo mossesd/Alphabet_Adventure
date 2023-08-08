@@ -1,0 +1,96 @@
+orldPos));
+  surfIN.color = IN.color;
+  #ifdef UNITY_COMPILER_HLSL
+  SurfaceOutputStandard o = (SurfaceOutputStandard)0;
+  #else
+  SurfaceOutputStandard o;
+  #endif
+  o.Albedo = 0.0;
+  o.Emission = 0.0;
+  o.Alpha = 0.0;
+  o.Occlusion = 1.0;
+  fixed3 normalWorldVertex = fixed3(0,0,1);
+  o.Normal = IN.worldNormal;
+  normalWorldVertex = IN.worldNormal;
+
+  // call surface function
+  surf (surfIN, o);
+
+  // compute lighting & shadowing factor
+  UNITY_LIGHT_ATTENUATION(atten, IN, worldPos)
+  fixed4 c = 0;
+
+  // Setup lighting environment
+  UnityGI gi;
+  UNITY_INITIALIZE_OUTPUT(UnityGI, gi);
+  gi.indirect.diffuse = 0;
+  gi.indirect.specular = 0;
+  gi.light.color = _LightColor0.rgb;
+  gi.light.dir = lightDir;
+  // Call GI (lightmaps/SH/reflections) lighting function
+  UnityGIInput giInput;
+  UNITY_INITIALIZE_OUTPUT(UnityGIInput, giInput);
+  giInput.light = gi.light;
+  giInput.worldPos = worldPos;
+  giInput.worldViewDir = worldViewDir;
+  giInput.atten = atten;
+  #if defined(LIGHTMAP_ON) || defined(DYNAMICLIGHTMAP_ON)
+    giInput.lightmapUV = IN.lmap;
+  #else
+    giInput.lightmapUV = 0.0;
+  #endif
+  #if UNITY_SHOULD_SAMPLE_SH && !UNITY_SAMPLE_FULL_SH_PER_PIXEL
+    giInput.ambient = IN.sh;
+  #else
+    giInput.ambient.rgb = 0.0;
+  #endif
+  giInput.probeHDR[0] = unity_SpecCube0_HDR;
+  giInput.probeHDR[1] = unity_SpecCube1_HDR;
+  #if defined(UNITY_SPECCUBE_BLENDING) || defined(UNITY_SPECCUBE_BOX_PROJECTION)
+    giInput.boxMin[0] = unity_SpecCube0_BoxMin; // .w holds lerp value for blending
+  #endif
+  #ifdef UNITY_SPECCUBE_BOX_PROJECTION
+    giInput.boxMax[0] = unity_SpecCube0_BoxMax;
+    giInput.probePosition[0] = unity_SpecCube0_ProbePosition;
+    giInput.boxMax[1] = unity_SpecCube1_BoxMax;
+    giInput.boxMin[1] = unity_SpecCube1_BoxMin;
+    giInput.probePosition[1] = unity_SpecCube1_ProbePosition;
+  #endif
+  LightingStandard_GI(o, giInput, gi);
+
+  // realtime lighting: call lighting function
+  c += LightingStandard (o, worldViewDir, gi);
+  c.rgb += o.Emission;
+  UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
+  return c;
+}
+
+
+#endif
+
+// -------- variant for: _EMISSION SOFTPARTICLES_ON _ALPHABLEND_ON _METALLICGLOSSMAP _NORMALMAP 
+#if defined(_EMISSION) && defined(SOFTPARTICLES_ON) && defined(_ALPHABLEND_ON) && defined(_METALLICGLOSSMAP) && defined(_NORMALMAP) && !defined(EFFECT_BUMP) && !defined(INSTANCING_ON) && !defined(PROCEDURAL_INSTANCING_ON) && !defined(SHADOWS_SHADOWMASK) && !defined(_ALPHAMODULATE_ON) && !defined(_ALPHAPREMULTIPLY_ON) && !defined(_ALPHATEST_ON) && !defined(_FADING_ON) && !defined(_REQUIRE_UV2)
+// Surface shader code generated based on:
+// vertex modifier: 'vert'
+// writes to per-pixel normal: YES
+// writes to emission: YES
+// writes to occlusion: no
+// needs world space reflection vector: no
+// needs world space normal vector: no
+// needs screen space position: no
+// needs world space position: no
+// needs view direction: no
+// needs world space view direction: no
+// needs world space position for lighting: YES
+// needs world space view direction for lighting: YES
+// needs world space view direction for lightmaps: no
+// needs vertex color: YES
+// needs VFACE: no
+// needs SV_IsFrontFace: no
+// passes tangent-to-world matrix to pixel shader: YES
+// reads from normal: no
+// 0 texcoords actually used
+#include "UnityCG.cginc"
+//Shader does not support lightmap thus we always want to fallback to SH.
+#undef UNITY_SHOULD_SAMPLE_SH
+#define UNITY_SHOULD_SAMPLE_SH (!defined(UNITY_PASS_FORWARDADD) && !defined(UNITY_PASS_PREPASSBASE)

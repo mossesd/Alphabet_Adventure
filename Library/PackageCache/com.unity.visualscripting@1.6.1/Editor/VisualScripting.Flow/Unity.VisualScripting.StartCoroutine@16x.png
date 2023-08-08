@@ -1,0 +1,39 @@
+   </summary>
+      <param name="value"></param>
+    </member>
+    <member name="?:UnityEngine.ReflectionProbe.defaultReflectionTexture(System.Action`1&lt;UnityEngine.Texture&gt;)">
+      <summary>
+        <para>Adds a delegate to get notifications when the default specular Cubemap is changed.</para>
+      </summary>
+      <param name="value"></param>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.defaultTexture">
+      <summary>
+        <para>The surface texture of the default reflection probe that captures the environment contribution. Read only.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.defaultTextureHDRDecodeValues">
+      <summary>
+        <para>HDR decode values of the default reflection probe texture.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.farClipPlane">
+      <summary>
+        <para>The far clipping plane distance when rendering the probe.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.hdr">
+      <summary>
+        <para>Should this reflection probe use HDR rendering?</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.importance">
+      <summary>
+        <para>Reflection probe importance.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.ReflectionProbe.intensity">
+      <summary>
+        <para>The intensity modifier that is applied to the texture of reflection probe in the shader.</para>
+      </summary>
+  

@@ -1,0 +1,349 @@
+>
+      <summary>
+        <para>Checks if the ShaderLab file assigned to the Material has a property with the given name.</para>
+      </summary>
+      <param name="nameID">The name ID of the property. Use Shader.PropertyToID to get this ID.</param>
+      <param name="name">The name of the property.</param>
+      <returns>
+        <para>Returns true if the ShaderLab file assigned to the Material has this property.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.HasTexture(System.String)">
+      <summary>
+        <para>Checks if the ShaderLab file assigned to the Material has a Texture property with the given name.</para>
+      </summary>
+      <param name="nameID">The name ID of the property. Use Shader.PropertyToID to get this ID.</param>
+      <param name="name">The name of the property.</param>
+      <returns>
+        <para>Returns true if the ShaderLab file assigned to the Material has this property.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.HasTexture(System.Int32)">
+      <summary>
+        <para>Checks if the ShaderLab file assigned to the Material has a Texture property with the given name.</para>
+      </summary>
+      <param name="nameID">The name ID of the property. Use Shader.PropertyToID to get this ID.</param>
+      <param name="name">The name of the property.</param>
+      <returns>
+        <para>Returns true if the ShaderLab file assigned to the Material has this property.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.HasVector(System.String)">
+      <summary>
+        <para>Checks if the ShaderLab file assigned to the Material has a Vector property with the given name. This also works with the Vector Array property.</para>
+      </summary>
+      <param name="name">The name of the property.</param>
+      <param name="nameID">The name ID of the property. Use Shader.PropertyToID to get this ID.</param>
+      <returns>
+        <para>Returns true if the ShaderLab file assigned to the Material has this property.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.HasVector(System.Int32)">
+      <summary>
+        <para>Checks if the ShaderLab file assigned to the Material has a Vector property with the given name. This also works with the Vector Array property.</para>
+      </summary>
+      <param name="name">The name of the property.</param>
+      <param name="nameID">The name ID of the property. Use Shader.PropertyToID to get this ID.</param>
+      <returns>
+        <para>Returns true if the ShaderLab file assigned to the Material has this property.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.IsKeywordEnabled(UnityEngine.Rendering.LocalKeyword&amp;)">
+      <summary>
+        <para>Checks whether a local shader keyword is enabled for this material.</para>
+      </summary>
+      <param name="keyword">The Rendering.LocalKeyword to check.</param>
+      <param name="keyword">The name of the Rendering.LocalKeyword to check.</param>
+      <returns>
+        <para>Returns true if a Rendering.LocalKeyword with the given name is enabled  for this material.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.IsKeywordEnabled(System.String)">
+      <summary>
+        <para>Checks whether a local shader keyword is enabled for this material.</para>
+      </summary>
+      <param name="keyword">The Rendering.LocalKeyword to check.</param>
+      <param name="keyword">The name of the Rendering.LocalKeyword to check.</param>
+      <returns>
+        <para>Returns true if a Rendering.LocalKeyword with the given name is enabled  for this material.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Material.Lerp(UnityEngine.Material,UnityEngine.Material,System.Single)">
+      <summary>
+        <para>Interpolate properties between two materials.</para>
+      </summary>
+      <param name="start"></param>
+      <param name="end"></param>
+      <param name="t"></param>
+    </member>
+    <member name="M:UnityEngine.Material.SetBuffer(System.String,UnityEngine.ComputeBuffer)">
+      <summary>
+        <para>Sets a named buffer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">The ComputeBuffer or GraphicsBuffer value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetBuffer(System.Int32,UnityEngine.ComputeBuffer)">
+      <summary>
+        <para>Sets a named buffer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">The ComputeBuffer or GraphicsBuffer value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetBuffer(System.String,UnityEngine.GraphicsBuffer)">
+      <summary>
+        <para>Sets a named buffer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">The ComputeBuffer or GraphicsBuffer value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetBuffer(System.Int32,UnityEngine.GraphicsBuffer)">
+      <summary>
+        <para>Sets a named buffer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">The ComputeBuffer or GraphicsBuffer value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColor(System.String,UnityEngine.Color)">
+      <summary>
+        <para>Sets a color value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name, e.g. "_Color".</param>
+      <param name="value">Color value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColor(System.Int32,UnityEngine.Color)">
+      <summary>
+        <para>Sets a color value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name, e.g. "_Color".</param>
+      <param name="value">Color value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColorArray(System.String,UnityEngine.Color[])">
+      <summary>
+        <para>Sets a color array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColorArray(System.Int32,UnityEngine.Color[])">
+      <summary>
+        <para>Sets a color array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColorArray(System.String,System.Collections.Generic.List`1&lt;UnityEngine.Color&gt;)">
+      <summary>
+        <para>Sets a color array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetColorArray(System.Int32,System.Collections.Generic.List`1&lt;UnityEngine.Color&gt;)">
+      <summary>
+        <para>Sets a color array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetConstantBuffer(System.String,UnityEngine.ComputeBuffer,System.Int32,System.Int32)">
+      <summary>
+        <para>Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the material.</para>
+      </summary>
+      <param name="name">The name of the constant buffer to override.</param>
+      <param name="value">The ComputeBuffer to override the constant buffer values with, or null to remove binding.</param>
+      <param name="offset">Offset in bytes from the beginning of the buffer to bind. Must be a multiple of SystemInfo.constantBufferOffsetAlignment, or 0 if that value is 0.</param>
+      <param name="size">The number of bytes to bind.</param>
+      <param name="nameID">The shader property ID of the constant buffer to override.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetConstantBuffer(System.Int32,UnityEngine.ComputeBuffer,System.Int32,System.Int32)">
+      <summary>
+        <para>Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the material.</para>
+      </summary>
+      <param name="name">The name of the constant buffer to override.</param>
+      <param name="value">The ComputeBuffer to override the constant buffer values with, or null to remove binding.</param>
+      <param name="offset">Offset in bytes from the beginning of the buffer to bind. Must be a multiple of SystemInfo.constantBufferOffsetAlignment, or 0 if that value is 0.</param>
+      <param name="size">The number of bytes to bind.</param>
+      <param name="nameID">The shader property ID of the constant buffer to override.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetConstantBuffer(System.String,UnityEngine.GraphicsBuffer,System.Int32,System.Int32)">
+      <summary>
+        <para>Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the material.</para>
+      </summary>
+      <param name="name">The name of the constant buffer to override.</param>
+      <param name="value">The ComputeBuffer to override the constant buffer values with, or null to remove binding.</param>
+      <param name="offset">Offset in bytes from the beginning of the buffer to bind. Must be a multiple of SystemInfo.constantBufferOffsetAlignment, or 0 if that value is 0.</param>
+      <param name="size">The number of bytes to bind.</param>
+      <param name="nameID">The shader property ID of the constant buffer to override.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetConstantBuffer(System.Int32,UnityEngine.GraphicsBuffer,System.Int32,System.Int32)">
+      <summary>
+        <para>Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the material.</para>
+      </summary>
+      <param name="name">The name of the constant buffer to override.</param>
+      <param name="value">The ComputeBuffer to override the constant buffer values with, or null to remove binding.</param>
+      <param name="offset">Offset in bytes from the beginning of the buffer to bind. Must be a multiple of SystemInfo.constantBufferOffsetAlignment, or 0 if that value is 0.</param>
+      <param name="size">The number of bytes to bind.</param>
+      <param name="nameID">The shader property ID of the constant buffer to override.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloat(System.String,System.Single)">
+      <summary>
+        <para>Sets a named float value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Float value to set.</param>
+      <param name="name">Property name, e.g. "_Glossiness".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloat(System.Int32,System.Single)">
+      <summary>
+        <para>Sets a named float value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Float value to set.</param>
+      <param name="name">Property name, e.g. "_Glossiness".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloatArray(System.String,System.Single[])">
+      <summary>
+        <para>Sets a float array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID. Use Shader.PropertyToID to get this ID.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloatArray(System.Int32,System.Single[])">
+      <summary>
+        <para>Sets a float array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID. Use Shader.PropertyToID to get this ID.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloatArray(System.String,System.Collections.Generic.List`1&lt;System.Single&gt;)">
+      <summary>
+        <para>Sets a float array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID. Use Shader.PropertyToID to get this ID.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetFloatArray(System.Int32,System.Collections.Generic.List`1&lt;System.Single&gt;)">
+      <summary>
+        <para>Sets a float array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="nameID">Property name ID. Use Shader.PropertyToID to get this ID.</param>
+      <param name="values">Array of values to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetInt(System.String,System.Int32)">
+      <summary>
+        <para>This method is deprecated. Use SetFloat or SetInteger instead.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Integer value to set.</param>
+      <param name="name">Property name, e.g. "_SrcBlend".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetInt(System.Int32,System.Int32)">
+      <summary>
+        <para>This method is deprecated. Use SetFloat or SetInteger instead.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Integer value to set.</param>
+      <param name="name">Property name, e.g. "_SrcBlend".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetInteger(System.String,System.Int32)">
+      <summary>
+        <para>Sets a named integer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Integer value to set.</param>
+      <param name="name">Property name, e.g. "_SrcBlend".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetInteger(System.Int32,System.Int32)">
+      <summary>
+        <para>Sets a named integer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="value">Integer value to set.</param>
+      <param name="name">Property name, e.g. "_SrcBlend".</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetKeyword(UnityEngine.Rendering.LocalKeyword&amp;,System.Boolean)">
+      <summary>
+        <para>Sets the state of a local shader keyword for this material.</para>
+      </summary>
+      <param name="keyword">The Rendering.LocalKeyword to enable or disable.</param>
+      <param name="value">The desired keyword state.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrix(System.String,UnityEngine.Matrix4x4)">
+      <summary>
+        <para>Sets a named matrix for the shader.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name, e.g. "_CubemapRotation".</param>
+      <param name="value">Matrix value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrix(System.Int32,UnityEngine.Matrix4x4)">
+      <summary>
+        <para>Sets a named matrix for the shader.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name, e.g. "_CubemapRotation".</param>
+      <param name="value">Matrix value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrixArray(System.String,UnityEngine.Matrix4x4[])">
+      <summary>
+        <para>Sets a matrix array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="values">Array of values to set.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrixArray(System.Int32,UnityEngine.Matrix4x4[])">
+      <summary>
+        <para>Sets a matrix array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="values">Array of values to set.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrixArray(System.String,System.Collections.Generic.List`1&lt;UnityEngine.Matrix4x4&gt;)">
+      <summary>
+        <para>Sets a matrix array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="values">Array of values to set.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetMatrixArray(System.Int32,System.Collections.Generic.List`1&lt;UnityEngine.Matrix4x4&gt;)">
+      <summary>
+        <para>Sets a matrix array property.</para>
+      </summary>
+      <param name="name">Property name.</param>
+      <param name="values">Array of values to set.</param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetOverrideTag(System.String,System.String)">
+      <summary>
+        <para>Sets an override tag/value on the material.</para>
+      </summary>
+      <param name="tag">Name of the tag to set.</param>
+      <param name="val">Name of the value to set. Empty string to clear the override flag.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetPass(System.Int32)">
+      <summary>
+        <para>Activate the given pass for rendering.</para>
+      </summary>
+      <param name="pass">Shader pass number to setup.</param>
+      <returns>
+        <para>If false is returned, no rendering should be done.</para>
+      </returns>
+    </memb

@@ -1,0 +1,2657 @@
+tion. (Use 'cm ^help ^objectspec' to
+                        learn more about specs.)
+Options:
+
+    --^atdate            Returns a selector that will recreate the workspace as
+                        it would have looked at the specified date.
+
+== CMD_HELP_MANIPULATESELECTOR ==
+Remarks:
+
+    If neither path nor workspace spec is specified, the command will take the
+    current directory as workspace path.
+
+Examples:
+
+    cm ^manipulateselector c:\workspace --^atdate=yyyy-MM-ddTHH:mm:ss
+    cm ^manipulateselector --^atdate=yyyy-MM-ddTHH:mm:ss
+    cm ^manipulateselector > mySelector.txt --^atdate=yyyy-MM-ddTHH:mm:ss
+    cm ^manipulateselector ^wk:build_wk@BUILDER --^atdate=yyyy-MM-ddTHH:mm:ss
+
+== CMD_DESCRIPTION_MERGE ==
+Merges a branch with another branch.
+
+== CMD_USAGE_MERGE ==
+Usage:
+
+    cm ^merge <source_spec> [--^merge] [--^cherrypicking] [--^forced]
+                           [--^mergetype=(^onlyone|^onlysrc|^onlydst|^try|^forced)]
+                           [--^interval-origin=<csetspec> | --^ancestor=<csetspec>]
+                           [--^keepsource | --^ks] [--^keepdestination | --^kd]
+                           [--^automaticresolution=<conflict-types>[;...]]
+                           [--^subtractive] [--^mount] [--^printcontributors]
+                           [--^noprintoperations] [--^silent]
+                           [(--^to=<brspec> | --^destination=<brspec>)[--^shelve]]
+                           [--^no-dst-changes]
+                           [-^c=<str_comment> | --^commentsfile=<comments_file>]
+                           [--^resolveconflict --^conflict=<index>
+                           --^resolutionoption=(^src|^dst|(^rename --^resolutioninfo=<strname>))
+                           --^mergeresultfile=<path> --^solvedconflictsfile=<path>]
+                           [--^nointeractiveresolution]
+                           [--^machinereadable [--^startlineseparator=<sep>]
+                             [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+    source_spec           Specification of the source object to merge from:
+                          - a branch specification: '[^br:/]br_name'
+                          - a label specification: '^lb:lb_name'
+                          - a changeset specification: '^cs:cs_number'
+                          - a shelve specification: '^sh:shelve_number'
+                          (Use 'cm ^help ^objectspec' to learn more about specs.)
+
+Options:
+
+    --^merge                   Performs the merge. Otherwise, prints the
+                              conflicts found.
+    --^cherrypicking           Merges the changes included on the source 
+                              changesets. This option is not used if the merge
+                              source specification is a label.
+    --^forced                  Does not check if the source and destination are
+                              already connected.
+                              This option is only available for interval merge 
+                              and cherry picking.
+    --^mergetype               Type of the merge. See Remarks for more info.
+    --^interval-origin         Specifies which changeset is chosen as the 
+                              interval origin, so the merge will only take the
+                              differences between the source changeset and the 
+                              specified interval origin.
+    --^ancestor                This is an alias of '--^interval-origin'.
+    --^keepsource              Accepts all changes from source contributor for
+                              items with conflicts.
+    --^keepdestination         Preserves changes from destination contributor
+                              for items with conflicts.
+    --^automaticresolution     Used to resolve directory conflicts. This option
+                              lets you choose whether the source or the
+                              destination contributor should be automatically
+                              selected to resolve the conflict.
+                              Use a semicolon to separate conflict types.
+                              See Remarks for more info.
+    --^subtractive             Deletes changes introduced by a merge. The
+                              parameter passed to the command (source_spec) is
+                              used to specify which is the source to delete 
+                              changes. It must be a changeset. In the case of a
+                              changeset interval, the '--^interval-origin' must
+                              be used to define the interval origin. To remove
+                              a change, the system creates a new checked out
+                              revision which will have the content of the
+                              previous one except for the deleted changes.
+    --^mount                   The mount point for the given repository.
+    --^printcontributors       Prints the contributors (base, source, and 
+                              destination).
+    --^noprintoperations       Silently resolves merges without showing
+                              information about the resolution.
+    --^silent                  Does not show any output.
+    --^to | --^destination      Performs a merge-to operation to the specified
+                              branch (by entering a branch spec or brspec)
+                              with full conflict resolution. 
+                              (Use 'cm ^help ^objectspec' to learn more about
+                              branch specs.)
+                              A "merge-to" (or workspace-less merge) is a merge
+                              done in the server side. While normal merges
+                              happen on a workspace merging "from" a branch,
+                              label or changeset, a merge-to happens entirely
+                              on the server. While in normal merges the
+                              "destination" is the workspace, in "merge-to" a
+                              destination must be always specified (that's why
+                              we call it "to").
+                              Check the following link for more information
+                              about the "merge to" feature:
+                              https://www.plasticscm.com/download/help/mergeto
+    --^shelve                  Creates a shelve with the changes of the merge
+                              result (plus merge traceability info) instead of
+                              creating a new changeset. This option is not
+                              available when the merge source is a shelve. This
+                              option is only available for server-side-merge
+                              (a.k.a. "merge-to"). Hence, the '--^to' and
+                              '--^merge' options are required.
+    --^no-dst-changes          Ensures that the destination contributor doesn't
+                              have changes (the destination changeset is also
+                              the common ancestor). When there are changes on
+                              the destination, the merge is not allowed.
+    -^c                        Applies the specified comment to the changeset
+                              created in the merge operation.
+    --^commentsfile            Applies the comment in the specified file to the
+                              changeset created in the merge operation.
+    --^resolveconflict         (Mainly used by plugins. See Remarks for more info.)
+                              Used to solve a directory conflict.
+    --^conflict                Used with the '--^resolveconflict' flag, specifies
+                              the index of the conflict to solve starting at 1.
+    --^resolutionoption        Used with the '--^resolveconflict' flag, indicates
+                              the type of the conflict resolution. Use one of
+                              the following options: '^src', '^dst', '^rename'.
+                              See Remarks for more info.
+    --^resolutioninfo          Used with the '--^resolveconflict' flag, provides
+                              the name to use when the '--^resolutionoption'
+                              option is 'rename'.
+    --^mergeresultfile         Used with the '--^resolveconflict' flag, outputs
+                              into a file the information of the merge result
+                              between different calls .The specified path will
+                              be created during the first call and updated on 
+                              each next call.
+    --^solvedconflictsfile     Used with the '--^resolveconflict' flag, outputs
+                              into a file the information of the conflicts
+                              solved between different calls. The specified
+                              path will be created during the first call and
+                              updated on each next call.
+    --^nointeractiveresolution (Mainly used by plugins. See Remarks for more info.)
+                              Avoids prompting the user for manual conflict.
+                              This way, a directory conflict won't be solved.
+    --^machinereadable         (Mainly used by plugins. See Remarks for more info.)
+                              Outputs the result in an easy-to-parse format.
+    --^startlineseparator      Used with the '--^machinereadable' flag, specifies
+                              how the lines should start. (Default: empty string.)
+    --^endlineseparator        Used with the '--^machinereadable' flag, specifies
+                              how the lines should end. (Default: empty string.)
+    --^fieldseparator          Used with the '--^machinereadable' flag, specifies
+                              how the fields should be separated. (Default:
+                              whitespace.)
+
+== CMD_HELP_MERGE ==
+Remarks:
+
+    This command is used to merge changes between two branches or between a
+    label and a branch. The destination of the merge must be always a branch.
+    The merge source is specified as an argument.
+    Destination is the current content of the workspace.
+    For example, to display the elements that will be merged from branch
+    task001 to the main branch, the selector must point to the main branch,
+    the workspace must be updated, and then:
+        cm ^merge ^br:/task001
+
+    To really perform the merge, '--^merge' option is added:
+        cm ^merge ^br:/task001 --^merge
+
+    To define the merge source, the following specs can be used:
+
+    - A branch specification (brspec):
+        [^br:/]br_name
+        Example: ^br:/main/task001
+        (Merges from the last changeset on this branch.)
+
+    - A label specification (lbspec):
+        ^lb:lb_name
+        Example: ^lb:BL001
+        (Merges from the labeled changeset.)
+
+    - A changeset specification (csetspec):
+        ^cs:cs_number
+        Example: ^cs:25
+        (Merges from the given changeset content.)
+
+    - A shelve specification (shspec):
+        ^sh:shelve_number
+        Example: ^sh:2
+        (Merges from the given shelve content.)
+
+    To automatically resolve directory conflicts, use '--^automaticresolution'
+    option and specify the type of conflict followed by the contributor
+    (source or destination) that must be selected during the merge operation.
+    (Separate each "type of conflict"-"contributor" pair by a semicolon (;).)
+    For example:
+        cm ^merge ^cs:2634 --^merge --^automaticresolution=^eviltwin-src;^changedelete-src
+        (The merge operation from changeset 2634 resolves the "^eviltwin" and 
+        "^changedelete" conflicts by keeping the source ("-^src") contributor in
+        both cases.)
+    - A "-^src" suffix after a conflict type tells the merge command to keep the
+      source contributor changes.
+    - A "-^dst" suffix will keep the destination contributor changes.
+    This is the list of conflict types the merge command supports: 
+      "^movedeviltwin", "^eviltwin", "^changedelete", "^deletechange", "^movedelete",
+      "^deletemove", "^loadedtwice", "^addmove", "^moveadd", "^divergentmove",
+      "^cyclemove", "^all". 
+    The "^all" value overrides the other options. In the following example,
+    "^eviltwin-dst" will be ignored:
+        cm ^merge ^br:/main/task062 --^merge --^automaticresolution=^all-src;^eviltwin-dst
+    Check the following link to learn more about merge conflicts:
+    https://www.plasticscm.com/download/help/directorymerges
+
+    These are the options for '--^mergetype':
+        ^onlyone         Automatic merge if only one contributor modified the
+                        item.
+        ^onlysrc         Automatic merge if only source contributor modified the
+                        item.
+        ^onlydst         Automatic merge if only destination contributor modified
+                        the item.
+        ^try             Automatic merge if only one contributor has modified the
+                        conflictive piece of code (each conflict).
+        ^forced          Always try to solve all non-automatic conflicts.
+
+    These are the options that are mainly used by plugins and integrations:
+        - '--^resolveconflict' to solve a directory conflict. You also have to
+          use the following options:
+              - '--^conflict' is the index of the conflict that you want to 
+                solve, starting at 1.
+              - '--^resolutionoption' indicates the conflict resolution to 
+                 use. This can be:
+                    - '^src' to keep the source change and discard the 
+                      destination change
+                    - '^dst' to keep the destination change and discard the 
+                      source change
+                    - '^rename' (only if the conflict type supports this 
+                      resolution), to rename the destination to the given name
+                      provided with the '--^resolutioninfo' option.
+                        - '--^resolutioninfo' to provide the name to use on a 
+                          '^rename' resolution
+              - '--^mergeresultfile' and '--^solvedconflictsfile', both used to 
+                store the merge info between different calls.
+        - '--^nointeractiveresolution' indicates the merge to not ask the user for
+          manual conflict resolution.
+        - '--^machinereadable' and '--^startlineseparator', '--^endlineseparator',
+          '--^fieldseparator' options to print the output on a machine-readable 
+          way (easier-to-parse).
+        Example:
+        cm ^merge --^machinereadable --^startlineseparator=start@_@line \
+          --^endlineseparator=new@_@line --^fieldseparator=def#_#sep \
+          --^mergeresultfile=C:\Users\Borja\AppData\Local\Temp\2tmp4D6C.tmp \
+          --^solvedconflictsfile=C:\Users\Borja\AppData\Local\Temp\2tmp4D6D.tmp \
+          --^resolveconflict --^conflict=1 --^resolutionoption=rename  \
+          --^resolutioninfo=bin_dst ^br:/main/task --^merge
+		  
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+
+Examples:
+
+    cm ^merge ^br:/task001
+    (Does not merge, just prints items to be merged.)
+
+    cm ^merge ^br:/task001 --^merge
+    (Does merge from branch 'task001'.)
+
+    cm ^merge ^cs:5 --^merge --^cherrypicking --^interval-origin=^cs:2
+    (Cherry pick from the changeset interval (2,5].)
+
+    cm ^merge ^cs:8 --^merge --^subtractive --^keepdestination
+    (Subtractive merge from changeset 8, keeping destination changes for those
+    elements with conflicts.)
+
+    cm ^merge ^br:/main/task001 --^to=^br:/main --^merge -^c="Integrated new UI"
+    (Does server-side merge, a.k.a. merge-to, from branch 'task001' to branch
+    'main' and sets a comment.)
+
+    cm ^merge ^br:/main/task001 --^to=^br:/main --^merge --^shelve
+    (Does server-side merge from branch 'task001' to branch 'main' and leaves
+    the result on a shelve.)
+
+    cm ^merge ^sh:2 --^to=^br:/main --^merge --^no-dst-changes
+    (Applies the shelve 2 into 'main' only if it was created from the current
+    'main' head')
+
+== CMD_DESCRIPTION_ATTRIBUTE_CREATE ==
+Creates a new attribute.
+
+== CMD_USAGE_ATTRIBUTE_CREATE ==
+Usage:
+
+    cm ^attribute | ^att ^create | ^mk <att_name>
+
+    att_name            Attribute name
+
+== CMD_HELP_ATTRIBUTE_CREATE ==
+Remarks:
+
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+	
+Examples:
+
+    cm ^attribute ^create status
+    (Creates the attribute 'status'.)
+
+    cm ^att ^mk integrated
+    (Creates the attribute 'integrated'.)
+
+== CMD_DESCRIPTION_BRANCH ==
+Allows the user to manage branches.
+
+== CMD_USAGE_BRANCH ==
+Usage:
+
+    cm ^branch | ^br <command> [options]
+
+Commands:
+
+    ^create | ^mk
+    ^delete | ^rm
+    ^rename
+    ^history
+    ^showmain
+    ^showmerges
+
+    To get more information about each command run:
+    cm ^branch <command> --^usage
+    cm ^branch <command> --^help
+
+== CMD_HELP_BRANCH ==
+Examples:
+
+    cm ^branch /main/scm21345
+    cm ^branch ^create /main/scm21345
+    cm ^branch ^delete /main/scm21345
+    cm ^branch ^rename /main/scm21345 scm21346
+    cm ^branch ^history /main/scm21345
+    cm ^branch ^showmain
+    cm ^branch ^showmerges file.txt
+
+== CMD_DESCRIPTION_BRANCH_CREATE ==
+Creates a new branch.
+
+== CMD_USAGE_BRANCH_CREATE ==
+Usage:
+
+    cm ^branch | ^br [^create | ^mk] <brspec> 
+                   [--^changeset=<csetspec> | --^label=<lbspec>]
+                   [-^c=<str_comment> | -^commentsfile=<comments_file>]
+
+    brspec         The new branch name or spec. 
+                   (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+
+Options:
+
+    --^changeset     Changeset used as starting point for the new branch.
+                    (Use 'cm ^help ^objectspec' to learn more about cset specs.)
+    --^label         Label used as starting point for the new branch.
+                    (Use 'cm ^help ^objectspec' to learn more about label specs.)
+    -^c              Fills in the comment field of the new branch with the
+                    specified text.
+    -^commentsfile   Fills in the comment field of the new branch with the
+                    contents of the specified file.
+
+== CMD_HELP_BRANCH_CREATE ==
+Remarks:
+
+    To create a top-level branch, specify the name without any hierarchy.
+    For example:
+
+        cm ^br /dev
+
+    If no optional parameter '--^changeset' is specified, the base of the new
+    branch will be the last changeset on the parent branch. If the new branch
+    is a top-level branch, the base changeset used will be cset 0.
+
+    You can specify a comment using either the '-^c' or the '-^m' switches:
+
+        cm ^branch /main/task001 -^c="This is the comment"
+        cm ^branch /main/task001 -^m "This is the comment"
+
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+
+Examples:
+
+    cm ^branch task001
+    cm ^branch ^create task001
+    cm ^branch ^mk task001
+    cm ^br ^mk task001
+    (All of the examples above, create a top-level 'task001' branch in the
+    repository of the current workspace.)
+
+    cm ^branch ^br:/task001/task002@
+    (Creates 'task002' branch as child of 'task001'.)
+
+    cm ^br /main/task001@myrep@myserver:8084 -^c="my comment"
+    (Creates 'task001' branch as child of 'main' in repository 
+    'myrep@myserver:8084' with comment 'my comment'.)
+
+    cm ^branch ^br:/main/task001 --^changeset=2837 -^commentsfile=commenttask001.txt
+    (Creates the 'task001' branch as child of 'main' with base 'changeset=2837',
+    and applies the comment in 'commenttask001.txt' file.)
+
+== CMD_DESCRIPTION_BRANCH_DELETE ==
+Deletes one or more branches.
+
+== CMD_USAGE_BRANCH_DELETE ==
+Usage:
+
+    cm ^branch | ^br ^delete | ^rm <brspec>[ ...]
+
+    brspec              Branch to delete. Use a whitespace to separate branches.
+                        (Use 'cm ^help ^objectspec' to learn more about branch
+                        specs.)
+
+== CMD_HELP_BRANCH_DELETE ==
+Remarks:
+
+    This command deletes one or more branches.
+
+Examples:
+
+    cm ^branch ^delete /main/task001
+    (Deletes the branch with name 'task001' that is a child of 'main' in the
+    repository of the current workspace.)
+
+    cm ^br ^rm main/task002 /main/task012@reptest@myserver:8084
+    (Deletes branches '/main/task002' in the repository of the current workspace
+    and '/main/task012' in the repository 'reptest@myserver:8084'.)
+
+== CMD_DESCRIPTION_BRANCH_RENAME ==
+Renames a branch.
+
+== CMD_USAGE_BRANCH_RENAME ==
+Usage:
+
+    cm ^branch | ^br ^rename <brspec> <new_name>
+
+    brspec          Branch to rename.
+                    (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+    new_name        New name for the branch.
+
+== CMD_HELP_BRANCH_RENAME ==
+Remarks:
+
+    This command renames a branch.
+
+Examples:
+
+    cm ^branch ^rename /main/task0 task1
+    (Renames branch '/main/task0' to '/main/task1'.)
+
+    cm ^br ^rename ^br:/main@reptest@server2:8084 secondary
+    (Renames the 'main' branch of repository 'reptest' to 'secondary'.)
+
+== CMD_DESCRIPTION_BRANCH_HISTORY ==
+Shows the history of a branch.
+
+== CMD_USAGE_BRANCH_HISTORY ==
+Usage:
+
+    cm ^branch | ^br ^history <brspec> [--^dateformat=<date_format>]
+                           [--^machinereadable]
+
+    brspec          The branch specification to obtain the history.
+                    (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+
+Options:
+
+    --^dateformat            Format used to output dates.
+    --^machinereadable       Outputs the result in an easy-to-parse format.
+
+== CMD_HELP_BRANCH_HISTORY ==
+Examples:
+
+    cm ^branch ^history ^br:/main/scm001@myrepository@myserver:8084
+    (Displays the history of '/main/scm001' branch of 'myrepository' repository
+    on 'myserver' server.)
+
+    cm ^br ^history main --^dateformat="yyyy, dd MMMM" --^machinereadable
+    (Displays the history of the 'main' branch of the current repository,
+    with a given date format, and in an easy-to-parse format.)
+
+== CMD_DESCRIPTION_BRANCH_SHOWMAIN ==
+Shows the main branch of a repository.
+This is an automation command, meant to be used to automate 'cm' only.
+Most likely, the main branch of your repository is '/main'.
+
+== CMD_USAGE_BRANCH_SHOWMAIN ==
+Usage:
+
+    cm ^branch | ^br ^showmain [<repspec>] [--^encoding=<name>]
+                            [--^format=<format_str>] [--^dateformat=<date_format>]
+
+    repspec             The repository specification where to show the main
+                        branch. If no repspec is specified, the command will show
+                        the main branch for the repository of the current
+                        workspace.
+                        (Use 'cm ^help ^objectspec' to learn more about rep specs.)
+
+Options:
+
+    --^encoding          Specifies the encoding to use in the output,
+                        i.e.: utf-8.
+                        See the MSDN documentation at
+                        http://msdn.microsoft.com/en-us/library/system.text.encoding.aspx
+                        to get the table of supported encodings and its format, 
+                        (at the end of the page, in the "Name" column).
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info.
+    --^dateformat        Format used to output dates.
+
+== CMD_HELP_BRANCH_SHOWMAIN ==
+Remarks:
+
+    This command shows the main branch of a repository.
+
+    Output format parameters (--^format option):
+        This command accepts a format string to show the output.
+        The output parameters of this command are the following:
+        {^id}                Branch id.
+        {^comment}           Comment.
+        {^date}              Date.
+        {^name}              Name.
+        {^owner}             Owner.
+        {^parent}            Parent branch name.
+        {^repository}        Repository.
+        {^repname}           Repository name.
+        {^repserver}         Server.
+        {^changeset}         Head changeset of the branch.
+
+Examples:
+
+    cm ^branch ^showmain
+    (Displays the main branch for the repository of the current workspace.)
+
+    cm ^branch ^showmain repo@server:8084
+    (Displays the main branch for the repository 'repo' in server
+    'server:8084'.)
+
+    cm ^br ^showmain --^dateformat="yyyy, dd MMMM" --^encoding=utf-8
+    (Displays the main branch of the repository with a given date format,
+    and the output is in utf-8.)
+
+    cm ^br ^showmain --^format="{^id} - {^name}"
+    (Displays the main branch of the repository, printing only its id and name.)
+
+== CMD_DESCRIPTION_BRANCH_SHOWMERGES ==
+Shows branches pending to be merged.
+
+== CMD_USAGE_BRANCH_SHOWMERGES ==
+This is an automation command, meant to be used to automate 'cm' only.
+It is not as user friendly as it should be.
+
+Usage:
+
+    cm ^branch | ^br ^showmerges <item_path>[ ...]
+                              [--^format=<format_str>] 
+                              [--^dateformat=<date_format>]
+
+Options:
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info.
+    --^dateformat        Format used to output dates.
+
+== CMD_HELP_BRANCH_SHOWMERGES ==
+Remarks:
+
+    Output format parameters (--^format option):
+        This command accepts a format string to show the output.
+        The output parameters of this command are the following:
+        {^id}                Branch id.
+        {^comment}           Comment.
+        {^date}              Date.
+        {^name}              Name.
+        {^owner}             Owner.
+        {^parent}            Parent branch name.
+        {^parentid}          Parent branch id.
+        {^repid}             Repository id.
+        {^repository}        Repository.
+        {^repname}           Repository name.
+        {^repserver}         Repository server.
+
+Examples:
+
+    cm ^branch ^showmerges file.txt
+    (Displays branches involved in the pending merge of 'file.txt'.)
+
+    cm ^branch ^showmerges file.txt --^format="{^date} {^name}" --^dateformat="ddMMyy"
+    (Displays branches involved in the merge, printing only the date and the
+    name, with a given date format.)
+
+== CMD_DESCRIPTION_REPOSITORY ==
+Allows the user to manage repositories.
+
+== CMD_USAGE_REPOSITORY ==
+Usage:
+
+    cm ^repository | ^repo <command> [options]
+
+Commands:
+
+    ^create | ^mk
+    ^delete | ^rm
+    ^list   | ^ls
+    ^rename
+    ^add
+
+    To get more information about each command run:
+    cm ^repository <command> --^usage
+    cm ^repository <command> --^help
+
+== CMD_HELP_REPOSITORY ==
+Examples:
+
+    cm ^repository
+    cm ^repository ^list
+    cm ^repository newrepo
+    cm ^repository ^create newrepo
+    cm ^repository ^rename oldname newname
+    cm ^repository ^add C:\repo\
+
+== CMD_DESCRIPTION_REPOSITORY_CREATE ==
+Creates a repository on a server.
+
+== CMD_USAGE_REPOSITORY_CREATE ==
+Usage:
+
+    cm ^repository | ^repo <rep_name>
+    cm ^repository | ^repo <repserverspec> <rep_name>[ ...]
+    cm ^repository | ^repo [^create | ^mk] <rep_name>
+
+    repserverspec       Repository server specification.
+                        (Use 'cm ^help ^objectspec' to learn more about rep server
+                        specs.)
+    rep_name            Name or names of the new repository or repositories.
+                        Use a whitespace to separate repository names.
+
+== CMD_HELP_REPOSITORY_CREATE ==
+Examples:
+
+    cm ^repository MyRep
+    cm ^repo 192.168.1.140:8087 Rep01 Rep01/ModuleA Rep01/ModuleB
+    cm ^repo ^create Rep01
+    cm ^repo ^mk list
+
+== CMD_DESCRIPTION_REPOSITORY_DELETE ==
+Deletes a repository from a server.
+
+== CMD_USAGE_REPOSITORY_DELETE ==
+Usage:
+
+    cm ^repository | ^repo ^delete | ^rm <repspec>
+
+Options:
+
+    repspec            Repository specification.
+                       (Use 'cm ^help ^objectspec' to learn more about rep specs.)
+
+== CMD_HELP_REPOSITORY_DELETE ==
+Remarks:
+
+    Deletes a repository from the repository server.
+    The data is not removed from the database backend, but unplugged
+    so that it will not be accessible anymore.
+    (Data can be reconnected afterwards, see 'cm ^repository ^add'.)
+
+Examples:
+
+    cm ^repository ^delete myrepository@^repserver:myserver:8084
+    cm ^repository ^rm myrepository@myserver:8084
+    cm ^repo ^rm myrepository
+
+== CMD_DESCRIPTION_REPOSITORY_LIST ==
+Lists the repositories on a server.
+
+== CMD_USAGE_REPOSITORY_LIST ==
+Usage:
+
+    cm ^repository | ^repo [^list | ^ls] [<repserverspec>] [--^format=<str_format>]
+
+Options:
+
+    repserverspec       Repository server specification.
+                        (Use 'cm ^help ^objectspec' to learn more about rep server
+                        specs.)
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info.
+
+== CMD_HELP_REPOSITORY_LIST ==
+Remarks:
+
+    Output format parameters (--^format option):
+        This command accepts a format string to show the output.
+        The output parameters of this command are the following:
+        {^repid}     | {0}           Repository identifier.
+        {^repname}   | {1}           Repository name.
+        {^repserver} | {2}           Server name.
+        {^repowner}  | {3}           Repository owner.
+        {^repguid}   | {4}           Unique identifier of the repository.
+        {^tab}                       Inserts a tab space.
+        {^newline}                   Inserts a new line.
+
+    If the format parameter value is '^TABLE', the output will be printed
+    using a table format with the {^repid}, {^repname} and {^repserver} fields.
+
+Examples:
+
+    cm ^repository
+    (Lists all repositories.)
+
+    cm ^repository ^list localhost:8084 --^format="{1, -20} {3}"
+    (Writes the repository name in 20 spaces, aligned to left, then a blank,
+    and then the repository owner.)
+
+    cm ^repository ^ls localhost:8084 --^format="{^repname, -20} {^repowner}"
+    (Writes the same as the previous example.)
+
+    cm ^repo ^ls localhost:8084 --^format=^TABLE
+    (Writes the list of repositories using a table format with the following
+    fields: repository id, repository name, and repository server name.)
+
+== CMD_DESCRIPTION_REPOSITORY_RENAME ==
+Renames a repository.
+
+== CMD_USAGE_REPOSITORY_RENAME ==
+Usage:
+
+    cm ^repository | ^repo ^rename [<repspec>] <new_name>
+
+    repspec             Repository to be renamed.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        specifications.)
+    new_name            New name for the repository.
+
+== CMD_HELP_REPOSITORY_RENAME ==
+Remarks:
+
+    This command renames a repository.
+    If no repspec is specified, current repository will be assumed.
+
+Examples:
+
+    cm ^repository ^rename development
+    (The current repository will be renamed to 'development'.)
+
+    cm ^repo ^rename ^rep:default@SERVER:8084 development
+    (The 'default' repository on 'SERVER' will be renamed to 'development'.)
+
+== CMD_DESCRIPTION_REPOSITORY_ADD ==
+Connects an existing repository by adding its database.
+
+== CMD_USAGE_REPOSITORY_ADD ==
+Usage:
+
+    cm ^repository | ^repo ^add <db_file> <rep_name> <repserverspec>
+
+    db_file             The name of the database file on the database backend.
+    rep_name            The name of the repository.
+    repserverspec       The repository server specification.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        server specifications.)
+
+== CMD_HELP_REPOSITORY_ADD ==
+Remarks:
+
+    Reconnects an existing repository database to the server. This command is
+    useful to move a repository from one server to another, or to restore an
+    archived repository after using the 'cm ^repository ^delete' command.
+
+Examples:
+
+    cm ^repository ^add rep_27 myrepository myserver:8084
+
+== CMD_DESCRIPTION_TRIGGER_CREATE ==
+Creates a new trigger on a server.
+
+== CMD_USAGE_TRIGGER_CREATE ==
+Usage:
+
+    cm ^trigger | ^tr ^create | ^mk <subtype-type> <new_name> <script_path>
+                                [--^position=<new_position>]
+                                [--^filter=<str_filter>]
+                                [--^server=<repserverspec>]
+
+    subtype-type        Trigger execution and trigger operation.
+                        (Use 'cm ^showtriggertypes' to see a list of trigger
+                        types.)
+    new_name            Name of the new trigger.
+    script_path         Disk path on the server where the script to execute is
+                        located. If the command line starts with "^webtrigger ",
+                        the trigger will be considered as a web trigger. See
+                        Remarks for more information.
+
+Options:
+
+    --^position          New position of the specified trigger.
+                        This position must not be in use by another trigger of
+                        the same type.
+    --^filter            Checks only items that matches the specified filter.
+    --^server            Creates the trigger on the specified server.
+                        If no server is specified, executes the command on the
+                        one configured on the client.
+                        (Use 'cm ^help ^objectspec' to learn more about repository
+                        server specifications.)
+
+== CMD_HELP_TRIGGER_CREATE ==
+Remarks:
+
+    Web triggers: A web trigger is created by typing "^webtrigger <target-uri>"
+    as the trigger command. In this case, the trigger will execute a POST query
+    against the specified URI -where the request body contains a JSON
+    dictionary with the trigger environment variables- and a fixed INPUT key
+    pointing to an array of strings.
+
+Examples:
+
+    cm ^trigger ^create ^after-setselector "BackupMgr" "/path/to/script" --^position=4
+
+    cm ^tr ^mk ^before-mklabel new "/path/to/script" --^server=myserver:8084
+
+    cm ^tr ^mk ^after-mklabel Log "/path/to/script" --^filter="^rep:myRep,LB*"
+    (This trigger will be executed only if the label name starts with 'LB'
+    and it is being created in a repository called 'myRep'.)
+
+    cm ^tr ^mk ^after-checkin NotifyTeam "^webtrigger http://myserver.org/api"
+
+== CMD_DESCRIPTION_MOVE ==
+Moves or renames a file or directory.
+
+== CMD_USAGE_MOVE ==
+Usage:
+
+    cm ^move | ^mv <src_path> <dst_path> [--^format=<str_format>]
+                 [--^errorformat=<str_format>]
+
+    src_path            Source item path.
+    dst_path            Destination item path.
+
+Options:
+
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info.
+    --^errorformat       Retrieves the error message in a specific format. See
+                        Remarks for more info.
+
+== CMD_HELP_MOVE ==
+Remarks:
+
+    This command moves or renames an item in the repository.
+    Changes are done in the local filesystem too.
+
+    If the source path is a file, the destination path can be a file or a
+    directory. In the first case, the file is renamed; otherwise, the item
+    is moved.
+    If source path is a directory, the destination path must be a directory.
+
+    The item to move or rename must exist.
+
+    Format:
+        {0}         Source path (both for '--^format' and '--^errorformat')
+        {1}         Destination path (both for '--^format' and '--^errorformat')
+
+Examples:
+
+    cm ^move file.txt file.old
+    (Renames the item.)
+
+    cm ^mv .\file.old .\oldFiles
+    (Moves 'file.old' to 'oldFiles'.)
+
+    cm ^move .\src .\src2
+    (Renames a directory.)
+
+== CMD_DESCRIPTION_LABEL ==
+Allows the user to manage labels.
+
+== CMD_USAGE_LABEL ==
+Usage:
+
+    cm ^label | ^lb <command> [options]
+
+Commands:
+
+    ^create | ^mk
+    ^delete | ^rm
+    ^rename
+
+    To get more information about each command run:
+    cm ^label <command> --^usage
+    cm ^label <command> --^help
+
+== CMD_HELP_LABEL ==
+Examples:
+
+    cm ^label myNewLabel ^cs:42
+    ('^create' command is optional.)
+    
+    cm ^label ^rename myNewLabel newLabelName
+    cm ^label ^delete newLabelName
+
+== CMD_DESCRIPTION_LABEL_CREATE ==
+Applies a label to a changeset and creates the label if required.
+
+== CMD_USAGE_LABEL_CREATE ==
+Usage:
+
+    cm ^label [^create] <lbspec> [<csetspec> | <wk_path>]
+                        [--^allxlinkedrepositories]
+                        [-^c=<str_comment> | -^commentsfile=<comments_file>]
+
+    lbspec              The new label name.
+                        (Use 'cm ^help ^objectspec' to learn more about label
+                        specs.)
+    csetspec            Name or full specification of the changeset to label.
+                        (Use 'cm ^help ^objectspec' to learn more about changeset
+                        specs.)
+    wk_path             Path of the workspace to label. (The changeset that the
+                        workspace is pointing will be labeled.)
+
+Options:
+
+    --^allxlinkedrepositories  Creates the new label in all Xlinked repositories.
+    -^c                        Applies the specified comment to the new label.
+    -^commentsfile             Applies the comment in the specified file to the
+                              new label.
+
+== CMD_HELP_LABEL_CREATE ==
+Remarks:
+
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+
+Examples:
+
+    cm ^label ^create ^lb:BL001 ^cs:1203 -^commentsfile=commentlb001.txt
+    (Creates label 'BL001' attached to changeset 1203, and applies the comment
+    in the 'commentlb001.txt' file.)
+
+    cm ^label BL002 ^cs:1203 -^c="first release"
+    (Creates label 'BL002', with a comment, and attached to changeset 1203.)
+
+== CMD_DESCRIPTION_LABEL_DELETE ==
+Deletes one or more labels.
+
+== CMD_USAGE_LABEL_DELETE ==
+Usage:
+
+    cm ^label ^delete <lbspec>[ ...]
+
+    lbspec          Label to delete. Use a whitespace to separate labels.
+                    (Use 'cm ^help ^objectspec' to learn more about label
+                    specs.)
+
+== CMD_HELP_LABEL_DELETE ==
+Remarks:
+
+    This command deletes one or more labels.
+
+Examples:
+
+    cm ^label ^delete ^lb:BL001
+    (Deletes the label 'BL001'.)
+
+    cm ^label ^delete ^lb:BL001 ^lb:BL002@reptest@server2:8084
+    (Deletes the labels 'BL001' and 'BL002'.)
+
+== CMD_DESCRIPTION_LABEL_RENAME ==
+Renames a label.
+
+== CMD_USAGE_LABEL_RENAME ==
+Usage:
+
+    cm ^label ^rename <lbspec> <new_name>
+
+    lbspec          Label to rename.
+                    (Use 'cm ^help ^objectspec' to learn more about label specs.)
+    new_name        New name for the label.
+
+== CMD_HELP_LABEL_RENAME ==
+Remarks:
+
+    This command renames a label.
+
+Examples:
+
+    cm ^label ^rename ^lb:BL001 BL002
+    (Renames the label 'BL001' to 'BL002'.)
+
+== CMD_DESCRIPTION_OBLITERATE ==
+DEPRECATED
+
+== CMD_USAGE_OBLITERATE ==
+DEPRECATED.
+
+== CMD_HELP_OBLITERATE ==
+DEPRECATED.
+
+== CMD_DESCRIPTION_OBJECTSPEC ==
+Describes how to write object specs.
+
+== CMD_USAGE_OBJECTSPEC ==
+Usage:
+    cm ^objectspec
+    To get all the information about how to build object specs.
+
+== CMD_HELP_OBJECTSPEC ==
+Several Plastic SCM commands expect 'object specs' as input to refer to a
+given object (typically a branch, changeset, repository, etc).
+
+This documentation describes the different "specs" available and how to
+build them.
+
+Each spec type begins with a unique tag, for example "^rep:" or "^cs:". The tag
+must be specified for commands that take a general object spec, for example 
+"cm ^setowner object_spec", but can often be omitted for commands that take only
+a single type of spec, for example, "cm ^getfile revision_spec".
+
+-- Repository server spec (repserverspec) --
+    ^repserver:name:port
+
+    Examples:
+        cm ^repo ^list ^repserver:skull:8084
+        cm ^repo ^list skull:8084
+
+    Side note:
+        We call it 'repository server spec', instead of just 'server spec' for
+        historical reasons. Long ago, we had separate workspace and repository
+        servers, and the naming survived.
+
+-- Repository spec (repspec) --
+    ^rep:rep_name@[repserverspec]
+
+    Examples:
+        cm ^showowner ^rep:codice@localhost:6060
+        (Here the "^rep:" is required because ^showowner admits not only repos
+        but also other types of objects. So it needs the user to indicate the
+         object type.)
+
+-- Branch spec (brspec) --
+    ^br:[/]br_name[@repspec]
+
+    Examples:
+        cm ^switch ^br:/main@^rep:plastic@^repserver:skull:9095
+        (In this case "^br:", "^rep" and "^repserver" are not needed, so the
+         command admits a much shorter form:
+        "cm ^switch main@plastic@skull:9095".)
+
+        cm ^find ^revisions "^where ^branch='^br:/main/task001'"
+
+    Remark:
+        The initial '/' on the branch is not mandatory. We used to specify all
+        our branches as /main, /main/task001, and so on. But now, we prefer the
+        shorter form main, main/task001 which makes commands more compact.
+
+-- Changeset spec (csetspec) --
+    ^cs:cs_number|cs_guid[@repspec]
+
+    The number or GUID of the changeset can be specified.
+
+    Examples:
+        cm ^ls /code --^tree=ae1390ed-7ce9-4ec3-a155-e5a61de0dc77@code@skull:7070
+
+-- Label spec (labelspec) --
+    ^lb:lb_name[@repspec]
+
+    Examples:
+        cm ^switch ^lb:RELEASE2.0
+        cm ^switch ^lb:RELEASE1.4@myrep@MYSERVER:8084
+
+-- Revision spec --
+There are different types of rev specs:
+
+    ^rev:item_path[#(brspec|csetspec|labelspec)]
+
+    ^rev:^serverpath:item_path#(brspec|cset_spec|lb_spec)
+
+    ^rev:^revid:rev_id[@rep_spec]
+
+    ^rev:^itemid:item_id#(br_spec|cset_spec|lb_spec)
+
+    Examples:
+        cm ^diff ^rev:readme.txt#^cs:19 ^rev:readme.txt#^cs:20
+
+        cm ^diff ^serverpath:/doc/readme.txt#^cs:19@myrepo \
+            ^serverpath:/doc/readme.txt#^br:/main@myrepo@localhost:8084
+
+        cm ^cat ^revid:1230@^rep:myrep@^repserver:myserver:8084
+
+-- Item spec --
+    ^item:path
+    Rarely used.
+
+    Example:
+        cm ^find ^revision "^where ^item='^item:.'"
+
+-- Attribute spec --
+    ^att:att_name[@repspec]
+
+    Example:
+        cm ^attribute ^set ^att:merged@code@doe:8084 ^cs:25@code@doe:8084 done
+
+-- Shelve spec --
+    ^sh:sh_number[@repspec]
+
+    Example:
+        cm ^diff ^sh:2 ^sh:4
+
+-- Workspace specs --
+    ^wk:name@clientmachine
+
+Rarely used, since they only apply to workspace related commands. Useful to
+specify the workspace by name and machine instead of path.
+
+    Examples:
+        cm ^showselector ^wk:codebase@modok
+
+    Side note:
+        These specs come from the old days of Plastic SCM 2.x where 'workspace
+        servers' existed as a way to store workspace metadata in a centralized
+        way. Were deprecated due to performance issues.
+
+== CMD_DESCRIPTION_PARTIAL ==
+Runs commands in a partial workspace.
+
+== CMD_USAGE_PARTIAL ==
+Usage:
+
+    cm ^partial <command> [options]
+
+Commands:
+
+    ^configure
+    ^add
+    ^undo
+    ^co     | ^checkout
+    ^unco   | ^undocheckout
+    ^ci     | ^checkin
+    ^mv     | ^move
+    ^rm     | ^remove
+    ^stb    | ^switch
+    ^upd    | ^update
+    ^shelve | ^shelveset
+
+    To get more information about each command run:
+    cm ^partial <command> --^usage
+    cm ^partial <command> --^help
+
+== CMD_HELP_PARTIAL ==
+Examples:
+
+    cm ^partial ^configure +/background-blue.png
+    cm ^partial ^update landscape-1024.png
+    cm ^partial ^checkin eyes-green.png eyes-black.png
+
+== CMD_DESCRIPTION_PARTIAL_ADD ==
+Adds an item to version control.
+
+== CMD_USAGE_PARTIAL_ADD ==
+Usage: 
+
+    cm ^partial ^add [-^R | -^r | --^recursive] [--^silent] [--^parents]
+                   [--^ignorefailed] [--^skipcontentcheck] <item_path>[ ...]
+                   [--^format=<str-format>] [--^errorformat=<str-format>]
+
+    item_path           Items to add. Use double quotes (" ") to specify paths
+                        containing spaces. Use a whitespace to separate paths.
+                        Use * to add all the contents of the current directory.
+
+Options:
+
+    -^R                  Adds items recursively.
+    --^silent            Does not show any output.
+    --^parents           Includes the parent directories of the items specified
+                        in the operation.
+    --^ignorefailed      If an item cannot be added, the add operation will
+                        continue without it. Note: If a directory cannot be
+                        added, its content is not added.
+    --^skipcontentcheck  When the extension is not enough to set the file as
+                        text or binary, it will be set as binary by default
+                        instead of checking the content to detect the type.
+    --^format            Retrieves the output message in a specific format. Check
+                        the examples for more information.
+    --^errorformat       Retrieves the error message (if any) in a specific
+                        format. Check the examples for more information.
+
+== CMD_HELP_PARTIAL_ADD ==
+Remarks:
+
+    Requirements to add items:
+    - The parent directory of the item to add must be previously added.
+
+Examples:
+
+    cm ^partial ^add pic1.png pic2.png
+    (Adds 'pic1.png' and 'pic2.png' items.)
+
+    cm ^partial ^add c:\workspace\picture.png
+    (Adds 'picture.png' item in path 'c:\workspace'.)
+
+    cm ^partial ^add -^R c:\workspace\src
+    (Recursively adds 'src'.)
+    
+    cm ^partial ^add --^parents samples\design01.png
+    (Adds 'design01.png' file and 'samples' parent folder.)
+    
+    cm ^partial ^add -^R *
+    (Recursively adds all the contents of the current directory.)
+
+    cm ^partial ^add -^R * --^format="ADD {0}" --^errorformat="ERR {0}"
+    (Recursively adds all the contents of the current directory, printing
+    '^ADD <item>' for successfully added files, and '^ERR <item>' for items that
+    could not be added.)
+
+== CMD_DESCRIPTION_PARTIAL_CHECKIN ==
+Stores changes in the repository.
+
+== CMD_USAGE_PARTIAL_CHECKIN ==
+Usage:
+
+    cm ^partial ^checkin | ^ci [<item_path>[ ...]]
+                            [-^c=<str_comment> | -^commentsfile=<comments_file>]
+                            [--^all | -^a] [--^applychanged] [--^keeplock]
+                            [--^symlink] [--^ignorefailed]
+                            [--^machinereadable [--^startlineseparator=<sep>]
+                              [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+Options:
+
+    item_path             Items to checkin. Use double quotes (" ") to specify
+                          paths containing spaces. Use a whitespace to separate
+                          paths.
+                          Use . to apply checkin to current directory.
+    -^c                    Specifies a comment to the changeset created in the
+                          checkin operation.
+    -^commentsfile         Applies the comment from the specified file to the
+                          changeset created in the checkin operation.
+    --^all | -^a           Includes also the items changed, moved, and deleted
+                          locally on the specified paths.
+    --^applychanged        Applies the checkin operation to the changed items
+                          detected in the workspace along with the checked out
+                          items.
+    --^private             Private items detected in the workspace are also
+                          included.
+    --^keeplock            Keeps the lock of the locked items after the checkin
+                          operation.
+    --^symlink             Applies the checkin operation to the symlink and not to
+                          the target.
+    --^ignorefailed        Any changes that cannot be applied (because the lock
+                          - a.k.a. exclusive checkout - cannot be adquired or 
+                          because local changes are in conflict with the server
+                          changes) are discarded and the checkin operation
+                          continues without them.
+    --^machinereadable     Outputs the result in an easy-to-parse format.
+    --^startlineseparator  Used with the '--^machinereadable' flag, specifies how
+                          the lines should start.
+    --^endlineseparator    Used with the '--^machinereadable' flag, specifies how
+                          the lines should end.
+    --^fieldseparator      Used with the '--^machinereadable' flag, specifies how
+                          the fields should be separated.
+
+== CMD_HELP_PARTIAL_CHECKIN ==
+Remarks:
+
+    - If <item_path> is not specified, the checkin will involve all the
+      pending changes in the workspace.
+    - The checkin operation always applies recursively from the given path.
+    - To checkin an item:
+    - The item must be under source code control.
+    - The item must be checked out.
+    - If the item is changed but not checked out, the '--^applychanged' flag
+      is not necessary unless <item_path> is a directory or it contains
+      wildcards ('*').
+
+    Revision content should be different from previous revision in order to be
+    checked in.
+
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+
+Reading input from stdin:
+
+    The '^partial ^checkin' command can read paths from stdin. To do this, pass a
+    single dash "-".
+    Example: cm ^partial ^checkin -
+
+    Paths will be read until an empty line is entered.
+    This allows you to use pipe to specify which files to checkin.
+    Example:
+      dir /S /B *.c | cm ^partial ^checkin --^all -
+      (In Windows, checkins all .c files in the workspace.)
+
+Examples:
+
+    cm ^partial ^checkin figure.png landscape.png
+    (Applies the checkin to 'figure.png' and 'landscape.png' checked-out files.)
+
+    cm ^partial ^checkin . -^commentsfile=mycomment.txt
+    (Applies checkin to current directory and sets the comment from the 
+    'mycomment.txt' file.)
+
+    cm ^partial ^ci background.png -^c="my comment" --^keeplock
+    (Applies the checkin to 'background.png', includes a comment, and keeps the
+    lock.)
+
+    cm ^partial ^checkin --^applychanged
+    (Applies the checkin to all pending changes in the workspace.)
+    
+    cm ^partial ^checkin link --^symlink
+    (Applies the checkin to the symlink file and not to the target.)
+
+    cm ^partial ^checkin . --^ignorefailed
+    (Applies checkin to current directory, ignoring the changes that cannot be 
+    applied.)
+
+== CMD_DESCRIPTION_PARTIAL_CHECKOUT ==
+Marks files as ready to modify.
+
+== CMD_USAGE_PARTIAL_CHECKOUT ==
+Usage: 
+
+    cm ^partial ^checkout | ^co [<item_path>[ ...]] [--^resultformat=<str_format>]
+                             [--^silent] [--^ignorefailed]
+
+Options:
+
+    item_path           Items to checkout. Use double quotes (" ") to specify
+                        paths containing spaces. Use a whitespace to separate
+                        paths.
+                        Use . to apply checkout to current directory.
+    --^resultformat      Retrieves the output result message in a specific 
+                        format.
+    --^silent            Does not show any output.
+    --^ignorefailed      If an item cannot be locked (the exclusive checkout
+                        cannot be performed), the checkout operation will
+                        continue without it.
+
+== CMD_HELP_PARTIAL_CHECKOUT ==
+Remarks: 
+
+    To checkout an item:
+    - The item must be under source code control.
+    - The item must be checked in.
+        
+    If locks are configured on the server (lock.conf exists), then each time
+    a checkout on a path happens, Plastic checks if it meets any of the rules
+    and if so, the path will be in exclusive checkout (locked) so that none can
+    simultaneously checkout.
+    You can get all the locks in the server by using 'cm ^lock ^list'.
+    Check the Administrator Guide to learn how locking works:
+    https://www.plasticscm.com/download/help/locking
+
+Examples:
+
+    cm ^partial ^checkout pic1.png pic2.png
+    (Checkouts 'pic1.png' and 'pic2.png' files.)
+    
+    cm ^partial ^co *.png
+    (Checkouts all png files.)
+
+    cm ^partial ^checkout . 
+    (Checkouts current directory.)
+    
+    cm ^partial ^checkout -^R c:\workspace\src
+    (Recursively checkouts 'src' folder.)
+
+== CMD_DESCRIPTION_PARTIAL_CONFIGURE ==
+Allows you to configure your workspace by loading or unloading items from it.
+
+== CMD_USAGE_PARTIAL_CONFIGURE ==
+Usage:
+
+    cm ^partial ^configure <+|-path>[ ...] [--^silent] [--^ignorefailed]
+                         [--^ignorecase] [--^restorefulldirs]
+                         [--^machinereadable [--^startlineseparator=<sep>]
+                           [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+    path           Paths to be loaded or unloaded. Use double quotes (" ") to
+                   specify paths containing spaces. Use a whitespace to separate
+                   paths.
+                   Paths have to start with "/".
+
+Options:
+
+    --^silent              Does not show any output.
+    --^ignorefailed        Skips all errors during the process. Incorrect paths
+                          will not cause the command to stop.
+    --^ignorecase          Ignores casing on the paths. With this flag, '^configure'
+                          will work for "/Data/Textures" even if the user writes
+                          "/data/teXtures".
+    --^restorefulldirs     Resets an invalid directory configuration (happens when
+                          a non-partial operation is run on a partial workspace).
+                          The directories in this list will be fully configured
+                          (full check) which means they will automatically
+                          download new content during the update.
+                          This operation does not download any files, just
+                          restores the directory configuration on partial
+                          workspaces.
+    --^machinereadable     Outputs the result in an easy-to-parse format.
+    --^startlineseparator  Used with the '--^machinereadable' flag, specifies how
+                          the lines should start.
+    --^endlineseparator    Used with the '--^machinereadable' flag, specifies how
+                          the lines should end.
+    --^fieldseparator      Used with the '--^machinereadable' flag, specifies how
+                          the fields should be separated.
+
+== CMD_HELP_PARTIAL_CONFIGURE ==
+Remarks:
+
+    The command assumes recursive operation.
+
+Examples:
+
+    cm ^partial ^configure +/landscape_grey.png
+    (Loads 'landscape_grey.png' item.)
+
+    cm ^partial ^configure -/landscape_black.png
+    (Unloads 'landscape_black.png' item.)
+
+    cm ^partial ^configure +/soft -/soft/soft-black.png
+    (Loads all 'soft' directory children items except 'soft-black.png'.)
+
+    cm ^partial ^configure -/
+    (Unloads the whole workspace.)
+
+    cm ^partial ^configure -/ +/
+    (Loads the whole workspace.)
+
+    cm ^partial ^configure -/figure-64.png --^ignorefailed
+    (Unloads 'figure-64.png' item even if it was already unloaded.)
+    
+    cm ^partial ^configure +/ --^restorefulldirs
+    (Sets all directories to automatically download the new content.)
+    
+    cm ^partial ^configure +/src/lib --^restorefulldirs
+    (Sets only '/src/lib' and its subdirectories to automatically download the
+    new content.)
+
+== CMD_DESCRIPTION_PARTIAL_MOVE ==
+Moves or renames a file or directory.
+
+== CMD_USAGE_PARTIAL_MOVE ==
+Usage:
+
+    cm ^partial ^move | ^mv <src_path> <dst_path> [--^format=<str_format>]
+
+    src_path            Source item path.
+    dst_path            Destination item path.
+
+Options:
+
+    --^format            Retrieves the output message in a specific format. See
+                        Remarks for more info.
+
+== CMD_HELP_PARTIAL_MOVE ==
+Remarks:
+
+    This command moves or renames an item in the repository. 
+    Changes are done in the local filesystem too.
+    
+    If the source path is a file, the destination path can be a file or a 
+    directory. In the first case, the file will be renamed; otherwise, the item 
+    will be moved.
+    If source path is a directory, the destination path must be a directory.
+
+    The item to move or rename must exist.
+
+    Format:
+        {0}             Source path.
+        {1}             Destination path.
+
+Examples:
+
+    cm ^partial ^move file.png file-blue.png
+    (Renames the item.)
+
+    cm ^partial ^mv .\file-blue.png .\blueFiles
+    (Moves 'file-blue.png' to 'blueFiles'.)
+
+    cm ^partial ^move .\design .\marketing
+    (Renames a directory.)
+
+== CMD_DESCRIPTION_PARTIAL_RM ==
+Deletes a file or directory from version control.
+
+== CMD_USAGE_PARTIAL_RM ==
+Usage:
+
+    cm ^partial ^remove | ^rm <item_path>[ ...] [--^nodisk]
+
+    item_path       Items path to remove. Use double quotes (" ") to
+                    specify paths containing spaces. Use a whitespace to separate
+                    paths.
+
+Options:
+
+    --^nodisk        Removes from version control, but keeps the item on disk.
+
+== CMD_HELP_PARTIAL_RM ==
+Remarks:
+
+    Items are deleted from disk. Removed items are removed from the parent
+    directory in the source code control.
+
+    Requirements:
+    - The item must be under source code control.
+
+Examples:
+
+    cm ^partial ^remove src
+    (Removes 'src'. If 'src' is a directory, this is the same that: 
+    cm ^partial ^remove -^R src.)
+
+    cm ^partial ^remove c:\workspace\pic01.png --^nodisk
+    (Removes 'pic01.png' from version control, but keeps it on disk.)
+
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET ==
+Allows the user to manage partial shelvesets.
+
+== CMD_USAGE_PARTIAL_SHELVESET ==
+Usage:
+
+    cm ^partial ^shelveset | ^shelve <command> [options]
+
+Commands:
+
+    ^create | ^mk
+    ^apply
+    ^delete | ^rm
+
+    To get more information about each command run:
+    cm ^partial ^shelveset <command> --^usage
+    cm ^partial ^shelveset <command> --^help
+
+== CMD_HELP_PARTIAL_SHELVESET ==
+Examples:
+
+    cm ^partial ^shelveset ^create -^c="my comment"
+    cm ^partial ^shelveset ^apply sh:3
+    cm ^partial ^shelveset ^delete sh:5
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_CREATE ==
+Shelves chosen pending changes.
+
+== CMD_USAGE_PARTIAL_SHELVESET_CREATE ==
+Usage:
+
+    cm ^partial ^shelveset | ^shelve ^create | ^mk [<item_path>[ ...]]
+                            [-^c=<str_comment> | -^commentsfile=<comments_file>]
+                            [--^applychanged] [--^symlink] [--^ignorefailed]
+                            [--^machinereadable [--^startlineseparator=<sep>]
+                              [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+Options:
+
+    item_path              Items to shelve. Use double quotes (" ") to specify
+                          paths containing spaces. Use a whitespace to separate
+                          paths. Use . to apply shelve to current directory.
+    -^c                    Specifies a comment to the changeset created in the
+                          shelve operation.
+    -^commentsfile         Applies the comment from the specified file to the
+                          changeset created in the shelve operation.
+    --^applychanged        Applies the shelve operation to the changed items
+                          detected in the workspace along with the checked out
+                          items.
+    --^symlink             Applies the shelve operation to the symlink and not to
+                          the target.
+    --^ignorefailed        Any changes that cannot be applied (because the lock
+                          - a.k.a. exclusive checkout - cannot be adquired or 
+                          because local changes are in conflict with the server
+                          changes) are discarded and the shelve operation
+                          continues without them.
+    --^machinereadable     Outputs the result in an easy-to-parse format.
+    --^startlineseparator  Used with the '--^machinereadable' flag, specifies how
+                          the lines should start.
+    --^endlineseparator    Used with the '--^machinereadable' flag, specifies how
+                          the lines should end.
+    --^fieldseparator      Used with the '--^machinereadable' flag, specifies how
+                          the fields should be separated.
+
+== CMD_HELP_PARTIAL_SHELVESET_CREATE ==
+The '^partial ^shelveset ^create' command stores the contents of checked out items
+    inside the repository. This way the contents are protected without the need to
+    checkin the files.
+
+Remarks:
+
+    If neither <item_path> nor any option is specified, the shelveset will
+    include all the pending changes in the workspace.
+
+    The '^partial ^shelveset ^create' operation is always applied recursively from 
+    the given path.
+    
+    The '^partial ^shelveset ^create' operation is the default, which means that, 
+    if no other operation is defined, the command will try to perform a creation.  
+
+    Requirements to shelve an item:
+    - The item must be under source code control.
+    - The item must be checked out or changed.
+
+    Set the PLASTICEDITOR environment variable to specify an editor for
+    entering comments. If the PLASTICEDITOR environment variable is set, and
+    the comment is empty, the editor will be automatically launched to allow
+    you to specify the comment.
+
+Examples:
+
+    cm ^partial ^shelveset figure.png landscape.png
+    (Creates a new shelveset with 'figure.png' and 'landscape.png' checked-out files.)
+
+    cm ^partial ^shelveset . -^commentsfile=mycomment.txt
+    (Creates a new shelveset with every checked-out file in current directory 
+	and sets the comment from the 'mycomment.txt' file.)
+
+    cm ^partial ^shelve background.png -^c="my comment"
+    (Creates a new shelveset with 'background.png', includes a comment.)
+
+    cm ^partial ^shelveset --^applychanged
+    (Creates a new shelveset all pending changes in the workspace.)
+    
+    cm ^partial ^shelveset link --^symlink
+    (Creates a new shelveset with the symlink file and not the target.)
+
+    cm ^partial ^shelveset . --^ignorefailed
+    (Creates a new shelveset with every checked-out file in current directory, 
+    ignoring (skipping) the changes that cannot be applied.)
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_APPLY ==
+Applies a stored shelveset.
+
+== CMD_USAGE_PARTIAL_SHELVESET_APPLY ==
+Usage:
+
+    cm ^partial ^shelveset ^apply <sh_spec> [--^encoding=<name>]
+                       [--^comparisonmethod=(^ignoreeol | ^ignorewhitespaces| \
+                                            ^ignoreeolandwhitespaces | ^recognizeall)]
+
+    sh_spec             Shelveset specification. (Use 'cm ^help ^objectspec' to
+                        learn more about shelveset specs.)
+
+Options:
+
+    --^encoding          Specifies the output encoding, i.e.: utf-8.
+                        See the MSDN documentation at
+                        http://msdn.microsoft.com/en-us/library/system.text.encoding.aspx
+                        to get the table of supported encodings and its format, 
+                        (at the end of the page, in the "Name" column).
+    --^comparisonmethod  Sets the comparison method. See Remarks for more info.
+
+== CMD_HELP_PARTIAL_SHELVESET_APPLY ==
+The '^partial ^shelveset ^apply' command restores the contents of a stored shelveset.
+
+Remarks:
+
+    Comparison methods:
+        ^ignoreeol               Ignores end of line differences.
+        ^ignorewhitespaces       Ignores whitespace differences.
+        ^ignoreeolandwhitespaces Ignores end of line and whitespace differences.
+        ^recognizeall            Detects end of line and whitespace differences.
+
+Examples:
+
+    cm ^partial ^shelveset ^apply ^sh:3
+    (Applies a stored shelve.)
+
+== CMD_DESCRIPTION_PARTIAL_SHELVESET_DELETE ==
+Deletes a shelveset.
+
+== CMD_USAGE_PARTIAL_SHELVESET_DELETE ==
+Usage:
+
+    cm ^partial ^shelveset ^delete | ^rm <sh_spec>
+    
+    sh_spec             Shelveset specification. (Use 'cm ^help ^objectspec' to
+                        learn more about shelveset specs.)
+
+== CMD_HELP_PARTIAL_SHELVESET_DELETE ==
+The '^partial ^shelveset ^delete' command deletes a shelveset.
+
+Examples:
+
+    cm ^partial ^shelveset ^delete ^sh:3
+    (Removes a stored shelveset.)
+
+
+== CMD_DESCRIPTION_PARTIAL_SWITCH ==
+Sets a branch as the working branch.
+
+== CMD_USAGE_PARTIAL_SWITCH ==
+Usage:
+
+    cm ^switch <branch_spec> [--^report | --^silent] [--^workspace=<path>]
+    (Sets the working branch and updates the workspace.)
+
+    cm ^switch <branch_spec> --^configure <+|-path>[ ...] [--^silent]
+                            [--^ignorefailed] [--^ignorecase] [--^workspace=<path>]
+    (Sets the working branch and runs a workspace configuration like the 'cm
+    ^partial ^configure' command does.)
+
+    branch_spec         Branch specification. (Use 'cm ^help ^objectspec' to learn
+                        more about branch specs.)
+    path                Paths to be loaded or unloaded. Use double quotes (" ")
+                        to specify paths containing spaces. Use a whitespace to
+                        separate paths. Paths must start with "/".
+
+Options:
+
+    --^silent            Does not show any output.
+    --^report            Prints a list of the applied changes when the command
+                        is finished. Using '--^silent' will override this setting.
+                        This option only works when the '--^configure' option
+                        is not specified.
+    --^configure         Configures (loads / unloads items) the workspace
+                        after updating the working branch. Check 'cm ^partial
+                        ^configure --^help' to learn how to specify the paths
+                        to configure.
+    --^ignorefailed      Skips all errors during the configuration process.
+                        Incorrect paths will not cause the command to stop.
+    --^ignorecase        Ignores casing on the paths. With this flag, option
+                        '--^configure' works for "/Data/Textures" even if the user
+                        writes "/data/teXtures".
+    --^workspace=path    Path where the workspace is located.
+
+== CMD_HELP_PARTIAL_SWITCH ==
+Remarks:
+
+    This command allows users to update the working branch. After updating the
+    branch, the command updates the workspace to the new branch as the
+    'cm ^partial ^update' command would do. However, if the '--^configure' option is
+    specified, the command allows to configure the workspace using the new
+    branch configuration as the 'cm ^partial ^configure' command would do.
+
+Examples:
+
+    cm ^switch ^br:/main/task
+    (Sets /main/task as working branch and updates the workspace.)
+
+    cm ^switch ^br:/main/task --^configure +/art/images
+    (Sets /main/task as working branch and configures the workspace to
+    load the /art/images folder.)
+
+== CMD_DESCRIPTION_PARTIAL_UNCO ==
+Undoes the checkout on an item.
+
+== CMD_USAGE_PARTIAL_UNCO ==
+Usage:
+
+    cm ^partial ^undocheckout | ^unco <item_path>[ ...] [--^silent]
+
+    item_path           Items to apply the operation. Use double quotes (" ")
+                        to specify paths containing spaces. Use a whitespace to
+                        separate paths.
+                        Use . to apply the operation to current directory.
+
+Options:
+
+    --^silent            Does not show any output.
+
+== CMD_HELP_PARTIAL_UNCO ==
+Remarks:
+
+    If an item is checked-out and you do not want to checkin it, you can undo
+    the checkout using this command. Both files and folders can be unchecked 
+    out. The item will be updated to the state it had before checking it out.
+
+    Requirements: 
+      - The item must be under source code control.
+      - The item must be checked out.
+
+Examples:
+
+    cm ^partial ^undocheckout . 
+    (Undoes checkouts in the current directory.)
+
+    cm ^partial ^undocheckout pic1.png pic2.png
+    cm ^unco c:\workspace\design01.png
+    (Undoes checkouts of the selected files.)
+
+== CMD_DESCRIPTION_PARTIAL_UNDO ==
+Undoes changes in a workspace.
+
+== CMD_USAGE_PARTIAL_UNDO ==
+Usage:
+
+    cm ^partial ^undo [<path>[ ...]] [--^symlink] [-^r | --^recursive] 
+                    [<filter>[ ...]]
+                    [--^silent | --^machinereadable [--^startlineseparator=<sep>]
+                                [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+    path                    Path of the files or directories to apply the
+                            operation to. Use double quotes (" ") to specify
+                            paths containing spaces. Use a whitespace to
+                            separate paths.
+                            If no path is specified, by default the undo
+                            operation will take all of the files in the current
+                            directory.
+    filter                  Applies the specified filter or filters to the given
+                            paths. Use a whitespace to separate filters. See the
+                            Filters section for more information.
+
+Options:
+
+    --^symlink               Applies the undo operation to the symlink and not
+                            to the target.
+    -^r                      Executes the undo recursively.
+    --^silent                Does not show any output.
+    --^machinereadable       Outputs the result in an easy-to-parse format.
+    --^startlineseparator    Used with the '--^machinereadable' flag, specifies
+                            how the lines should start.
+    --^endlineseparator      Used with the '--^machinereadable' flag, specifies
+                            how the lines should end.
+    --^fieldseparator        Used with the '--^machinereadable' flag, specifies
+                            how the fields should be separated.
+
+Filters:
+
+    If no flag is specified, by default, all changes are undone, but the
+    paths can be filtered using one or more of the flags below.
+    If a file or directory matches one or more of the specified kinds of change,
+    all of the changes on said file or directory will be undone.
+    For example, if you specify both '--^checkedout' and '--^moved', if a file is
+    both checkedout and moved, both changes will be undone.
+
+    --^checkedout            Select checked-out files and directories.
+    --^unchanged             Select files whose content is unchanged.
+    --^changed               Select locally changed or checked-out files and
+                            directories.
+    --^deleted               Select deleted files and directories.
+    --^moved                 Select moved files and directories.
+    --^added                 Select added files and directories.
+
+== CMD_HELP_PARTIAL_UNDO ==
+Remarks:
+
+    The ^undo command is dangerous - it undoes work in an irreversible way.
+    Once the ^undo has finished, it is not possible to recover the previous state
+    of the files and directories affected by it. If no path is specified
+    in the arguments, by default it will undo every change in the current
+    directory, but not recursively.
+    These are equivalent when executed from the /src directory:
+
+        /src
+        |- file.txt
+        |- code.cs
+        \- /test
+           |- test_a.py
+           \- test_b.py
+
+        cm ^partial ^undo
+        cm ^partial ^undo *
+        cm ^partial ^undo file.txt code.cs /test
+
+        cm ^partial ^undo .
+        cm ^partial ^undo /src file.txt code.cs
+
+    If you want the operation to be recursive, you must specify the '-^r' flag.
+
+    To undo all of the changes below a directory (including changes affecting
+    the directory itself):
+
+        cm ^partial ^undo dirpath -^r
+
+    If dirpath is a workspace path, every change in the workspace will be
+    undone.
+
+Examples:
+
+    cm ^partial ^undo . -^r
+    (Undoes all changes in the current directory recursively. If executed
+    from the workspace's root, undoes all changes in the entire workspace.)
+
+    cm ^partial ^co file.txt
+    cm ^partial ^undo file.txt
+    (Undoes the checkout on file.txt.)
+
+    ^echo ^content >> file.txt
+    cm ^partial ^undo file.txt
+    (Undoes the local change to file.txt.)
+
+    cm ^partial ^undo src
+    (Undoes changes to the src directory and its files.)
+
+    cm ^partial ^undo src/*
+    (Undo changes in every file and directory contained in src, without
+    affecting src.)
+
+    cm ^partial ^undo *.cs
+    (Undo changes to every file or directory that matches *.cs in the current
+    directory.)
+
+    cm ^partial ^undo *.cs -^r
+    (Undoes changes on every file or directory that matches *.cs in the current
+    directory and every directory below it.)
+
+    cm ^partial ^co file1.txt file2.txt
+    ^echo ^content >> file1.txt
+    cm ^partial ^undo --^unchanged
+    (Undoes the checkout of unchanged file2.txt, ignoring locally changed
+    file1.txt.)
+
+    ^echo ^content >> file1.txt
+    ^echo ^content >> file2.txt
+    cm ^partial ^co file1.txt
+    cm ^partial ^undo --^checkedout
+    (Undoes the changes in checked-out file file1.txt, ignoring file2.txt as it is
+    not checked-out.)
+
+    cm ^partial ^add file.txt
+    cm ^partial ^undo file.txt
+    (Undoes the add of file.txt, making it once again a private file.)
+
+    ^rm file1.txt
+    ^echo ^content >> file2.txt
+    cm ^partial ^add file3.txt
+    cm ^partial ^undo --^deleted --^added *
+    (Undoes the file1.txt delete and file3.txt add, ignoring the file2.txt
+    change.)
+
+== CMD_DESCRIPTION_PARTIAL_UPDATE ==
+Updates the partial workspace and downloads latest changes.
+
+== CMD_USAGE_PARTIAL_UPDATE ==
+Usage:
+
+    cm ^partial ^update [<item_path>[ ...]] [--^changeset=<number>]
+                      [--^silent | --^report] [--^dontmerge]
+                      [--^machinereadable [--^startlineseparator=<sep>]
+                        [--^endlineseparator=<sep>] [--^fieldseparator=<sep>]]
+
+    item_path           Items to be updated. Use double quotes (" ") to specify
+                        paths containing spaces. Use a whitespace to separate
+                        paths.
+                        Use . to apply update to current directory.
+                        If no path is specified, then the current partial
+                        workspace is fully updated.
+
+Options:
+
+    --^changeset          Updates the partial workspace to a specific changeset.
+    --^silent             Does not show any output.
+    --^report             Prints a list of the applied changes when the command
+                         is finished. Using '--^silent' will override this setting.
+    --^dontmerge          Does not merge the file conflicts, it just skips them.
+                         The other changes are properly applied. This option can
+                         be useful for automation to avoid user interaction.
+    --^machinereadable    Outputs the result in an easy-to-parse format.
+    --^startlineseparator Used with the '--^machinereadable' flag,
+                         specifies how the lines should start.
+    --^endlineseparator   Used with the '--^machinereadable' flag,
+                         specifies how the lines should end.
+    --^fieldseparator     Used with the '--^machinereadable' flag,
+                         specifies how the fields should be separated.
+
+
+== CMD_HELP_PARTIAL_UPDATE ==
+Remarks:
+
+    The '^partial ^update' command updates the out-of-date files.
+
+    The command assumes recursive operation.
+
+    If all the specified paths are files inside the same Xlink when using the
+    '--^changeset' option, then the versions to download are searched in the
+    specified changeset of the Xlinked repository.
+
+Examples:
+
+    cm ^partial ^update
+    (Updates all in the current partial workspace.)
+
+    cm ^partial ^update .
+    (Updates all current directory children items.)
+
+    cm ^partial ^update backgroud-blue.png
+    (Updates 'backgroud-blue.png' item.)
+
+    cm ^partial ^update soft_black.png soft-grey.png
+    (Updates 'soft_black.png' and 'soft-grey.png' items.)
+
+    cm ^partial ^update src --^report
+    (Updates all 'src' directory children items, printing the applied changes
+    list at the end.)
+
+    cm ^partial ^update src --^changeset=4
+    (Updates all 'src' directory children items to the content they loaded
+    in the changeset 4.)
+
+    cm ^partial ^update xlink/first.png --^changeset=4
+    (Updates 'xlink/first.png' item to the content it loaded in the changeset 4
+    of the Xlinked repository.)
+
+== CMD_DESCRIPTION_PATCH ==
+Generates a patch file from a spec or applies a generated patch to the current
+workspace.
+
+== CMD_USAGE_PATCH ==
+Usage:
+
+    cm ^patch <source_spec> [<source_spec>] [--^output=<output_file>]
+             [--^tool=<path_to_diff>]
+    Generates a patch file that contains the differences of a branch,
+    a changeset, or the differences between changesets. It also tracks
+    differences of text and binary files.
+
+    cm ^patch --^apply <patch_file> [--^tool=<path_to_patch>]
+    Allows to apply the contents of a generated patch file in the current
+    workspace.
+
+    source_spec     Full spec of a changeset or a branch. (Use 
+                    'cm ^help ^objectspec' to learn more about specs.)
+    output_file     File to save the patch content. It no file is specified,
+                    the patch content will be printed on standard output.
+    patch_file      Patch file to apply in the current workspace.
+
+Options:
+
+    --^output        Sets the output file of the patch command.
+    --^tool          Sets the application to use (diff or patch).
+
+== CMD_HELP_PATCH ==
+Limitations:
+
+    If the output patch file already exists, the command will not overwrite it.
+
+    When applying a patch, the command will not apply changes to modified files
+    if they are not present on disk.
+
+Important: 
+
+    This command requires Diff and Patch tools, publicly available at
+    http://gnuwin32.sourceforge.net/packages/patch.htm and
+    http://gnuwin32.sourceforge.net/packages/diffutils.htm
+
+    Once installed, it's recommended to add their location to the PATH
+    environment variable.
+
+Examples:
+
+    cm ^patch ^cs:4@default@localhost:8084
+    (Prints on console the differences of cset 4 in unified format.)
+
+    cm ^patch ^br:/main --^output=file.patch
+    (Generates a patch file with the differences of branch "main".)
+
+    cm ^patch ^br:/main --^output=file.patch --^tool=C:\gnu\diff.exe
+    (Same as above, using a custom exe.)
+
+    cm ^patch ^cs:2@default ^cs:4@default
+    (Prints on console the differences between csets 2 and 4 in unified format.)
+
+    cm ^patch --^apply file.patch --^tool=C:\gnu\patch.exe
+    (Applies the patch in 'file.patch' to the local workspace with a custom exe.)
+
+== CMD_DESCRIPTION_PROFILE ==
+Allows the user to manage server connection profiles.
+
+== CMD_USAGE_PROFILE ==
+Usage:
+
+    cm ^profile <command> [options]
+
+Commands:
+
+    ^list   | ^ls
+    ^create | ^mk
+    ^delete | ^rm
+
+    To get more information about each command run:
+    cm ^profile <command> --^usage
+    cm ^profile <command> --^help
+
+== CMD_HELP_PROFILE ==
+Examples:
+
+    cm ^profile
+    cm ^profile ^list
+    cm ^profile ^create
+    cm ^profile ^delete 1
+
+== CMD_DESCRIPTION_PROFILE_LIST ==
+Lists the server connection profiles configured on the client.
+
+== CMD_USAGE_PROFILE_LIST ==
+Usage:
+
+    cm ^profile [^list | ^ls] [--^format=<str_format>]
+
+Options:
+
+    --^format        Retrieves the output message in a specific format.
+                    See Remarks for more info.
+
+== CMD_HELP_PROFILE_LIST ==
+Remarks:
+
+    Output format parameters (--^format option):
+        This command accepts a format string to show the output.
+        The output parameters of this command are the following:
+        {^index}          | {0}       Profile index in the profiles list
+        {^name}           | {1}       Profile name
+        {^server}         | {2}       Profile server
+        {^user}           | {3}       Profile user
+        {^workingmode}    | {4}       Profile working mode
+        {^securityconfig} | {5}       Profile security config
+        {^tab}                        Inserts a tab space
+        {^newline}                    Inserts a new line
+
+Examples:
+
+    cm ^profile
+    (Lists all the profiles using the default format)
+
+    cm ^profile --^format="{index,2}  {server,-20}"
+    (Writes the profile index in 2 spaces, aligned to the right, then two blanks,
+    and then the repository server in 20 spaces, aligned to the left.)
+
+    cm ^profile --^format="{0,2}  {2,-20}"
+    (Writes the same output as the previous example.)
+
+== CMD_DESCRIPTION_PROFILE_CREATE ==
+Creates a new server connection profile.
+
+== CMD_USAGE_PROFILE_CREATE ==
+Usage:
+
+    cm ^profile [^create | ^mk]
+     (Creates a new profile interactively.)
+
+    cm ^profile [^create | ^mk] --^server=<server_addr> --^username=<username>
+                     --^password=<password> --^workingmode=<workingmode>
+     (Creates a new server connection profile using a user/password
+     authentication mode.)
+
+    cm ^profile [^create | ^mk] --^server=<server_addr> --^username=<username>
+                     --^token=<token> --^workingmode=SSOWorkingMode
+     (Creates a new server connection profile using Single Sign On authentication
+     mode.)
+
+Options:
+
+    --^server       Creates the connection profile for the specified server.
+    --^username     The username that should be used in the connection profile
+    --^password     The plain-text password that should be used in the connection
+                   profile. This option is only valid for authentication modes
+                   that are based on a user and password.
+    --^token        The plain-text token that should be used in the connection
+                   profile. This option is only valid for authentication modes
+                   that are based on a token (SSOWorkingMode for now).
+    --^workingmode  The target server's authentication mode.
+                   Available users/security working modes:
+                   ^LDAPWorkingMode (LDAP)
+                   ^UPWorkingMode (User and password)
+                   ^SSOWorkingMode (Single Sign On)
+
+== CMD_HELP_PROFILE_CREATE ==
+Remarks:
+
+    When using this command interactively (without options), the client will try
+    to connect to the server to obtain the working mode and check the credentials.
+    This guarantees that the resulting profile is correct.
+
+    When specifying the options, the client will generate the connection profile
+    without connecting to the server. This is useful when creating connection
+    profiles for automation purposes.
+
+Examples:
+
+    cm ^profile ^create
+    (Creates a new connection profile interactively.)
+
+    cm ^profile ^create --^server=plastic.domain.com:8087 --^username=sergio
+      --^password=thisissupersecret --^workingmode=LDAPWorkingMode
+    (Creates a new connection profile to connect to 'plastic.domain.com:8087'
+    using user 'sergio' and password 'thisissupersecret' through LDAP working mode.)
+
+    cm ^profile ^create --^server=plastic.domain.com:8087 --^username=sergio
+      --^token="TOKENAMoKJ9iAA(...)12fssoprov:unityid" --workingmode=^SSOWorkingMode
+    (Creates a new connection profile to connect to 'plastic.domain.com:8087'
+    using user 'sergio' and the specified token through Single Sign On working mode.)
+
+== CMD_DESCRIPTION_PROFILE_DELETE ==
+Deletes a server connection profile from the client's configuration.
+
+== CMD_USAGE_PROFILE_DELETE ==
+Usage:
+
+    cm ^profile ^delete | ^rm <index | name>
+    cm ^profile ^delete | ^rm --index=<index>
+    cm ^profile ^delete | ^rm --name=<name>
+
+    index       Profile index in the profiles list.
+    name        Profile name.
+
+Options:
+
+    --index     Used to disambiguate in case a profile has a name that is a number
+    --name      Used to disambiguate in case a profile has a name that is a number
+
+== CMD_HELP_PROFILE_DELETE ==
+Remarks:
+
+    Deletes a server connection profile from the client's configuration.
+    It works both with the profile index and the profile name.
+    The 'cm ^profile ^list' command does not show profile names by default,
+    check 'cm ^profile ^list --help' to check how to output profile's name.
+
+Example:
+
+    cm ^profile ^delete 1
+    (Removes the profile at index 1.)
+
+    cm ^profile ^delete 192.168.0.2:8087_UPWorkingMode
+    (Removes the profile with name '192.168.0.2:8087_UPWorkingMode'.)
+
+    cm ^profile ^delete --name=12
+    (Removes the profile with name '12'.)
+
+== CMD_DESCRIPTION_QUERY ==
+Executes SQL queries. Requires SQL storage.
+
+== CMD_USAGE_QUERY ==
+Usage:
+
+    cm ^query <sql_command> [--^outputfile=<output_file>]
+                           [--^solveuser=<column_name>[,...]]
+                           [--^solvepath=<column_name>[,...]]
+                           [--^columnwidth=<value>] [--^nocolumnname]
+                           [--^columnseparator=<sep>] [--^repository=<name>]
+
+    sql_command         The sql query to be executed.
+
+Options:
+
+    --^outputfile        Writes the result in an output file.
+    --^solveuser         Sets the specified columns as username columns. The
+                        query interpreter will assume that data of these columns
+                        will be users, and will try to solve them.
+    --^solvepath         Sets the specified columns as itemid column. The query
+                        interpreter will try to solve item id to filesystem
+                        paths.
+    --^columnwidth       Specifies the width of each column to format the output.
+    --^nocolumnname      Does not print column name.
+    --^columnseparator   Uses char as column separator instead of a tab (\t).
+    --^repository        Repository to query.
+
+== CMD_HELP_QUERY ==
+Remarks:
+
+    This command allows users to execute SQL queries in the server database.
+
+    In order to write SQL queries, use these two pre-defined functions to manage
+    users and paths:
+    - '^SolveUser(<username>)' that resolves a username into Plastic SCM format.
+    - '^SolvePath(<path>)' that resolves a disk path into an item id.
+
+    Also, you can use options to show query results in a human readable form.
+
+    You can use the options '--^solveuser=<column_name>' and 
+    '--^solvepath=<column_name>' to specify columns that query interpreter
+    must convert to a legible text. You can specify more than one column name,
+    comma separated.
+
+Examples:
+
+    cm ^query "^SELECT * ^FROM ^revision" --^columnwidth=25 --^repository=reptest
+    (Retrieves data from 'revision' table from repository 'reptest'.)
+
+    cm ^query "^SELECT b.^sname ^as br_name, o.^dtimestamp ^as date ^from ^branch b, \
+        ^object o, ^seid s ^where b.^iobjid=o.^iobjid ^and o.^fidowner=s.^iseidid ^and \
+        s.^scode='^SolveUser(john)'" --^outputfile=query.txt
+    (Outputs into a file the branches with owner 'john'.)
+
+    cm ^query "^select r.^iobjid, r.^fiditem ^as path, s.^scode ^as username ^FROM \
+        ^revision r, ^object o, ^seid s ^WHERE r.^iobjid=o.^iobjid ^and \
+        o.^fidowner=s.^iseidid ^and o.^dtimestamp>04/25/2014" \
+    --^solveuser=username --^solvepath=path --^repository=reptest@server2:9095
+    (Retrieves selected data from selected repository.)
+
+    cm ^query "^SELECT * ^FROM ^revision ^WHERE ^fiditem=^SolvePath(c:\mywkpath\info)"
+    (Retrieves all revision data of path 'info'.)
+
+== CMD_DESCRIPTION_ATTRIBUTE_DELETE ==
+Deletes one or more attributes.
+
+== CMD_USAGE_ATTRIBUTE_DELETE ==
+Usage:
+
+    cm ^attribute | ^att ^delete | ^rm <att_spec>[ ...]
+
+    att_spec            Attributes to delete. Use a whitespace to separate
+                        attributes.
+                        (Use 'cm ^help ^objectspec' to learn more about attribute
+                        specs.)
+
+== CMD_HELP_ATTRIBUTE_DELETE ==
+Remarks:
+
+    This command removes one or more attributes.
+
+Examples:
+
+    cm ^attribute ^delete ^att:status
+    (Deletes the attribute 'status'.)
+
+    cm ^att ^rm status ^att:integrated@reptest@server2:8084
+    (Deletes the attributes 'status' and 'integrated'.)
+
+== CMD_DESCRIPTION_ATTRIBUTE_UNSET ==
+Unsets an object's attribute.
+
+== CMD_USAGE_ATTRIBUTE_UNSET ==
+Usage:
+
+    cm ^attribute | ^att ^unset <att_spec> <object_spec>
+
+    att_spec            Attribute specification. (Use 'cm ^help ^objectspec' to
+                        learn more about attribute specs.)
+    object_spec         Specification of the object to remove the attribute
+                        from. Attributes can be set on: branches, changesets,
+                        shelvesets, labels, items, and revisions.
+                        (Use 'cm ^help ^objectspec' to learn more about specs.)
+
+== CMD_HELP_ATTRIBUTE_UNSET ==
+Remarks:
+
+    The command unsets an attribute that was previously set on an object. It 
+    does not delete the attribute object itself.
+
+Examples:
+
+    cm ^attribute ^unset ^att:status ^br:/main/SCM105
+    (Removes attribute realization 'status' from branch 'main/SCM105'.)
+
+    cm ^att ^unset ^att:integrated@reptest@localhost:8084 ^cs:25@reptest@localhost:8084
+    (Removes attribute realization 'integrated' from changeset 25, all in
+    repository 'reptest'.)
+
+== CMD_DESCRIPTION_ATTRIBUTE_RENAME ==
+Renames an attribute.
+
+== CMD_USAGE_ATTRIBUTE_RENAME ==
+Usage:
+
+    cm ^attribute | ^att ^rename <att_spec> <new_name>
+
+    att_spec            Attribute to rename. (Use 'cm ^help ^objectspec' to learn
+                        more about attribute specs.)
+    new_name            New name for the attribute.
+
+== CMD_HELP_ATTRIBUTE_RENAME ==
+Remarks:
+
+    This command renames an attribute.
+
+Examples:
+
+    cm ^attribute ^rename ^att:status state
+    (Renames the attribute 'status' to 'state'.)
+
+== CMD_DESCRIPTION_ATTRIBUTE_EDIT ==
+Edits the comment of an attribute.
+
+== CMD_USAGE_ATTRIBUTE_EDIT ==
+Usage:
+
+    cm ^attribute | ^att ^edit <att_spec> <new_comment>
+
+    att_spec        Attribute to change its comment. (Use 'cm ^help ^objectspec'
+                    to learn more about attribute specs.)
+    new_comment     New comment for the attribute. You can also specify a
+                    default list of values for the attribute. See Remarks for
+                    more info.
+
+== CMD_HELP_ATTRIBUTE_EDIT ==
+Remarks:
+
+    This command changes the comment of an attribute.
+
+    To specify a default list of values for the attribute, you just need to 
+    include a line like the following in the attribute comment:
+    'default: value_one, "value two", value3, "Final value"'.
+
+Examples:
+
+    cm ^attribute ^edit ^att:status "The status of a branch in the CI pipeline."
+    (Edits the comment of the attribute 'status'.)
+
+    cm ^attribute ^edit ^att:status "Status of a branch. default: open, resolved, reviewed"
+    (Edits the comment of the attribute 'status'. And also specifies a list of
+    values. So when you set the attribute 'status' to an object, you can select
+    one of the following values: "open", "resolved", or "reviewed".)
+
+== CMD_DESCRIPTION_REPLICATE ==
+WARNING: This command is deprecated.
+
+Use 'cm ^pull' (equivalent to '^replicate') and 'cm ^push' (equivalent to 
+'^replicate --^push').
+
+== CMD_USAGE_REPLICATE ==
+
+== CMD_HELP_REPLICATE ==
+
+== CMD_DESCRIPTION_PULL ==
+Pulls a branch from another repo.
+
+== CMD_USAGE_PULL ==
+Usage:
+
+    cm ^pull <src_br_spec> <dst_rep_spec>
+            [--^preview] [--^nodata] [TranslateOptions]
+            [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+     (Direct server-to-server replication. Pulls a branch from a repository.)
+
+    cm ^pull <dst_rep_spec> --^package=<pack_file> [AuthOptions]
+     (Package based replication. Imports the package in the destination repository.)
+
+    cm ^pull ^hydrate <dst_br_spec> [<src_rep_spec>]
+                    [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+     (Introduces the missing data for all the changesets of a branch previously
+     replicated with '--^nodata'. If a repo to obtain the data is not specified,
+     Plastic tries to use the "replication source" (origin of the replicated
+     branch)).
+
+    cm ^pull ^hydrate <dst_cs_spec> [<src_rep_spec>]
+                    [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+     (Introduces the missing data for a changeset previously replicated with
+     '--^nodata'. If a repo to obtain the data is not specified, Plastic tries to
+     use the "replication source").
+
+    src_br_spec     The branch to pull from a remote repository.
+                    (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+    dst_br_spec     The branch to hydrate.
+                    (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+    dst_cs_spec     The changeset to hydrate.
+                    (Use 'cm ^help ^objectspec' to learn more about changeset
+                    specs.)
+    dst_rep_spec    The destination repository.
+                    (Use 'cm ^help ^objectspec' to learn more about repository
+                    specs.)
+    --^package       Specifies the previously created package file to import
+                    for package based replication.
+                    Useful to move data between servers when there is no
+                    direct network connection.
+                    Refer to 'cm ^push' to create a package file.
+
+Options:
+
+    --^preview           Gives information about what changes will be pulled but
+                        no changes are actually performed. This option is useful
+                        to check the data that will be transferred before
+                        replicating changes.
+    --^nodata            Replicates the branch changes without replicating the
+                        data. This option is not allowed with package
+                        replication.
+    TranslateOptions    See the Translate options section for more information.
+    --^user, --^password  Credentials to use if the authentication mode is
+                        different in source and destination and there is not a
+                        profile to authenticate to destination.
+    AuthOptions         See the Authentication options section for more
+                        information.
+
+Translate options:
+
+    --^trmode=(^copy|^name|^table --^trtable=<translation_table_file>)
+      The source and destination repositories may use different authentication
+      modes. The '--^trmode' option specifies how to translate the user names from
+      the source to the destination. The '--^trmode' must be one of the following
+      values:
+          ^copy    (Default). Means that the user identifiers will be just copied.
+          ^name    The user identifiers will be matched by name.
+          ^table   Uses a translation table specified in the option '--^trtable'
+                  (see below).
+
+    --^trtable=<translation_table_file>
+        If the translation mode is 'table', a translation table is a file
+        containing lines in the form <oldname;newname> (one per line). When the
+        branch is written to the destination repository, the objects created by
+        a user identified by "oldname" in the source repository will be set
+        to the user with "newname" on the destination.
+
+Authentication options:
+
+    Authentication data can be specified using one of the two following modes:
+
+    1) Using authentication parameters: --^authmode=<mode> --^authdata=<data>
+
+        --^authmode=(^NameWorkingMode|^LDAPWorkingMode|^ADWorkingMode|^UPWorkingMode)
+        Examples:
+        (^LDAPWorkingMode) --^authdata=::0:dave:fPBea2rPsQaagEW3pKNveA
+        (^UPWorkingMode)   --^authdata=dave:fPBea2rPsQaagEW3pKNveA==
+
+        The '--^authdata' line is the content of the <^SecurityConfig> entry
+        in the client.conf file and the profiles.conf file. The profiles.conf
+        file can be easily generated from the Plastic GUI in the replication
+        profiles tab under Preferences.
+
+        If you are using ^UPWorkingMode, you can simply specify:
+
+        --^authmode=^UPWorkingMode --^user=<user> --^password=<psw>
+
+    2) Authentication file where you may have a different file for each server
+       you connect to, containing the credentials for that server.
+
+        --^authfile=<authentication_file>
+            The file contains 2 lines:
+            Line 1) mode, as described in '--^authmode'
+            Line 2) authentication data, as described in '--^authdata'
+
+== CMD_HELP_PULL ==
+Remarks:
+
+    The '^pull' command is able to replicate branches (along with their
+    changesets) between a source repository and a destination repository.
+    The repositories can be located at different servers.
+
+    There are two replication operations: '^push' and '^pull'.
+
+    A '^pull' operation means that the replication operation will demand data
+    from the source repository to be stored into the destination repository.
+    The client will connect to the destination repository and, from that host,
+    it will establish a connection to the source repository to retrieve the
+    targeted data. During pull it is the destination server which will be
+    connected to the source.
+
+    Although in a typical distributed scenario a developer pushes data from his
+    local server to the main server, the developer might want to pull the latest
+    repository updates from the main server, too.
+
+    Replication can resolve situations where concurrent changes have been made
+    on the same branch on two replicated repositories:
+
+    - Push: If you try to push your data to a repository having newer changes
+      than those you are sending, the system will ask you to pull the latest
+      changes, resolve the merge operation and, finally, try to push again.
+
+    - Pull: Whenever you pull changesets from a remote branch, they will be
+      correctly linked to their parent changesets. If the changeset you pulled
+      is not a child of the last changeset in the branch, then a multi-headed
+      scenario will appear. The branch will have more than one 'head', or last
+      changeset on the branch. You will need to merge the two 'heads' before
+      being able to push again.
+
+    Pull can work in two modes:
+
+    1) Direct communication between servers: The destination server will fetch
+       the data from the source server, automatically synchronizing data for
+       the specified branch.
+
+    2) Import a previously generated package with push and the '--^package' option.
+
+    Mode 1) requires the user running the command to be authenticated
+    by the remote server, either using the default authentication in the
+    client.conf file, or specifiying the '--^authmode' and '--^authdata' modifiers,
+    or '--^authmode' and '--^user' and '--^password' if the authentication mode is
+    ^UPWorkingMode.
+
+    Mode 2) requires using a package file previously generated with the push
+    command.
+
+    Keep in mind that pull replication works in an indirect way. When executed,
+    the command asks the destination repository to connect to the source and
+    obtain the selected branch.
+
+    However, this can be done directly by using the push command.
+    This will make the command replicate the selected branch from source to
+    destination.
+
+Examples:
+
+    cm ^pull ^br:/main@project1@remoteserver:8084 projectx@myserver:8084
+    (Pulls the 'main' branch from 'remoteserver' to 'myserver'. In this case,
+    both servers are configured with the same authentication mode.)
+
+    cm ^pull ^br:/main@project1@remoteserver:8084 projectx@myserver:8084 \
+      --^authmode=^LDAPWorkingMode --^authdata=::0:dave:fPBea2rPsQaagEW3pKNveA
+    (Pulls the same branch as before, but now the remote server is configured
+    to authenticate users with Active Directory. For instance, I am connecting
+    from a Linux machine to a Windows server configured to use Active Directory
+    integrated mode. I will specify my Active Directory user and cyphered
+    password and pass it as LDAP to the server.)
+
+    cm ^pull ^br:/main@project1@remoteserver:8084 projectx@myserver:8084 \
+      --^authmode=^UPWorkingMode --^user=dave --^password=mysecret
+    (Pulls the same branch, but now users are authenticated on the remote
+    server, taking advantage of the user/password database included in
+    Plastic SCM.)
+
+    cm ^pull ^br:/main@project1@remoteserver:8084 projectx@myserver:8084 --^nodata
+    (Replicates the 'main' branch from 'remoteserver' to 'myserver' without data.)
+
+    cm ^pull ^hydrate ^br:/main@projectx@myserver:8084 projectx@remoteserver:8084
+    (Hydrates all the changesets in the 'main' branch obtaining the data from
+    the remote server.)
+
+    cm ^pull ^hydrate ^cs:122169@projectx@myserver:8084 projectx@remoteserver:8084
+    (Hydrates changeset 122169 in 'myserver' obtaining the data from the remote 
+    server.)
+
+== CMD_DESCRIPTION_PUSH ==
+Pushes a branch to another repo.
+
+== CMD_USAGE_PUSH ==
+Usage:
+
+    cm ^push <src_br_spec> <dst_rep_spec>
+            [--^preview] [TranslateOptions]
+            [--^user=<usr_name> [--^password=<pwd>] | AuthOptions]
+     (Direct server-to-server replication. Pushes a branch from a repository.)
+
+    cm ^push <src_br_spec> --^package=<pack_file> [AuthOptions]
+     (Package based replication. Creates a replication package in the source
+     server with the selected branch.)
+
+    src_br_spec     The branch to push to a remote repository.
+                    (Use 'cm ^help ^objectspec' to learn more about branch specs.)
+    dst_rep_spec    The destination repository.
+                    (Use 'cm ^help ^objectspec' to learn more about repository
+                    specs.)
+    --^package       Specifies path for exporting replication package for
+                    package based replication. 
+                    Useful to move data between servers when there is no 
+                    direct network connection.
+
+Options:
+
+    --^preview           Gives information about what changes will be pushed,
+                        but no changes are actually performed. This option is
+                        useful to check the data that will be transferred before
+                        replicating changes.
+    TranslateOptions    See the Translate options section for more information.
+    --^user, --^password  Credentials to use if the authentication mode is
+                        different in source and destination and there is not a
+                        profile to authenticate to destination.
+    AuthOptions         See the Authentication options section for more
+                        information.
+
+Translate options:
+
+    --^trmode=(^copy|^name|^table --^trtable=<translation_table_file>)
+        The source and destination repositories may use different authentication
+        modes. The '--^trmode' option specif

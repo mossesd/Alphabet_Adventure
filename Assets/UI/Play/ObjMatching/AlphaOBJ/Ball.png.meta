@@ -1,0 +1,53 @@
+68552DF5F9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23304" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\bcd.dll" length="6049" time="133332706780000000" attr="128">
+      <Hash alg="SHA256" value="8127938BBD8F1074222DC7491AD9047970AD14E405EF2C71A01DBB53C616D085" />
+      <Delta>
+        <Source type="RAW" offset="193818182" length="6049">
+          <Hash alg="SHA256" value="8127938BBD8F1074222DC7491AD9047970AD14E405EF2C71A01DBB53C616D085" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23305" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\locale.nls" length="54" time="133332635910000000" attr="128">
+      <Hash alg="SHA256" value="A7FB2CC7CF559C241690F8444A518A812329E4438F7A6415A5914B6DE4F70BD5" />
+      <Delta>
+        <Source type="RAW" offset="193824231" length="54">
+          <Hash alg="SHA256" value="A7FB2CC7CF559C241690F8444A518A812329E4438F7A6415A5914B6DE4F70BD5" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23306" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\dismcore.dll" length="3367" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="9FDA96532B9BD88632276E5DE74E21848CF3DC2317DBC098114A21D20D2579D3" />
+      <Delta>
+        <Source type="RAW" offset="193824285" length="3367">
+          <Hash alg="SHA256" value="9FDA96532B9BD88632276E5DE74E21848CF3DC2317DBC098114A21D20D2579D3" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23307" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\wimprovider.dll" length="3461" time="133332706800000000" attr="128">
+      <Hash alg="SHA256" value="53C5D41AA4394C8626868DA8A9A604AD2AADA9B5D8AC9D7A617910363C956989" />
+      <Delta>
+        <Source type="RAW" offset="193827652" length="3461">
+          <Hash alg="SHA256" value="53C5D41AA4394C8626868DA8A9A604AD2AADA9B5D8AC9D7A617910363C956989" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23308" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\logprovider.dll" length="3378" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="CA2382359C3B24EE470B208A7FBF8FA4BC241B0A0B1768EE5F5EC566F45AF608" />
+      <Delta>
+        <Source type="RAW" offset="193831113" length="3378">
+          <Hash alg="SHA256" value="CA2382359C3B24EE470B208A7FBF8FA4BC241B0A0B1768EE5F5EC566F45AF608" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23309" name="amd64_microsoft-windows-s..tform-media-onecore_31bf3856ad364e35_10.0.22621.1992_none_e4df8f3a5d464000\f\unattend.dll" length="3401" time="133332706790000000" attr="128">
+      <Hash alg="SHA256" value="8DD0C32B9134CCE71446E42D17F75E261ADCCC8E6341C6FA5246370E21CED6B6" />
+      <Delta>
+        <Source type="RAW" offset="193834491" length="3401">
+          <Hash alg="SHA256" value="8DD0C32B9134CCE71446E42D17F75E261ADCCC8E6341C6FA5246370E21CED6B6" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="23310" 

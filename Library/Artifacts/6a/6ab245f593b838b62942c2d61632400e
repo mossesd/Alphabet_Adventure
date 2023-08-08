@@ -1,0 +1,724 @@
+ra>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Diagnostics.ForcedCrashCategory.MonoAbort">
+      <summary>
+        <para>Cause a crash by calling the abort() function within the Mono dynamic library.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Diagnostics.ForcedCrashCategory.PureVirtualFunction">
+      <summary>
+        <para>Cause a crash by calling a pure virtual function to raise an exception.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Diagnostics.Utils">
+      <summary>
+        <para>A utility class that you can use for diagnostic purposes.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory)">
+      <summary>
+        <para>Manually causes an application crash in the specified category.</para>
+      </summary>
+      <param name="crashCategory"></param>
+    </member>
+    <member name="M:UnityEngine.Diagnostics.Utils.NativeAssert(System.String)">
+      <summary>
+        <para>Manually causes an assert that outputs the specified message to the log and registers an error.</para>
+      </summary>
+      <param name="message"></param>
+    </member>
+    <member name="M:UnityEngine.Diagnostics.Utils.NativeError(System.String)">
+      <summary>
+        <para>Manually causes a native error that outputs the specified message to the log and registers an error.</para>
+      </summary>
+      <param name="message"></param>
+    </member>
+    <member name="M:UnityEngine.Diagnostics.Utils.NativeWarning(System.String)">
+      <summary>
+        <para>Manually causes a warning that outputs the specified message to the log and registers an error.</para>
+      </summary>
+      <param name="message"></param>
+    </member>
+    <member name="T:UnityEngine.DisallowMultipleComponent">
+      <summary>
+        <para>Prevents MonoBehaviour of same type (or subtype) to be added more than once to a GameObject.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Display">
+      <summary>
+        <para>Provides access to a display / screen for rendering operations.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.active">
+      <summary>
+        <para>Gets the state of the display and returns true if the display is active and false if otherwise.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.activeEditorGameViewTarget">
+      <summary>
+        <para>Get the Editors active GameView display target.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.colorBuffer">
+      <summary>
+        <para>Color RenderBuffer.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.depthBuffer">
+      <summary>
+        <para>Depth RenderBuffer.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.Display.displays">
+      <summary>
+        <para>The list of connected displays.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.main">
+      <summary>
+        <para>Main Display.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.renderingHeight">
+      <summary>
+        <para>Vertical resolution that the display is rendering at.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.renderingWidth">
+      <summary>
+        <para>Horizontal resolution that the display is rendering at.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.requiresBlitToBackbuffer">
+      <summary>
+        <para>True when the back buffer requires an intermediate texture to render.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.requiresSrgbBlitToBackbuffer">
+      <summary>
+        <para>True when doing a blit to the back buffer requires manual color space conversion.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.systemHeight">
+      <summary>
+        <para>Vertical native display resolution.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Display.systemWidth">
+      <summary>
+        <para>Horizontal native display resolution.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Display.Activate">
+      <summary>
+        <para>Activates an external display. For example, a secondary monitor connected to the system.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Display.Activate">
+      <summary>
+        <para>Windows platforms only. Activates an external display with a specific width, height and refresh rate. For example, a secondary monitor connected to the system.</para>
+      </summary>
+      <param name="width">Windows platforms only. Width of the window to open.</param>
+      <param name="height">Windows platforms only. Height of the window to open.</param>
+      <param name="refreshRate">Refresh Rate of the window to open.</param>
+    </member>
+    <member name="M:UnityEngine.Display.RelativeMouseAt(UnityEngine.Vector3)">
+      <summary>
+        <para>Query relative mouse coordinates.</para>
+      </summary>
+      <param name="inputMouseCoordinates">Mouse Input Position as Coordinates.</param>
+    </member>
+    <member name="M:UnityEngine.Display.SetParams(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary>
+        <para>Windows platforms only. Sets rendering size and position on screen.</para>
+      </summary>
+      <param name="width">Windows platforms only. The width of the window.</param>
+      <param name="height">Windows platforms only. The height of the window.</param>
+      <param name="x">Windows platforms only. The x position of the window.</param>
+      <param name="y">Windows platforms only. The y position of the window.</param>
+    </member>
+    <member name="M:UnityEngine.Display.SetRenderingResolution(System.Int32,System.Int32)">
+      <summary>
+        <para>Sets rendering resolution for the display.</para>
+      </summary>
+      <param name="w">The rendering width in pixels.</param>
+      <param name="h">The rendering height in pixels.</param>
+    </member>
+    <member name="T:UnityEngine.DisplayInfo">
+      <summary>
+        <para>Represents a connected display.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DisplayInfo.height">
+      <summary>
+        <para>The display height in pixels.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DisplayInfo.name">
+      <summary>
+        <para>Human-friendly display name.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DisplayInfo.refreshRate">
+      <summary>
+        <para>The current refresh rate of the display.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DisplayInfo.width">
+      <summary>
+        <para>The display width in pixels.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DisplayInfo.workArea">
+      <summary>
+        <para>Specifies the work area rectangle of the display relative to the top left corner. For example, it excludes the area covered by the macOS Dock or the Windows Taskbar.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.DistanceJoint2D">
+      <summary>
+        <para>Joint that keeps two Rigidbody2D objects a fixed distance apart.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DistanceJoint2D.autoConfigureDistance">
+      <summary>
+        <para>Should the distance be calculated automatically?</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DistanceJoint2D.distance">
+      <summary>
+        <para>The distance separating the two ends of the joint.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DistanceJoint2D.maxDistanceOnly">
+      <summary>
+        <para>Whether to maintain a maximum distance only or not.  If not then the absolute distance will be maintained instead.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.DrivenRectTransformTracker">
+      <summary>
+        <para>A component can be designed to drive a RectTransform. The DrivenRectTransformTracker struct is used to specify which RectTransforms it is driving.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.DrivenRectTransformTracker.Add(UnityEngine.Object,UnityEngine.RectTransform,UnityEngine.DrivenTransformProperties)">
+      <summary>
+        <para>Add a RectTransform to be driven.</para>
+      </summary>
+      <param name="driver">The object to drive properties.</param>
+      <param name="rectTransform">The RectTransform to be driven.</param>
+      <param name="drivenProperties">The properties to be driven.</param>
+    </member>
+    <member name="M:UnityEngine.DrivenRectTransformTracker.Clear">
+      <summary>
+        <para>Clear the list of RectTransforms being driven.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.DrivenRectTransformTracker.StartRecordingUndo">
+      <summary>
+        <para>Resume recording undo of driven RectTransforms.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.DrivenRectTransformTracker.StopRecordingUndo">
+      <summary>
+        <para>Stop recording undo actions from driven RectTransforms.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.DrivenTransformProperties">
+      <summary>
+        <para>An enumeration of transform properties that can be driven on a RectTransform by an object.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.All">
+      <summary>
+        <para>Selects all driven properties.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchoredPosition">
+      <summary>
+        <para>Selects driven property RectTransform.anchoredPosition.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchoredPosition3D">
+      <summary>
+        <para>Selects driven property RectTransform.anchoredPosition3D.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchoredPositionX">
+      <summary>
+        <para>Selects driven property RectTransform.anchoredPosition.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchoredPositionY">
+      <summary>
+        <para>Selects driven property RectTransform.anchoredPosition.y.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchoredPositionZ">
+      <summary>
+        <para>Selects driven property RectTransform.anchoredPosition3D.z.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMax">
+      <summary>
+        <para>Selects driven property combining AnchorMaxX and AnchorMaxY.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMaxX">
+      <summary>
+        <para>Selects driven property RectTransform.anchorMax.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMaxY">
+      <summary>
+        <para>Selects driven property RectTransform.anchorMax.y.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMin">
+      <summary>
+        <para>Selects driven property combining AnchorMinX and AnchorMinY.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMinX">
+      <summary>
+        <para>Selects driven property RectTransform.anchorMin.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.AnchorMinY">
+      <summary>
+        <para>Selects driven property RectTransform.anchorMin.y.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.Anchors">
+      <summary>
+        <para>Selects driven property combining AnchorMinX, AnchorMinY, AnchorMaxX and AnchorMaxY.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.None">
+      <summary>
+        <para>Deselects all driven properties.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.Pivot">
+      <summary>
+        <para>Selects driven property combining PivotX and PivotY.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.PivotX">
+      <summary>
+        <para>Selects driven property RectTransform.pivot.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.PivotY">
+      <summary>
+        <para>Selects driven property RectTransform.pivot.y.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.Rotation">
+      <summary>
+        <para>Selects driven property Transform.localRotation.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.Scale">
+      <summary>
+        <para>Selects driven property combining ScaleX, ScaleY &amp;&amp; ScaleZ.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.ScaleX">
+      <summary>
+        <para>Selects driven property Transform.localScale.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.ScaleY">
+      <summary>
+        <para>Selects driven property Transform.localScale.y.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.ScaleZ">
+      <summary>
+        <para>Selects driven property Transform.localScale.z.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.SizeDelta">
+      <summary>
+        <para>Selects driven property combining SizeDeltaX and SizeDeltaY.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.SizeDeltaX">
+      <summary>
+        <para>Selects driven property RectTransform.sizeDelta.x.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DrivenTransformProperties.SizeDeltaY">
+      <summary>
+        <para>Selects driven property RectTransform.sizeDelta.y.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.DurationUnit">
+      <summary>
+        <para>Describe the unit of a duration.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DurationUnit.Fixed">
+      <summary>
+        <para>A fixed duration is a duration expressed in seconds.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.DurationUnit.Normalized">
+      <summary>
+        <para>A normalized duration is a duration expressed in percentage.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.DynamicGI">
+      <summary>
+        <para>Allows to control the dynamic Global Illumination.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DynamicGI.indirectScale">
+      <summary>
+        <para>Allows for scaling the contribution coming from real-time &amp; baked lightmaps.
+
+Note: this value can be set in the Lighting Window UI and it is serialized, that is not the case for other properties in this class.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DynamicGI.isConverged">
+      <summary>
+        <para>Is precomputed Enlighten Realtime Global Illumination output converged?</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DynamicGI.materialUpdateTimeSlice">
+      <summary>
+        <para>The number of milliseconds that can be spent on material updates.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DynamicGI.synchronousMode">
+      <summary>
+        <para>When enabled, new dynamic Global Illumination output is shown in each frame.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.DynamicGI.updateThreshold">
+      <summary>
+        <para>Determines the percentage change in lighting intensity that triggers Unity to recalculate the real-time lightmap.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.SetEmissive(UnityEngine.Renderer,UnityEngine.Color)">
+      <summary>
+        <para>Allows to set an emissive color for a given renderer quickly, without the need to render the emissive input for the entire system.</para>
+      </summary>
+      <param name="renderer">The Renderer that should get a new color.</param>
+      <param name="color">The emissive Color.</param>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.SetEnvironmentData(System.Single[])">
+      <summary>
+        <para>Allows overriding the distant environment lighting for Enlighten Realtime Global Illumination, without changing the Skybox Material.</para>
+      </summary>
+      <param name="input">Array of float values to be used for Enlighten Realtime Global Illumination environment lighting.</param>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.UpdateEnvironment">
+      <summary>
+        <para>Schedules an update of the environment cubemap.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.UpdateMaterials(UnityEngine.Renderer)">
+      <summary>
+        <para>Schedules an update of the albedo and emissive textures of a system that contains the renderer or the terrain.</para>
+      </summary>
+      <param name="renderer">The Renderer to use when searching for a system to update.</param>
+      <param name="terrain">The Terrain to use when searching for systems to update.</param>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.UpdateMaterials">
+      <summary>
+        <para>Schedules an update of the albedo and emissive textures of a system that contains the renderer or the terrain.</para>
+      </summary>
+      <param name="renderer">The Renderer to use when searching for a system to update.</param>
+      <param name="terrain">The Terrain to use when searching for systems to update.</param>
+    </member>
+    <member name="M:UnityEngine.DynamicGI.UpdateMaterials">
+      <summary>
+        <para>Schedules an update of the albedo and emissive textures of a system that contains the renderer or the terrain.</para>
+      </summary>
+      <param name="renderer">The Renderer to use when searching for a system to update.</param>
+      <param name="terrain">The Terrain to use when searching for systems to update.</param>
+    </member>
+    <member name="T:UnityEngine.EdgeCollider2D">
+      <summary>
+        <para>Collider for 2D physics representing an arbitrary set of connected edges (lines) defined by its vertices.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.adjacentEndPoint">
+      <summary>
+        <para>Defines the position of a virtual point adjacent to the end point of the EdgeCollider2D.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.adjacentStartPoint">
+      <summary>
+        <para>Defines the position of a virtual point adjacent to the start point of the EdgeCollider2D.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.edgeCount">
+      <summary>
+        <para>Gets the number of edges.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.edgeRadius">
+      <summary>
+        <para>Controls the radius of all edges created by the collider.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.pointCount">
+      <summary>
+        <para>Gets the number of points.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.points">
+      <summary>
+        <para>Get or set the points defining multiple continuous edges.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.useAdjacentEndPoint">
+      <summary>
+        <para>Set this to true to use the adjacentEndPoint to form the collision normal that is used to calculate the collision response when a collision occurs at the Edge Collider's end point. Set this to false to not use the adjacentEndPoint, and the collision normal becomes the direction of motion of the collision.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.EdgeCollider2D.useAdjacentStartPoint">
+      <summary>
+        <para>Set this to true to use the adjacentStartPoint to form the collision normal that is used to calculate the collision response when a collision occurs at the Edge Collider's start point. Set this to false to not use the adjacentStartPoint, and the collision normal becomes the direction of motion of the collision.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.EdgeCollider2D.GetPoints(System.Collections.Generic.List`1&lt;UnityEngine.Vector2&gt;)">
+      <summary>
+        <para>Gets all the points that define a set of continuous edges.</para>
+      </summary>
+      <param name="points">A list of Vector2 used to receive the points.</param>
+      <returns>
+        <para>Returns the number of points placed in the points list.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.EdgeCollider2D.Reset">
+      <summary>
+        <para>Reset to a single edge consisting of two points.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.EdgeCollider2D.SetPoints(System.Collections.Generic.List`1&lt;UnityEngine.Vector2&gt;)">
+      <summary>
+        <para>Sets all the points that define a set of continuous edges.</para>
+      </summary>
+      <param name="points">A list of Vector2 used to set the points. This list must contain at least two points.</param>
+      <returns>
+        <para>Returns true if the list contains two or more points and the points are correctly set. Returns false otherwise.</para>
+      </returns>
+    </member>
+    <member name="T:UnityEngine.Effector2D">
+      <summary>
+        <para>A base class for all 2D effectors.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Effector2D.colliderMask">
+      <summary>
+        <para>The mask used to select specific layers allowed to interact with the effector.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Effector2D.useColliderMask">
+      <summary>
+        <para>Should the collider-mask be used or the global collision matrix?</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.EffectorForceMode2D">
+      <summary>
+        <para>The mode used to apply Effector2D forces.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EffectorForceMode2D.Constant">
+      <summary>
+        <para>The force is applied at a constant rate.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EffectorForceMode2D.InverseLinear">
+      <summary>
+        <para>The force is applied inverse-linear relative to a point.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EffectorForceMode2D.InverseSquared">
+      <summary>
+        <para>The force is applied inverse-squared relative to a point.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.EffectorSelection2D">
+      <summary>
+        <para>Selects the source and/or target to be used by an Effector2D.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EffectorSelection2D.Collider">
+      <summary>
+        <para>The source/target is defined by the Collider2D.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EffectorSelection2D.Rigidbody">
+      <summary>
+        <para>The source/target is defined by the Rigidbody2D.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.Event">
+      <summary>
+        <para>A UnityGUI event.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.alt">
+      <summary>
+        <para>Is Alt/Option key held down? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.button">
+      <summary>
+        <para>Which mouse button was pressed.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.capsLock">
+      <summary>
+        <para>Is Caps Lock on? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.character">
+      <summary>
+        <para>The character typed.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.clickCount">
+      <summary>
+        <para>How many consecutive mouse clicks have we received.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.command">
+      <summary>
+        <para>Is Command/Windows key held down? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.commandName">
+      <summary>
+        <para>The name of an ExecuteCommand or ValidateCommand Event.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.control">
+      <summary>
+        <para>Is Control key held down? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.current">
+      <summary>
+        <para>The current event that's being processed right now.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.delta">
+      <summary>
+        <para>The relative movement of the mouse compared to last event.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.displayIndex">
+      <summary>
+        <para>Index of display that the event belongs to.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.functionKey">
+      <summary>
+        <para>Is the current keypress a function key? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.isKey">
+      <summary>
+        <para>Is this event a keyboard event? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.isMouse">
+      <summary>
+        <para>Is this event a mouse event? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.keyCode">
+      <summary>
+        <para>The raw key code for keyboard events.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.modifiers">
+      <summary>
+        <para>Which modifier keys are held down.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.mousePosition">
+      <summary>
+        <para>The mouse position.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.numeric">
+      <summary>
+        <para>Is the current keypress on the numeric keyboard? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.pointerType">
+      <summary>
+        <para>The type of pointer that created this event (for example, mouse, touch screen, pen).</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.pressure">
+      <summary>
+        <para>How hard stylus pressure is applied.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.shift">
+      <summary>
+        <para>Is Shift held down? (Read Only)</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.Event.type">
+      <summary>
+        <para>The type of event.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.Event.GetEventCount">
+      <summary>
+        <para>Returns the current number of events that are stored in the event queue.</para>
+      </summary>
+      <returns>
+        <para>Current number of events currently in the event queue.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Event.GetTypeForControl(System.Int32)">
+      <summary>
+        <para>Get a filtered event type for a given control ID.</para>
+      </summary>
+      <param name="controlID">The ID of the control you are querying from.</param>
+    </member>
+    <member name="M:UnityEngine.Event.KeyboardEvent(System.String)">
+      <summary>
+        <para>Create a keyboard event.</para>
+      </summary>
+      <param name="key"></param>
+    </member>
+    <member name="M:UnityEngine.Event.PopEvent(UnityEngine.Event)">
+      <summary>
+        <para>Get the next queued [Event] from the event system.</para>
+      </summary>
+      <param name="outEvent">Next Event.</param>
+    </member>
+    <member name="M:UnityEngine.Event.Use">
+      <summary>
+        <para>Use this event.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.EventModifiers">
+      <summary>
+        <para>Types of modifier key that can be active during a keystroke event.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventModifiers.Alt">
+      <summary>
+        <para>Alt key.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventModifiers.CapsLock">
+      <summary>
+        <para>Caps lock key.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.EventModifiers.Command">
+      <summary>
+        <para>Command key (Mac).</para>
+      </summary>

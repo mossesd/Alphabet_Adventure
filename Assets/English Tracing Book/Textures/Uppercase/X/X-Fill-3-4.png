@@ -1,0 +1,91 @@
+long16 __ovld __cnfn popcount(long16 x);
+ulong16 __ovld __cnfn popcount(ulong16 x);
+
+/**
+ * Multiply two 24-bit integer values x and y and add
+ * the 32-bit integer result to the 32-bit integer z.
+ * Refer to definition of mul24 to see how the 24-bit
+ * integer multiplication is performed.
+ */
+int __ovld __cnfn mad24(int x, int y, int z);
+uint __ovld __cnfn mad24(uint x, uint y, uint z);
+int2 __ovld __cnfn mad24(int2 x, int2 y, int2 z);
+uint2 __ovld __cnfn mad24(uint2 x, uint2 y, uint2 z);
+int3 __ovld __cnfn mad24(int3 x, int3 y, int3 z);
+uint3 __ovld __cnfn mad24(uint3 x, uint3 y, uint3 z);
+int4 __ovld __cnfn mad24(int4 x, int4 y, int4 z);
+uint4 __ovld __cnfn mad24(uint4 x, uint4 y, uint4 z);
+int8 __ovld __cnfn mad24(int8 x, int8 y, int8 z);
+uint8 __ovld __cnfn mad24(uint8 x, uint8 y, uint8 z);
+int16 __ovld __cnfn mad24(int16 x, int16 y, int16 z);
+uint16 __ovld __cnfn mad24(uint16 x, uint16 y, uint16 z);
+
+/**
+ * Multiply two 24-bit integer values x and y. x and y
+ * are 32-bit integers but only the low 24-bits are used
+ * to perform the multiplication. mul24 should only
+ * be used when values in x and y are in the range [-
+ * 2^23, 2^23-1] if x and y are signed integers and in the
+ * range [0, 2^24-1] if x and y are unsigned integers. If
+ * x and y are not in this range, the multiplication
+ * result is implementation-defined.
+ */
+int __ovld __cnfn mul24(int x, int y);
+uint __ovld __cnfn mul24(uint x, uint y);
+int2 __ovld __cnfn mul24(int2 x, int2 y);
+uint2 __ovld __cnfn mul24(uint2 x, uint2 y);
+int3 __ovld __cnfn mul24(int3 x, int3 y);
+uint3 __ovld __cnfn mul24(uint3 x, uint3 y);
+int4 __ovld __cnfn mul24(int4 x, int4 y);
+uint4 __ovld __cnfn mul24(uint4 x, uint4 y);
+int8 __ovld __cnfn mul24(int8 x, int8 y);
+uint8 __ovld __cnfn mul24(uint8 x, uint8 y);
+int16 __ovld __cnfn mul24(int16 x, int16 y);
+uint16 __ovld __cnfn mul24(uint16 x, uint16 y);
+
+// OpenCL v1.1 s6.11.4, v1.2 s6.12.4, v2.0 s6.13.4 - Common Functions
+
+/**
+ * Returns fmin(fmax(x, minval), maxval).
+ * Results are undefined if minval > maxval.
+ */
+float __ovld __cnfn clamp(float x, float minval, float maxval);
+float2 __ovld __cnfn clamp(float2 x, float2 minval, float2 maxval);
+float3 __ovld __cnfn clamp(float3 x, float3 minval, float3 maxval);
+float4 __ovld __cnfn clamp(float4 x, float4 minval, float4 maxval);
+float8 __ovld __cnfn clamp(float8 x, float8 minval, float8 maxval);
+float16 __ovld __cnfn clamp(float16 x, float16 minval, float16 maxval);
+float2 __ovld __cnfn clamp(float2 x, float minval, float maxval);
+float3 __ovld __cnfn clamp(float3 x, float minval, float maxval);
+float4 __ovld __cnfn clamp(float4 x, float minval, float maxval);
+float8 __ovld __cnfn clamp(float8 x, float minval, float maxval);
+float16 __ovld __cnfn clamp(float16 x, float minval, float maxval);
+#ifdef cl_khr_fp64
+double __ovld __cnfn clamp(double x, double minval, double maxval);
+double2 __ovld __cnfn clamp(double2 x, double2 minval, double2 maxval);
+double3 __ovld __cnfn clamp(double3 x, double3 minval, double3 maxval);
+double4 __ovld __cnfn clamp(double4 x, double4 minval, double4 maxval);
+double8 __ovld __cnfn clamp(double8 x, double8 minval, double8 maxval);
+double16 __ovld __cnfn clamp(double16 x, double16 minval, double16 maxval);
+double2 __ovld __cnfn clamp(double2 x, double minval, double maxval);
+double3 __ovld __cnfn clamp(double3 x, double minval, double maxval);
+double4 __ovld __cnfn clamp(double4 x, double minval, double maxval);
+double8 __ovld __cnfn clamp(double8 x, double minval, double maxval);
+double16 __ovld __cnfn clamp(double16 x, double minval, double maxval);
+#endif //cl_khr_fp64
+#ifdef cl_khr_fp16
+half __ovld __cnfn clamp(half x, half minval, half maxval);
+half2 __ovld __cnfn clamp(half2 x, half2 minval, half2 maxval);
+half3 __ovld __cnfn clamp(half3 x, half3 minval, half3 maxval);
+half4 __ovld __cnfn clamp(half4 x, half4 minval, half4 maxval);
+half8 __ovld __cnfn clamp(half8 x, half8 minval, half8 maxval);
+half16 __ovld __cnfn clamp(half16 x, half16 minval, half16 maxval);
+half2 __ovld __cnfn clamp(half2 x, half minval, half maxval);
+half3 __ovld __cnfn clamp(half3 x, half minval, half maxval);
+half4 __ovld __cnfn clamp(half4 x, half minval, half maxval);
+half8 __ovld __cnfn clamp(half8 x, half minval, half maxval);
+half16 __ovld __cnfn clamp(half16 x, half minval, half maxval);
+#endif //cl_khr_fp16
+
+/**
+ * Con

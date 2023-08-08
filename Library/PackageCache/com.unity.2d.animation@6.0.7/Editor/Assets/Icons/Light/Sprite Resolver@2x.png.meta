@@ -1,0 +1,38 @@
+ections.NativeArray_1.Copy(Unity.Collections.NativeArray`1&lt;T&gt;,Unity.Collections.NativeArray`1&lt;T&gt;)">
+      <summary>
+        <para>Copies a range of elements from a source array to a destination array, starting from the source index and copying them to the destination index.</para>
+      </summary>
+      <param name="src">The data to copy.</param>
+      <param name="dst">The array that receives the data.</param>
+      <param name="length">A 32-bit integer that represents the number of elements to copy. The integer must be equal or greater than zero.</param>
+      <param name="srcIndex">A 32-bit integer that represents the index in the srcArray at which copying begins.</param>
+      <param name="dstIndex">A 32-bit integer that represents the index in the dstArray at which storing begins.</param>
+    </member>
+    <member name="M:Unity.Collections.NativeArray_1.Copy(T[],Unity.Collections.NativeArray`1&lt;T&gt;)">
+      <summary>
+        <para>Copies a range of elements from a source array to a destination array, starting from the source index and copying them to the destination index.</para>
+      </summary>
+      <param name="src">The data to copy.</param>
+      <param name="dst">The array that receives the data.</param>
+      <param name="length">A 32-bit integer that represents the number of elements to copy. The integer must be equal or greater than zero.</param>
+      <param name="srcIndex">A 32-bit integer that represents the index in the srcArray at which copying begins.</param>
+      <param name="dstIndex">A 32-bit integer that represents the index in the dstArray at which storing begins.</param>
+    </member>
+    <member name="M:Unity.Collections.NativeArray_1.Copy(Unity.Collections.NativeArray`1/ReadOnly&lt;T&gt;,Unity.Collections.NativeArray`1&lt;T&gt;)">
+      <summary>
+        <para>Copies a range of elements from a source array to a destination array, starting from the source index and copying them to the destination index.</para>
+      </summary>
+      <param name="src">The data to copy.</param>
+      <param name="dst">The array that receives the data.</param>
+      <param name="length">A 32-bit integer that represents the number of elements to copy. The integer must be equal or greater than zero.</param>
+      <param name="srcIndex">A 32-bit integer that represents the index in the srcArray at which copying begins.</param>
+      <param name="dstIndex">A 32-bit integer that represents the index in the dstArray at which storing begins.</param>
+    </member>
+    <member name="M:Unity.Collections.NativeArray_1.Copy(Unity.Collections.NativeArray`1&lt;T&gt;,T[])">
+      <summary>
+        <para>Copies a range of elements from a source array to a destination array, starting from the source index and copying them to the destination index.</para>
+      </summary>
+      <param name="src">The data to copy.</param>
+      <param name="dst">The array that receives the data.</param>
+      <param name="length">A 32-bit integer that represents the number of elements to copy. The integer must be equal or greater than zero.</param>
+      <param name="srcIndex">A 32-bit integer that represent

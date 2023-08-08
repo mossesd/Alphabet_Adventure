@@ -1,0 +1,85 @@
+ldNormal;
+  normalWorldVertex = IN.worldNormal;
+
+  // call surface function
+  surf (surfIN, o);
+fixed3 originalNormal = o.Normal;
+  half atten = 1;
+
+  // Setup lighting environment
+  UnityGI gi;
+  UNITY_INITIALIZE_OUTPUT(UnityGI, gi);
+  gi.indirect.diffuse = 0;
+  gi.indirect.specular = 0;
+  gi.light.color = 0;
+  gi.light.dir = half3(0,1,0);
+  // Call GI (lightmaps/SH/reflections) lighting function
+  UnityGIInput giInput;
+  UNITY_INITIALIZE_OUTPUT(UnityGIInput, giInput);
+  giInput.light = gi.light;
+  giInput.worldPos = worldPos;
+  giInput.worldViewDir = worldViewDir;
+  giInput.atten = atten;
+  #if defined(LIGHTMAP_ON) || defined(DYNAMICLIGHTMAP_ON)
+    giInput.lightmapUV = IN.lmap;
+  #else
+    giInput.lightmapUV = 0.0;
+  #endif
+  #if UNITY_SHOULD_SAMPLE_SH && !UNITY_SAMPLE_FULL_SH_PER_PIXEL
+    giInput.ambient = IN.sh;
+  #else
+    giInput.ambient.rgb = 0.0;
+  #endif
+  giInput.probeHDR[0] = unity_SpecCube0_HDR;
+  giInput.probeHDR[1] = unity_SpecCube1_HDR;
+  #if defined(UNITY_SPECCUBE_BLENDING) || defined(UNITY_SPECCUBE_BOX_PROJECTION)
+    giInput.boxMin[0] = unity_SpecCube0_BoxMin; // .w holds lerp value for blending
+  #endif
+  #ifdef UNITY_SPECCUBE_BOX_PROJECTION
+    giInput.boxMax[0] = unity_SpecCube0_BoxMax;
+    giInput.probePosition[0] = unity_SpecCube0_ProbePosition;
+    giInput.boxMax[1] = unity_SpecCube1_BoxMax;
+    giInput.boxMin[1] = unity_SpecCube1_BoxMin;
+    giInput.probePosition[1] = unity_SpecCube1_ProbePosition;
+  #endif
+  LightingStandard_GI(o, giInput, gi);
+
+  // call lighting function to output g-buffer
+  outEmission = LightingStandard_Deferred (o, worldViewDir, gi, outGBuffer0, outGBuffer1, outGBuffer2);
+  #if defined(SHADOWS_SHADOWMASK) && (UNITY_ALLOWED_MRT_COUNT > 4)
+    outShadowMask = UnityGetRawBakedOcclusions (IN.lmap.xy, worldPos);
+  #endif
+  #ifndef UNITY_HDR_ON
+  outEmission.rgb = exp2(-outEmission.rgb);
+  #endif
+}
+
+
+#endif
+
+// -------- variant for: PROCEDURAL_INSTANCING_ON _METALLICGLOSSMAP _NORMALMAP 
+#if defined(PROCEDURAL_INSTANCING_ON) && defined(_METALLICGLOSSMAP) && defined(_NORMALMAP) && !defined(EFFECT_BUMP) && !defined(INSTANCING_ON) && !defined(SHADOWS_SHADOWMASK) && !defined(SOFTPARTICLES_ON) && !defined(_ALPHABLEND_ON) && !defined(_ALPHAMODULATE_ON) && !defined(_ALPHAPREMULTIPLY_ON) && !defined(_ALPHATEST_ON) && !defined(_EMISSION) && !defined(_FADING_ON) && !defined(_REQUIRE_UV2)
+// Surface shader code generated based on:
+// vertex modifier: 'vert'
+// writes to per-pixel normal: YES
+// writes to emission: YES
+// writes to occlusion: no
+// needs world space reflection vector: no
+// needs world space normal vector: no
+// needs screen space position: no
+// needs world space position: no
+// needs view direction: no
+// needs world space view direction: no
+// needs world space position for lighting: YES
+// needs world space view direction for lighting: YES
+// needs world space view direction for lightmaps: no
+// needs vertex color: YES
+// needs VFACE: no
+// needs SV_IsFrontFace: no
+// passes tangent-to-world matrix to pixel shader: YES
+// reads from normal: no
+// 0 texcoords actually used
+#include "UnityCG.cginc"
+//Shader does not support lightmap thus we always want to fallback to SH.
+#undef UNITY_SHOULD_SAMPLE_SH
+#define UNITY_SHOULD_SAMPLE_SH (!defined(UNITY_PASS_FORWAR

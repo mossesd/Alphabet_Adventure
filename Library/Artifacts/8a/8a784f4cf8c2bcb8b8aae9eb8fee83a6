@@ -1,0 +1,66 @@
+5_10.0.22621.608_sv-se_55622b3bc4e76d80\f\resources.sv-se.pri" length="51" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="0F6BD7D402EDABC6975BF4879691247F07E71BBC4452BB180C902FA52E6A6CF5" />
+      <Delta>
+        <Source type="RAW" offset="16798806" length="51">
+          <Hash alg="SHA256" value="0F6BD7D402EDABC6975BF4879691247F07E71BBC4452BB180C902FA52E6A6CF5" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6642" name="amd64_microsoft-windows-o...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_c560f6e0ded0c58e\f\resources.sv-se.pri" length="52" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="2B580AE7E39B35C4031B5F9F4276A4A1A34BAEF28988494BAB8FEA6DC3E514B9" />
+      <Delta>
+        <Source type="RAW" offset="16798857" length="52">
+          <Hash alg="SHA256" value="2B580AE7E39B35C4031B5F9F4276A4A1A34BAEF28988494BAB8FEA6DC3E514B9" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6643" name="amd64_microsoft-windows-p...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5cba89c240943226\f\resources.sv-se.pri" length="50" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="AB7EDC9C8929F414E502D81802BA8D654AB9425F79B5353F8EECDE85FF79A2B7" />
+      <Delta>
+        <Source type="RAW" offset="16798909" length="50">
+          <Hash alg="SHA256" value="AB7EDC9C8929F414E502D81802BA8D654AB9425F79B5353F8EECDE85FF79A2B7" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6644" name="amd64_microsoft-windows-p...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_d7ca19c69bbef318\f\resources.sv-se.pri" length="50" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="A774CBFC46F54B4FBCB99161CE8F1196D1B56BF9E8DA958F041D85B12C4CC737" />
+      <Delta>
+        <Source type="RAW" offset="16798959" length="50">
+          <Hash alg="SHA256" value="A774CBFC46F54B4FBCB99161CE8F1196D1B56BF9E8DA958F041D85B12C4CC737" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6645" name="amd64_microsoft-windows-p...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5e80bdf6e7907cb3\f\resources.sv-se.pri" length="50" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="B46C407C8DE9B947AB4B314A33BAB4128101B26FF3D0653E9CFF2278247AA22D" />
+      <Delta>
+        <Source type="RAW" offset="16799009" length="50">
+          <Hash alg="SHA256" value="B46C407C8DE9B947AB4B314A33BAB4128101B26FF3D0653E9CFF2278247AA22D" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6646" name="amd64_microsoft-windows-p...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_635e3217ed814034\f\resources.sv-se.pri" length="52" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="C8FD0FAF763047EE4E18246BEB58EA1F48C72D4DDD3A57A87CD6A0F59E67D558" />
+      <Delta>
+        <Source type="RAW" offset="16799059" length="52">
+          <Hash alg="SHA256" value="C8FD0FAF763047EE4E18246BEB58EA1F48C72D4DDD3A57A87CD6A0F59E67D558" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6647" name="amd64_microsoft-windows-p...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_3954afc37d526f60\f\resources.sv-se.pri" length="52" time="133332634630000000" attr="128">
+      <Hash alg="SHA256" value="BEA5A727EF503B64F759D9A434A0924AE7A44011B9C498C46D358E0B3391EC93" />
+      <Delta>
+        <Source type="RAW" offset="16799111" length="52">
+          <Hash alg="SHA256" value="BEA5A727EF503B64F759D9A434A0924AE7A44011B9C498C46D358E0B3391EC93" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6648" name="amd64_microsoft-windows-p..alog.core.resources_31bf3856ad364e35_10.0.22621.608_sv-se_efd69aca8bd9a49d\f\windows.ui.printdialog.sv-se.pri" length="52" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="0EB64A4E95D1D2FF9098F9FCA044B47724D8CA38778E686FF3047869033D240A" />
+      <Delta>
+        <Source type="RAW" offset="16799163" length="52">
+          <Hash alg="SHA256" value="0EB64A4E95D1D2FF9098F9FCA044B47724D8CA38778E686FF3047869033D240A" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6649" name="amd64_microsoft-windows-printing-adm.resources_31bf3856ad364e35_10.0.22621.608_sv-se_68c6499003b64aef\f\printing.adml" length="324" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="DFE914F1FD91613737

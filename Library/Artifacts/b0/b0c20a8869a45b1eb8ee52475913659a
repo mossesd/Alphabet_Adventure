@@ -1,0 +1,409 @@
+System.Reflection.TypeAttributes,System.Type,System.Reflection.Emit.PackingSize,System.Int32)">
+      <summary>Constructs a TypeBuilder given the type name, attributes, the type that the defined type extends, the packing size of the defined type, and the total size of the defined type.</summary>
+      <returns>Returns a TypeBuilder created with all of the requested attributes.</returns>
+      <param name="name">The full path of the type. <paramref name="name" /> cannot contain embedded nulls. </param>
+      <param name="attr">The attributes of the defined type. </param>
+      <param name="parent">The type that the defined type extends. </param>
+      <param name="packingSize">The packing size of the type. </param>
+      <param name="typesize">The total size of the type. </param>
+      <exception cref="T:System.ArgumentException">A type with the given name exists in the parent assembly of this module.-or- Nested type attributes are set on a type that is not nested. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.DefineType(System.String,System.Reflection.TypeAttributes,System.Type,System.Type[])">
+      <summary>Constructs a TypeBuilder given the type name, attributes, the type that the defined type extends, and the interfaces that the defined type implements.</summary>
+      <returns>Returns a TypeBuilder created with all of the requested attributes.</returns>
+      <param name="name">The full path of the type. <paramref name="name" /> cannot contain embedded nulls. </param>
+      <param name="attr">The attributes to be associated with the type. </param>
+      <param name="parent">The type that the defined type extends. </param>
+      <param name="interfaces">The list of interfaces that the type implements. </param>
+      <exception cref="T:System.ArgumentException">A type with the given name exists in the parent assembly of this module.-or- Nested type attributes are set on a type that is not nested. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.DefineUninitializedData(System.String,System.Int32,System.Reflection.FieldAttributes)">
+      <summary>Defines an uninitialized data field in the .sdata section of the portable executable (PE) file.</summary>
+      <returns>A field to reference the data.</returns>
+      <param name="name">The name used to refer to the data. <paramref name="name" /> cannot contain embedded nulls. </param>
+      <param name="size">The size of the data field. </param>
+      <param name="attributes">The attributes for the field. </param>
+      <exception cref="T:System.ArgumentException">The length of <paramref name="name" /> is zero.-or- <paramref name="size" /> is less than or equal to zero or greater than or equal to 0x003f0000. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is null. </exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Reflection.Emit.ModuleBuilder.CreateGlobalFunctions" /> has been previously called. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.DefineUnmanagedResource(System.Byte[])">
+      <summary>Defines an unmanaged embedded resource given an opaque blob of bytes.</summary>
+      <param name="resource">An opaque blob that represents an unmanaged resource </param>
+      <exception cref="T:System.ArgumentException">An unmanaged resource has already been defined in the module's assembly. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="resource" /> is null. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.DefineUnmanagedResource(System.String)">
+      <summary>Defines an unmanaged resource given the name of Win32 resource file.</summary>
+      <param name="resourceFileName">The name of the unmanaged resource file </param>
+      <exception cref="T:System.ArgumentException">An unmanaged resource has already been defined in the module's assembly.-or- <paramref name="resourceFileName" /> is the empty string (""). </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="resourceFileName" /> is null. </exception>
+      <exception cref="T:System.IO.FileNotFoundException">
+        <paramref name="resourceFileName" /> is not found -or- <paramref name="resourceFileName" /> is a directory </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Reflection.Emit.ModuleBuilder.FullyQualifiedName">
+      <summary>Gets a String representing the fully-qualified name and path to this module.</summary>
+      <returns>The fully-qualified module name.</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetArrayMethod(System.Type,System.String,System.Reflection.CallingConventions,System.Type,System.Type[])">
+      <summary>Returns the named method on an array class.</summary>
+      <returns>The named method on an array class.</returns>
+      <param name="arrayClass">An array class. </param>
+      <param name="methodName">The name of a method on the array class. </param>
+      <param name="callingConvention">The method's calling convention. </param>
+      <param name="returnType">The return type of the method. </param>
+      <param name="parameterTypes">The types of the method's parameters. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="arrayClass" /> is not an array. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="arrayClass" /> or <paramref name="methodName" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetArrayMethodToken(System.Type,System.String,System.Reflection.CallingConventions,System.Type,System.Type[])">
+      <summary>Returns the token for the named method on an array class.</summary>
+      <returns>The token for the named method on an array class.</returns>
+      <param name="arrayClass">The Type object for the array. </param>
+      <param name="methodName">A string containing the name of the method. </param>
+      <param name="callingConvention">The calling convention for the method. </param>
+      <param name="returnType">The return type of the method. </param>
+      <param name="parameterTypes">The types of the parameters of the method. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="arrayClass" /> is not an array.-or- Length of <paramref name="methodName" /> is zero. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="arrayClass" /> or <paramref name="methodName" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetConstructorToken(System.Reflection.ConstructorInfo)">
+      <summary>Returns the token used to identify the specified constructor within this module.</summary>
+      <returns>Returns the token used to identify the constructor represented by <paramref name="con" /> within this module.</returns>
+      <param name="con">A ConstructorInfo object representing the constructor to get a token for. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="con" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetFieldToken(System.Reflection.FieldInfo)">
+      <summary>Returns the token used to identify the specified field within this module.</summary>
+      <returns>Returns the token used to identify the field represented by <paramref name="con" /> within this module.</returns>
+      <param name="field">A FieldInfo object representing the field to get a token for. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="con" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetMethodToken(System.Reflection.MethodInfo)">
+      <summary>Returns the token used to identify the specified method within this module.</summary>
+      <returns>Returns the token used to identify the method represented by method within this module.</returns>
+      <param name="method">A MethodToken object representing the method to get a token for. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="method" /> is null. </exception>
+      <exception cref="T:System.InvalidOperationException">The declaring type for the method is not in this module. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetSignatureToken(System.Byte[],System.Int32)">
+      <summary>Defines a signature token specified by the character array and signature length.</summary>
+      <returns>A SignatureToken for the defined signature.</returns>
+      <param name="sigBytes">The signature blob. </param>
+      <param name="sigLength">The length of the signature blob. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sigBytes" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetSignatureToken(System.Reflection.Emit.SignatureHelper)">
+      <summary>Defines a signature token using the given SignatureHelper object.</summary>
+      <returns>A SignatureToken for the defined signature.</returns>
+      <param name="sigHelper">A reference to a SignatureHelper. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sigHelper" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetStringConstant(System.String)">
+      <summary>Returns the token of the given string in the module’s constant pool.</summary>
+      <returns>Returns the StringToken of the string added to the constant pool.</returns>
+      <param name="str">The string to add to the module's constant pool. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="str" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetSymWriter">
+      <summary>Returns the symbol writer associated with this dynamic module.</summary>
+      <returns>Returns the symbol writer associated with this dynamic module.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetType(System.String)">
+      <summary>Gets the named type defined in the module.</summary>
+      <returns>The requested type. Returns null if the type is not found.</returns>
+      <param name="className">The name of the <see cref="T:System.Type" /> to get. </param>
+      <exception cref="T:System.ArgumentException">Length of <paramref name="className" /> is zero or if length of <paramref name="className" /> is greater than 1023. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="className" /> is null. </exception>
+      <exception cref="T:System.Security.SecurityException">The requested <see cref="T:System.Type" /> is non-public and the caller does not have <see cref="T:System.Security.Permissions.ReflectionPermission" /> to reflect non-public objects outside the current assembly. </exception>
+      <exception cref="T:System.Reflection.TargetInvocationException">A class initializer is invoked and throws an exception. </exception>
+      <exception cref="T:System.TypeLoadException">An error is encountered while loading the <see cref="T:System.Type" />. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetType(System.String,System.Boolean)">
+      <summary>Gets the named type defined in the module optionally ignoring the case of the type name.</summary>
+      <returns>The requested type. Returns null if the type is not found.</returns>
+      <param name="className">The name of the <see cref="T:System.Type" /> to get. </param>
+      <param name="ignoreCase">If true, the search is case-insensitive. If false, the search is case-sensitive. </param>
+      <exception cref="T:System.ArgumentException">Length of <paramref name="className" /> is zero.-or- The length of <paramref name="className" /> is greater than 1023. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="className" /> is null. </exception>
+      <exception cref="T:System.Security.SecurityException">The requested <see cref="T:System.Type" /> is non-public and the caller does not have <see cref="T:System.Security.Permissions.ReflectionPermission" /> to reflect non-public objects outside the current assembly. </exception>
+      <exception cref="T:System.Reflection.TargetInvocationException">A class initializer is invoked and throws an exception. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetType(System.String,System.Boolean,System.Boolean)">
+      <summary>Gets the named type defined in the module optionally ignoring the case of the type name. Optionally throws an exception if the type is not found.</summary>
+      <returns>A <see cref="T:System.Type" /> object representing the specified type, if the type is declared in this module; otherwise, null.</returns>
+      <param name="className">The name of the <see cref="T:System.Type" /> to get. </param>
+      <param name="throwOnError">true to throw an exception if the type cannot be found; false to return null. </param>
+      <param name="ignoreCase">If true, the search is case-insensitive. If false, the search is case-sensitive. </param>
+      <exception cref="T:System.ArgumentException">Length of <paramref name="className" /> is zero.-or- The length of <paramref name="className" /> is greater than 1023. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="className" /> is null. </exception>
+      <exception cref="T:System.Security.SecurityException">The requested <see cref="T:System.Type" /> is non-public and the caller does not have <see cref="T:System.Security.Permissions.ReflectionPermission" /> to reflect non-public objects outside the current assembly. </exception>
+      <exception cref="T:System.Reflection.TargetInvocationException">A class initializer is invoked and throws an exception. </exception>
+      <exception cref="T:System.TypeLoadException">
+        <paramref name="throwOnError" /> is true and the specified type is not found. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetTypes">
+      <summary>Returns all the classes defined within this module.</summary>
+      <returns>An array of type Type containing classes defined within the module that is reflected by this instance.</returns>
+      <exception cref="T:System.Reflection.ReflectionTypeLoadException">One or more classes in a module could not be loaded. </exception>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetTypeToken(System.String)">
+      <summary>Returns the token used to identify the type given its name.</summary>
+      <returns>Returns the TypeToken used to identify the type given by name within this module.</returns>
+      <param name="name">A string representing the name of the class, including the namespace. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is the empty string ("").-or-<paramref name="name" /> represents a ByRef type. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is null. -or-The type specified by <paramref name="name" /> could not be found.</exception>
+      <exception cref="T:System.InvalidOperationException">This is a non-transient module that references a transient module. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.GetTypeToken(System.Type)">
+      <summary>Returns the token used to identify the specified type within this module.</summary>
+      <returns>Returns the TypeToken used to identify the given type within this module.</returns>
+      <param name="type">The type object that represents the class type. </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="type" /> is a ByRef type. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null. </exception>
+      <exception cref="T:System.InvalidOperationException">A non-transient module that references a transient module. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.IsTransient">
+      <summary>Checks if this dynamic module is transient.</summary>
+      <returns>Returns true if this dynamic module is transient; otherwise, false.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.SetCustomAttribute(System.Reflection.ConstructorInfo,System.Byte[])">
+      <summary>Set a custom attribute using a specified custom attribute blob.</summary>
+      <param name="con">The constructor for the custom attribute. </param>
+      <param name="binaryAttribute">A byte blob representing the attributes. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="con" /> or <paramref name="binaryAttribute" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder)">
+      <summary>Set a custom attribute using a custom attribute builder.</summary>
+      <param name="customBuilder">An instance of a helper class to define the custom attribute. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="con" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.SetSymCustomAttribute(System.String,System.Byte[])">
+      <summary>This method does nothing.</summary>
+      <param name="name">The name of the custom attribute </param>
+      <param name="data">An opaque blob of bytes that represents the value of the custom attribute. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="url" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.SetUserEntryPoint(System.Reflection.MethodInfo)">
+      <summary>Sets the user entry point.</summary>
+      <param name="entryPoint">The user entry point. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryPoint" /> is null. </exception>
+      <exception cref="T:System.InvalidOperationException">This method is called on a dynamic module that is not a debug module.-or- <paramref name="entryPoint" /> is not contained in this dynamic module. </exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.System#Runtime#InteropServices#_ModuleBuilder#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)">
+      <summary>Maps a set of names to a corresponding set of dispatch identifiers.</summary>
+      <param name="riid">Reserved for future use. Must be IID_NULL.</param>
+      <param name="rgszNames">Passed-in array of names to be mapped.</param>
+      <param name="cNames">Count of the names to be mapped.</param>
+      <param name="lcid">The locale context in which to interpret the names.</param>
+      <param name="rgDispId">Caller-allocated array which receives the IDs corresponding to the names.</param>
+      <exception cref="T:System.NotImplementedException">The method is called late-bound using the COM IDispatch interface.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.System#Runtime#InteropServices#_ModuleBuilder#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)">
+      <summary>Retrieves the type information for an object, which can then be used to get the type information for an interface.</summary>
+      <param name="iTInfo">The type information to return.</param>
+      <param name="lcid">The locale identifier for the type information.</param>
+      <param name="ppTInfo">Receives a pointer to the requested type information object.</param>
+      <exception cref="T:System.NotImplementedException">The method is called late-bound using the COM IDispatch interface.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.System#Runtime#InteropServices#_ModuleBuilder#GetTypeInfoCount(System.UInt32@)">
+      <summary>Retrieves the number of type information interfaces that an object provides (either 0 or 1).</summary>
+      <param name="pcTInfo">Points to a location that receives the number of type information interfaces provided by the object.</param>
+      <exception cref="T:System.NotImplementedException">The method is called late-bound using the COM IDispatch interface.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.ModuleBuilder.System#Runtime#InteropServices#_ModuleBuilder#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)">
+      <summary>Provides access to properties and methods exposed by an object.</summary>
+      <param name="dispIdMember">Identifies the member.</param>
+      <param name="riid">Reserved for future use. Must be IID_NULL.</param>
+      <param name="lcid">The locale context in which to interpret arguments.</param>
+      <param name="wFlags">Flags describing the context of the call.</param>
+      <param name="pDispParams">Pointer to a structure containing an array of arguments, an array of argument DISPIDs for named arguments, and counts for the number of elements in the arrays.</param>
+      <param name="pVarResult">Pointer to the location where the result is to be stored.</param>
+      <param name="pExcepInfo">Pointer to a structure that contains exception information.</param>
+      <param name="puArgErr">The index of the first argument that has an error.</param>
+      <exception cref="T:System.NotImplementedException">The method is called late-bound using the COM IDispatch interface.</exception>
+    </member>
+    <member name="T:System.Reflection.Emit.OpCode">
+      <summary>Describes a Microsoft intermediate language (MSIL) instruction.</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.Equals(System.Object)">
+      <summary>Tests whether the given object is equal to this Opcode.</summary>
+      <returns>true if <paramref name="obj" /> is an instance of Opcode and is equal to this object; otherwise, false.</returns>
+      <param name="obj">The object to compare to this object. </param>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.Equals(System.Reflection.Emit.OpCode)">
+      <summary>Indicates whether the current instance is equal to the specified <see cref="T:System.Reflection.Emit.OpCode" />.</summary>
+      <returns>true if the value of <paramref name="obj" /> is equal to the value of the current instance; otherwise, false.</returns>
+      <param name="obj">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to the current instance.</param>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.FlowControl">
+      <summary>The flow control characteristics of the Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The type of flow control.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.GetHashCode">
+      <summary>Returns the generated hash code for this Opcode.</summary>
+      <returns>Returns the hash code for this instance.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Name">
+      <summary>The name of the Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The name of the MSIL instruction.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.op_Equality(System.Reflection.Emit.OpCode,System.Reflection.Emit.OpCode)">
+      <summary>Indicates whether two <see cref="T:System.Reflection.Emit.OpCode" /> structures are equal.</summary>
+      <returns>true if <paramref name="a" /> is equal to <paramref name="b" />; otherwise, false.</returns>
+      <param name="a">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to <paramref name="b" />.</param>
+      <param name="b">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to <paramref name="a" />.</param>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.op_Inequality(System.Reflection.Emit.OpCode,System.Reflection.Emit.OpCode)">
+      <summary>Indicates whether two <see cref="T:System.Reflection.Emit.OpCode" /> structures are not equal.</summary>
+      <returns>true if <paramref name="a" /> is not equal to <paramref name="b" />; otherwise, false.</returns>
+      <param name="a">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to <paramref name="b" />.</param>
+      <param name="b">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to <paramref name="a" />.</param>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.OpCodeType">
+      <summary>The type of Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The type of Microsoft intermediate language (MSIL) instruction.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.OperandType">
+      <summary>The operand type of an Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The operand type of an MSIL instruction.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Size">
+      <summary>The size of the Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The size of the MSIL instruction.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.StackBehaviourPop">
+      <summary>How the Microsoft intermediate language (MSIL) instruction pops the stack.</summary>
+      <returns>Read-only. The way the MSIL instruction pops the stack.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.StackBehaviourPush">
+      <summary>How the Microsoft intermediate language (MSIL) instruction pushes operand onto the stack.</summary>
+      <returns>Read-only. The way the MSIL instruction pushes operand onto the stack.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.ToString">
+      <summary>Returns this Opcode as a <see cref="T:System.String" />.</summary>
+      <returns>Returns a <see cref="T:System.String" /> containing the name of this Opcode.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Value">
+      <summary>The value of the immediate operand of the Microsoft intermediate language (MSIL) instruction.</summary>
+      <returns>Read-only. The value of the immediate operand of the MSIL instruction.</returns>
+    </member>
+    <member name="T:System.Reflection.Emit.OpCodes">
+      <summary>Provides field representations of the Microsoft Intermediate Language (MSIL) instructions for emission by the <see cref="T:System.Reflection.Emit.ILGenerator" /> class members (such as <see cref="M:System.Reflection.Emit.ILGenerator.Emit(System.Reflection.Emit.OpCode)" />).</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add">
+      <summary>Adds two values and pushes the result onto the evaluation stack.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add_Ovf">
+      <summary>Adds two integers, performs an overflow check, and pushes the result onto the evaluation stack.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add_Ovf_Un">
+      <summary>Adds two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.And">
+      <summary>Computes the bitwise AND of two values and pushes the result onto the evaluation stack.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Arglist">
+      <summary>Returns an unmanaged pointer to the argument list of the current method.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Beq">
+      <summary>Transfers control to a target instruction if two values are equal.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Beq_S">
+      <summary>Transfers control to a target instruction (short form) if two values are equal.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge">
+      <summary>Transfers control to a target instruction if the first value is greater than or equal to the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_Un">
+      <summary>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_Un_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt">
+      <summary>Transfers control to a target instruction if the first value is greater than the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is greater than the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_Un">
+      <summary>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_Un_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble">
+      <summary>Transfers control to a target instruction if the first value is less than or equal to the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_Un">
+      <summary>Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_Un_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt">
+      <summary>Transfers control to a target instruction if the first value is less than the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is less than the second value.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_Un">
+      <summary>Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_Un_S">
+      <summary>Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bne_Un">
+      <summary>Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bne_Un_S">
+      <summary>Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Box">
+   

@@ -1,0 +1,577 @@
+ existe en el servidor {1}.
+
+== RepDoesntExist ==
+El repositorio {0} no existe. Probablemente haya sido eliminado y este trabajando con metadatos antiguos en el cliente.
+
+== RepDoesntHaveRootItem ==
+Error grave: El repositorio no contiene un ítem raíz.
+
+== RepNeeded ==
+El path actual no está dentro de un workspace. Por favor, especifique un repositorio mediante la opción --repository.
+
+== RepNotFound ==
+No se ha podido encontrar el repositorio: {0}.
+
+== RepNotMatched ==
+Ningún repositorio coincide con la expresión: {0}.
+
+== RepdbDoesntExist ==
+La base de datos del repositorio {0} no existe en el sistema gestor de base de datos.
+
+== RepdbIdIncorrect ==
+El id especificado en el nombre de base de datos de repositorio {0} no es correcto. Debería ser un número.
+
+== RepdbNameIncorrect ==
+La base de datos especificada {0} no tiene un nombre correcto para el sistema. Debería empezar por {1}.
+
+== ReplicationBrCantbelinked ==
+La rama {0} (id:{1}) no se puede enlazar. Abortando.
+
+== ReplicationBrParentCantbelinked ==
+La rama padre {0} de la rama {1} (id:{2} guid:{3}) no se puede enlazar. Abortando.
+
+== ReplicationChangesetdoesntexist ==
+El changeset ({0}) especificado para ser usado como punto de partida de la replicación no existe. Abortando.
+
+== ReplicationCsetBranchCantbelinked ==
+La rama {0} del changeset {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== ReplicationCsetCantbelinked ==
+El changeset {0} no se puede enlazar. Abortando.
+
+== ReplicationCsetParentCantbelinked ==
+El changeset padre {0} del changeset {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== ReplicationCsetRootrevCantbelinked ==
+La revisión raíz {0}  del changeset {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== ReplicationDataCorrupted ==
+Los datos de la replicación están corruptos y la operación no se puede completar. El error especifico es: '{0}'.
+
+== ReplicationDataEof ==
+No se pudo leer más datos: fin de fichero.
+
+== ReplicationDirRevCantbelinked ==
+La revision del direcotio {0} no se puede enlazar. Abortando.
+
+== ReplicationErrorTryingtosetupauthdatafromfileFiledoesntexist ==
+Error intentando fijar el modo de autentificación desde un fichero. El fichero {0} no existe.
+
+== ReplicationErrorTryingtosetupauthdatafromfileNodata ==
+Error intentando fijar el modo de autentificación desde un fichero. No hay datos en el fichero {0}.
+
+== ReplicationErrorWrongauthmode ==
+Error, se ha especificado un modo de autenficación incorrecto. {0}.
+
+== ReplicationErrorWrongentryintranslationtable ==
+Error en la tabla de traducción de nombres en la línea {0}.
+
+== ReplicationItemCantbelinked ==
+El ítem {0} (id:{1}) no se puede enlazar. Abortando.
+
+== ReplicationLabelCantbelinked ==
+La etiqueta {0} (id:{1}) no se puede enlazar. Abortando.
+
+== ReplicationLinkCantbelinked ==
+El enlace {0} (id:{1}) no se puede enlazar. Abortando.
+
+== ReplicationMsgBranchRenamed ==
+La rama {0} ya existía con un ID diferente, se ha introducido con el nombre {1}
+
+== ReplicationMsgLabelRenamed ==
+La etiqueta {0} ya existía con un ID diferente, se ha introducido con el nombre {1}
+
+== ReplicationParentbranchdoesntexist ==
+El padre de la rama a clonar {0} ({1}) no existe. Abortando.
+
+== ReplicationRevCsetCantbelinked ==
+El changeset {0} de la revision {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== ReplicationRevItemCantbelinked ==
+El ítem {0} de la revision {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== ReplicationRevParentCantbelinked ==
+La revisión padre {0} de la revision {1} (guid:{2}) no se puede enlazar. Abortando.
+
+== RepositoriesDontMatch ==
+Se han especificado repositorios diferentes.
+
+== RepositoryWasntUpgradedCorrectly ==
+El repositorio {0} no se ha podido actualizar correctamente durante el arranque del sistema. No podrá usarse hasta que el problema se resuelva.
+
+== RepspecsDontMatch ==
+La ruta o especificación de changeset y la de la etiqueta no se refieren al mismo repositorio.
+
+== RequestWkNotFound ==
+No se ha podido encontrar el espacio de trabajo especificado.
+
+== ResolvespecItemNotFound ==
+No se ha encontrado el ítem {0} al resolver la especificación.
+
+== RestoreItemidAlreadyExists ==
+Ese ítem ya existe en esa ruta. No es necesario recuperar el ítem.
+
+== RestoreItemnameAlreadyExists ==
+Exite otro ítem con ese mismo nombre en esa ruta. Seleccione un nuevo nombre para el ítem.
+
+== RevIsNotANumber ==
+La revisión especificada no es un número: {0}.
+
+== RevNoCreated ==
+No se puede crear una revisión nueva {0}.
+
+== RevNotCreatedForCopy ==
+No se ha podido crear una revisión nueva para la operación de copia.
+
+== RevNotFoundInRep ==
+No se ha encontrado la revisión {0} en el repositorio {1}.
+
+== RevisionCantBeFound ==
+No se ha podido encontrar la revisión {0}.
+
+== RevisionLoadedTwiceOnTree ==
+La revision {0} se carga 2 veces en el changeset {1}, en las rutas '{2}' y '{3}'. Por favor, contacten con soporte.
+
+== RevisionNotCo ==
+La revisión {0} no está desprotegida.
+
+== RevisionToReloadNotFound ==
+No fue encontrada la revisión a cargar
+
+== RevtreeNoRevsToShow ==
+No se puede mostrar el árbol de revisiones para el ítem {0}.
+
+== RootitemNumLocated ==
+El ítem raíz debe de ser único en el repositorio. Se han encontrado {0} elementos raíz.
+
+== SaveBeforeAdd ==
+Es necesario guardarlo antes de poder añadirlo a Unity VCS.
+
+== ScriptVersionNotValid ==
+La versión de {0} del servidor de {1} es la {2}. Por favor, actualicelo a la versión {3}. 
+
+== SecuredPathMovedCollission ==
+El movido desde '{0}' a '{1}' no se puede realizar porque los permisos del usuario en la ruta origen y en la ruta destino son diferentes.
+
+== SecurityCantActivateUser ==
+No tiene permisos para activar el usuario {0}. Para poder activar usuarios debe ser administrador del servidor de repositorios.
+
+== SecurityCantArchive ==
+No tiene permisos para archivar revisiones. Para poder archivar revisiones debe ser administrador del servidor de repositorios.
+
+== SecurityCantDeactivateUser ==
+No tiene permisos para desactivar el usuario {0}. Para poder desactivar usuarios debe ser administrador del servidor de repositorios.
+
+== SecurityCantInheritItself ==
+Un objeto no puede heredar los permisos de sí mismo. Recursividad detectada.
+
+== SecurityCantMergeChange ==
+No tiene permisos para realizar el merge. No tiene permiso de lectura para algunos cambios en el contribuidor de origen.
+
+== SecurityCantRunExecquery ==
+Sólo los administradores pueden ejecutar 'execquery'. No es un administrador y por tanto no puede ejecutar 'execquery'.
+
+== SecurityIdUnknown ==
+El identificador de usuario {0} es desconocido y no se puede traducir.
+
+== SecurityIncompatibleObjects ==
+Los objetos que ha especificado no son compatibles. Uno no puede heredar del otro.
+
+== SecurityInvalidPassword ==
+Contraseña incorrecta. Revise su configuración de usuario/contraseña.
+
+== SecurityTokenExpired ==
+El token LDAP ha expirado. Usuario: {0}.
+
+== SecurityNewParentInheritsFromChild ==
+El objeto que ha especificado ya hereda su seguridad del objeto destino. Recursividad detectada.
+
+== SecurityNoPermForOperation ==
+No hay permiso para realizar la operación {0}.
+
+== SecurityNoPermForPathOperation ==
+No tiene permiso {0} en el path {1}.
+
+== SecurityNoPermForRepoOperation ==
+No tiene permiso {0} en el repositorio {1}.
+
+== SecurityNoPermToCreateSuchSecuredPath ==
+No tiene permiso para crear el 'secured path' {0} en el repositorio y ramas especificadas.
+
+== SecurityObjectDoesntHaveAcl ==
+El objeto no tiene una ACL. Inténtelo en el objeto padre.
+
+== SecuritySeidIsInherited ==
+El SEID es heredado, no se puede eliminar de esta ACL.
+
+== SecuritySeidNotInAclCantRemove ==
+El SEID especificado no está en la ACL del objeto. Compruebe si es heredado.
+
+== SecurityUserGroupUnknown ==
+Usuario o grupo desconocido: '{0}'. Compruebe que la información introducida es correcta. Los nombres de usuario o grupo distinguen entre mayúsculas y minúsculas.
+
+== SecurityUserInactive ==
+El usuario {0} aparece como usuario inactivo porque se ha desactivado su licencia. Actívela e inténtelo la operación de nuevo.
+
+== SecurityUserUnknown ==
+Usuario desconocido: '{0}'. Compruebe sus credenciales actuales. Tenga en cuenta que los nombres de usuario o grupo distinguen entre mayúsculas y minúsculas.
+
+== SelFewInfo ==
+El selector actual no contiene suficiente información para poder proteger el ítem {0}.
+
+== SelFewInfo2 ==
+Con el selector actual no se puede seleccionar ninguna revisión para el ítem {0}.
+
+== SelNotHaveCo ==
+El selector actual no posee una rama para la desprotección del ítem {0}.
+
+== SelectorhandlerNoWkMatchRequest ==
+SelectorHandler: Ningún espacio de trabajo cumple el criterio especificado.
+
+== SelectorhandlerNoWkidMatch ==
+SelectorHandler: No hay espacios de trabajo para id {0}.
+
+== ServerEncryptionAlreadyDefined ==
+No se puede configurar el cifrado para el servidor '{0}' porque ya tiene un cifrado configurado.
+
+== ServerEncryptionNeeded ==
+El servidor '{0}' requiere encriptación, pero tu servidor no está configurado con la clave de encriptación necesaria. Si estás usando tu servidor local, asegúrate de ser el administrador del servidor (propietario, en "Permisos"); intenta la operación de nuevo y Plastic te pedirá la clave de encriptación. En otro caso, pregunta a tu administrador o busca 'Encrypt all data' en la doc online.
+
+== ServerEncryptionWrongKey ==
+La clave del cifrado '{1}' para el servidor '{0}' no puede leerse. Para más información consulta el log del servidor.
+
+== ServiceNotInitialized ==
+La operación de Plastic SCM no está disponible todavía. El servidor está arrancando o ejecutando actividades de mantenimiento.
+
+== ShellParserQuoteError ==
+Error en los argumentos del comando. Compruebe las comillas: {0}
+
+== SizelimitExceeded ==
+Una consulta LDAP ha excedido el número máximo permitido de objetos para una búsqueda simple. Deberá configurar su servidor LDAP para aumetar este valor.
+
+== SotSpecDoesNotExist ==
+El objeto {0} no existe.
+
+== SourceSameAsDest ==
+El ítem se esta moviendo al mismo directorio en el que ya está. No se lleva a cabo la operación.
+
+== Spanish ==
+Español
+
+== SrcNotFound ==
+No se ha encontrado el objeto origen.
+
+== SwitchSelectorErrorInvalidRule ==
+Regla de switch to branch/label/changeset incorrecta
+
+== SyncAttributeUnparseable ==
+El atributo de repositorio de git sync no puede ser parseado correctamente.
+
+== SyncMissingParentChangeset ==
+El changeset padre del changeset {0} no ha sido replicado en este repositorio. Este changeset y sus descendientes no pueden ser sincronizados. Por favor excluya las ramas involucradas o replique los changesets que faltan.
+
+== SyncMissingParentChangesets ==
+El changeset padre de los changesets {0} no ha sido replicado en este repositorio. Este changeset y sus descendientes no pueden ser sincronizados. Por favor excluya las ramas involucradas o replique los changesets que faltan.
+
+== SyncReplicaDifferentSources ==
+La replica no puede comenzar porque los dos repositorios fueron sincronizados con git (o replicados de repositorios sincronizados originalmente). Sólo un repositorio puede ser sincronizado con git a la vez. Los repositorios originalmente sincronizados son '{0} - {1}' y '{2} - {3}'. Por favor, contacte con soporte para más información.
+
+== TaskUrlNotValid ==
+No se ha encontrado el script {0} o su versión no es compatible.
+
+== TestConnectionNotAvailable ==
+La prueba de conexión no está disponible. Posiblemente el servidor y el cliente no están configurados en el mismo modo.
+
+== TreeCantAddDuplicatedName ==
+No se puede añadir una entrada con el mismo nombre. Hijo duplicado [{0}]. Padre [{1}]
+
+== TriggerErrorMsg ==
+{0}
+
+== TriggerInvalidPosition ==
+La posición especificada ya existe para el tipo {0}-{1}.
+
+== TriggerNotExists ==
+El trigger especificado no existe.
+
+== TryingToLockTwice ==
+ No se puede hacer lock exclusivo del mismo ítem ({0}) desde rutas diferentes '{1}' y '{2}'.
+
+== TubeConfUnavailable ==
+No se pudo obtener la configuration de Plastic Tube. Por favor, verifique que el servidor está correctamente configurado para usar Plastic Tube. Puede configurarlo con el comando 'cm tube config'.
+
+== UnexpectedError ==
+Se ha producido un error no esperado "{0}". Para más información consulta el log del servidor.
+
+== UnlicensedTubeFeature ==
+La licencia del servidor Plastic SCM no soporta Plastic Tube.
+
+== UpCantAddGroupToItself ==
+Un grupo no puede ser miembro de sí mismo.
+
+== UpCantCreateNewGroupWithMembers ==
+No se puede crear un grupo nuevo con miembros.
+
+== UpCorruptGroupInfo ==
+Información de grupo corrupta: '{0}'.
+
+== UpCorruptUserInfo ==
+Información de usuario corrupta: '{0}'.
+
+== UpGroupAlreadyContainsGroup ==
+El grupo '{0}' ya contiene al grupo '{1}'.
+
+== UpGroupAlreadyContainsUser ==
+El grupo '{0}' ya contiene al usuario '{1}'.
+
+== UpGroupAlreadyExists ==
+El grupo '{0}' ya existe.
+
+== UpGroupDoesntContainsGroup ==
+El grupo '{0}' no contiene al grupo '{1}'.
+
+== UpGroupDoesntContainsUser ==
+El grupo '{0}' no contiene al usuario '{1}'.
+
+== UpGroupNotExists ==
+El grupo '{0}' no existe.
+
+== UpInvalidCredentials ==
+Las credenciales no son válidas, nombre de usuario o password no válidos.
+
+== UpInvalidGroupname ==
+Nombre de grupo no válido '{0}'.
+
+== UpInvalidPassword ==
+Contraseña incorrecta.
+
+== UpInvalidUsername ==
+Nombre de usuario no válido '{0}'.
+
+== UpPassword ==
+Constraseña
+
+== UpUserAlreadyExists ==
+El usuario '{0}' ya existe.
+
+== UpUserNotExists ==
+El usuario '{0}' no existe.
+
+== UpUsername ==
+Usuario
+
+== UpdateGetRevinfo ==
+No se ha podido cargar información de revisiones de {0}. Probablemente, está haciendo referencia a un ítem/rama/etiqueta que no existe. También puede que este ítem no está etiquetado con la etiqueta seleccionada o no tenga permiso de read/view.
+
+== UpdateToLatestNotValidCurrentBranch ==
+Su espacio de trabajo apunta a una rama, etiqueta, changeset o shelve que ya no existe. Es posible que otro usuario haya borrado dicho objeto. Por favor, cambie su espacio de trabajo para que apunte a una rama, etiqueta, changeset o shelve existente.
+
+== UpgradeMoreOneRep ==
+Se ha detectado más de un servidor de repositorios en el selector. Este escenario no está soportado por el sistema de actualización de workspaces.
+
+== UpgradeRunManualUpdate ==
+Workspace Upgrade: No se pudo encontrar el directorio raíz en los datos previos. Por favor, ejecute la operación obtener para este worksapce.
+
+== UserAlreadyActivated ==
+El usuario {0} ya ha sido activado.
+
+== UserAlreadyDeactivated ==
+El usuario {0} ya ha sido desactivado.
+
+== UserLimitExceeded ==
+El número máximo de usuarios para esta edición ha sido excedido.
+
+== UserPassProviderConfigMissing ==
+No se han configurado el usuario y password. Por favor, utilice el asistente de configuración para fijarlos.
+
+== UsersCannotObtained ==
+No se han podido obtener los usaurios del sistema.
+
+== UsersExceeded ==
+Se ha excedido el número máximo de usuarios con licencia.
+
+== ViewUnknown ==
+Tipo de vista desconocido: {0}
+
+== WithoutMergeInfo ==
+El elemento 'DirectoryChanges' no tiene información adicional para realizar el merge.
+
+== WkAlreadyExists ==
+El espacio de trabajo {0} ya existe en el servidor {1}.
+
+== WkAlreadyExistsForUser ==
+El espacio de trabajo {0} ya existe en el servidor {1} para el usuario {2}.
+
+== WkContainsOtherWk ==
+El espacio de trabajo {0} en {1} contiene el espacio de trabajo {2}.
+
+== WkContainsOtherWkOfUser ==
+El espacio de trabajo {0} en {1} contiene el espacio de trabajo {2} del usuario {3}.
+
+== WkDoesntExist ==
+El espacio de trabajo {0} no existe.
+
+== WktreeCorrupt ==
+El fichero de metadatos del workspace ({0}) está corrupto. Por favor, actualize el workspace.
+
+== WorkingModeDoesNotSupportUserPasswd ==
+El modo {0} no soporta configuración con usuario y password.
+
+== WorkingModeNotInicialized ==
+Modo de trabajo con usuarios no inicializado. Debe ser uno de los siguientes: Name, Name+Id o LDAP.
+
+== WorkingModeNotSupported ==
+La configuración de usuarios {0} no está soportada en esta plataforma.
+
+== WriteBlobError ==
+No se pueden escribir los datos de la revisión {0} (segmento {1}) en el repositorio {2}.
+
+== WrongParentInCheckin ==
+El fichero {0} no tiene el contenido que se espera respecto al changeset al que apunta el workspace (cs:{1}).
+Probablemente se cambió el workspace a una rama distinta, pero el fichero tenía cambios locales, por lo que no se actualizó.
+Unity VCS no puede hacer checkin del fichero porque sobrescribiría cambios de manera incorrecta.
+Puede deshacer los cambios en el fichero, actualizarlo, y después tratar de hacerle checkin de nuevo.
+
+== XmlFileCorrupt ==
+El fichero {0} contiene errores y no puede usarse su configuración. Por favor, revise sus contenidos. Error: {1}
+
+== MergeDstChangesNotAllowed ==
+No se puede llevar a cabo el merge desde el changeset origen {0} y el changeset destino {1} en el repositorio {2} porque hay cambios en el destino y estos no están permitidos.
+
+== FindAttrNotExist ==
+El tipo de objeto '{0}' no es válido en la consulta realizada.
+
+== FindAttrTypeWrong ==
+El valor '{0}' no es válido para el campo '{1}' en la consulta "{2}". El campo '{1}' es de tipo '{3}'.
+
+== FindAttrTypeWrongValue ==
+El valor '{0}' no es válido para el campo '{1}' en la consulta "{2}". El campo '{1}' admite un valor de los siguientes: {3}
+
+== IncorrectSpec ==
+Especificación de objeto incorrecta: {0}
+
+== NotValidCmPath ==
+La ruta especificada: {0} no es una ruta de servidor válida.
+
+== FindOrderbyNotValid  ==
+El tipo de objeto {0} no pueder ordenar por {1}.
+
+== FindTypeNotExists ==
+El tipo de objeto {0} no existe
+
+== FindListGuidConditionIsNotAlone ==
+La condición de la lista de guids no es compatible con ninguna otra condición. Esta condición sólo puede usarse si es la única condición.
+
+== FindParserError ==
+Error en la consulta: {0}
+
+== FindParserNullError ==
+La consulta especificada contiene errores
+
+== ErrorPackageFromNodataRepo ==
+No se puede crear un paquete de replicación de un repositorio al que le faltan datos (datos replicados con la opción --nodata). Primero hay que hacer un hidrate en el repositorio origen.
+
+== ParentCommentOutDate ==
+El comentario que está tratando de responser ya no existe. Por favor actualice los comentarios de su review.
+
+== NoneOperationName ==
+sin especificar
+
+== AddOperationName ==
+añadir
+
+== ApplyLocalChangesOperationName ==
+aplicar cambios locales
+
+== CheckinOperationName ==
+checkin
+
+== CheckoutOperationName ==
+checkout
+
+== CopyOperationName ==
+copiar
+
+== IncomingChangesOperationName ==
+cambios entrantes
+
+== MergeOperationName ==
+merge
+
+== MoveOperationName ==
+mover
+
+== RebaseOperationName ==
+rebase
+
+== RevertOperationName ==
+revertir
+
+== SetSelectorOperationName ==
+configurar el selector
+
+== StatusOperationName ==
+estado
+
+== TestOperationName ==
+prueba
+
+== UndeleteOperationName ==
+recuperar
+
+== UndoOperationName ==
+undo
+
+== UpdateOperationName ==
+acualizar
+
+== WorkspaceTreeOperationName ==
+árbol del workspace
+
+== BranchWithNoHead ==
+La rama '{0}' no es válida porque no tiene un Head. Es necesario cambiar a otra rama.
+
+== BranchHeadNotFound ==
+El Head {1} de la rama '{0}' ya no es válido. Probablemente fue borrado. Es necesario actualizar el espacio de trabajo.
+
+== CantResolveRegionForCloudOrganization ==
+No se ha podido obtener el servidor cloud para la organización {0}. {1}
+
+== BackupInProgress ==
+El backup de la base de datos {0} está en progreso. Solo están permitidas operaciones de lectura en ella.
+
+== OrganizationReadonlyEnabled ==
+La organización '{0}' está en modo de solo lectura. Solo están permitidas operaciones de lectura en sus repositorios o configuración.
+
+== ServerReadonlyEnabled ==
+El servidor está en modo de solo lectura. Solo están permitidas operaciones de lectura en sus repositorios o configuración.
+
+== OrganizationMigratedError ==
+La organizacion '{0}' fue migrada a otro servidor.
+
+== InvalidServerCertificateError ==
+El certificado del servidor no es válido.
+
+== DeleteChangesetNotAllowedOnGitSyncRep ==
+No se puede borrar un changeset en un repositorio sincronizado con Git.
+
+== MoveChangesetNotAllowedOnGitSyncRep ==
+No se puede mover un changeset en un repositorio sincronizado con Git.
+
+== P4ExecutableDoesNotExist ==
+No se pudo encontrar el ejecutable de Perforce CLI. Asegúrate de que está disponible en tu variable de entorno PATH.
+
+== CloudProviderTokenRequired ==
+Este servidor solo permite autenticación basada en tokens
+
+== CloudProviderProviderRequired ==
+La organización '{0}' no permite la autenticación de tipo '{1}'
+
+== CloudProviderInvalidTokenVersionDetected ==
+Versión de token incorrecta para conectarse a la organización '{0}'
+
+== FetchAllDeletedRevisionsError ==
+No se pudo replicar el repositorio, porque se borró algún changeset mientras se replicaba. Por favor inténtelo de nuevo.
+
+== FetchBrDeletedRevisionsError ==
+No se pudo replicar la rama '{0}', porque se borró alguno de sus changesets mientras replicaba. Por favor inténtelo de nuevo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {"sts":[{"expiry":1721547310.637687,"host":"AUZVVbFrGQtNk9gKIJeseeR07Afq6mwL/5l72jB314s=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1690011310.63769},{"expiry":1721817285.182804,"host":"AVsuOZgBg0wdpKMoxm8zihjqET8kI4Xl8bCSMk28RsE=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1690281285.182805},{"expiry":1721471645.713865,"host":"AYn/0RUuCA+dtfJ8evM2C7EY0gUuiaPUwyQjHng621k=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1689935645.713873},{"expiry":1721456650.591536,"host":"Aa4GU0FxuqcjoAXZTmDr1vDKrMq1S6I5XChQWQN9I08=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1689920650.591538},{"expiry":1721137558.152445,"host":"Ae+j5UzVGL6sJJRphbWrGiqIDMkPWFhQoZ1xhzrefnc=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1689601558.152448},{"expiry":1706119167.57653,"host":"BBOugrewRBSrzXkoKc6fle0sVpb0Ep+WZj0hzmox9d0=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1690351167.576532},{"expiry":1715589139.473588,"host":"BDbpj9vmeeTAvf20f9F7pxQVC9ZhPBXZ+3lG/g+BptY=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1689669139.473593},{"expiry":1720245268.121733,"host":"BTxXBtgxLlTnkpqnpyiWYmQnPI7kf4Z4sg2euDsfUs4=","

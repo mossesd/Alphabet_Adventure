@@ -1,0 +1,72 @@
+4:02.942Z","level":"info","moduleName":"Download Manager","message":"[ 'Removed a38086b7-9de7-4ad2-a072-8f0a1ff86ae7 from Download Queue.' ]"}
+{"timestamp":"2023-07-19T11:34:02.944Z","level":"info","moduleName":"Download Manager","message":"[ 'Starting download of a38086b7-9de7-4ad2-a072-8f0a1ff86ae7' ]"}
+{"timestamp":"2023-07-19T11:34:02.945Z","level":"info","moduleName":"Download Item","message":"[ 'Download: a38086b7-9de7-4ad2-a072-8f0a1ff86ae7, Current State: Validation, Event: xstate.init' ]"}
+{"timestamp":"2023-07-19T11:34:02.945Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:02.945Z","level":"info","moduleName":"Download Item a38086b7-9de7-4ad2-a072-8f0a1ff86ae7","message":"[ 'Transition to state download_validation' ]"}
+{"timestamp":"2023-07-19T11:34:02.947Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Executing the Download Validation Strategy...' ]"}
+{"timestamp":"2023-07-19T11:34:02.954Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:02.954Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating destination path permission for access...' ]"}
+{"timestamp":"2023-07-19T11:34:02.956Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Destination Path check: Passed' ]"}
+{"timestamp":"2023-07-19T11:34:02.956Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating source path (https://dl.google.com/android/repository/android-ndk-r21d-windows-x86_64.zip) availability...' ]"}
+{"timestamp":"2023-07-19T11:34:03.087Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:34:03.087Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:03.087Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:03.125Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:34:03.125Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:03.125Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:03.421Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Source Availability check: Passed' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating available disk space on the partition.' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Required space: 1024000000 bytes / 976.56 MB...' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Available disk space check: Passed' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating file integrity (checksum)..' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Checksum value not supplied. Skipping Checksum' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Checksum check: Passed' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Download Item","message":"[ 'Download: a38086b7-9de7-4ad2-a072-8f0a1ff86ae7, Exiting from State: Validation, Event: VALIDATION_PASSED' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Download Item","message":"[ 'Download: a38086b7-9de7-4ad2-a072-8f0a1ff86ae7, Current State: Downloading, Event: VALIDATION_PASSED' ]"}
+{"timestamp":"2023-07-19T11:34:03.422Z","level":"info","moduleName":"Download Item a38086b7-9de7-4ad2-a072-8f0a1ff86ae7","message":"[ 'Transition to state downloading' ]"}
+{"timestamp":"2023-07-19T11:34:03.423Z","level":"info","moduleName":"Node Downloader for a38086b7-9de7-4ad2-a072-8f0a1ff86ae7","message":"[ 'Download started' ]"}
+{"timestamp":"2023-07-19T11:34:03.637Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:34:03.637Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:03.673Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:34:03.673Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:23.452Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:34:23.563Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:34:23.564Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:03.675Z","level":"info","moduleName":"UnityInstallerWindows","message":"[ 'Finished job module installing job installModule-android-2021.3.23f1, with result', { restartRequired: false } ]"}
+{"timestamp":"2023-07-19T11:35:03.680Z","level":"info","moduleName":"InstallerWinProcess","message":"[ 'Updating modules.json file at: C:\\\\Program Files\\\\Unity\\\\Hub\\\\Editor\\\\2021.3.23f1\\\\modules.json' ]"}
+{"timestamp":"2023-07-19T11:35:03.681Z","level":"info","moduleName":"UnityInstallerWindows","message":"[ 'client process finished updating modules file', [ 'C:\\\\Program Files\\\\Unity\\\\Hub\\\\Editor\\\\2021.3.23f1', 'android' ] ]"}
+{"timestamp":"2023-07-19T11:35:03.682Z","level":"info","moduleName":"Installer:ReleaseFileIO","message":"[ 'read C:\\\\Program Files\\\\Unity\\\\Hub\\\\Editor\\\\2021.3.23f1\\\\modules.json' ]"}
+{"timestamp":"2023-07-19T11:35:03.738Z","level":"info","moduleName":"ModuleInstallerWorkflow (android)","message":"[ 'Module android is successfully installed' ]"}
+{"timestamp":"2023-07-19T11:35:03.738Z","level":"info","moduleName":"Installer: android","message":"[ 'Exiting from State: Installation. Event: COMPLETED' ]"}
+{"timestamp":"2023-07-19T11:35:03.738Z","level":"info","moduleName":"Installer: android","message":"[ 'Transition to state \"install_temp_cleanup\" on event \"COMPLETED\"' ]"}
+{"timestamp":"2023-07-19T11:35:03.738Z","level":"info","moduleName":"Installer: android","message":"[ 'Entered State: install_temp_cleanup' ]"}
+{"timestamp":"2023-07-19T11:35:03.739Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:03.772Z","level":"info","moduleName":"DownloadManagerUtilities","message":"[ 'Removed C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\unityhub-a464e600-2627-11ee-a33a-4126813a4d33 from the disk.' ]"}
+{"timestamp":"2023-07-19T11:35:03.772Z","level":"info","moduleName":"Installer: android","message":"[ 'Exiting from State TempCleanup. Event: COMPLETED' ]"}
+{"timestamp":"2023-07-19T11:35:03.772Z","level":"info","moduleName":"Installer: android","message":"[ 'Transition to state \"install_finished\" on event \"COMPLETED\"' ]"}
+{"timestamp":"2023-07-19T11:35:03.772Z","level":"info","moduleName":"Installation Manager","message":"[ 'Update: install_finished' ]"}
+{"timestamp":"2023-07-19T11:35:03.772Z","level":"info","moduleName":"Installer: android","message":"[ 'Entered State: install_finished' ]"}
+{"timestamp":"2023-07-19T11:35:03.773Z","level":"info","moduleName":"Installer: android","message":"[ 'Exiting from State: Finished. Event: COMPLETED' ]"}
+{"timestamp":"2023-07-19T11:35:03.917Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:35:03.917Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:03.917Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:03.969Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Successfully received all entitlement groups details' ]"}
+{"timestamp":"2023-07-19T11:35:03.969Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Received 1 entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:04.177Z","level":"info","moduleName":"Installation Manager","message":"[ 'Starting installer of android-open-jdk-8u172-b11' ]"}
+{"timestamp":"2023-07-19T11:35:04.177Z","level":"info","moduleName":"Installer: android-open-jdk-8u172-b11","message":"[ 'Starting the state machine of android-open-jdk-8u172-b11.' ]"}
+{"timestamp":"2023-07-19T11:35:04.178Z","level":"info","moduleName":"Installer: android-open-jdk-8u172-b11","message":"[ 'Entered State: install_validation' ]"}
+{"timestamp":"2023-07-19T11:35:04.178Z","level":"info","moduleName":"LicensingSdkService","message":"[ 'Get all entitlement groups' ]"}
+{"timestamp":"2023-07-19T11:35:04.180Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Executing the Install Validation Strategy...' ]"}
+{"timestamp":"2023-07-19T11:35:04.180Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating presence of an existing installation...' ]"}
+{"timestamp":"2023-07-19T11:35:04.180Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Verifying installation type: EDITOR_MODULE' ]"}
+{"timestamp":"2023-07-19T11:35:04.181Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ \"Verifying the module destination... id: 'android-open-jdk-8u172-b11', destination: C:\\\\Program Files\\\\Unity\\\\Hub\\\\Editor\\\\2021.3.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK\" ]"}
+{"timestamp":"2023-07-19T11:35:04.181Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Editor Module Installation Destination Check: Passed' ]"}
+{"timestamp":"2023-07-19T11:35:04.181Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Verifying selected value of module in modules.json at C:\\\\Program Files\\\\Unity\\\\Hub\\\\Editor\\\\2021.3.23f1\\\\modules.json' ]"}
+{"timestamp":"2023-07-19T11:35:04.182Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'modules.json Check: Passed' ]"}
+{"timestamp":"2023-07-19T11:35:04.182Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating destination path permission for access...' ]"}
+{"timestamp":"2023-07-19T11:35:04.183Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Destination Path check: Passed' ]"}
+{"timestamp":"2023-07-19T11:35:04.183Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating available disk space on the partition.' ]"}
+{"timestamp":"2023-07-19T11:35:04.183Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Required space: 153000000 bytes / 145.91 MB...' ]"}
+{"timestamp":"2023-07-19T11:35:04.183Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Validating accessibility of installer...' ]"}
+{"timestamp":"2023-07-19T11:35:04.183Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Verifying read and write accessibility to installer source path: C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\unityhub-a47030a0-2627-11ee-a33a-4126813a4d33\\\\jdk8u172-b11_4be8440cc514099cfe1b50cbc74128f6955cd90fd5afe15ea7be60f832de67b4.zip' ]"}
+{"timestamp":"2023-07-19T11:35:04.184Z","level":"info","moduleName":"Disk Validation Strategy","message":"[ 'Installer Accessibility Check: Passed' ]"}

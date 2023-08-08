@@ -1,0 +1,110 @@
+default application associations. This file can be created using the DISM tool.
+
+For example:
+Dism.exe /Online /Export-DefaultAppAssociations:C:\AppAssoc.txt
+
+For more information, refer to the DISM documentation on TechNet.
+
+If this group policy is enabled and the client machine is domain-joined, the file will be processed and default associations will be applied at logon time.
+
+If the group policy is not configured, disabled, or the client machine is not domain-joined, no default associations will be applied at logon time.
+
+If the policy is enabled, disabled, or not configured, users will still be able to override default file type and protocol associations.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="MaxRecentDocs">
+        <decimalTextBox refId="MaxRecentDocs" defaultValue="150">Maximum number of recent documents</decimalTextBox>
+      </presentation>
+      <presentation id="TryHarderPinnedOpenSearch">
+        <text>Internet search sites to add:</text>
+        <textBox refId="OpenSearch0">
+          <label>Site URL 1</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel0">
+          <label>Site Name 1</label>
+        </textBox>
+        <textBox refId="OpenSearch1">
+          <label>Site URL 2</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel1">
+          <label>Site Name 2</label>
+        </textBox>
+        <textBox refId="OpenSearch2">
+          <label>Site URL 3</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel2">
+          <label>Site Name 3</label>
+        </textBox>
+        <textBox refId="OpenSearch3">
+          <label>Site URL 4</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel3">
+          <label>Site Name 4</label>
+        </textBox>
+        <textBox refId="OpenSearch4">
+          <label>Site URL 5</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel4">
+          <label>Site Name 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="TryHarderPinnedLibrary">
+        <text>Locations to pin:</text>
+        <textBox refId="Library0">
+          <label>Location 1</label>
+        </textBox>
+        <textBox refId="Library1">
+          <label>Location 2</label>
+        </textBox>
+        <textBox refId="Library2">
+          <label>Location 3</label>
+        </textBox>
+        <textBox refId="Library3">
+          <label>Location 4</label>
+        </textBox>
+        <textBox refId="Library4">
+          <label>Location 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="NoDrives">
+        <dropdownList refId="NoDrivesDropdown" noSort="true" defaultItem="5">Pick one of the following combinations</dropdownList>
+      </presentation>
+      <presentation id="NoViewOnDrive">
+        <dropdownList refId="NoDrivesDropdown" noSort="true" defaultItem="5">Pick one of the following combinations</dropdownList>
+      </presentation>
+      <presentation id="PlacesBar">
+        <text>Places to display:</text>
+        <textBox refId="Places0">
+          <label>Item 1</label>
+        </textBox>
+        <textBox refId="Places1">
+          <label>Item 2</label>
+        </textBox>
+        <textBox refId="Places2">
+          <label>Item 3</label>
+        </textBox>
+        <textBox refId="Places3">
+          <label>Item 4</label>
+        </textBox>
+        <textBox refId="Places4">
+          <label>Item 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="RecycleBinSize">
+        <text>Value represents percentage of hard disk that can be used (0 - 100).</text>
+        <text> </text>
+        <decimalTextBox refId="RecycleBinSizeSpin" defaultValue="10" spinStep="10">Maximum Recycle Bin size: </decimalTextBox>
+      </presentation>
+      <presentation id="DisableKnownFolders_Presentation">
+        <listBox refId="DisableKnownFolders_Prompt">Disable these Known Folders.</listBox>
+      </presentation>
+      <presentation id="DefaultLibrariesLocation">
+        <textBox refId="DefaultLibrariesLocation">
+          <label>Default Libraries definition location</label>
+        </textBox>
+      </presentation>
+      <presentation id="EnableSmartScreen">
+        <dropdownList refId="EnableSmartScreenDropdown" noSort="true" defaultItem="0">Pick one of the following settings:</dropdownList>
+      </presentation>
+      <presentation id="DefaultAssociationsConfiguration">
+        <te

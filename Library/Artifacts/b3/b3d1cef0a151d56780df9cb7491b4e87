@@ -1,0 +1,103 @@
+>(1, Allocator.Persistent);
+            m_BoneLookupData = new NativeArray<int2>(1, Allocator.Persistent);
+            m_VertexLookupData = new NativeArray<int2>(1, Allocator.Persistent);
+            m_SkinBatchArray = new NativeArray<PerSkinJobData>(1, Allocator.Persistent);
+
+            Init();
+
+            // Initialise all existing SpriteSkins as execution order is indeterminate
+            var count = m_SpriteSkins.Count; 
+            if (count > 0)
+            {
+                m_IsSpriteSkinActiveForDeform = new NativeArray<bool>(count, Allocator.Persistent);
+                m_PerSkinJobData = new NativeArray<PerSkinJobData>(count, Allocator.Persistent);
+                m_SpriteSkinData = new NativeArray<SpriteSkinData>(count, Allocator.Persistent);
+                m_BoundsData = new NativeArray<Bounds>(count, Allocator.Persistent);
+                m_Buffers = new NativeArray<IntPtr>(count, Allocator.Persistent);
+                m_BufferSizes = new NativeArray<int>(count, Allocator.Persistent);
+                for (var i = 0; i < count; ++i)
+                {
+                    var spriteSkin = m_SpriteSkins[i];
+                    spriteSkin.batchSkinning = true;
+                    CopyToSpriteSkinData(i);
+                }
+            }
+            else
+            {
+                m_IsSpriteSkinActiveForDeform = new NativeArray<bool>(1, Allocator.Persistent);
+                m_PerSkinJobData = new NativeArray<PerSkinJobData>(1, Allocator.Persistent);
+                m_SpriteSkinData = new NativeArray<SpriteSkinData>(1, Allocator.Persistent);
+                m_BoundsData = new NativeArray<Bounds>(1, Allocator.Persistent);
+                m_Buffers = new NativeArray<IntPtr>(1, Allocator.Persistent);
+                m_BufferSizes = new NativeArray<int>(1, Allocator.Persistent);
+            }
+        }
+
+        void OnDisable()
+        {
+            m_DeformJobHandle.Complete();
+            m_BoundJobHandle.Complete();
+            m_CopyJobHandle.Complete();
+            foreach (var spriteSkin in m_SpriteSkins)
+                spriteSkin.batchSkinning = false;
+            m_SpriteSkins.Clear();
+            m_SpriteRenderers = new SpriteRenderer[0];
+            BufferManager.instance.ReturnBuffer(GetInstanceID());
+            m_IsSpriteSkinActiveForDeform.DisposeIfCreated();
+            m_PerSkinJobData.DisposeIfCreated();
+            m_SpriteSkinData.DisposeIfCreated();
+            m_Buffers.DisposeIfCreated();
+            m_BufferSizes.DisposeIfCreated();
+            m_BoneLookupData.DisposeIfCreated();
+            m_VertexLookupData.DisposeIfCreated();
+            m_SkinBatchArray.DisposeIfCreated();
+            m_FinalBoneTransforms.DisposeIfCreated();
+            m_BoundsData.DisposeIfCreated();
+            
+            if (m_Helper != null)
+            {
+                m_Helper.GetComponent<SpriteSkinUpdateHelper>().onDestroyingComponent -= OnHelperDestroyed;
+                GameObject.DestroyImmediate(m_Helper);
+            }
+            
+            m_LocalToWorldTransformAccessJob.Destroy();
+            m_WorldToLocalTransformAccessJob.Destroy();
+        }
+
+        internal unsafe void LateUpdate()
+        {
+            foreach (var ss in m_SpriteSkinLateUpdate)
+            {
+                if(ss != null)
+                    ss.OnLateUpdate();
+            }
+
+            var count = m_SpriteSkins.Count;
+            if (count == 0)
+                return;
+            
+            Profiling.prepareData.Begin();
+            Assert.AreEqual(m_IsSpriteSkinActiveForDeform.Length, count);
+            Assert.AreEqual(m_PerSkinJobData.Length, count);
+            Assert.AreEqual(m_SpriteSkinData.Length, count);
+            Assert.AreEqual(m_BoundsData.Length, count);
+            Assert.AreEqual(m_Buffers.Length, count);
+            Assert.AreEqual(m_BufferSizes.Length, count);
+            Assert.AreEqual(m_SpriteRenderers.Length, count);
+            
+            using (Profiling.validateSpriteSkinData.Auto())
+            {
+                for (var i = 0; i < m_SpriteSkins.Count; ++i)
+                {
+                    var spriteSkin = m_SpriteSkins[i];
+                    m_IsSpriteSkinActiveForDeform[i] = spriteSkin.BatchValidate();
+                    if (m_IsSpriteSkinActiveForDeform[i] && spriteSkin.NeedUpdateCompositeCache())
+                    {
+                        CopyToSpriteSkinData(i);
+                    }
+                }
+            }
+            
+            Profiling.transformAccessJob.Begin();
+            var localToWorldJobHandle = m_LocalToWorldTransformAccessJob.StartLocalToWorldJob();
+            var w

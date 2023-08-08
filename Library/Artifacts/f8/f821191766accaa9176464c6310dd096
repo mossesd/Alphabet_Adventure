@@ -1,0 +1,125 @@
+ = TRUE;
+#else
+  // Unity: Always enable retry signals, since any platform could lose signals
+  STATIC GC_bool GC_retry_signals = TRUE;
+#endif
+
+#define UNITY_RETRY_SIGNALS
+
+/*
+ * We use signals to stop threads during GC.
+ *
+ * Suspended threads wait in signal handler for SIG_THR_RESTART.
+ * That's more portable than semaphores or condition variables.
+ * (We do use sem_post from a signal handler, but that should be portable.)
+ *
+ * The thread suspension signal SIG_SUSPEND is now defined in gc_priv.h.
+ * Note that we can't just stop a thread; we need it to save its stack
+ * pointer(s) and acknowledge.
+ */
+#ifndef SIG_THR_RESTART
+# if defined(GC_HPUX_THREADS) || defined(GC_OSF1_THREADS) \
+     || defined(GC_NETBSD_THREADS) || defined(GC_USESIGRT_SIGNALS)
+#   if defined(_SIGRTMIN) && !defined(CPPCHECK)
+#     define SIG_THR_RESTART _SIGRTMIN + 5
+#   else
+#     define SIG_THR_RESTART SIGRTMIN + 5
+#   endif
+# else
+#   define SIG_THR_RESTART SIGXCPU
+# endif
+#endif
+
+#define SIGNAL_UNSET (-1)
+    /* Since SIG_SUSPEND and/or SIG_THR_RESTART could represent */
+    /* a non-constant expression (e.g., in case of SIGRTMIN),   */
+    /* actual signal numbers are determined by GC_stop_init()   */
+    /* unless manually set (before GC initialization).          */
+STATIC int GC_sig_suspend = SIGNAL_UNSET;
+STATIC int GC_sig_thr_restart = SIGNAL_UNSET;
+
+GC_API void GC_CALL GC_set_suspend_signal(int sig)
+{
+  if (GC_is_initialized) return;
+
+  GC_sig_suspend = sig;
+}
+
+GC_API void GC_CALL GC_set_thr_restart_signal(int sig)
+{
+  if (GC_is_initialized) return;
+
+  GC_sig_thr_restart = sig;
+}
+
+GC_API int GC_CALL GC_get_suspend_signal(void)
+{
+  return GC_sig_suspend != SIGNAL_UNSET ? GC_sig_suspend : SIG_SUSPEND;
+}
+
+GC_API int GC_CALL GC_get_thr_restart_signal(void)
+{
+  return GC_sig_thr_restart != SIGNAL_UNSET
+            ? GC_sig_thr_restart : SIG_THR_RESTART;
+}
+
+#if defined(GC_EXPLICIT_SIGNALS_UNBLOCK) \
+    || !defined(NO_SIGNALS_UNBLOCK_IN_MAIN)
+  /* Some targets (e.g., Solaris) might require this to be called when  */
+  /* doing thread registering from the thread destructor.               */
+  GC_INNER void GC_unblock_gc_signals(void)
+  {
+    sigset_t set;
+    sigemptyset(&set);
+    GC_ASSERT(GC_sig_suspend != SIGNAL_UNSET);
+    GC_ASSERT(GC_sig_thr_restart != SIGNAL_UNSET);
+    sigaddset(&set, GC_sig_suspend);
+    sigaddset(&set, GC_sig_thr_restart);
+    if (pthread_sigmask(SIG_UNBLOCK, &set, NULL) != 0)
+      ABORT("pthread_sigmask failed");
+  }
+#endif /* GC_EXPLICIT_SIGNALS_UNBLOCK */
+
+STATIC sem_t GC_suspend_ack_sem; /* also used to acknowledge restart */
+
+STATIC void GC_suspend_handler_inner(ptr_t dummy, void *context);
+
+#ifndef NO_SA_SIGACTION
+  STATIC void GC_suspend_handler(int sig, siginfo_t * info GC_ATTR_UNUSED,
+                                 void * context GC_ATTR_UNUSED)
+#else
+  STATIC void GC_suspend_handler(int sig)
+#endif
+{
+  int old_errno = errno;
+
+  if (sig != GC_sig_suspend) {
+#   if defined(GC_FREEBSD_THREADS)
+      /* Workaround "deferred signal handling" bug in FreeBSD 9.2.      */
+      if (0 == sig) return;
+#   endif
+    ABORT("Bad signal in suspend_handler");
+  }
+
+# if defined(IA64) || defined(HP_PA) || defined(M68K)
+    GC_with_callee_saves_pushed(GC_suspend_handler_inner, NULL);
+# else
+    /* We believe that in all other cases the full context is already   */
+    /* in the signal handler frame.                                     */
+    {
+#     ifdef NO_SA_SIGACTION
+        void *context = 0;
+#     endif
+      GC_suspend_handler_inner(NULL, context);
+    }
+# endif
+  errno = old_errno;
+}
+
+/* The lookup here is safe, since this is done on behalf        */
+/* of a thread which holds the allocation lock in order         */
+/* to stop the world.  Thus concurrent modification of the      */
+/* data structure is impossible.  Unfortunately, we have to     */
+/* instruct TSan that the lookup is safe.                       */
+#ifdef THREAD_SANITIZER
+  /* The implementation of the function is the 

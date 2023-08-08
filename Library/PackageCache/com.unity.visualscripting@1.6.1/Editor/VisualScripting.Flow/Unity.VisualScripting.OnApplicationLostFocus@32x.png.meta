@@ -1,0 +1,79 @@
+do = 0.0;
+  o.Emission = 0.0;
+  o.Specular = 0.0;
+  o.Alpha = 0.0;
+  o.Gloss = 0.0;
+  fixed3 normalWorldVertex = fixed3(0,0,1);
+
+  // call surface function
+  surf (surfIN, o);
+  half4 light = tex2Dproj (_LightBuffer, UNITY_PROJ_COORD(IN.screen));
+#if defined (SHADER_API_MOBILE)
+  light = max(light, half4(0.001, 0.001, 0.001, 0.001));
+#endif
+#ifndef UNITY_HDR_ON
+  light = -log2(light);
+#endif
+  #ifdef LIGHTMAP_ON
+    #ifdef DIRLIGHTMAP_OFF
+      // single lightmap
+      fixed4 lmtex = UNITY_SAMPLE_TEX2D(unity_Lightmap, IN.lmap.xy);
+      fixed3 lm = DecodeLightmap (lmtex);
+      light.rgb += lm;
+    #elif DIRLIGHTMAP_COMBINED
+      half4 nspec = tex2Dproj (_CameraNormalsTexture, UNITY_PROJ_COORD(IN.screen));
+      half3 normal = nspec.rgb * 2 - 1;
+      o.Normal = normalize(normal);
+      // directional lightmaps
+      fixed4 lmtex = UNITY_SAMPLE_TEX2D(unity_Lightmap, IN.lmap.xy);
+      half4 lm = half4(DecodeLightmap(lmtex), 0);
+      light += lm;
+    #endif // DIRLIGHTMAP_OFF
+  #else
+    light.rgb += IN.vlight;
+  #endif // LIGHTMAP_ON
+
+  #ifdef DYNAMICLIGHTMAP_ON
+  fixed4 dynlmtex = UNITY_SAMPLE_TEX2D(unity_DynamicLightmap, IN.lmap.zw);
+  light.rgb += DecodeRealtimeLightmap (dynlmtex);
+  #endif
+
+  fixed4 c = LightingBlinnPhong_PrePass (o, light);
+  c.rgb += o.Emission;
+  UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
+  UNITY_OPAQUE_ALPHA(c.a);
+  return c;
+}
+
+
+#endif
+
+// -------- variant for: INSTANCING_ON 
+#if defined(INSTANCING_ON)
+// Surface shader code generated based on:
+// writes to per-pixel normal: no
+// writes to emission: YES
+// writes to occlusion: no
+// needs world space reflection vector: no
+// needs world space normal vector: no
+// needs screen space position: no
+// needs world space position: no
+// needs view direction: no
+// needs world space view direction: no
+// needs world space position for lighting: YES
+// needs world space view direction for lighting: YES
+// needs world space view direction for lightmaps: no
+// needs vertex color: no
+// needs VFACE: no
+// needs SV_IsFrontFace: no
+// passes tangent-to-world matrix to pixel shader: no
+// reads from normal: no
+// 2 texcoords actually used
+//   float2 _MainTex
+//   float2 _Illum
+#include "UnityCG.cginc"
+#include "Lighting.cginc"
+
+#define INTERNAL_DATA
+#define WorldReflectionVector(data,normal) data.worldRefl
+#define WorldNormalVector(data,no

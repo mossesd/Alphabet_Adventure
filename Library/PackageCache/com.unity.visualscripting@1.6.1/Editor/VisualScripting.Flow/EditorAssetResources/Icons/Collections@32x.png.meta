@@ -1,0 +1,60 @@
+dule$contents$goog$labs$userAgent$util_matchUserAgent("Android") && !(module$contents$goog$labs$userAgent$browser_matchChrome() || module$contents$goog$labs$userAgent$browser_matchFirefox() || module$contents$goog$labs$userAgent$browser_matchOpera() || module$contents$goog$labs$userAgent$util_matchUserAgent("Silk"));
+}
+function module$contents$goog$labs$userAgent$browser_createVersionMap(versionTuples) {
+  var versionMap = {};
+  versionTuples.forEach(function(tuple) {
+    versionMap[tuple[0]] = tuple[1];
+  });
+  return function(keys) {
+    return versionMap[keys.find(function(key) {
+      return key in versionMap;
+    })] || "";
+  };
+}
+function module$contents$goog$labs$userAgent$browser_getFullVersionFromUserAgentString(browser) {
+  var userAgentString = module$contents$goog$labs$userAgent$util_getNativeUserAgentString();
+  if ("Internet Explorer" === browser) {
+    if (module$contents$goog$labs$userAgent$browser_matchIE()) {
+      var rv = /rv: *([\d\.]*)/.exec(userAgentString);
+      if (rv && rv[1]) {
+        var JSCompiler_temp = rv[1];
+      } else {
+        var version = "", msie = /MSIE +([\d\.]+)/.exec(userAgentString);
+        if (msie && msie[1]) {
+          var tridentVersion = /Trident\/(\d.\d)/.exec(userAgentString);
+          if ("7.0" == msie[1]) {
+            if (tridentVersion && tridentVersion[1]) {
+              switch(tridentVersion[1]) {
+                case "4.0":
+                  version = "8.0";
+                  break;
+                case "5.0":
+                  version = "9.0";
+                  break;
+                case "6.0":
+                  version = "10.0";
+                  break;
+                case "7.0":
+                  version = "11.0";
+              }
+            } else {
+              version = "7.0";
+            }
+          } else {
+            version = msie[1];
+          }
+        }
+        JSCompiler_temp = version;
+      }
+    } else {
+      JSCompiler_temp = "";
+    }
+    return JSCompiler_temp;
+  }
+  for (var versionRegExp = RegExp("([A-Z][\\w ]+)/([^\\s]+)\\s*(?:\\((.*?)\\))?", "g"), data = [], match; match = versionRegExp.exec(userAgentString);) {
+    data.push([match[1], match[2], match[3] || void 0]);
+  }
+  var lookUpValueWithKeys = module$contents$goog$labs$userAgent$browser_createVersionMap(data);
+  switch(browser) {
+    case "Opera":
+      if (module$cont

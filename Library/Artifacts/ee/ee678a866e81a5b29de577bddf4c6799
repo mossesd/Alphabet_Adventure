@@ -1,0 +1,328 @@
+teLine">
+      <summary>Writes the current line terminator to the standard output stream.</summary>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Boolean)">
+      <summary>Writes the text representation of the specified Boolean value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char)">
+      <summary>Writes the specified Unicode character, followed by the current line terminator, value to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char[])">
+      <summary>Writes the specified array of Unicode characters, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="buffer">A Unicode character array. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char[],System.Int32,System.Int32)">
+      <summary>Writes the specified subarray of Unicode characters, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="buffer">An array of Unicode characters. </param>
+      <param name="index">The starting position in <paramref name="buffer" />. </param>
+      <param name="count">The number of characters to write. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> is null. </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> or <paramref name="count" /> is less than zero. </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="index" /> plus <paramref name="count" /> specify a position that is not within <paramref name="buffer" />. </exception>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Decimal)">
+      <summary>Writes the text representation of the specified <see cref="T:System.Decimal" /> value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Double)">
+      <summary>Writes the text representation of the specified double-precision floating-point value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Int32)">
+      <summary>Writes the text representation of the specified 32-bit signed integer value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Int64)">
+      <summary>Writes the text representation of the specified 64-bit signed integer value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Object)">
+      <summary>Writes the text representation of the specified object, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Single)">
+      <summary>Writes the text representation of the specified single-precision floating-point value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String)">
+      <summary>Writes the specified string value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object)">
+      <summary>Writes the text representation of the specified object, followed by the current line terminator, to the standard output stream using the specified format information.</summary>
+      <param name="format">A composite format string (see Remarks). </param>
+      <param name="arg0">An object to write using <paramref name="format" />. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> is null. </exception>
+      <exception cref="T:System.FormatException">The format specification in <paramref name="format" /> is invalid. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object,System.Object)">
+      <summary>Writes the text representation of the specified objects, followed by the current line terminator, to the standard output stream using the specified format information.</summary>
+      <param name="format">A composite format string (see Remarks). </param>
+      <param name="arg0">The first object to write using <paramref name="format" />. </param>
+      <param name="arg1">The second object to write using <paramref name="format" />. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> is null. </exception>
+      <exception cref="T:System.FormatException">The format specification in <paramref name="format" /> is invalid. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)">
+      <summary>Writes the text representation of the specified objects, followed by the current line terminator, to the standard output stream using the specified format information.</summary>
+      <param name="format">A composite format string (see Remarks). </param>
+      <param name="arg0">The first object to write using <paramref name="format" />. </param>
+      <param name="arg1">The second object to write using <paramref name="format" />. </param>
+      <param name="arg2">The third object to write using <paramref name="format" />. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> is null. </exception>
+      <exception cref="T:System.FormatException">The format specification in <paramref name="format" /> is invalid. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object,System.Object)">
+      <summary>Writes the text representation of the specified objects and variable-length parameter list, followed by the current line terminator, to the standard output stream using the specified format information.</summary>
+      <param name="format">A composite format string (see Remarks). </param>
+      <param name="arg0">The first object to write using <paramref name="format" />. </param>
+      <param name="arg1">The second object to write using <paramref name="format" />. </param>
+      <param name="arg2">The third object to write using <paramref name="format" />. </param>
+      <param name="arg3">The fourth object to write using <paramref name="format" />. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> is null. </exception>
+      <exception cref="T:System.FormatException">The format specification in <paramref name="format" /> is invalid. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object[])">
+      <summary>Writes the text representation of the specified array of objects, followed by the current line terminator, to the standard output stream using the specified format information.</summary>
+      <param name="format">A composite format string (see Remarks). </param>
+      <param name="arg">An array of objects to write using <paramref name="format" />. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> or <paramref name="arg" /> is null. </exception>
+      <exception cref="T:System.FormatException">The format specification in <paramref name="format" /> is invalid. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.UInt32)">
+      <summary>Writes the text representation of the specified 32-bit unsigned integer value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:System.Console.WriteLine(System.UInt64)">
+      <summary>Writes the text representation of the specified 64-bit unsigned integer value, followed by the current line terminator, to the standard output stream.</summary>
+      <param name="value">The value to write. </param>
+      <exception cref="T:System.IO.IOException">An I/O error occurred. </exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="T:System.ConsoleCancelEventArgs">
+      <summary>Provides data for the <see cref="E:System.Console.CancelKeyPress" /> event. This class cannot be inherited.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:System.ConsoleCancelEventArgs.Cancel">
+      <summary>Gets or sets a value indicating whether simultaneously pressing the <see cref="F:System.ConsoleModifiers.Control" /> modifier key and <see cref="F:System.ConsoleKey.C" /> console key (CTRL+C) terminates the current process.</summary>
+      <returns>true if the current process should resume when the event handler concludes; false if the current process should terminate.</returns>
+      <exception cref="T:System.InvalidOperationException">true was specified in a set operation and the event was caused by simultaneously pressing the <see cref="F:System.ConsoleModifiers.Control" /> modifier key and the BREAK console key (CTRL+BREAK).</exception>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:System.ConsoleCancelEventArgs.SpecialKey">
+      <summary>Gets the combination of modifier and console keys that interrupted the current process.</summary>
+      <returns>One of the <see cref="T:System.ConsoleSpecialKey" /> values. There is no default value.</returns>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="T:System.ConsoleCancelEventHandler">
+      <summary>Represents the method that will handle the <see cref="E:System.Console.CancelKeyPress" /> event of a <see cref="T:System.Console" />.</summary>
+      <param name="sender">The source of the event. </param>
+      <param name="e">A <see cref="T:System.ConsoleCancelEventArgs" /> object that contains the event data. </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:System.ConsoleColor">
+      <summary>Specifies constants that define foreground and background colors for the console.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="F:System.ConsoleColor.Black">
+      <summary>The color black.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkBlue">
+      <summary>The color dark blue.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkGreen">
+      <summary>The color dark green.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkCyan">
+      <summary>The color dark cyan (dark blue-green).</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkRed">
+      <summary>The color dark red.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkMagenta">
+      <summary>The color dark magenta (dark purplish-red).</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkYellow">
+      <summary>The color dark yellow (ochre).</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Gray">
+      <summary>The color gray.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkGray">
+      <summary>The color dark gray.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Blue">
+      <summary>The color blue.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Green">
+      <summary>The color green.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Cyan">
+      <summary>The color cyan (blue-green).</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Red">
+      <summary>The color red.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Magenta">
+      <summary>The color magenta (purplish-red).</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Yellow">
+      <summary>The color yellow.</summary>
+    </member>
+    <member name="F:System.ConsoleColor.White">
+      <summary>The color white.</summary>
+    </member>
+    <member name="T:System.ConsoleKey">
+      <summary>Specifies the standard keys on a console.</summary>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="F:System.ConsoleKey.Backspace">
+      <summary>The BACKSPACE key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Tab">
+      <summary>The TAB key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Clear">
+      <summary>The CLEAR key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Enter">
+      <summary>The ENTER key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Pause">
+      <summary>The PAUSE key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Escape">
+      <summary>The ESC (ESCAPE) key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Spacebar">
+      <summary>The SPACEBAR key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PageUp">
+      <summary>The PAGE UP key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PageDown">
+      <summary>The PAGE DOWN key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.End">
+      <summary>The END key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Home">
+      <summary>The HOME key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LeftArrow">
+      <summary>The LEFT ARROW key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.UpArrow">
+      <summary>The UP ARROW key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.RightArrow">
+      <summary>The RIGHT ARROW key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.DownArrow">
+      <summary>The DOWN ARROW key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Select">
+      <summary>The SELECT key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Print">
+      <summary>The PRINT key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Execute">
+      <summary>The EXECUTE key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PrintScreen">
+      <summary>The PRINT SCREEN key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Insert">
+      <summary>The INS (INSERT) key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Delete">
+      <summary>The DEL (DELETE) key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Help">
+      <summary>The HELP key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D0">
+      <summary>The 0 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D1">
+      <summary>The 1 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D2">
+      <summary>The 2 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D3">
+      <summary>The 3 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D4">
+      <summary>The 4 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D5">
+      <summary>The 5 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D6">
+      <summary>The 6 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D7">
+      <summary>The 7 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D8">
+      <summary>The 8 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D9">
+      <summary>The 9 key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.A">
+      <summary>The A key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.B">
+      <summary>The B key.</summary>
+    </member>
+    <member name="F:System.ConsoleKey.C">
+   

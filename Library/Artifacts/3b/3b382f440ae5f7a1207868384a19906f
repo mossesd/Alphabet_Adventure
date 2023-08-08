@@ -1,0 +1,73 @@
+22621.608_sv-se_ff1f1ae56f087b9d\n\arunres.dll.mui" length="1936" time="133088203210000000" attr="128">
+      <Hash alg="SHA256" value="AAC72DA64105E0A45429077CDC59CEA19C34DDB5AAC1B7320C3F4C9F2DF3A6D5" />
+      <Delta>
+        <Source type="RAW" offset="16656014" length="1936">
+          <Hash alg="SHA256" value="AAC72DA64105E0A45429077CDC59CEA19C34DDB5AAC1B7320C3F4C9F2DF3A6D5" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6619" name="amd64_microsoft-windows-i..ng-client.resources_31bf3856ad364e35_10.0.22621.608_sv-se_ff1f1ae56f087b9d\n\spwizres.dll.mui" length="2622" time="133088203210000000" attr="128">
+      <Hash alg="SHA256" value="B71A2679531EA3B9636459F6D3180377123824374C047908646C7089E19A504B" />
+      <Delta>
+        <Source type="RAW" offset="16657950" length="2622">
+          <Hash alg="SHA256" value="B71A2679531EA3B9636459F6D3180377123824374C047908646C7089E19A504B" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6620" name="amd64_microsoft-windows-i..ng-client.resources_31bf3856ad364e35_10.0.22621.608_sv-se_ff1f1ae56f087b9d\n\w32uires.dll.mui" length="36095" time="133088203200000000" attr="128">
+      <Hash alg="SHA256" value="744768CEAF41C4488B51C61892FD4950F4D468C036A0F98024B7D4459FCE0E22" />
+      <Delta>
+        <Source type="RAW" offset="16660572" length="36095">
+          <Hash alg="SHA256" value="744768CEAF41C4488B51C61892FD4950F4D468C036A0F98024B7D4459FCE0E22" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6621" name="amd64_microsoft-windows-i..ng-server.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5f65c24555af2203\n\w32uires.dll.mui" length="35934" time="133088203210000000" attr="128">
+      <Hash alg="SHA256" value="9CA552B7A5542C851C9F9FFE7082C6CD7A024BE21B247032410F24AF9582A8B0" />
+      <Delta>
+        <Source type="RAW" offset="16696667" length="35934">
+          <Hash alg="SHA256" value="9CA552B7A5542C851C9F9FFE7082C6CD7A024BE21B247032410F24AF9582A8B0" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6622" name="amd64_microsoft-windows-i..ng-server.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5f65c24555af2203\n\arunres.dll.mui" length="1951" time="133088203210000000" attr="128">
+      <Hash alg="SHA256" value="F3004FBE7908B67913F966875BFEDA3FE0EB9FE5B2A71FB1ACDE979BDCF4EBFA" />
+      <Delta>
+        <Source type="RAW" offset="16732601" length="1951">
+          <Hash alg="SHA256" value="F3004FBE7908B67913F966875BFEDA3FE0EB9FE5B2A71FB1ACDE979BDCF4EBFA" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6623" name="amd64_microsoft-windows-i..ng-server.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5f65c24555af2203\n\spwizres.dll.mui" length="2644" time="133088203210000000" attr="128">
+      <Hash alg="SHA256" value="838F133FF26E1EE64E3EC98E5DCCC31C6E48AA8660324570A2A798DAE3772587" />
+      <Delta>
+        <Source type="RAW" offset="16734552" length="2644">
+          <Hash alg="SHA256" value="838F133FF26E1EE64E3EC98E5DCCC31C6E48AA8660324570A2A798DAE3772587" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6624" name="amd64_microsoft-windows-i...appxmain.resources_31bf3856ad364e35_10.0.22621.608_sv-se_2c14977077287b88\f\resources.sv-se.pri" length="50" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="19531A8C404572D91780D6C22500DCB5A59375F761BFB47014B5BD75259C9C47" />
+      <Delta>
+        <Source type="RAW" offset="16737196" length="50">
+          <Hash alg="SHA256" value="19531A8C404572D91780D6C22500DCB5A59375F761BFB47014B5BD75259C9C47" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6625" name="amd64_microsoft-windows-m..resources.resources_31bf3856ad364e35_10.0.22621.608_sv-se_423a46725670061f\f\windows.management.autopilotresources.sv-se.pri" length="52" time="133332635930000000" attr="128">
+      <Hash alg="SHA256" value="67D3F93CEF5C45D393C33446CCE50788F074AC02BF7BBFD3936322E5F3AE02E8" />
+      <Delta>
+        <Source type="RAW" offset="16737246" length="52">
+          <Hash alg="SHA256" value="67D3F93CEF5C45D393C33446CCE50788F074AC02BF7BBFD3936322E5F3AE02E8" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6626" name="amd64_microsoft-windows-m..-autoplay.resources_31bf3856ad364e35_10.0.22621.608_sv-se_ba91fa88bcf88f78\n\wmlaunch.exe.mui" length="980" time="133088203200000000" attr="128">
+      <Hash alg="SHA256" value="AAF7BB69AF039B92A32A1E4203F3036C913AC38F3EEED0B3F431051DF5F5DE21" />
+      <Delta>
+        <Source type="RAW" offset="16737298" length="980">
+          <Hash alg="SHA256" value="AAF7BB69AF039B92A32A1E4203F3036C913AC38F3EEED0B3F431051DF5F5DE21" />
+        </Source>
+      </Delta>
+    </File>
+    <File id="6627" name="x86_microsoft-windows-m..-autoplay.resources_31bf3856ad364e35_10.0.22621.608_sv-se_5e735f05049b1e42\n\wmlaunch.exe.mui" le

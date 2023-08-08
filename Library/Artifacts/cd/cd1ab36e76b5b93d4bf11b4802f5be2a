@@ -1,0 +1,50 @@
+uctor, which was invoked through reflection, threw an exception. </exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="activationAttributes" /> is not an empty array, and the type being created does not derive from <see cref="T:System.MarshalByRefObject" />. </exception>
+      <exception cref="T:System.Security.SecurityException">The caller does have the required <see cref="T:System.Security.Permissions.FileIOPermission" />. </exception>
+      <exception cref="T:System.BadImageFormatException">
+        <paramref name="assemblyFile" /> is not a valid assembly. -or-The common language runtime (CLR) version 2.0 or later is currently loaded, and <paramref name="assemblyName" /> was compiled for a version of the CLR that is later than the currently loaded version. Note that the .NET Framework versions 2.0, 3.0, and 3.5 all use CLR version 2.0.</exception>
+      <filterpriority>1</filterpriority>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Activator.GetObject(System.Type,System.String)">
+      <summary>Creates a proxy for the well-known object indicated by the specified type and URL.</summary>
+      <returns>A proxy that points to an endpoint served by the requested well-known object.</returns>
+      <param name="type">The type of the well-known object to which you want to connect. </param>
+      <param name="url">The URL of the well-known object. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> or <paramref name="url" /> is null. </exception>
+      <exception cref="T:System.Runtime.Remoting.RemotingException">
+        <paramref name="type" /> is not marshaled by reference.-or-<paramref name="type" /> is an interface. </exception>
+      <exception cref="T:System.MemberAccessException">This member was invoked with a late-binding mechanism. </exception>
+      <filterpriority>1</filterpriority>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="RemotingConfiguration" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Activator.GetObject(System.Type,System.String,System.Object)">
+      <summary>Creates a proxy for the well-known object indicated by the specified type, URL, and channel data.</summary>
+      <returns>A proxy that points to an endpoint served by the requested well-known object.</returns>
+      <param name="type">The type of the well-known object to which you want to connect. </param>
+      <param name="url">The URL of the well-known object. </param>
+      <param name="state">Channel-specific data or null. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> or <paramref name="url" /> is null. </exception>
+      <exception cref="T:System.Runtime.Remoting.RemotingException">
+        <paramref name="type" /> is not marshaled by reference.-or-<paramref name="type" /> is an interface. </exception>
+      <exception cref="T:System.MemberAccessException">This member was invoked with a late-binding mechanism. </exception>
+      <filterpriority>1</filterpriority>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="RemotingConfiguration" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Activator.System#Runtime#InteropServices#_Activator#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)">
+      <summary>Maps a set of names to a corresponding set of dispatch identifiers.</summary>
+      <param name="riid">Reserved for future use. Must be IID_NULL.</param>
+      <param name="rgszNames">The passed-in array of names to map.</param>
+      <param name="cNames">The count of the names to map.</param>
+      <param name="lcid">The locale context in 

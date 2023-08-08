@@ -1,0 +1,33 @@
+et file as well as the relative path to the current target file. When the system cannot find the file in the current target path, then, by default, it searches for the target in the original path. If the shortcut has been copied to a different computer, the original path might lead to a network computer, including external resources, such as an Internet server.
+
+If you enable this policy setting, Windows only searches the current target path. It does not search for the original path even when it cannot find the target file in the current target path.
+
+If you disable or do not configure this policy setting, Windows searches for the original path when it cannot find the target file in the current target path.</string>
+
+      <string id="MaxRecentDocs">Maximum number of recent documents</string>
+      <string id="MaxRecentDocs_Help">"This policy setting allows you to set the maximum number of shortcuts the system can display in the Recent Items menu on the Start menu.
+
+The Recent Items menu contains shortcuts to the nonprogram files the user has most recently opened.
+
+If you enable this policy setting, the system displays the number of shortcuts specified by the policy setting.
+
+If you disable or do not configure this policy setting, by default, the system displays shortcuts to the 10 most recently opened documents."</string>
+
+      <string id="NoSearchInternetTryHarderButton">Remove the Search the Internet "Search again" link</string>
+      <string id="NoSearchInternetTryHarderButton_Help">If you enable this policy, the "Internet" "Search again" link will not be shown when the user performs a search in the Explorer window.
+
+If you disable this policy, there will be an "Internet" "Search again" link when the user performs a search in the Explorer window.  This button launches a search in the default browser with the search terms.
+
+If you do not configure this policy (default), there will be an "Internet" link when the user performs a search in the Explorer window.</string>
+      <string id="TryHarderPinnedOpenSearch">Pin Internet search sites to the "Search again" links and the Start menu</string>
+      <string id="TryHarderPinnedOpenSearch_Help">This policy setting allows you to add Internet or intranet sites to the "Search again" links located at the bottom of search results in File Explorer and the Start menu links. The "Search again" links at the bottom of the Search Results view allow the user to reconduct a search but in a different location.  The Internet search site will be searched with the text in the search box.  To add an Internet search site, specify the URL of the search site in OpenSearch format with {searchTerms} for the query string (for example, http://www.example.com/results.aspx?q={searchTerms}).
+
+You can add up to five additional links to the "Search again" links at the bottom of results returned in File Explorer after a search is executed.  These links will be shared between Internet search sites and Search Connectors/Libraries.  Search Connector/Library links take precedence over Internet search links.
+
+The first several links will also be pinned to the Start menu.  A total of four links can be pinned on the Start menu.  The "See more results" link will be pinned first by default, unless it is disabled via Group Policy.  The "Search the Internet" link is pinned second, if it is pinned via Group Policy (though this link is disabled by default).  If a custom Internet search link is pinned using the "Custom Internet search provider" Group Policy, this link will be pinned third on the Start menu.  The remaining link(s) will be shared between pinned Internet/intranet links and pinned Search Connectors/Libraries.  Search Connector/Library links take precedence over Internet/intranet search links.
+
+If you enable this policy setting, the specified Internet sites will appear in the "Search again" links and the Start menu links.
+
+If you disable or do not configure this policy setting, no custom Internet search sites will be added to the "Search again" links or the Start menu links.</string>
+      <string id="TryHarderPinnedLibrary">Pin Libraries or Search Connectors to the "Search again" links and the Start menu</string>
+      <string id="TryHarderPinnedLibrary_Help">This policy setting allows up to five Libraries or Search Connectors to be pinned to the "Search again" links and the Start menu links. The "Search again" links at the bottom of the Search Results view allow the user to reconduct a search but in a different location.  To add a Library or Search Connector link, specify the path of the .Library-ms or .searchConnector-ms file in the "Location" text box (for example, "C:\sampleLibrary.Library-ms" for t

@@ -1,0 +1,292 @@
+alize(const VkSamplerYcbcrConversionCreateInfo* in_struct)
+{
+    sType = in_struct->sType;
+    format = in_struct->format;
+    ycbcrModel = in_struct->ycbcrModel;
+    ycbcrRange = in_struct->ycbcrRange;
+    components = in_struct->components;
+    xChromaOffset = in_struct->xChromaOffset;
+    yChromaOffset = in_struct->yChromaOffset;
+    chromaFilter = in_struct->chromaFilter;
+    forceExplicitReconstruction = in_struct->forceExplicitReconstruction;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkSamplerYcbcrConversionCreateInfo::initialize(const safe_VkSamplerYcbcrConversionCreateInfo* src)
+{
+    sType = src->sType;
+    format = src->format;
+    ycbcrModel = src->ycbcrModel;
+    ycbcrRange = src->ycbcrRange;
+    components = src->components;
+    xChromaOffset = src->xChromaOffset;
+    yChromaOffset = src->yChromaOffset;
+    chromaFilter = src->chromaFilter;
+    forceExplicitReconstruction = src->forceExplicitReconstruction;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkSamplerYcbcrConversionInfo::safe_VkSamplerYcbcrConversionInfo(const VkSamplerYcbcrConversionInfo* in_struct) :
+    sType(in_struct->sType),
+    conversion(in_struct->conversion)
+{
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+safe_VkSamplerYcbcrConversionInfo::safe_VkSamplerYcbcrConversionInfo() :
+    pNext(nullptr)
+{}
+
+safe_VkSamplerYcbcrConversionInfo::safe_VkSamplerYcbcrConversionInfo(const safe_VkSamplerYcbcrConversionInfo& src)
+{
+    sType = src.sType;
+    conversion = src.conversion;
+    pNext = SafePnextCopy(src.pNext);
+}
+
+safe_VkSamplerYcbcrConversionInfo& safe_VkSamplerYcbcrConversionInfo::operator=(const safe_VkSamplerYcbcrConversionInfo& src)
+{
+    if (&src == this) return *this;
+
+    if (pNext)
+        FreePnextChain(pNext);
+
+    sType = src.sType;
+    conversion = src.conversion;
+    pNext = SafePnextCopy(src.pNext);
+
+    return *this;
+}
+
+safe_VkSamplerYcbcrConversionInfo::~safe_VkSamplerYcbcrConversionInfo()
+{
+    if (pNext)
+        FreePnextChain(pNext);
+}
+
+void safe_VkSamplerYcbcrConversionInfo::initialize(const VkSamplerYcbcrConversionInfo* in_struct)
+{
+    sType = in_struct->sType;
+    conversion = in_struct->conversion;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkSamplerYcbcrConversionInfo::initialize(const safe_VkSamplerYcbcrConversionInfo* src)
+{
+    sType = src->sType;
+    conversion = src->conversion;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkBindImagePlaneMemoryInfo::safe_VkBindImagePlaneMemoryInfo(const VkBindImagePlaneMemoryInfo* in_struct) :
+    sType(in_struct->sType),
+    planeAspect(in_struct->planeAspect)
+{
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+safe_VkBindImagePlaneMemoryInfo::safe_VkBindImagePlaneMemoryInfo() :
+    pNext(nullptr)
+{}
+
+safe_VkBindImagePlaneMemoryInfo::safe_VkBindImagePlaneMemoryInfo(const safe_VkBindImagePlaneMemoryInfo& src)
+{
+    sType = src.sType;
+    planeAspect = src.planeAspect;
+    pNext = SafePnextCopy(src.pNext);
+}
+
+safe_VkBindImagePlaneMemoryInfo& safe_VkBindImagePlaneMemoryInfo::operator=(const safe_VkBindImagePlaneMemoryInfo& src)
+{
+    if (&src == this) return *this;
+
+    if (pNext)
+        FreePnextChain(pNext);
+
+    sType = src.sType;
+    planeAspect = src.planeAspect;
+    pNext = SafePnextCopy(src.pNext);
+
+    return *this;
+}
+
+safe_VkBindImagePlaneMemoryInfo::~safe_VkBindImagePlaneMemoryInfo()
+{
+    if (pNext)
+        FreePnextChain(pNext);
+}
+
+void safe_VkBindImagePlaneMemoryInfo::initialize(const VkBindImagePlaneMemoryInfo* in_struct)
+{
+    sType = in_struct->sType;
+    planeAspect = in_struct->planeAspect;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkBindImagePlaneMemoryInfo::initialize(const safe_VkBindImagePlaneMemoryInfo* src)
+{
+    sType = src->sType;
+    planeAspect = src->planeAspect;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkImagePlaneMemoryRequirementsInfo::safe_VkImagePlaneMemoryRequirementsInfo(const VkImagePlaneMemoryRequirementsInfo* in_struct) :
+    sType(in_struct->sType),
+    planeAspect(in_struct->planeAspect)
+{
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+safe_VkImagePlaneMemoryRequirementsInfo::safe_VkImagePlaneMemoryRequirementsInfo() :
+    pNext(nullptr)
+{}
+
+safe_VkImagePlaneMemoryRequirementsInfo::safe_VkImagePlaneMemoryRequirementsInfo(const safe_VkImagePlaneMemoryRequirementsInfo& src)
+{
+    sType = src.sType;
+    planeAspect = src.planeAspect;
+    pNext = SafePnextCopy(src.pNext);
+}
+
+safe_VkImagePlaneMemoryRequirementsInfo& safe_VkImagePlaneMemoryRequirementsInfo::operator=(const safe_VkImagePlaneMemoryRequirementsInfo& src)
+{
+    if (&src == this) return *this;
+
+    if (pNext)
+        FreePnextChain(pNext);
+
+    sType = src.sType;
+    planeAspect = src.planeAspect;
+    pNext = SafePnextCopy(src.pNext);
+
+    return *this;
+}
+
+safe_VkImagePlaneMemoryRequirementsInfo::~safe_VkImagePlaneMemoryRequirementsInfo()
+{
+    if (pNext)
+        FreePnextChain(pNext);
+}
+
+void safe_VkImagePlaneMemoryRequirementsInfo::initialize(const VkImagePlaneMemoryRequirementsInfo* in_struct)
+{
+    sType = in_struct->sType;
+    planeAspect = in_struct->planeAspect;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkImagePlaneMemoryRequirementsInfo::initialize(const safe_VkImagePlaneMemoryRequirementsInfo* src)
+{
+    sType = src->sType;
+    planeAspect = src->planeAspect;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures(const VkPhysicalDeviceSamplerYcbcrConversionFeatures* in_struct) :
+    sType(in_struct->sType),
+    samplerYcbcrConversion(in_struct->samplerYcbcrConversion)
+{
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures() :
+    pNext(nullptr)
+{}
+
+safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures(const safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures& src)
+{
+    sType = src.sType;
+    samplerYcbcrConversion = src.samplerYcbcrConversion;
+    pNext = SafePnextCopy(src.pNext);
+}
+
+safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures& safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::operator=(const safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures& src)
+{
+    if (&src == this) return *this;
+
+    if (pNext)
+        FreePnextChain(pNext);
+
+    sType = src.sType;
+    samplerYcbcrConversion = src.samplerYcbcrConversion;
+    pNext = SafePnextCopy(src.pNext);
+
+    return *this;
+}
+
+safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::~safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures()
+{
+    if (pNext)
+        FreePnextChain(pNext);
+}
+
+void safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::initialize(const VkPhysicalDeviceSamplerYcbcrConversionFeatures* in_struct)
+{
+    sType = in_struct->sType;
+    samplerYcbcrConversion = in_struct->samplerYcbcrConversion;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures::initialize(const safe_VkPhysicalDeviceSamplerYcbcrConversionFeatures* src)
+{
+    sType = src->sType;
+    samplerYcbcrConversion = src->samplerYcbcrConversion;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkSamplerYcbcrConversionImageFormatProperties::safe_VkSamplerYcbcrConversionImageFormatProperties(const VkSamplerYcbcrConversionImageFormatProperties* in_struct) :
+    sType(in_struct->sType),
+    combinedImageSamplerDescriptorCount(in_struct->combinedImageSamplerDescriptorCount)
+{
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+safe_VkSamplerYcbcrConversionImageFormatProperties::safe_VkSamplerYcbcrConversionImageFormatProperties() :
+    pNext(nullptr)
+{}
+
+safe_VkSamplerYcbcrConversionImageFormatProperties::safe_VkSamplerYcbcrConversionImageFormatProperties(const safe_VkSamplerYcbcrConversionImageFormatProperties& src)
+{
+    sType = src.sType;
+    combinedImageSamplerDescriptorCount = src.combinedImageSamplerDescriptorCount;
+    pNext = SafePnextCopy(src.pNext);
+}
+
+safe_VkSamplerYcbcrConversionImageFormatProperties& safe_VkSamplerYcbcrConversionImageFormatProperties::operator=(const safe_VkSamplerYcbcrConversionImageFormatProperties& src)
+{
+    if (&src == this) return *this;
+
+    if (pNext)
+        FreePnextChain(pNext);
+
+    sType = src.sType;
+    combinedImageSamplerDescriptorCount = src.combinedImageSamplerDescriptorCount;
+    pNext = SafePnextCopy(src.pNext);
+
+    return *this;
+}
+
+safe_VkSamplerYcbcrConversionImageFormatProperties::~safe_VkSamplerYcbcrConversionImageFormatProperties()
+{
+    if (pNext)
+        FreePnextChain(pNext);
+}
+
+void safe_VkSamplerYcbcrConversionImageFormatProperties::initialize(const VkSamplerYcbcrConversionImageFormatProperties* in_struct)
+{
+    sType = in_struct->sType;
+    combinedImageSamplerDescriptorCount = in_struct->combinedImageSamplerDescriptorCount;
+    pNext = SafePnextCopy(in_struct->pNext);
+}
+
+void safe_VkSamplerYcbcrConversionImageFormatProperties::initialize(const safe_VkSamplerYcbcrConversionImageFormatProperties* src)
+{
+    sType = src->sType;
+    combinedImageSamplerDescriptorCount = src->combinedImageSamplerDescriptorCount;
+    pNext = SafePnextCopy(src->pNext);
+}
+
+safe_VkDescriptorUpdateTemplateCreateInfo::safe_VkDescriptorUpdateTemplateCreateInfo(const VkDescriptorUpdateTemplateCreateInfo* in_struct) :
+    sType(in_struct->sType),
+    flags(in_struct->flags),
+    descri

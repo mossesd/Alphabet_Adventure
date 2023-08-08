@@ -1,0 +1,59 @@
+y>
+            <param name="genericType">The generic type.</param>
+            <param name="genericArgumentTypes">The generic argument types.</param>
+            <remarks>
+            The InstantiatedTypeReference object will match any type that is an instantiation of <paramref name="genericType"/>
+            with argument types that match the types specified in <paramref name="genericArgumentTypes"/>.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.InstantiatedTypeReference.MatchesType(Phx.Types.Type)">
+            <summary>
+            Determine if the specified Phoenix type refers to or derives from this type reference.
+            </summary>
+            <param name="type">Phoenix type to compare evaluate.</param>
+            <returns>'true' if the specified type refers to or derives from this type reference.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.InstantiatedTypeReference.ToString">
+            <summary>
+            String representation of the TypeReference.
+            </summary>
+            <remarks>This is used for debugging only.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.LanguageManager.GetSourceLanguage(Phx.PEModuleUnit)">
+            <summary>
+            Get the <see cref="T:Microsoft.VisualStudio.CodeAnalysis.SourceLanguage"/> that <paramref name="moduleUnit"/> is written in.
+            </summary>
+            <param name="moduleUnit">The <see cref="T:Microsoft.VisualStudio.CodeAnalysis.SourceLanguage"/> whose <see cref="T:Phx.PEModuleUnit"/> is needed.</param>
+            <returns>The <see cref="T:Microsoft.VisualStudio.CodeAnalysis.SourceLanguage"/> that <paramref name="moduleUnit"/> is written in.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.OverrideMethodReference">
+            <summary>
+            Represents a reference to any CLR method that overrides a specified method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.OverrideMethodReference.#ctor(Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.MethodReference,System.Boolean)">
+            <summary>
+            Constructor for OverrideMethodReference.
+            </summary>
+            <param name="introducingMethod">A MethodReference to the introducing method whose overrides are to be matched.</param>
+            <param name="matchSelf">'true' if the new OverrideMethodReference should match the introducing method itself, 'false' if it should match only strict overrides
+            of the introducing method.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.OverrideMethodReference.#ctor(Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.MethodReference)">
+            <summary>
+            Constructor for OverrideMethodReference.
+            </summary>
+            <param name="introducingMethod">A MethodReference to the introducing method whose overrides are to be matched.</param>
+            <remarks>
+            The new OverrideMethodReference will match any method that overrides the specified introducing method, including the introducing method itself.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.OverrideMethodReference.MatchesFunctionSymbol(Phx.Symbols.FunctionSymbol)">
+            <summary>
+            Determine if this method reference refers to the specified Phoenix method.
+            </summary>
+            <param name="functionSymbol">Phoenix FunctionSymbol to compare to this method reference.</param>
+            <returns>'true' if this method reference refers to the specified FunctionSymbol.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.CodeAnalysis.Phoenix.Utilities.Tuple`2">
+            <s

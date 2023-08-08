@@ -1,0 +1,229 @@
+suggestions, 0);
+            this.forceUpdate();
+        };
+        /**
+         * Only to be called when there is nothing in the input. Checks to see if the consumer has
+         * provided a function to resolve suggestions
+         */
+        BasePicker.prototype.onEmptyInputFocus = function () {
+            var emptyResolveSuggestions = this.props.onEmptyResolveSuggestions
+                ? this.props.onEmptyResolveSuggestions
+                : // eslint-disable-next-line deprecation/deprecation
+                    this.props.onEmptyInputFocus;
+            // Only attempt to resolve suggestions if it exists
+            if (emptyResolveSuggestions) {
+                var suggestions = emptyResolveSuggestions(this.state.items);
+                this.updateSuggestionsList(suggestions);
+                this.setState({
+                    isMostRecentlyUsedVisible: true,
+                    suggestionsVisible: true,
+                    moreSuggestionsAvailable: false,
+                });
+            }
+        };
+        BasePicker.prototype.updateValue = function (updatedValue) {
+            this._onResolveSuggestions(updatedValue);
+        };
+        BasePicker.prototype.updateSuggestionsList = function (suggestions, updatedValue) {
+            var _this = this;
+            var suggestionsArray = suggestions;
+            var suggestionsPromiseLike = suggestions;
+            // Check to see if the returned value is an array, if it is then just pass it into the next function .
+            // If the returned value is not an array then check to see if it's a promise or PromiseLike.
+            // If it is then resolve it asynchronously.
+            if (Array.isArray(suggestionsArray)) {
+                this._updateAndResolveValue(updatedValue, suggestionsArray);
+            }
+            else if (suggestionsPromiseLike && suggestionsPromiseLike.then) {
+                this.setState({
+                    suggestionsLoading: true,
+                });
+                // Clear suggestions
+                this.suggestionStore.updateSuggestions([]);
+                if (updatedValue !== undefined) {
+                    this.setState({
+                        suggestionsVisible: this._getShowSuggestions(),
+                    });
+                }
+                else {
+                    this.setState({
+                        suggestionsVisible: this.input.current && this.input.current.inputElement === document.activeElement,
+                    });
+                }
+                // Ensure that the promise will only use the callback if it was the most recent one.
+                var promise_1 = (this.currentPromise = suggestionsPromiseLike);
+                promise_1.then(function (newSuggestions) {
+                    if (promise_1 === _this.currentPromise) {
+                        _this._updateAndResolveValue(updatedValue, newSuggestions);
+                    }
+                });
+            }
+        };
+        BasePicker.prototype.resolveNewValue = function (updatedValue, suggestions) {
+            var _this = this;
+            this.updateSuggestions(suggestions);
+            var itemValue = undefined;
+            if (this.suggestionStore.currentSuggestion) {
+                itemValue = this._getTextFromItem(this.suggestionStore.currentSuggestion.item, updatedValue);
+            }
+            // Only set suggestionloading to false after there has been time for the new suggestions to flow
+            // to the suggestions list. This is to ensure that the suggestions are available before aria-activedescendant
+            // is set so that screen readers will read out the first selected option.
+            this.setState({
+                suggestedDisplayValue: itemValue,
+                suggestionsVisible: this._getShowSuggestions(),
+            }, function () { return _this.setState({ suggestionsLoading: false }); });
+        };
+        BasePicker.prototype.onChange = function (items) {
+            if (this.props.onChange) {
+                this.props.onChange(items);
+            }
+        };
+        // This is protected because we may expect the backspace key to work differently in a different kind of picker.
+        // This lets the subclass override it and provide it's own onBackspace. For an example see the BasePickerListBelow
+        BasePicker.prototype.onBackspace = function (ev) {
+            if ((this.state.items.length && !this.input.current) ||
+                (this.input.current && !this.input.current.isValueSelected && this.input.current.cursorLocation === 0)) {
+                if (this.selection.getSelectedCount() > 0) {
+                    this.removeItems(this.selection.getSelection());
+                }
+                else {
+                    this.removeItem(this.state.items[this.state.items.length - 1]);
+                }
+            }
+        };
+        BasePicker.prototype.getActiveDescendant = function () {
+            if (this.state.suggestionsLoading) {
+                return undefined;
+            }
+            var currentIndex = this.suggestionStore.currentIndex;
+            // if the suggestions element has actions and the currentIndex does not point to a suggestion, return the action id
+            if (currentIndex < 0 && this.suggestionElement.current && this.suggestionElement.current.hasSuggestedAction()) {
+                return 'sug-selectedAction';
+            }
+            return currentIndex > -1 && !this.state.suggestionsLoading ? 'sug-' + currentIndex : undefined;
+        };
+        BasePicker.prototype.getSuggestionsAlert = function (suggestionAlertClassName) {
+            if (suggestionAlertClassName === void 0) { suggestionAlertClassName = legacyStyles.screenReaderOnly; }
+            var currentIndex = this.suggestionStore.currentIndex;
+            if (this.props.enableSelectedSuggestionAlert) {
+                var selectedSuggestion = currentIndex > -1 ? this.suggestionStore.getSuggestionAtIndex(this.suggestionStore.currentIndex) : undefined;
+                var selectedSuggestionAlertText = selectedSuggestion ? selectedSuggestion.ariaLabel : undefined;
+                return (React.createElement("div", { className: suggestionAlertClassName, role: "alert", id: this._ariaMap.selectedSuggestionAlert, "aria-live": "assertive" },
+                    selectedSuggestionAlertText,
+                    ' '));
+            }
+        };
+        /**
+         * Takes in the current updated value and either resolves it with the new suggestions
+         * or if updated value is undefined then it clears out currently suggested items
+         */
+        BasePicker.prototype._updateAndResolveValue = function (updatedValue, newSuggestions) {
+            if (updatedValue !== undefined) {
+                this.resolveNewValue(updatedValue, newSuggestions);
+            }
+            else {
+                this.suggestionStore.updateSuggestions(newSuggestions, -1);
+                if (this.state.suggestionsLoading) {
+                    this.setState({
+                        suggestionsLoading: false,
+                    });
+                }
+            }
+        };
+        /**
+         * Controls what happens whenever there is an action that impacts the selected items.
+         * If `selectedItems` is provided, this will act as a controlled component and it will not update its own state.
+         */
+        BasePicker.prototype._updateSelectedItems = function (items) {
+            var _this = this;
+            if (this.props.selectedItems) {
+                // If the component is a controlled component then the controlling component will need to add or remove the items.
+                this.onChange(items);
+            }
+            else {
+                this.setState({ items: items }, function () {
+                    _this._onSelectedItemsUpdated(items);
+                });
+            }
+        };
+        BasePicker.prototype._onSelectedItemsUpdated = function (items) {
+            this.onChange(items);
+        };
+        /**
+         * Suggestions are normally shown after the user updates text and the text
+         * is non-empty, but also when the user clicks on the input element.
+         * @returns True if suggestions should be shown.
+         */
+        BasePicker.prototype._getShowSuggestions = function () {
+            var areSuggestionsVisible = this.input.current !== undefined &&
+                this.input.current !== null &&
+                this.input.current.inputElement === document.activeElement &&
+                this.input.current.value !== '';
+            return areSuggestionsVisible;
+        };
+        BasePicker.prototype._getTextFromItem = function (item, currentValue) {
+            if (this.props.getTextFromItem) {
+                return this.props.getTextFromItem(item, currentValue);
+            }
+            else {
+                return '';
+            }
+        };
+        return BasePicker;
+    }(React.Component));
+    exports.BasePicker = BasePicker;
+    var BasePickerListBelow = /** @class */ (function (_super) {
+        tslib_1.__extends(BasePickerListBelow, _super);
+        function BasePickerListBelow() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        BasePickerListBelow.prototype.render = function () {
+            var _a, _b;
+            var _c = this.state, suggestedDisplayValue = _c.suggestedDisplayValue, isFocused = _c.isFocused;
+            var _d = this.props, className = _d.className, inputProps = _d.inputProps, disabled = _d.disabled, selectionAriaLabel = _d.selectionAriaLabel, _e = _d.selectionRole, selectionRole = _e === void 0 ? 'list' : _e, theme = _d.theme, styles = _d.styles;
+            var suggestionsAvailable = this.state.suggestionsVisible ? this._ariaMap.suggestionList : '';
+            // TODO
+            // Clean this up by leaving only the first part after removing support for SASS.
+            // Currently we can not remove the SASS styles from BasePicker class because it
+            // might be used by consumers who created custom pickers from extending from
+            // this base class and have not used the new 'styles' prop.
+            // We check for 'styles' prop which is going to be injected by the 'styled' HOC
+            // for every other already existing picker variant (PeoplePicker, TagPicker)
+            // so that we can use the CSS-in-JS styles. If the check fails (ex: custom picker),
+            // then we just use the old SASS styles instead.
+            var classNames = styles
+                ? getClassNames(styles, {
+                    theme: theme,
+                    className: className,
+                    isFocused: isFocused,
+                    inputClassName: inputProps && inputProps.className,
+                })
+                : {
+                    root: Utilities_1.css('ms-BasePicker', className ? className : ''),
+                    text: Utilities_1.css('ms-BasePicker-text', legacyStyles.pickerText, this.state.isFocused && legacyStyles.inputFocused, disabled && legacyStyles.inputDisabled),
+                    itemsWrapper: legacyStyles.pickerItems,
+                    input: Utilities_1.css('ms-BasePicker-input', legacyStyles.pickerInput, inputProps && inputProps.className),
+                    screenReaderText: legacyStyles.screenReaderOnly,
+                };
+            var comboLabel = this.props['aria-label'] || ((_a = inputProps) === null || _a === void 0 ? void 0 : _a['aria-label']);
+            return (React.createElement("div", { ref: this.root, onBlur: this.onBlur, onFocus: this.onFocus },
+                React.createElement("div", { className: classNames.root, onKeyDown: this.onKeyDown },
+                    this.getSuggestionsAlert(classNames.screenReaderText),
+                    React.createElement("div", { className: classNames.text },
+                        React.createElement(index_2.Autofill, tslib_1.__assign({}, inputProps, { className: classNames.input, componentRef: this.input, onFocus: this.onInputFocus, onBlur: this.onInputBlur, onClick: this.onClick, onInputValueChange: this.onInputChange, suggestedDisplayValue: suggestedDisplayValue, "aria-activedescendant": this.getActiveDescendant(), "aria-controls": suggestionsAvailable || undefined, "aria-expanded": !!this.state.suggestionsVisible, "aria-haspopup": "listbox", "aria-label": comboLabel, role: "combobox", id: ((_b = inputProps) === null || _b === void 0 ? void 0 : _b.id) ? inputProps.id : this._ariaMap.combobox, disabled: disabled, onInputChange: this.props.onInputChange })))),
+                this.renderSuggestions(),
+                React.createElement(index_1.SelectionZone, { selection: this.selection, selectionMode: index_1.SelectionMode.single },
+                    React.createElement("div", { id: this._ariaMap.selectedItems, className: "ms-BasePicker-selectedItems" // just a className hook without any styles applied to it.
+                        , role: selectionRole, "aria-label": selectionAriaLabel || comboLabel }, this.renderItems()))));
+        };
+        BasePickerListBelow.prototype.onBackspace = function (ev) {
+            // override the existing backspace method to not do anything because the list items appear below.
+        };
+        return BasePickerListBelow;
+    }(BasePicker));
+    exports.BasePickerListBelow = BasePickerListBelow;
+});
+//# sourceMappingURL=BasePicker.js.map                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         regf      O˜(=≥Ÿ                      e k y b 3 d 8 b b w e \ A c t i v a t i o n S t o r e . d a t   Êc˜/ÓÆπ¿%•ÃèÊc˜/ÓÆπ¿%•Ãè    Ác˜/ÓÆπ¿%•ÃèrmtmFc(=≥Ÿ                                                                                                                                                                                                                                                                                                                                            ÈµB8HvLE .              VÍËÖP÷î'‰Ujµ∞Í       hbin               O˜(=≥Ÿ    àˇˇˇnk, Gc(=≥Ÿ             »  ˇˇˇˇ    ˇˇˇˇò   ˇˇˇˇ$                   &   {363D46A9-0B36-4EBB-B854-F977250A0690}  ˇˇˇsk  ò   ò   £   –    à∞   ¿           ú      ?            ?                           !                  8   
+           ∞1Ä?lºcL<‡P—ó°bÀ~z¶¿˙ÊóÒ£Œ                        òˇˇˇnk  R≈(=≥Ÿ       }       Ë¢  ˇˇˇˇ    ˇˇˇˇò   ˇˇˇˇû                      ActivatableClassId      ˇˇˇlh @  ^x?Í†ˇˇˇnk  R≈(=≥Ÿ              XÚ  ˇˇˇˇ    ˇˇˇˇò   ˇˇˇˇL                   
+   Interfaces         H  ˇˇˇH  p  ¿¶Ü%®ˇˇˇnk  R≈(=≥Ÿ              0	 ˇˇˇˇ    ˇˇˇˇò   ˇˇˇˇX                      Server  ÿˇˇˇlh Ä  ÎzG%¯  ¿¶Ü%p  ˇ"_        ®ˇˇˇnk  Gc(=≥Ÿ   Ä         P  ˇˇˇˇ   `  ò   ˇˇˇˇ           Z          App     ÿˇˇˇvk   Ä         ActivationType  ‡ˇˇˇvk Z   ê        Server  †ˇˇˇA p p . A p p X b d k k 0 y r k w p c g e a e m 8 z k 8 1 k 8 p y 1 e a a h n y . m c a     †ˇˇˇnk  Gc(=≥Ÿ             ˇˇˇˇˇˇˇˇ   ‡  ò   ˇˇˇˇ        (             CustomAttributesˇˇˇlh   ^x?Í–ˇˇˇvk   Ä         AppObject.Aliased       –ˇˇˇvk    ¿        AppObject.EntryPoint    ‡ˇˇˇG a m e B a r . A p p       ˇˇˇ`  ê      Äˇˇˇnk  Gc(=≥Ÿ   Ä         Ë  ˇˇˇˇ   0  ò   ˇˇˇˇ           Z       ,   App.AppX3wz2358556cn4zph6rybaw2j8ef9b8zp.mca    ˇˇˇ0  X  yg    ?N‚ÿˇˇˇvk   Ä         ActivationType  ‡ˇˇˇvk Z   –        Server  †ˇˇˇA p p . A p p X b d k k 0 y r k w p c g e a e m 8 z k 8 1 k 8 p y 1 e a a h n y . m c a     ˇˇˇà  ∞      †ˇˇˇnk  Gc(=≥Ÿ             ˇˇˇˇˇˇˇˇ   x  ò   ˇˇˇˇ        (   t          CustomAttributes–ˇˇˇvk   Ä         AppObject.Aliased       –ˇˇˇvk t            AppObject.EntryPoint    àˇˇˇW i n d o w s . A p p l i c a t i o n M o d e l . C o r e . D e f a u l t I n P r o c B a c k g r o u n d T a s k   ˇˇˇ†  –      Äˇˇˇnk  Gc(=≥Ÿ   Ä         8	  ˇˇˇˇ   p  ò   ˇˇˇˇ           Z       ,   App.AppX49wcgn4hptppqbjs23pa65wjdk8rskpa.mca    ÿˇˇˇvk   Ä       N‚ActivationType˚ûÿˇˇˇvk   Ä         ActivationType  ‡ˇˇˇvk Z   x        Server  †ˇˇˇA p p . A p p X b d k k 0 y r k w p c g e a e m 8 z k 8 1 k 8 p y 1 e a a h n y . m c a     †ˇˇˇnk  Gc(=≥Ÿ   à          ˇˇˇˇˇˇˇˇ   »	  ò   ˇˇˇˇ        (             CustomAttributesˇˇˇlh ÿ  ^x?Í–ˇˇˇvk   Ä         AppObject.Aliased       –ˇˇˇvk    ®	        AppObject.EntryPoint    ‡ˇˇˇG a m e B a r . A p p       ˇˇˇH	  x	      Äˇˇˇnk  Gc(=≥Ÿ   Ä         p  ˇˇˇˇ      ò   ˇˇˇˇ  

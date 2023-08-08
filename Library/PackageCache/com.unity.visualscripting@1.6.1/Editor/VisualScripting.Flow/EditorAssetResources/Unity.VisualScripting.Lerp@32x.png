@@ -1,0 +1,51 @@
+ail(this SerializedProperty property, string path)
+        {
+            var subProperty = property.FindPropertyRelative(path);
+
+            if (subProperty == null)
+            {
+                throw new InvalidOperationException($"Failed to find property '{SerializedObjectLabel(property.serializedObject)}.{property.propertyPath}.{path}'.");
+            }
+
+            return subProperty;
+        }
+
+        public static SerializedProperty FindPropertyOrFail(this SerializedObject serializedObject, string path)
+        {
+            var property = serializedObject.FindProperty(path);
+
+            if (property == null)
+            {
+                throw new InvalidOperationException($"Failed to find property '{SerializedObjectLabel(serializedObject)}.{path}'.");
+            }
+
+            return property;
+        }
+
+        public static string FixedPropertyPath(this SerializedProperty property)
+        {
+            // Unity structures array paths like "fieldName.Array.data[i]".
+            // Fix that quirk and directly go to index, i.e. "fieldName[i]".
+            return property.propertyPath.Replace(".Array.data[", "[");
+        }
+
+        public static string[] PropertyPathParts(this SerializedProperty property)
+        {
+            return property.FixedPropertyPath().Split('.');
+        }
+
+        public static bool IsPropertyIndexer(string propertyPart, out string fieldName, out int index)
+        {
+            var regex = new Regex(@"(.+)\[(\d+)\]");
+            var match = regex.Match(propertyPart);
+
+            if (match.Success) // Property refers to an array or list
+            {
+                fieldName = match.Groups[1].Value;
+                index = int.Parse(match.Groups[2].Value);
+                return true;
+            }
+            else
+            {
+                fieldName = propertyPart;
+   

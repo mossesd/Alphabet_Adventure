@@ -1,0 +1,199 @@
+iptCompilationOptions.BuildingIncludingTestAssemblies;
+                }
+
+#if UNITY_2019_2_OR_NEWER
+                return CompilationPipeline.GetPlayerAssemblies(EditorCompilationInterface.Instance, compilationOptions, null);
+#else
+                return CompilationPipeline.GetPlayerAssemblies(EditorCompilationInterface.Instance, compilationOptions);
+#endif
+#endif
+            }
+            finally
+            {
+                EditorCompilationInterface.SetCompileScriptsOutputDirectory(oldOutputDir);  // restore output directory back to original value
+            }
+        }
+
+        private static bool IsMonoReferenceAssemblyDirectory(string path)
+        {
+            var editorDir = Path.GetFullPath(EditorApplication.applicationContentsPath);
+            return path.IndexOf(editorDir, StringComparison.OrdinalIgnoreCase) != -1 && path.IndexOf("MonoBleedingEdge", StringComparison.OrdinalIgnoreCase) != -1 && path.IndexOf("-api", StringComparison.OrdinalIgnoreCase) != -1;
+        }
+
+        private static bool IsDotNetStandardAssemblyDirectory(string path)
+        {
+            var editorDir = Path.GetFullPath(EditorApplication.applicationContentsPath);
+            return path.IndexOf(editorDir, StringComparison.OrdinalIgnoreCase) != -1 && path.IndexOf("netstandard", StringComparison.OrdinalIgnoreCase) != -1 && path.IndexOf("shims", StringComparison.OrdinalIgnoreCase) != -1;
+        }
+
+        private static TargetPlatform GetTargetPlatformAndDefaultCpu(BuildTarget target, out TargetCpus targetCpu)
+        {
+            var platform = TryGetTargetPlatform(target, out targetCpu);
+            if (!platform.HasValue)
+            {
+                throw new NotSupportedException("The target platform " + target + " is not supported by the burst compiler");
+            }
+            return platform.Value;
+        }
+
+        private static bool IsSupportedPlatform(BuildTarget target)
+        {
+            return TryGetTargetPlatform(target, out var _).HasValue;
+        }
+
+        private static TargetPlatform? TryGetTargetPlatform(BuildTarget target, out TargetCpus targetCpus)
+        {
+            var aotSettingsForTarget = BurstPlatformAotSettings.GetOrCreateSettings(target);
+
+            switch (target)
+            {
+                case BuildTarget.StandaloneWindows:
+                    targetCpus = aotSettingsForTarget.GetDesktopCpu32Bit();
+                    return TargetPlatform.Windows;
+                case BuildTarget.StandaloneWindows64:
+                    targetCpus = aotSettingsForTarget.GetDesktopCpu64Bit();
+                    return TargetPlatform.Windows;
+                case BuildTarget.StandaloneOSX:
+                    targetCpus = aotSettingsForTarget.GetDesktopCpu64Bit();
+                    return TargetPlatform.macOS;
+#if !UNITY_2019_2_OR_NEWER
+                // 32 bit linux support was deprecated
+                case BuildTarget.StandaloneLinux:
+                    targetCpus = aotSettingsForTarget.GetDesktopCpu32Bit();
+                    return TargetPlatform.Linux;
+#endif
+                case BuildTarget.StandaloneLinux64:
+                    targetCpus = aotSettingsForTarget.GetDesktopCpu64Bit();
+                    return TargetPlatform.Linux;
+                case BuildTarget.WSAPlayer:
+                    {
+                        var uwpArchitecture = GetUWPTargetArchitecture();
+                        if (string.Equals(uwpArchitecture, "x64", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetCpus = aotSettingsForTarget.GetDesktopCpu64Bit();
+                        }
+                        else if (string.Equals(uwpArchitecture, "x86", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetCpus = aotSettingsForTarget.GetDesktopCpu32Bit();
+                        }
+                        else if (string.Equals(uwpArchitecture, "ARM", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetCpus = new TargetCpus(BurstTargetCpu.THUMB2_NEON32);
+                        }
+                        else if (string.Equals(uwpArchitecture, "ARM64", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetCpus = new TargetCpus(BurstTargetCpu.ARMV8A_AARCH64);
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("Unknown UWP CPU architecture: " + uwpArchitecture);
+                        }
+
+                        return TargetPlatform.UWP;
+                    }
+                case BuildTarget.XboxOne:
+                    targetCpus = new TargetCpus(BurstTargetCpu.X64_SSE4);
+                    return TargetPlatform.XboxOne;
+#if UNITY_2019_4_OR_NEWER
+                case BuildTarget.GameCoreXboxOne:
+                    targetCpus = new TargetCpus(BurstTargetCpu.AVX);
+                    return TargetPlatform.GameCoreXboxOne;
+                case BuildTarget.GameCoreXboxSeries:
+                    targetCpus = new TargetCpus(BurstTargetCpu.AVX2);
+                    return TargetPlatform.GameCoreXboxSeries;
+#endif
+                case BuildTarget.PS4:
+                    targetCpus = new TargetCpus(BurstTargetCpu.X64_SSE4);
+                    return TargetPlatform.PS4;
+                case BuildTarget.Android:
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV7A_NEON32);
+                    return TargetPlatform.Android;
+                case BuildTarget.iOS:
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV7A_NEON32);
+                    return TargetPlatform.iOS;
+                case BuildTarget.tvOS:
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV8A_AARCH64);
+                    return TargetPlatform.tvOS;
+                case BuildTarget.Lumin:
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV8A_AARCH64);
+                    return TargetPlatform.Lumin;
+                case BuildTarget.Switch:
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV8A_AARCH64);
+                    return TargetPlatform.Switch;
+#if UNITY_2019_3_OR_NEWER
+                case BuildTarget.Stadia:
+                    targetCpus = new TargetCpus(BurstTargetCpu.AVX2);
+                    return TargetPlatform.Stadia;
+                case BuildTarget.PS5:
+                    targetCpus = new TargetCpus(BurstTargetCpu.AVX2);
+                    return TargetPlatform.PS5;
+#endif
+            }
+
+            if (/*BuildTarget.EmbeddedLinux*/ 45 == (int)target)
+            {
+                //EmbeddedLinux is supported on 2019.4 (shadow branch), 2020.3 (shadow branch) and 2021.2+ (official).
+                var embeddedLinuxArchitecture = GetEmbeddedLinuxTargetArchitecture();
+                if ("Arm64" == embeddedLinuxArchitecture)
+                {
+                    targetCpus = new TargetCpus(BurstTargetCpu.ARMV8A_AARCH64);
+                }
+                else if ("X64" == embeddedLinuxArchitecture)
+                {
+                    targetCpus = new TargetCpus(BurstTargetCpu.X64_SSE2); //lowest supported for now
+                }
+                else if (("X86" == embeddedLinuxArchitecture) || ("Arm32" == embeddedLinuxArchitecture))
+                {
+                    //32bit platforms cannot be support with the current SDK/Toolchain combination.
+                    //i686-embedded-linux-gnu/8.3.0\libgcc.a(_moddi3.o + _divdi3.o): contains a compressed section, but zlib is not available
+                    //_moddi3.o + _divdi3.o are required by LLVM for 64bit operations on 32bit platforms.
+                    throw new InvalidOperationException($"No EmbeddedLinux Burst Support on {embeddedLinuxArchitecture} architecture.");
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unknown EmbeddedLinux CPU architecture: " + embeddedLinuxArchitecture);
+                }
+                return TargetPlatform.EmbeddedLinux;
+            }
+
+            targetCpus = new TargetCpus(BurstTargetCpu.Auto);
+            return null;
+        }
+
+        /// <summary>
+        /// Not exposed by Unity Editor today.
+        /// This is a copy of the Architecture enum from `PlatformDependent\iPhonePlayer\Extensions\Common\BuildPostProcessor.cs`
+        /// </summary>
+        private enum IOSArchitecture
+        {
+            ARMv7,
+            ARM64,
+            Universal
+        }
+
+        private static string GetUWPTargetArchitecture()
+        {
+            var architecture = EditorUserBuildSettings.wsaArchitecture;
+
+            if (string.Equals(architecture, "x64", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(architecture, "x86", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(architecture, "ARM", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(architecture, "ARM64", StringComparison.OrdinalIgnoreCase))
+            {
+                return architecture;
+            }
+
+            // Default to x64 if editor user build setting is garbage
+            return "x64";
+        }
+
+        private static string GetEmbeddedLinuxTargetArchitecture()
+        {
+            var flags = System.Reflection.BindingFlags.Public |
+                        System.Reflection.BindingFlags.Static |
+                        System.Reflection.BindingFlags.FlattenHierarchy;
+            var property = typeof(EditorUserBuildSettings).GetProperty("selectedEmbeddedLinuxArchitecture", flags);
+            if (null == property)
+            {
+                return "NOT_FOUND";
+            }

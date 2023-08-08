@@ -1,0 +1,94 @@
+id ==
+{0}을(를) 찾을 수 없거나 해당 버전이 호환되지 않습니다.
+
+== TestConnectionNotAvailable ==
+테스트 연결을 사용할 수 없습니다. 서버와 클라이언트 구성 모드가 같지 않을 수 있습니다.
+
+== TreeCantAddDuplicatedName ==
+같은 이름의 항목을 추가할 수 없습니다. 중복된 자식[{0}]입니다. 부모[{1}]
+
+== TriggerInvalidPosition ==
+{0}-{1} 유형에 지정된 위치가 이미 있습니다.
+
+== TriggerNotExists ==
+지정된 트리거가 존재하지 않습니다.
+
+== TryingToLockTwice ==
+다른 경로 '{1}' 및 '{2}'에서 같은 항목({0})의 배타적 잠금을 수행할 수 없습니다.
+
+== TubeConfUnavailable ==
+Plastic Tube 구성을 사용할 수 없습니다. Plastic 서버가 PlasticTube를 사용하도록 올바르게 구성되었는지 확인하십시오. 'cm tube config' 명령을 사용해 구성할 수 있습니다.
+
+== UnexpectedError ==
+예상치 못한 오류 "{0}"이(가) 발생했습니다. 자세한 내용은 서버 로그를 확인하십시오.
+
+== UnlicensedTubeFeature ==
+Plastic SCM 서버에 Plastic Tube 라이센스가 없습니다.
+
+== UpCantAddGroupToItself ==
+그룹을 원래 그룹에 추가할 수 없습니다.
+
+== UpCantCreateNewGroupWithMembers ==
+팀원으로 새 사용자를 생성할 수 없습니다.
+
+== UpCorruptGroupInfo ==
+그룹 정보가 손상되었습니다: '{0}'.
+
+== UpCorruptUserInfo ==
+사용자 정보가 손상되었습니다: '{0}'.
+
+== UpGroupAlreadyContainsGroup ==
+'{0}' 그룹에 이미 '{1}' 그룹이 있습니다.
+
+== UpGroupAlreadyContainsUser ==
+'{0}' 그룹에 이미 사용자 '{1}' 님이 있습니다.
+
+== UpGroupAlreadyExists ==
+'{0}' 그룹이 이미 있습니다.
+
+== UpGroupDoesntContainsGroup ==
+'{0}' 그룹에 '{1}' 그룹이 없습니다.
+
+== UpGroupDoesntContainsUser ==
+'{0}' 그룹에 사용자 '{1}' 님이 없습니다.
+
+== UpGroupNotExists ==
+'{0}' 그룹이 존재하지 않습니다.
+
+== UpInvalidCredentials ==
+자격 증명, 사용자 이름이 잘못되었거나 비밀번호가 유효하지 않습니다.
+
+== UpInvalidGroupname ==
+잘못된 그룹 이름 '{0}'입니다.
+
+== UpInvalidPassword ==
+잘못된 비밀번호입니다.
+
+== UpInvalidUsername ==
+잘못된 사용자 이름 '{0}'입니다.
+
+== UpPassword ==
+비밀번호
+
+== UpUserAlreadyExists ==
+사용자 '{0}' 님이 이미 존재합니다.
+
+== UpUserNotExists ==
+'{0}' 님이 존재하지 않습니다.
+
+== UpUsername ==
+사용자 이름
+
+== UpdateGetRevinfo ==
+{0}에 대한 개정 정보를 가져올 수 없습니다. 존재하지 않는 항목/브랜치/레이블을 참조하고 있을 수 있습니다. 또는 이 요소에 선택한 레이블을 적용할 수 없거나, 사용자에게 읽기/보기 권한이 없습니다.
+
+== UpdateToLatestNotValidCurrentBranch ==
+워크스페이스가 존재하지 않는 브랜치, 변경 세트, 레이블 또는 임시 저장 세트를 로드 중입니다. 다른 사용자가 이를 삭제했을 수 있습니다. 워크스페이스를 기존 브랜치, 변경 세트, 레이블 또는 임시 저장 세트로 전환하십시오.
+
+== UpgradeMoreOneRep ==
+선택기에 두 개 이상의 리포지토리 서버가 사용되고 있습니다. 이 시나리오는 워크스페이스 업그레이드에서 지원되지 않습니다.
+
+== UpgradeRunManualUpdate ==
+워크스페이스 업데이트: 이전 데이터에서 루트 디렉터리를 찾을 수 없습니다. 워크스페이스가 비공개 항목으로 표시됩니다. 수동 업데이트를 실행하십시오.
+
+== UserAlreadyActivated =

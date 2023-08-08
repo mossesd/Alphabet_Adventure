@@ -1,0 +1,162 @@
+s executing slightly faster.
+
+   This option is enabled implicitly for SymbianOS, so there is no need
+to specify it if you are using that target.
+
+   The '--vfp11-denorm-fix' switch enables a link-time workaround for a
+bug in certain VFP11 coprocessor hardware, which sometimes allows
+instructions with denorm operands (which must be handled by support
+code) to have those operands overwritten by subsequent instructions
+before the support code can read the intended values.
+
+   The bug may be avoided in scalar mode if you allow at least one
+intervening instruction between a VFP11 instruction which uses a
+register and another instruction which writes to the same register, or
+at least two intervening instructions if vector mode is in use.  The bug
+only affects full-compliance floating-point mode: you do not need this
+workaround if you are using "runfast" mode.  Please contact ARM for
+further details.
+
+   If you know you are using buggy VFP11 hardware, you can enable this
+workaround by specifying the linker option '--vfp-denorm-fix=scalar' if
+you are using the VFP11 scalar mode only, or '--vfp-denorm-fix=vector'
+if you are using vector mode (the latter also works for scalar code).
+The default is '--vfp-denorm-fix=none'.
+
+   If the workaround is enabled, instructions are scanned for
+potentially-troublesome sequences, and a veneer is created for each such
+sequence which may trigger the erratum.  The veneer consists of the
+first instruction of the sequence and a branch back to the subsequent
+instruction.  The original instruction is then replaced with a branch to
+the veneer.  The extra cycles required to call and return from the
+veneer are sufficient to avoid the erratum in both the scalar and vector
+cases.
+
+   The '--fix-arm1176' switch enables a link-time workaround for an
+erratum in certain ARM1176 processors.  The workaround is enabled by
+default if you are targeting ARM v6 (excluding ARM v6T2) or earlier.  It
+can be disabled unconditionally by specifying '--no-fix-arm1176'.
+
+   Further information is available in the "ARM1176JZ-S and ARM1176JZF-S
+Programmer Advice Notice" available on the ARM documentation website at:
+http://infocenter.arm.com/.
+
+   The '--fix-stm32l4xx-629360' switch enables a link-time workaround
+for a bug in the bus matrix / memory controller for some of the STM32
+Cortex-M4 based products (STM32L4xx).  When accessing off-chip memory
+via the affected bus for bus reads of 9 words or more, the bus can
+generate corrupt data and/or abort.  These are only core-initiated
+accesses (not DMA), and might affect any access: integer loads such as
+LDM, POP and floating-point loads such as VLDM, VPOP. Stores are not
+affected.
+
+   The bug can be avoided by splitting memory accesses into the
+necessary chunks to keep bus reads below 8 words.
+
+   The workaround is not enabled by default, this is equivalent to use
+'--fix-stm32l4xx-629360=none'.  If you know you are using buggy
+STM32L4xx hardware, you can enable the workaround by specifying the
+linker option '--fix-stm32l4xx-629360', or the equivalent
+'--fix-stm32l4xx-629360=default'.
+
+   If the workaround is enabled, instructions are scanned for
+potentially-troublesome sequences, and a veneer is created for each such
+sequence which may trigger the erratum.  The veneer consists in a
+replacement sequence emulating the behaviour of the original one and a
+branch back to the subsequent instruction.  The original instruction is
+then replaced with a branch to the veneer.
+
+   The workaround does not always preserve the memory access order for
+the LDMDB instruction, when the instruction loads the PC.
+
+   The workaround is not able to handle problematic instructions when
+they are in the middle of an IT block, since a branch is not allowed
+there.  In that case, the linker reports a warning and no replacement
+occurs.
+
+   The workaround is not able to replace problematic instructions with a
+PC-relative branch instruction if the '.text' section is too large.  In
+that case, when the branch that replaces the original code cannot be
+encoded, the linker reports a warning and no replacement occurs.
+
+   The '--no-enum-size-warning' switch prevents the linker from warning
+when linking object files that specify incompatible EABI enumeration
+size attributes.  For example, with this switch enabled, linking of an
+object file using 32-bit enumeration values with another using
+enumeration values fitted into the smallest possible space will not be
+diagnosed.
+
+   The '--no-wchar-size-warning' switch prevents the linker from warning
+when linking object files that specify incompatible EABI 'wchar_t' size
+attributes.  For example, with this switch enabled, linking of an object
+file using 32-bit 'wchar_t' values with another using 16-bit 'wchar_t'
+values will not be diagnosed.
+
+   The '--pic-veneer' switch makes the linker use PIC sequences for
+ARM/Thumb interworking veneers, even if the rest of the binary is not
+PIC. This avoids problems on uClinux targets where '--emit-relocs' is
+used to generate relocatable binaries.
+
+   The linker will automatically generate and insert small sequences of
+code into a linked ARM ELF executable whenever an attempt is made to
+perform a function call to a symbol that is too far away.  The placement
+of these sequences of instructions - called stubs - is controlled by the
+command line option '--stub-group-size=N'.  The placement is important
+because a poor choice can create a need for duplicate stubs, increasing
+the code size.  The linker will try to group stubs together in order to
+reduce interruptions to the flow of code, but it needs guidance as to
+how big these groups should be and where they should be placed.
+
+   The value of 'N', the parameter to the '--stub-group-size=' option
+controls where the stub groups are placed.  If it is negative then all
+stubs are placed after the first branch that needs them.  If it is
+positive then the stubs can be placed either before or after the
+branches that need them.  If the value of 'N' is 1 (either +1 or -1)
+then the linker will choose exactly where to place groups of stubs,
+using its built in heuristics.  A value of 'N' greater than 1 (or
+smaller than -1) tells the linker that a single group of stubs can
+service at most 'N' bytes from the input sections.
+
+   The default, if '--stub-group-size=' is not specified, is 'N = +1'.
+
+   Farcalls stubs insertion is fully supported for the ARM-EABI target
+only, because it relies on object files properties not present
+otherwise.
+
+   The '--fix-cortex-a8' switch enables a link-time workaround for an
+erratum in certain Cortex-A8 processors.  The workaround is enabled by
+default if you are targeting the ARM v7-A architecture profile.  It can
+be enabled otherwise by specifying '--fix-cortex-a8', or disabled
+unconditionally by specifying '--no-fix-cortex-a8'.
+
+   The erratum only affects Thumb-2 code.  Please contact ARM for
+further details.
+
+   The '--fix-cortex-a53-835769' switch enables a link-time workaround
+for erratum 835769 present on certain early revisions of Cortex-A53
+processors.  The workaround is disabled by default.  It can be enabled
+by specifying '--fix-cortex-a53-835769', or disabled unconditionally by
+specifying '--no-fix-cortex-a53-835769'.
+
+   Please contact ARM for further details.
+
+   The '--no-merge-exidx-entries' switch disables the merging of
+adjacent exidx entries in debuginfo.
+
+   The '--long-plt' option enables the use of 16 byte PLT entries which
+support up to 4Gb of code.  The default is to use 12 byte PLT entries
+which only support 512Mb of code.
+
+   The '--no-apply-dynamic-relocs' option makes AArch64 linker do not
+apply link-time values for dynamic relocations.
+
+
+File: ld.info,  Node: HPPA ELF32,  Next: M68K,  Prev: ARM,  Up: Machine Dependent
+
+4.5 'ld' and HPPA 32-bit ELF Support
+====================================
+
+When generating a shared library, 'ld' will by default generate import
+stubs suitable for use with a single sub-space application.  The
+'--multi-subspace' switch causes 'ld' to generate export stubs, and
+different (l

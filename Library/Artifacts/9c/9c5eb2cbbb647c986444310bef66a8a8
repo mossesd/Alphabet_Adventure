@@ -1,0 +1,222 @@
+ch ==
+Renaming branch {0}...
+
+== RenamingLabel ==
+Renaming label {0}...
+
+== EditingAttribute ==
+Editing attribute '{0}'...
+
+== ChangingRevisionType ==
+Changing the revision type...
+
+== DeleteWorkspaceSingular ==
+Deleting 1 workspace. Are you sure?
+
+== DeleteWorkspacesPlural ==
+Deleting {0} workspaces. Are you sure?
+
+== DeleteDynamicWorkspaceSingular ==
+Workspace{0} is dynamic. You will LOSE all of the private items in the workspace if you delete it. Are you sure?
+
+== DeleteDynamicWorkspacesPlural ==
+The following workspaces are dynamic:{0}. You will LOSE all of the private items in those workspaces if you delete them. Are you sure?
+
+== DeletingWorkspacesSingular ==
+Deleting workspace{0}...
+
+== DeletingWorkspacesPlural ==
+Deleting workspaces{0}...
+
+== DeletingRepositoriesSingular ==
+Deleting repository{0}...
+
+== DeletingRepositoriesPlural ==
+Deleting repositories{0}...
+
+== UndeletingRepositoriesSingular ==
+Undeleting repository{0}...
+
+== UndeletingRepositoriesPlural ==
+Undeleting repositories{0}...
+
+== DeletingBranchesSingular ==
+Deleting branch{0}...
+
+== DeletingBranchesPlural ==
+Deleting branches{0}...
+
+== DeletingLabelsSingular ==
+Deleting label{0}...
+
+== DeletingLabelsPlural ==
+Deleting labels{0}...
+
+== DeletingShelvesSingular ==
+Deleting shelve...
+
+== DeletingShelvesPlural ==
+Deleting shelves...
+
+== DeletingAttributesSingular ==
+Deleting attribute {0}...
+
+== DeletingAttributesPlural ==
+Deleting attributes {0}...
+
+== DeletingChangeset ==
+Deleting changeset...
+
+== MovingChangeset ==
+Moving changeset...
+
+== PreviousLabel ==
+Previous result
+
+== NextLabel ==
+Next result
+
+== BrexSearchFieldLabel ==
+Branch Explorer search
+
+== BrexDisplayOptions ==
+Display options
+
+== DateFilterTitle ==
+Date filter:
+
+== InitialDateLabel ==
+From:
+
+== EndDateLabel ==
+To:
+
+== SinceDateLabel ==
+Since:
+
+== InitialDateMessageError ==
+The initial date {0} of the date filter is invalid
+
+== EndDateMessageError ==
+The end date {0} of the date filter is invalid
+
+== ResetDateFilterButton ==
+Reset to defaults
+
+== ApplyDateFilterButton ==
+Apply filter
+
+== Done ==
+Done.
+
+== SelectAll ==
+Select all
+
+== MergeSelectedFiles ==
+Merge selected files
+
+== MergeKeepingSourceChanges ==
+Merge keeping source changes (theirs)
+
+== MergeKeepingWorkspaceChanges ==
+Merge keeping workspace changes (yours/destination)
+
+== DiffDestinationWithSource ==
+Diff source with destination contributor
+
+== DiffDestinationWithAncestor ==
+Diff ancestor with destination contributor
+
+== DiffSourceWithAncestor ==
+Diff ancestor with source contributor
+
+== DiffSourceWithDestination ==
+Diff source with destination
+
+== DiffSourceWithDestinationEvilTwin ==
+Diff item added in source with item added in destination
+
+== DiffSourceWithDestinationAddMove ==
+Diff item added in source with item moved in destination
+
+== DiffSourceWithDestinationCycleMove ==
+Diff item moved in source with item moved in destination
+
+== DiffSourceWithDestinationDeleteMove ==
+Diff item deleted in source with item moved in destination
+
+== DiffSourceWithDestinationMoveAdd ==
+Diff item moved in source with item added in destination
+
+== DiffSourceWithDestinationMoveDelete ==
+Diff item moved in source with item deleted in destination
+
+== DiffSourceWithDestinationMoveEvilTwin ==
+Diff item moved in source with item moved in destination
+
+== RetryUpdate ==
+Retry update
+
+== UpdateForced ==
+Update forced
+
+== LoadingWorkspaces ==
+Loading workspaces...
+
+== WaitingForDynamicWorkspaces ==
+Mounting dynamic workspaces ...
+
+== LoadingHistory ==
+Loading history...
+
+== LoadingAnnotations ==
+Loading annotations...
+
+== LoadingBrowseRepository ==
+Loading changeset tree...
+
+== ProcessingMerge ==
+Processing merge...
+
+== CalculatingMerge ==
+Calculating merges...
+
+== CalculatingIncomingChanges ==
+Calculating incoming changes...
+
+== LoadingFindMerge ==
+Finding elements to merge...
+
+== LoadingPendingChanges ==
+Finding changes in the workspace...
+
+== LabellingWorkspace ==
+Applying the label {0} to the workspace...
+
+== LabellingChangeset ==
+Applying the label {0} to the changeset {1}...
+
+== ApplyingLocalChanges ==
+Applying local changes...
+
+== ApplyingConflicts ==
+Applying conflicts...
+
+== LoadingRepositories ==
+Loading repositories...
+
+== PendingChangesOptionsExplanation ==
+Select the type of items to display.
+These following options let you choose how the items are shown in the 'Pending changes' view:
+
+== NewRepositoryExplanation ==
+Type a name for the new repo and ensure you will create it on the correct server.
+
+== NewWorkspaceExplanation ==
+The workspace is the local copy to work on files and make changes. A workspace handles a single branch at a time. The workspace can be switched to a different branch even in a different repository.
+
+== RenameWorkspaceExplanation ==
+Renaming the workspace won’t modify its path.
+
+== RenameRepositoryExplanation ==
+Enter a new name for th

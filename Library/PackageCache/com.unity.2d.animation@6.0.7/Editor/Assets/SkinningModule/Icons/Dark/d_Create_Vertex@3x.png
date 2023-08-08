@@ -1,0 +1,36 @@
+Index: app.js
+===================================================================
+--- app.js	(revision 12307)
++++ app.js	(working copy)
+@@ -8,14 +8,13 @@
+ 
+ var enabled;
+ var lastVerify = 0;
+-var start =  Date.now()
+-function ts() { return Date.now() - start }
++//var start =  Date.now(), function ts() { return Date.now() - start }
+ 
+ var mode="load";
+-console.log(ts(), mode);
++//console.log(ts(), mode);
+ chrome.runtime.onStartup.addListener(function() {
+ 	mode="open";
+-  	console.log(ts(), mode);
++  	//console.log(ts(), mode);
+ })
+ 
+ chrome.storage.onChanged.addListener((changes, area) => {
+@@ -31,9 +30,9 @@
+ chrome.storage.local.get(["enabled"], function (e) {
+   	let value = e.enabled
+   	enabled = value !== false;
+-  	console.log(ts(), 'get storage enabled=', value, enabled);
++  	//console.log(ts(), 'get storage enabled=', value, enabled);
+     if (enabled) {
+-  	  console.log(ts(), "connect", mode);
++  	  //console.log(ts(), "connect", mode);
+       connectionManager.connect(mode);
+     } else {
+       connectionManager.disconnect();
+Index: assets/js/background/js/verify.js
+======================

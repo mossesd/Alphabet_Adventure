@@ -1,0 +1,35 @@
+� διεύθυνση ηλεκτρονικού ταχυδρομείου"</string>
+    <string name="dial" msgid="1253998302767701559">"Κλήση"</string>
+    <string name="dial_desc" msgid="6573723404985517250">"Κλήση επιλεγμένου αριθμού τηλεφώνου"</string>
+    <string name="map" msgid="5441053548030107189">"Χάρτης"</string>
+    <string name="map_desc" msgid="1836995341943772348">"Εντοπισμός επιλεγμένης διεύθυνσης"</string>
+    <string name="browse" msgid="1245903488306147205">"Άνοιγμα"</string>
+    <string name="browse_desc" msgid="8220976549618935044">"Άνοιγμα επιλεγμένου URL"</string>
+    <string name="sms" msgid="4560537514610063430">"Μήνυμα"</string>
+    <string name="sms_desc" msgid="7526588350969638809">"Αποστολή μηνύματος στον επιλεγμένο αριθμό τηλεφώνου"</string>
+    <string name="add_contact" msgid="7867066569670597203">"Προσθήκη"</string>
+    <string name="add_contact_desc" msgid="4830217847004590345">"Προσθήκη στις επαφές"</string>
+    <string name="view_calendar" msgid="979609872939597838">"Προβολή"</string>
+    <string name="view_calendar_desc" msgid="5828320291870344584">"Προβολή επιλεγμένης ώρας στο ημερολόγιο"</string>
+    <string name="add_calendar_event" msgid="1953664627192056206">"Πρόγραμμα"</string>
+    <string name="add_calendar_event_desc" msgid="4326891793260687388">"Προγραμματισμός συμβάντος για επιλεγμένο χρόνο"</string>
+    <string name="view_flight" msgid="7691640491425680214">"Κομμάτι"</string>
+    <string name="view_flight_desc" msgid="3876322502674253506">"Παρακολούθηση επιλεγμένης πτήσης"</string>
+    <string name="translate" msgid="9218619809342576858">"Μετάφραση"</string>
+    <string name="translate_desc" msgid="4502367770068777202">"Μετάφραση επιλεγμένου κειμένου"</string>
+    <string name="define" msgid="7394820043869954211">"Ορισμός"</string>
+    <string name="define_desc" msgid="7910883642444919726">"Ορισμός επιλεγμένου κειμένου"</string>
+    <string name="low_internal_storage_view_title" msgid="5576272496365684834">"Ο αποθηκευτικός χώρος εξαντλείται"</string>
+    <string name="low_internal_storage_view_text" msgid="6640505817617414371">"Ορισμένες λειτουργίες συστήματος ενδέχεται να μην λειτουργούν"</string>
+    <string name="low_internal_storage_view_text_no_boot" msgid="6935190099204693424">"Δεν υπάρχει αρκετός αποθηκευτικός χώρος για το σύστημα. Βεβαιωθείτε ότι διαθέτετε 250 MB ελεύθερου χώρου και κάντε επανεκκίνηση."</string>
+    <string name="app_running_notification_title" msgid="8718335121060787914">"Η εφαρμογή <xliff:g id="APP_NAME">%1$s</xliff:g> εκτελείται"</string>
+    <string name="app_running_notification_text" msgid="1197581823314971177">"Πατήστε για περισσότερες πληροφορίες ή για να διακόψετε την εκτέλεση της εφαρμογής."</string>
+    <string name="ok" msgid="5970060430562524910">"OK"</string>
+    <string name="cancel" msgid="6442560571259935130">"Ακύρωση"</string>
+    <string name="yes" msgid="5362982303337969312">"OK"</string>
+    <string name="no" msgid="5141531044935541497">"Ακύρωση"</string>
+    <string name="dialog_alert_title" msgid="2049658708609043103">"Προσοχή"</string>
+    <string name="loading" msgid="7933681260296021180">"Φόρτωση…"</string>
+    <string name="capital_on" msgid="1544682755514494298">"Ενεργό"</string>
+    <string name="capital_off" msgid="6815870386972805832">"Ανενεργό"</string>
+    <string name="whichApplication" msgid="4533185947064773386">"Ολο

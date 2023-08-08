@@ -1,0 +1,574 @@
+oTransforms == null)
+                {
+                    s_AutoTransforms = new Texture2D[5];
+                    s_AutoTransforms[0] = Base64ToTexture(s_Rotated);
+                    s_AutoTransforms[1] = Base64ToTexture(s_MirrorX);
+                    s_AutoTransforms[2] = Base64ToTexture(s_MirrorY);
+                    s_AutoTransforms[3] = Base64ToTexture(s_Fixed);
+                    s_AutoTransforms[4] = Base64ToTexture(s_MirrorXY);
+                }
+                return s_AutoTransforms;
+            }
+        }
+
+        private static class Styles
+        {
+            public static readonly GUIContent defaultSprite = EditorGUIUtility.TrTextContent("Default Sprite"
+                , "The default Sprite set when creating a new Rule.");
+            public static readonly GUIContent defaultGameObject = EditorGUIUtility.TrTextContent("Default GameObject"
+                , "The default GameObject set when creating a new Rule.");
+            public static readonly GUIContent defaultCollider = EditorGUIUtility.TrTextContent("Default Collider"
+                , "The default Collider Type set when creating a new Rule.");
+
+            public static readonly GUIContent emptyRuleTileInfo =
+                EditorGUIUtility.TrTextContent(
+                    "Drag Sprite or Sprite Texture assets \n" +
+                    " to start creating a Rule Tile.");
+            
+            public static readonly GUIContent extendNeighbor = EditorGUIUtility.TrTextContent("Extend Neighbor"
+                , "Enabling this allows you to increase the range of neighbors beyond the 3x3 box.");
+
+            public static readonly GUIContent numberOfTilingRules = EditorGUIUtility.TrTextContent(
+                "Number of Tiling Rules"
+                , "Change this to adjust of the number of tiling rules.");
+            
+            public static readonly GUIContent tilingRules = EditorGUIUtility.TrTextContent("Tiling Rules");
+            public static readonly GUIContent tilingRulesGameObject = EditorGUIUtility.TrTextContent("GameObject"
+                , "The GameObject for the Tile which fits this Rule.");
+            public static readonly GUIContent tilingRulesCollider = EditorGUIUtility.TrTextContent("Collider"
+                , "The Collider Type for the Tile which fits this Rule");
+            public static readonly GUIContent tilingRulesOutput = EditorGUIUtility.TrTextContent("Output"
+                , "The Output for the Tile which fits this Rule. Each Output type has its own properties.");
+
+            public static readonly GUIContent tilingRulesNoise = EditorGUIUtility.TrTextContent("Noise"
+                , "The Perlin noise factor when placing the Tile.");
+            public static readonly GUIContent tilingRulesShuffle = EditorGUIUtility.TrTextContent("Shuffle"
+                , "The randomized transform given to the Tile when placing it.");
+            public static readonly GUIContent tilingRulesRandomSize = EditorGUIUtility.TrTextContent("Size"
+                , "The number of Sprites to randomize from.");
+
+            public static readonly GUIContent tilingRulesMinSpeed = EditorGUIUtility.TrTextContent("Min Speed"
+                , "The minimum speed at which the animation is played.");
+            public static readonly GUIContent tilingRulesMaxSpeed = EditorGUIUtility.TrTextContent("Max Speed"
+                , "The maximum speed at which the animation is played.");
+            public static readonly GUIContent tilingRulesAnimationSize = EditorGUIUtility.TrTextContent("Size"
+                , "The number of Sprites in the animation.");
+
+            public static readonly GUIStyle extendNeighborsLightStyle = new GUIStyle()
+            {
+                alignment = TextAnchor.MiddleLeft,
+                fontStyle = FontStyle.Bold,
+                fontSize = 10,
+                normal = new GUIStyleState()
+                {
+                    textColor = Color.black
+                }
+            };
+            
+            public static readonly GUIStyle extendNeighborsDarkStyle = new GUIStyle()
+            {
+                alignment = TextAnchor.MiddleLeft,
+                fontStyle = FontStyle.Bold,
+                fontSize = 10,
+                normal = new GUIStyleState()
+                {
+                    textColor = Color.white
+                }
+            };
+        }
+        
+        /// <summary>
+        /// The RuleTile being edited
+        /// </summary>
+        public RuleTile tile => target as RuleTile;
+        
+        /// <summary>
+        /// List of Sprites for Drag and Drop
+        /// </summary>
+        private List<Sprite> dragAndDropSprites;
+        
+        /// <summary>
+        /// Reorderable list for Rules
+        /// </summary>
+        private ReorderableList m_ReorderableList;
+        /// <summary>
+        /// Whether the RuleTile can extend its neighbors beyond directly adjacent ones
+        /// </summary>
+        public bool extendNeighbor;
+
+        /// <summary>
+        /// Preview Utility for rendering previews
+        /// </summary>
+        public PreviewRenderUtility m_PreviewUtility;
+        /// <summary>
+        /// Grid for rendering previews
+        /// </summary>
+        public Grid m_PreviewGrid;
+        /// <summary>
+        /// List of Tilemaps for rendering previews
+        /// </summary>
+        public List<Tilemap> m_PreviewTilemaps;
+        /// <summary>
+        /// List of TilemapRenderers for rendering previews
+        /// </summary>
+        public List<TilemapRenderer> m_PreviewTilemapRenderers;
+
+        /// <summary>
+        /// Default height for a Rule Element
+        /// </summary>
+        public const float k_DefaultElementHeight = 48f;
+        /// <summary>
+        /// Padding between Rule Elements
+        /// </summary>
+        public const float k_PaddingBetweenRules = 8f;
+        /// <summary>
+        /// Single line height
+        /// </summary>
+        public const float k_SingleLineHeight = 18f;
+        /// <summary>
+        /// Width for labels
+        /// </summary>
+        public const float k_LabelWidth = 80f;
+
+        private SerializedProperty m_TilingRules;
+
+        private MethodInfo m_ClearCacheMethod;
+        
+        /// <summary>
+        /// OnEnable for the RuleTileEditor
+        /// </summary>
+        public virtual void OnEnable()
+        {
+            m_ReorderableList = new ReorderableList(tile != null ? tile.m_TilingRules : null, typeof(RuleTile.TilingRule), true, true, true, true);
+            m_ReorderableList.drawHeaderCallback = OnDrawHeader;
+            m_ReorderableList.drawElementCallback = OnDrawElement;
+            m_ReorderableList.elementHeightCallback = GetElementHeight;
+            m_ReorderableList.onChangedCallback = ListUpdated;
+            m_ReorderableList.onAddDropdownCallback = OnAddDropdownElement;
+
+            // Required to adjust element height changes
+            var rolType = GetType("UnityEditorInternal.ReorderableList");
+            if (rolType != null)
+            {
+                // ClearCache was changed to InvalidateCache in newer versions of Unity.
+                // To maintain backwards compatibility, we will attempt to retrieve each method in order
+                m_ClearCacheMethod = rolType.GetMethod("InvalidateCache", BindingFlags.Instance | BindingFlags.NonPublic);
+                if (m_ClearCacheMethod == null)
+                    m_ClearCacheMethod = rolType.GetMethod("ClearCache", BindingFlags.Instance | BindingFlags.NonPublic);
+            }
+            
+            m_TilingRules = serializedObject.FindProperty("m_TilingRules");
+        }
+
+        /// <summary>
+        /// OnDisable for the RuleTileEditor
+        /// </summary>
+        public virtual void OnDisable()
+        {
+            DestroyPreview();
+        }
+
+        private void UpdateTilingRuleIds()
+        {
+            var existingIdSet = new HashSet<int>();
+            var usedIdSet = new HashSet<int>();
+            foreach (var rule in tile.m_TilingRules)
+            {
+                existingIdSet.Add(rule.m_Id);
+            }
+            foreach (var rule in tile.m_TilingRules)
+            {
+                if (usedIdSet.Contains(rule.m_Id))
+                {
+                    while (existingIdSet.Contains(rule.m_Id))
+                        rule.m_Id++;
+                    existingIdSet.Add(rule.m_Id);
+                }
+                usedIdSet.Add(rule.m_Id);
+            }
+        }
+
+        /// <summary>
+        /// Get the GUI bounds for a Rule.
+        /// </summary>
+        /// <param name="bounds">Cell bounds of the Rule.</param>
+        /// <param name="rule">Rule to get GUI bounds for.</param>
+        /// <returns>The GUI bounds for a rule.</returns>
+        public virtual BoundsInt GetRuleGUIBounds(BoundsInt bounds, RuleTile.TilingRule rule)
+        {
+            if (extendNeighbor)
+            {
+                bounds.xMin--;
+                bounds.yMin--;
+                bounds.xMax++;
+                bounds.yMax++;
+            }
+            bounds.xMin = Mathf.Min(bounds.xMin, -1);
+            bounds.yMin = Mathf.Min(bounds.yMin, -1);
+            bounds.xMax = Mathf.Max(bounds.xMax, 2);
+            bounds.yMax = Mathf.Max(bounds.yMax, 2);
+            return bounds;
+        }
+
+        /// <summary>
+        /// Callback when the Rule list is updated
+        /// </summary>
+        /// <param name="list">Reorderable list for Rules</param>
+        public void ListUpdated(ReorderableList list)
+        {
+            UpdateTilingRuleIds();
+        }
+
+        private float GetElementHeight(int index)
+        {
+            RuleTile.TilingRule rule = tile.m_TilingRules[index];
+            return GetElementHeight(rule);
+        }
+
+        /// <summary>
+        /// Gets the GUI element height for a TilingRule 
+        /// </summary>
+        /// <param name="rule">Rule to get height for</param>
+        /// <returns>GUI element height for a TilingRule</returns>
+        public float GetElementHeight(RuleTile.TilingRule rule)
+        {
+            BoundsInt bounds = GetRuleGUIBounds(rule.GetBounds(), rule);
+
+            float inspectorHeight = GetElementHeight(rule as RuleTile.TilingRuleOutput);
+            float matrixHeight = GetMatrixSize(bounds).y + 10f;
+
+            return Mathf.Max(inspectorHeight, matrixHeight);
+        }
+
+        /// <summary>
+        /// Gets the GUI element height for a TilingRuleOutput 
+        /// </summary>
+        /// <param name="rule">Rule to get height for</param>
+        /// <returns>GUI element height for a TilingRuleOutput </returns>
+        public float GetElementHeight(RuleTile.TilingRuleOutput rule)
+        {
+            float inspectorHeight = k_DefaultElementHeight + k_PaddingBetweenRules;
+
+            switch (rule.m_Output)
+            {
+                case RuleTile.TilingRuleOutput.OutputSprite.Random:
+                case RuleTile.TilingRuleOutput.OutputSprite.Animation:
+                    inspectorHeight = k_DefaultElementHeight + k_SingleLineHeight * (rule.m_Sprites.Length + 3) + k_PaddingBetweenRules;
+                    break;
+            }
+
+            return inspectorHeight;
+        }
+
+        /// <summary>
+        /// Gets the GUI matrix size for a Rule of a RuleTile
+        /// </summary>
+        /// <param name="bounds">Cell bounds of the Rule.</param>
+        /// <returns>Returns the GUI matrix size for a Rule of a RuleTile.</returns>
+        public virtual Vector2 GetMatrixSize(BoundsInt bounds)
+        {
+            return new Vector2(bounds.size.x * k_SingleLineHeight, bounds.size.y * k_SingleLineHeight);
+        }
+
+        /// <summary>
+        /// Draws the Rule element for the Rule list
+        /// </summary>
+        /// <param name="rect">Rect to draw the Rule Element in</param>
+        /// <param name="index">Index of the Rule Element to draw</param>
+        /// <param name="isactive">Whether the Rule Element is active</param>
+        /// <param name="isfocused">Whether the Rule Element is focused</param>
+        protected virtual void OnDrawElement(Rect rect, int index, bool isactive, bool isfocused)
+        {
+            RuleTile.TilingRule rule = tile.m_TilingRules[index];
+            BoundsInt bounds = GetRuleGUIBounds(rule.GetBounds(), rule);
+
+            float yPos = rect.yMin + 2f;
+            float height = rect.height - k_PaddingBetweenRules;
+            Vector2 matrixSize = GetMatrixSize(bounds);
+
+            Rect spriteRect = new Rect(rect.xMax - k_DefaultElementHeight - 5f, yPos, k_DefaultElementHeight, k_DefaultElementHeight);
+            Rect matrixRect = new Rect(rect.xMax - matrixSize.x - spriteRect.width - 10f, yPos, matrixSize.x, matrixSize.y);
+            Rect inspectorRect = new Rect(rect.xMin, yPos, rect.width - matrixSize.x - spriteRect.width - 20f, height);
+
+            RuleInspectorOnGUI(inspectorRect, rule);
+            RuleMatrixOnGUI(tile, matrixRect, bounds, rule);
+            SpriteOnGUI(spriteRect, rule);
+        }
+
+        private void OnAddElement(object obj)
+        {
+            var list = obj as ReorderableList;
+            RuleTile.TilingRule rule = new RuleTile.TilingRule();
+            rule.m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single;
+            rule.m_Sprites[0] = tile.m_DefaultSprite;
+            rule.m_GameObject = tile.m_DefaultGameObject;
+            rule.m_ColliderType = tile.m_DefaultColliderType;
+
+            var count = m_TilingRules.arraySize;
+            ResizeRuleTileList(count + 1);
+            
+            if (list.index == -1  || list.index >= list.count)
+                tile.m_TilingRules[count] = rule;
+            else
+            {
+                tile.m_TilingRules.Insert(list.index + 1, rule);
+                tile.m_TilingRules.RemoveAt(count + 1);
+                if (list.IsSelected(list.index))
+                    list.index += 1;
+            }
+            UpdateTilingRuleIds();
+        }
+
+        private void OnDuplicateElement(object obj)
+        {
+            var list = obj as ReorderableList;
+            if (list.index < 0 || list.index >= tile.m_TilingRules.Count)
+                return;
+
+            var copyRule = tile.m_TilingRules[list.index];
+            var rule = copyRule.Clone();
+            
+            var count = m_TilingRules.arraySize;
+            ResizeRuleTileList(count + 1);
+            
+            tile.m_TilingRules.Insert(list.index + 1, rule);
+            tile.m_TilingRules.RemoveAt(count + 1);
+            if (list.IsSelected(list.index))
+                list.index += 1;
+            UpdateTilingRuleIds();
+        }
+
+        private void OnAddDropdownElement(Rect rect, ReorderableList list)
+        {
+            if (0 <= list.index && list.index < tile.m_TilingRules.Count && list.IsSelected(list.index))
+            {
+                GenericMenu menu = new GenericMenu();
+                menu.AddItem(EditorGUIUtility.TrTextContent("Add"), false, OnAddElement, list);
+                menu.AddItem(EditorGUIUtility.TrTextContent("Duplicate"), false, OnDuplicateElement, list);
+                menu.DropDown(rect);
+            }
+            else
+            {
+                OnAddElement(list);
+            }
+        }
+        
+        /// <summary>
+        /// Saves any changes to the RuleTile
+        /// </summary>
+        public void SaveTile()
+        {
+            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(target);
+            SceneView.RepaintAll();
+
+            UpdateAffectedOverrideTiles(tile);
+        }
+
+        /// <summary>
+        /// Updates all RuleOverrideTiles which override the given RUleTile
+        /// </summary>
+        /// <param name="target">RuleTile which has been updated</param>
+        public static void UpdateAffectedOverrideTiles(RuleTile target)
+        {
+            List<RuleOverrideTile> overrideTiles = FindAffectedOverrideTiles(target);
+            if (overrideTiles != null)
+            {
+                foreach (var overrideTile in overrideTiles)
+                {
+                    Undo.RegisterCompleteObjectUndo(overrideTile, k_UndoName);
+                    Undo.RecordObject(overrideTile.m_InstanceTile, k_UndoName);
+                    overrideTile.Override();
+                    UpdateAffectedOverrideTiles(overrideTile.m_InstanceTile);
+                    EditorUtility.SetDirty(overrideTile);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all RuleOverrideTiles which override the given RuleTile
+        /// </summary>
+        /// <param name="target">RuleTile which has been updated</param>
+        /// <returns>A list of RuleOverrideTiles which override the given RuleTile</returns>
+        public static List<RuleOverrideTile> FindAffectedOverrideTiles(RuleTile target)
+        {
+            List<RuleOverrideTile> overrideTiles = new List<RuleOverrideTile>();
+
+            string[] overrideTileGuids = AssetDatabase.FindAssets("t:" + typeof(RuleOverrideTile).Name);
+            foreach (string overrideTileGuid in overrideTileGuids)
+            {
+                string overrideTilePath = AssetDatabase.GUIDToAssetPath(overrideTileGuid);
+                RuleOverrideTile overrideTile = AssetDatabase.LoadAssetAtPath<RuleOverrideTile>(overrideTilePath);
+                if (overrideTile.m_Tile == target)
+                {
+                    overrideTiles.Add(overrideTile);
+                }
+            }
+
+            return overrideTiles;
+        }
+
+        /// <summary>
+        /// Draws the header for the Rule list
+        /// </summary>
+        /// <param name="rect">GUI Rect to draw the header at</param>
+        public void OnDrawHeader(Rect rect)
+        {
+            GUI.Label(rect, Styles.tilingRules);
+
+            var toggleRect = new Rect(rect.xMax - rect.height, rect.y, rect.height, rect.height);
+
+            var style = EditorGUIUtility.isProSkin ? Styles.extendNeighborsDarkStyle : Styles.extendNeighborsLightStyle;
+            var extendSize = style.CalcSize(Styles.extendNeighbor);
+            var toggleWidth = toggleRect.width + extendSize.x + 5f;
+            var toggleLabelRect = new Rect(rect.x + rect.width - toggleWidth, rect.y, toggleWidth, rect.height);
+
+            EditorGUI.BeginChangeCheck();
+            extendNeighbor = EditorGUI.Toggle(toggleRect, extendNeighbor);
+            EditorGUI.LabelField(toggleLabelRect, Styles.extendNeighbor, style);
+            if (EditorGUI.EndChangeCheck())
+            {
+                if (m_ClearCacheMethod != null)
+                    m_ClearCacheMethod.Invoke(m_ReorderableList, null);  
+            }
+        }
+
+        /// <summary>
+        /// Draws the Inspector GUI for the RuleTileEditor
+        /// </summary>
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            Undo.RecordObject(target, k_UndoName);
+
+            EditorGUI.BeginChangeCheck();
+
+            tile.m_DefaultSprite = EditorGUILayout.ObjectField(Styles.defaultSprite, tile.m_DefaultSprite, typeof(Sprite), false) as Sprite;
+            tile.m_DefaultGameObject = EditorGUILayout.ObjectField(Styles.defaultGameObject, tile.m_DefaultGameObject, typeof(GameObject), false) as GameObject;
+            tile.m_DefaultColliderType = (Tile.ColliderType)EditorGUILayout.EnumPopup(Styles.defaultCollider, tile.m_DefaultColliderType);
+
+            DrawCustomFields(false);
+
+            EditorGUILayout.Space();
+            
+            EditorGUI.BeginChangeCheck();
+            int count = EditorGUILayout.DelayedIntField(Styles.numberOfTilingRules, tile.m_TilingRules?.Count ?? 0);
+            if (count < 0)
+                count = 0;
+            if (EditorGUI.EndChangeCheck())
+                ResizeRuleTileList(count);
+
+            if (count == 0)
+            {
+                Rect rect = EditorGUILayout.GetControlRect(false, EditorGUIUtility.singleLineHeight * 5);
+                HandleDragAndDrop(rect);
+                EditorGUI.DrawRect(rect, dragAndDropActive && rect.Contains(Event.current.mousePosition) ? Color.white : Color.black);
+                var innerRect = new Rect(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2);
+                EditorGUI.DrawRect(innerRect, EditorGUIUtility.isProSkin
+                    ? (Color) new Color32 (56, 56, 56, 255)
+                    : (Color) new Color32 (194, 194, 194, 255));
+                DisplayClipboardText(Styles.emptyRuleTileInfo, rect);
+                GUILayout.Space(rect.height);
+                EditorGUILayout.Space();
+            }
+
+            if (m_ReorderableList != null)
+                m_ReorderableList.DoLayoutList();
+
+            if (EditorGUI.EndChangeCheck())
+                SaveTile();
+
+            GUILayout.Space(k_DefaultElementHeight);
+        }
+
+        private void ResizeRuleTileList(int count)
+        {
+            if (m_TilingRules.arraySize == count)
+                return;
+
+            var isEmpty = m_TilingRules.arraySize == 0;
+            m_TilingRules.arraySize = count;
+            serializedObject.ApplyModifiedProperties();
+            if (isEmpty)
+            {
+                for (int i = 0; i < count; ++i)
+                    tile.m_TilingRules[i] = new RuleTile.TilingRule();
+            }
+            UpdateTilingRuleIds();
+        }
+
+        /// <summary>
+        /// Draw editor fields for custom properties for the RuleTile
+        /// </summary>
+        /// <param name="isOverrideInstance">Whether override fields are drawn</param>
+        public void DrawCustomFields(bool isOverrideInstance)
+        {
+            var customFields = tile.GetCustomFields(isOverrideInstance);
+
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            foreach (var field in customFields)
+            {
+                var property = serializedObject.FindProperty(field.Name);
+                if (property != null)
+                    EditorGUILayout.PropertyField(property, true);
+            }
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+                DestroyPreview();
+                CreatePreview();
+            }
+
+        }
+
+        /// <summary>
+        /// Gets the index for a Rule with the RuleTile to display an arrow.
+        /// </summary>
+        /// <param name="position">The relative position of the arrow from the center.</param>
+        /// <returns>Returns the index for a Rule with the RuleTile to display an arrow.</returns>
+        public virtual int GetArrowIndex(Vector3Int position)
+        {
+            if (Mathf.Abs(position.x) == Mathf.Abs(position.y))
+            {
+                if (position.x < 0 && position.y > 0)
+                    return 0;
+                else if (position.x > 0 && position.y > 0)
+                    return 2;
+                else if (position.x < 0 && position.y < 0)
+                    return 6;
+                else if (position.x > 0 && position.y < 0)
+                    return 8;
+            }
+            else if (Mathf.Abs(position.x) > Mathf.Abs(position.y))
+            {
+                if (position.x > 0)
+                    return 5;
+                else
+                    return 3;
+            }
+            else
+            {
+                if (position.y > 0)
+                    return 1;
+                else
+                    return 7;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Draws a neighbor matching rule
+        /// </summary>
+        /// <param name="rect">Rect to draw on</param>
+        /// <param name="position">The relative position of the arrow from the center</param>
+        /// <param name="neighbor">The index to the neighbor matching criteria</param>
+        public virtual void RuleOnGUI(Rect rect, Vector3Int position, int neighbor)
+        {
+            switch (neighbor)
+            {
+                case RuleTile.TilingRuleOutput.Neighbor.This:
+                    GUI.DrawTexture(rect, arrows[GetArrowIndex(position)]);
+                    break;
+                case RuleT

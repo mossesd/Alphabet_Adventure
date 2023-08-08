@@ -1,0 +1,88 @@
+using UnityEditor;
+using UnityEngine.Experimental.Rendering;
+
+namespace UnityEngine.Rendering.HighDefinition
+{
+    internal class SolidAngleKernelGenerator : MonoBehaviour
+    {
+        // Start is called before the first frame update
+        void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        public class CameraParameters
+        {
+            public int width;
+            public int height;
+            public float fov;
+            public float aspect;
+            public float nearPlane;
+            public float farPlane;
+            public float maxCameraDistance;
+            public float maxVirtualPlaneDistance;
+            public float planeAngle;
+        }
+
+        float SafeDiv(float numer, float denom)
+        {
+            return (numer != denom) ? numer / denom : 1;
+        }
+
+        float D_GGXNoPI(float NdotH, float roughness)
+        {
+            float a2 = roughness * roughness;
+            float s = (NdotH * a2 - NdotH) * NdotH + 1.0f;
+            // If roughness is 0, returns (NdotH == 1 ? 1 : 0).
+            // That is, it returns 1 for perfect mirror reflection, and 0 otherwise.
+            return SafeDiv(a2, s * s);
+        }
+
+        public void GenerateTableExample()
+        {
+            CameraParameters cameraParameters = new CameraParameters();
+            cameraParameters.width = 1980;
+            cameraParameters.height = 1080;
+            cameraParameters.fov = 70.0f;
+            cameraParameters.aspect = 1980.0f / 1080.0f;
+            cameraParameters.nearPlane = 0.01f;
+            cameraParameters.farPlane = 100.0f;
+            cameraParameters.maxVirtualPlaneDistance = 10.0f;
+            cameraParameters.maxCameraDistance = 50.0f;
+            cameraParameters.planeAngle = 45.0f;
+            int angleSubdivision = 16;
+            float brdfPercentage = 0.7f;
+            int outputWidth = 32;
+            int outputHeight = 32;
+            int outputDepth = 64;
+            GenerateTable(cameraParameters, angleSubdivision, brdfPercentage, outputWidth, outputHeight, outputDepth);
+        }
+
+        void GetLocalFrame(Vector3 localZ, Vector3 localX, out Vector3 localY)
+        {
+            localY = Vector3.Cross(localZ, localX);
+        }
+
+        bool intersectPlane(Vector3 n, Vector3 p0, Vector3 l0, Vector3 l, ref float t)
+        {
+            float denom = Vector3.Dot(n, l);
+            if (Mathf.Abs(denom) > 1e-6)
+            {
+                Vector3 p0l0 = p0 - l0;
+                t = Vector3.Dot(p0l0, n) / denom;
+                return (t >= 0);
+            }
+            return false;
+        }
+
+        public void GenerateTable(CameraParameters cameraParameters, int angleSubdivision, float brdfPercentage, int outputWidth, int outputHeight, int outputDepth)
+        {
+            // Allocate our output texture
+            Texture3D kernelSize = new Texture3D(outputWidth, outputHeight, outputDepth, GraphicsFormat.R32G32B32A32_SFloat, TextureCreationFlags.None);
+
+            // First of all, let's compute the projection matrix
+            Matrix4x4 cameraProjection = Matrix4x4.Perspective(cameraParameters.fov, cameraParameters.aspect, came

@@ -1,0 +1,312 @@
+d)
+                {
+                    width += characters[m_DrawEnd].charWidth;
+                    if (width > extents.x)
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Force the label to update immediatly. This will recalculate the positioning of the caret and the visible text.
+        /// </summary>
+        public void ForceLabelUpdate()
+        {
+            UpdateLabel();
+        }
+
+        private void MarkGeometryAsDirty()
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying || UnityEditor.PrefabUtility.IsPartOfPrefabAsset(gameObject))
+                return;
+#endif
+
+            CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild(this);
+        }
+
+        /// <summary>
+        /// Rebuild the input fields geometry. (caret and highlight).
+        /// </summary>
+        /// <param name="update">Which update loop we are in.</param>
+        public virtual void Rebuild(CanvasUpdate update)
+        {
+            switch (update)
+            {
+                case CanvasUpdate.LatePreRender:
+                    UpdateGeometry();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// See ICanvasElement.LayoutComplete. Does nothing by default.
+        /// </summary>
+        public virtual void LayoutComplete()
+        {}
+
+        /// <summary>
+        /// See ICanvasElement.GraphicUpdateComplete. Does nothing by default.
+        /// </summary>
+        public virtual void GraphicUpdateComplete()
+        {}
+
+        private void UpdateGeometry()
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+                return;
+#endif
+            // No need to draw a cursor on mobile as its handled by the devices keyboard.
+            if (!InPlaceEditing() && !shouldHideMobileInput)
+                return;
+
+            if (m_CachedInputRenderer == null && m_TextComponent != null)
+            {
+                GameObject go = new GameObject(transform.name + " Input Caret", typeof(RectTransform), typeof(CanvasRenderer));
+                go.hideFlags = HideFlags.DontSave;
+                go.transform.SetParent(m_TextComponent.transform.parent);
+                go.transform.SetAsFirstSibling();
+                go.layer = gameObject.layer;
+
+                caretRectTrans = go.GetComponent<RectTransform>();
+                m_CachedInputRenderer = go.GetComponent<CanvasRenderer>();
+                m_CachedInputRenderer.SetMaterial(m_TextComponent.GetModifiedMaterial(Graphic.defaultGraphicMaterial), Texture2D.whiteTexture);
+
+                // Needed as if any layout is present we want the caret to always be the same as the text area.
+                go.AddComponent<LayoutElement>().ignoreLayout = true;
+
+                AssignPositioningIfNeeded();
+            }
+
+            if (m_CachedInputRenderer == null)
+                return;
+
+            OnFillVBO(mesh);
+            m_CachedInputRenderer.SetMesh(mesh);
+        }
+
+        private void AssignPositioningIfNeeded()
+        {
+            if (m_TextComponent != null && caretRectTrans != null &&
+                (caretRectTrans.localPosition != m_TextComponent.rectTransform.localPosition ||
+                 caretRectTrans.localRotation != m_TextComponent.rectTransform.localRotation ||
+                 caretRectTrans.localScale != m_TextComponent.rectTransform.localScale ||
+                 caretRectTrans.anchorMin != m_TextComponent.rectTransform.anchorMin ||
+                 caretRectTrans.anchorMax != m_TextComponent.rectTransform.anchorMax ||
+                 caretRectTrans.anchoredPosition != m_TextComponent.rectTransform.anchoredPosition ||
+                 caretRectTrans.sizeDelta != m_TextComponent.rectTransform.sizeDelta ||
+                 caretRectTrans.pivot != m_TextComponent.rectTransform.pivot))
+            {
+                caretRectTrans.localPosition = m_TextComponent.rectTransform.localPosition;
+                caretRectTrans.localRotation = m_TextComponent.rectTransform.localRotation;
+                caretRectTrans.localScale = m_TextComponent.rectTransform.localScale;
+                caretRectTrans.anchorMin = m_TextComponent.rectTransform.anchorMin;
+                caretRectTrans.anchorMax = m_TextComponent.rectTransform.anchorMax;
+                caretRectTrans.anchoredPosition = m_TextComponent.rectTransform.anchoredPosition;
+                caretRectTrans.sizeDelta = m_TextComponent.rectTransform.sizeDelta;
+                caretRectTrans.pivot = m_TextComponent.rectTransform.pivot;
+            }
+        }
+
+        private void OnFillVBO(Mesh vbo)
+        {
+            using (var helper = new VertexHelper())
+            {
+                if (!isFocused)
+                {
+                    helper.FillMesh(vbo);
+                    return;
+                }
+
+                Vector2 roundingOffset = m_TextComponent.PixelAdjustPoint(Vector2.zero);
+                if (!hasSelection)
+                    GenerateCaret(helper, roundingOffset);
+                else
+                    GenerateHighlight(helper, roundingOffset);
+
+                helper.FillMesh(vbo);
+            }
+        }
+
+        private void GenerateCaret(VertexHelper vbo, Vector2 roundingOffset)
+        {
+            if (!m_CaretVisible)
+                return;
+
+            if (m_CursorVerts == null)
+            {
+                CreateCursorVerts();
+            }
+
+            float width = m_CaretWidth;
+            int adjustedPos = Mathf.Max(0, caretPositionInternal - m_DrawStart);
+            TextGenerator gen = m_TextComponent.cachedTextGenerator;
+
+            if (gen == null)
+                return;
+
+            if (gen.lineCount == 0)
+                return;
+
+            Vector2 startPosition = Vector2.zero;
+
+            // Calculate startPosition
+            if (adjustedPos < gen.characters.Count)
+            {
+                UICharInfo cursorChar = gen.characters[adjustedPos];
+                startPosition.x = cursorChar.cursorPos.x;
+            }
+            startPosition.x /= m_TextComponent.pixelsPerUnit;
+
+            // TODO: Only clamp when Text uses horizontal word wrap.
+            if (startPosition.x > m_TextComponent.rectTransform.rect.xMax)
+                startPosition.x = m_TextComponent.rectTransform.rect.xMax;
+
+            int characterLine = DetermineCharacterLine(adjustedPos, gen);
+            startPosition.y = gen.lines[characterLine].topY / m_TextComponent.pixelsPerUnit;
+            float height = gen.lines[characterLine].height / m_TextComponent.pixelsPerUnit;
+
+            for (int i = 0; i < m_CursorVerts.Length; i++)
+                m_CursorVerts[i].color = caretColor;
+
+            m_CursorVerts[0].position = new Vector3(startPosition.x, startPosition.y - height, 0.0f);
+            m_CursorVerts[1].position = new Vector3(startPosition.x + width, startPosition.y - height, 0.0f);
+            m_CursorVerts[2].position = new Vector3(startPosition.x + width, startPosition.y, 0.0f);
+            m_CursorVerts[3].position = new Vector3(startPosition.x, startPosition.y, 0.0f);
+
+            if (roundingOffset != Vector2.zero)
+            {
+                for (int i = 0; i < m_CursorVerts.Length; i++)
+                {
+                    UIVertex uiv = m_CursorVerts[i];
+                    uiv.position.x += roundingOffset.x;
+                    uiv.position.y += roundingOffset.y;
+                }
+            }
+
+            vbo.AddUIVertexQuad(m_CursorVerts);
+
+            int screenHeight = Screen.height;
+            // Multiple display support only when not the main display. For display 0 the reported
+            // resolution is always the desktops resolution since its part of the display API,
+            // so we use the standard none multiple display method. (case 741751)
+            int displayIndex = m_TextComponent.canvas.targetDisplay;
+            if (displayIndex > 0 && displayIndex < Display.displays.Length)
+                screenHeight = Display.displays[displayIndex].renderingHeight;
+
+            // Calculate position of IME Window in screen space.
+            Camera cameraRef;
+            if (m_TextComponent.canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                cameraRef = null;
+            else
+                cameraRef = m_TextComponent.canvas.worldCamera;
+
+            Vector3 cursorPosition = m_CachedInputRenderer.gameObject.transform.TransformPoint(m_CursorVerts[0].position);
+            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(cameraRef, cursorPosition);
+            screenPosition.y = screenHeight - screenPosition.y;
+
+            if (input != null)
+                input.compositionCursorPos = screenPosition;
+        }
+
+        private void CreateCursorVerts()
+        {
+            m_CursorVerts = new UIVertex[4];
+
+            for (int i = 0; i < m_CursorVerts.Length; i++)
+            {
+                m_CursorVerts[i] = UIVertex.simpleVert;
+                m_CursorVerts[i].uv0 = Vector2.zero;
+            }
+        }
+
+        private void GenerateHighlight(VertexHelper vbo, Vector2 roundingOffset)
+        {
+            int startChar = Mathf.Max(0, caretPositionInternal - m_DrawStart);
+            int endChar = Mathf.Max(0, caretSelectPositionInternal - m_DrawStart);
+
+            // Ensure pos is always less then selPos to make the code simpler
+            if (startChar > endChar)
+            {
+                int temp = startChar;
+                startChar = endChar;
+                endChar = temp;
+            }
+
+            endChar -= 1;
+            TextGenerator gen = m_TextComponent.cachedTextGenerator;
+
+            if (gen.lineCount <= 0)
+                return;
+
+            int currentLineIndex = DetermineCharacterLine(startChar, gen);
+
+            int lastCharInLineIndex = GetLineEndPosition(gen, currentLineIndex);
+
+            UIVertex vert = UIVertex.simpleVert;
+            vert.uv0 = Vector2.zero;
+            vert.color = selectionColor;
+
+            int currentChar = startChar;
+            while (currentChar <= endChar && currentChar < gen.characterCount)
+            {
+                if (currentChar == lastCharInLineIndex || currentChar == endChar)
+                {
+                    UICharInfo startCharInfo = gen.characters[startChar];
+                    UICharInfo endCharInfo = gen.characters[currentChar];
+                    Vector2 startPosition = new Vector2(startCharInfo.cursorPos.x / m_TextComponent.pixelsPerUnit, gen.lines[currentLineIndex].topY / m_TextComponent.pixelsPerUnit);
+                    Vector2 endPosition = new Vector2((endCharInfo.cursorPos.x + endCharInfo.charWidth) / m_TextComponent.pixelsPerUnit, startPosition.y - gen.lines[currentLineIndex].height / m_TextComponent.pixelsPerUnit);
+
+                    // Checking xMin as well due to text generator not setting position if char is not rendered.
+                    if (endPosition.x > m_TextComponent.rectTransform.rect.xMax || endPosition.x < m_TextComponent.rectTransform.rect.xMin)
+                        endPosition.x = m_TextComponent.rectTransform.rect.xMax;
+
+                    var startIndex = vbo.currentVertCount;
+                    vert.position = new Vector3(startPosition.x, endPosition.y, 0.0f) + (Vector3)roundingOffset;
+                    vbo.AddVert(vert);
+
+                    vert.position = new Vector3(endPosition.x, endPosition.y, 0.0f) + (Vector3)roundingOffset;
+                    vbo.AddVert(vert);
+
+                    vert.position = new Vector3(endPosition.x, startPosition.y, 0.0f) + (Vector3)roundingOffset;
+                    vbo.AddVert(vert);
+
+                    vert.position = new Vector3(startPosition.x, startPosition.y, 0.0f) + (Vector3)roundingOffset;
+                    vbo.AddVert(vert);
+
+                    vbo.AddTriangle(startIndex, startIndex + 1, startIndex + 2);
+                    vbo.AddTriangle(startIndex + 2, startIndex + 3, startIndex + 0);
+
+                    startChar = currentChar + 1;
+                    currentLineIndex++;
+
+                    lastCharInLineIndex = GetLineEndPosition(gen, currentLineIndex);
+                }
+                currentChar++;
+            }
+        }
+
+        /// <summary>
+        /// Predefined validation functionality for different characterValidation types.
+        /// </summary>
+        /// <param name="text">The whole text string to validate.</param>
+        /// <param name="pos">The position at which the current character is being inserted.</param>
+        /// <param name="ch">The character that is being inserted</param>
+        /// <returns>The character that should be inserted.</returns>
+        protected char Validate(string text, int pos, char ch)
+        {
+            // Validation is disabled
+            if (characterValidation == CharacterValidation.None || !enabled)
+                return ch;
+
+            if (characterValidation == CharacterValidation.Integer || characterValidation == CharacterValidation.Decimal)
+            {
+                // Integer and decimal
+                bool cursorBeforeDash = (pos == 0 && text.Length > 0 && text[0] == '-');
+                bool dashInSelection = text.Length > 0 && text[0] == '-' && ((caretPositionInternal == 0 && caretSelectPositionInternal > 0) || (caretSelectPositionInternal == 0 && caretPositionInternal > 0));
+                bool selectionAtStart = caretPositionInternal == 0 || caretSelectPositionInternal == 0;
+                if (!cursorBeforeDash || dashInSelection)
+                {
+                    if (ch >= '0' && ch <= '9') return ch;
+      

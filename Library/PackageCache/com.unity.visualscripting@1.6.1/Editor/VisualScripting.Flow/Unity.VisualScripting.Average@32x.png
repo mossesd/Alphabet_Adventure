@@ -1,0 +1,37 @@
+GUI.indentLevel++;
+            SettingsButton(ProjectGenerationFlag.Embedded, "Embedded packages", "");
+            SettingsButton(ProjectGenerationFlag.Local, "Local packages", "");
+            SettingsButton(ProjectGenerationFlag.Registry, "Registry packages", "");
+            SettingsButton(ProjectGenerationFlag.Git, "Git packages", "");
+            SettingsButton(ProjectGenerationFlag.BuiltIn, "Built-in packages", "");
+#if UNITY_2019_3_OR_NEWER
+            SettingsButton(ProjectGenerationFlag.LocalTarBall, "Local tarball", "");
+#endif
+            SettingsButton(ProjectGenerationFlag.Unknown, "Packages from unknown sources", "");
+            RegenerateProjectFiles();
+            EditorGUI.indentLevel--;
+
+            HandledExtensionsString = EditorGUILayout.TextField(new GUIContent("Extensions handled: "), HandledExtensionsString);
+        }
+
+        void RegenerateProjectFiles()
+        {
+            var rect = EditorGUI.IndentedRect(EditorGUILayout.GetControlRect(new GUILayoutOption[] { }));
+            rect.width = 252;
+            if (GUI.Button(rect, "Regenerate project files"))
+            {
+                m_ProjectGeneration.Sync();
+            }
+        }
+
+        void SettingsButton(ProjectGenerationFlag preference, string guiMessage, string toolTip)
+        {
+            var prevValue = m_ProjectGeneration.AssemblyNameProvider.ProjectGenerationFlag.HasFlag(preference);
+            var newValue = EditorGUILayout.Toggle(new GUIContent(guiMessage, toolTip), prevValue);
+            if (newValue != prevValue)
+            {
+                m_ProjectGeneration.AssemblyNameProvider.ToggleProjectGeneration(preference);
+            }
+        }
+
+        public void CreateIf

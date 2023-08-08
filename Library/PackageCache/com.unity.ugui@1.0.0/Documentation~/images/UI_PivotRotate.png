@@ -1,0 +1,760 @@
+on (lineNumber) {
+            if (this._lastLineNumber === lineNumber) {
+                // We have to show the widget at the exact same line number as before, so no work is needed
+                return;
+            }
+            this._hoverOperation.cancel();
+            this.hide();
+            this._lastLineNumber = lineNumber;
+            this._computer.setLineNumber(lineNumber);
+            this._hoverOperation.start();
+        };
+        ModesGlyphHoverWidget.prototype.hide = function () {
+            this._lastLineNumber = -1;
+            this._hoverOperation.cancel();
+            _super.prototype.hide.call(this);
+        };
+        ModesGlyphHoverWidget.prototype._withResult = function (result) {
+            this._messages = result;
+            if (this._messages.length > 0) {
+                this._renderMessages(this._lastLineNumber, this._messages);
+            }
+            else {
+                this.hide();
+            }
+        };
+        ModesGlyphHoverWidget.prototype._renderMessages = function (lineNumber, messages) {
+            var fragment = document.createDocumentFragment();
+            messages.forEach(function (msg) {
+                var row = document.createElement('div');
+                var span = null;
+                if (msg.className) {
+                    span = document.createElement('span');
+                    span.textContent = msg.value;
+                    span.className = msg.className;
+                    row.appendChild(span);
+                }
+                else {
+                    row.textContent = msg.value;
+                }
+                fragment.appendChild(row);
+            });
+            this._domNode.textContent = '';
+            this._domNode.appendChild(fragment);
+            // show
+            this.showAt(lineNumber);
+        };
+        ModesGlyphHoverWidget.ID = 'editor.contrib.modesGlyphHoverWidget';
+        return ModesGlyphHoverWidget;
+    })(HoverWidget.GlyphHoverWidget);
+    exports.ModesGlyphHoverWidget = ModesGlyphHoverWidget;
+});
+
+define('vs/css!vs/editor/contrib/hover/hover',['vs/css!vs/editor/editor.main'], {});
+
+/// <amd-dependency path="vs/css!./hover" />
+'use strict';
+define('vs/editor/contrib/hover/hover',["require", "exports", 'vs/editor/core/constants', 'vs/editor/editorExtensions', 'vs/editor/editor', 'vs/base/env', 'vs/editor/contrib/hover/modesContentHover', 'vs/editor/contrib/hover/modesGlyphHover', "vs/css!./hover"], function (require, exports, Constants, EditorExt, Editor, Env, ModesContentHover, ModesGlyphHover) {
+    var ModesHoverController = (function () {
+        function ModesHoverController(ctx, editor) {
+            var _this = this;
+            this._editor = editor;
+            this._toUnhook = [];
+            if (editor.getConfiguration().hover) {
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.MouseDown, function (e) { return _this._onEditorMouseDown(e); }));
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.MouseMove, function (e) { return _this._onEditorMouseMove(e); }));
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.MouseLeave, function (e) { return _this._hideWidgets(); }));
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.KeyDown, function (e) { return _this._onKeyDown(e); }));
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.ModelChanged, function () { return _this._hideWidgets(); }));
+                this._toUnhook.push(this._editor.addListener(Constants.EventType.ModelDecorationsChanged, function () { return _this._onModelDecorationsChanged(); }));
+                this._toUnhook.push(this._editor.addListener('scroll', function () { return _this._hideWidgets(); }));
+                this._contentWidget = new ModesContentHover.ModesContentHoverWidget(editor);
+                this._glyphWidget = new ModesGlyphHover.ModesGlyphHoverWidget(editor);
+            }
+        }
+        ModesHoverController.prototype._onModelDecorationsChanged = function () {
+            this._contentWidget.onModelDecorationsChanged();
+            this._glyphWidget.onModelDecorationsChanged();
+        };
+        ModesHoverController.prototype._onEditorMouseDown = function (mouseEvent) {
+            var targetType = mouseEvent.target.type;
+            if (targetType === Editor.MouseTargetType.CONTENT_WIDGET && mouseEvent.target.detail === ModesContentHover.ModesContentHoverWidget.ID) {
+                // mouse down on top of content hover widget
+                return;
+            }
+            if (targetType === Editor.MouseTargetType.OVERLAY_WIDGET && mouseEvent.target.detail === ModesGlyphHover.ModesGlyphHoverWidget.ID) {
+                // mouse down on top of overlay hover widget
+                return;
+            }
+            this._hideWidgets();
+        };
+        ModesHoverController.prototype._onEditorMouseMove = function (mouseEvent) {
+            var targetType = mouseEvent.target.type;
+            var stopKey = Env.isMacintosh ? 'metaKey' : 'ctrlKey';
+            if (targetType === Editor.MouseTargetType.CONTENT_WIDGET && mouseEvent.target.detail === ModesContentHover.ModesContentHoverWidget.ID && !mouseEvent.event[stopKey]) {
+                // mouse moved on top of content hover widget
+                return;
+            }
+            if (targetType === Editor.MouseTargetType.OVERLAY_WIDGET && mouseEvent.target.detail === ModesGlyphHover.ModesGlyphHoverWidget.ID && !mouseEvent.event[stopKey]) {
+                // mouse moved on top of overlay hover widget
+                return;
+            }
+            if (this._editor.getConfiguration().hover && targetType === Editor.MouseTargetType.CONTENT_TEXT) {
+                this._glyphWidget.hide();
+                this._contentWidget.startShowingAt(mouseEvent.target.range);
+            }
+            else if (this._editor.getConfiguration().hover && targetType === Editor.MouseTargetType.GUTTER_GLYPH_MARGIN) {
+                this._contentWidget.hide();
+                this._glyphWidget.startShowingAt(mouseEvent.target.position.lineNumber);
+            }
+            else {
+                this._hideWidgets();
+            }
+        };
+        ModesHoverController.prototype._onKeyDown = function (e) {
+            var stopKey = Env.isMacintosh ? 'Meta' : 'Ctrl';
+            if (e.key !== stopKey) {
+                // Do not hide hover when Ctrl/Meta is pressed
+                this._hideWidgets();
+            }
+        };
+        ModesHoverController.prototype._hideWidgets = function () {
+            this._glyphWidget.hide();
+            this._contentWidget.hide();
+        };
+        ModesHoverController.prototype.getId = function () {
+            return ModesHoverController.ID;
+        };
+        ModesHoverController.prototype.dispose = function () {
+            while (this._toUnhook.length > 0) {
+                this._toUnhook.pop()();
+            }
+            if (this._glyphWidget) {
+                this._glyphWidget.dispose();
+                this._glyphWidget = null;
+            }
+            if (this._contentWidget) {
+                this._contentWidget.dispose();
+                this._contentWidget = null;
+            }
+        };
+        ModesHoverController.ID = 'editor.contrib.hover';
+        return ModesHoverController;
+    })();
+    EditorExt.registerEditorContribution(ModesHoverController);
+});
+
+
+'use strict';
+define('vs/base/severity',["require", "exports", 'vs/nls!vs/editor/editor.main', 'vs/base/strings'], function (require, exports, nls, strings) {
+    var Severity;
+    (function (Severity) {
+        Severity[Severity["Ignore"] = 0] = "Ignore";
+        Severity[Severity["Info"] = 1] = "Info";
+        Severity[Severity["Warning"] = 2] = "Warning";
+        Severity[Severity["Error"] = 3] = "Error";
+    })(Severity || (Severity = {}));
+    var Severity;
+    (function (Severity) {
+        var _error = 'error', _warning = 'warning', _warn = 'warn', _info = 'info';
+        /**
+         * Parses 'error', 'warning', 'warn', 'info' in call casings
+         * and falls back to ignore.
+         */
+        function fromValue(value) {
+            if (!value) {
+                return Severity.Ignore;
+            }
+            if (strings.equalsIgnoreCase(_error, value)) {
+                return Severity.Error;
+            }
+            if (strings.equalsIgnoreCase(_warning, value) || strings.equalsIgnoreCase(_warn, value)) {
+                return Severity.Warning;
+            }
+            if (strings.equalsIgnoreCase(_info, value)) {
+                return Severity.Info;
+            }
+            return Severity.Ignore;
+        }
+        Severity.fromValue = fromValue;
+        function toString(value) {
+            switch (value) {
+                case Severity.Error: return nls.localize('vs_base_severity', 0);
+                case Severity.Warning: return nls.localize('vs_base_severity', 1);
+                case Severity.Info: return nls.localize('vs_base_severity', 2);
+            }
+            return strings.empty;
+        }
+        Severity.toString = toString;
+        function compare(a, b) {
+            return b - a;
+        }
+        Severity.compare = compare;
+    })(Severity || (Severity = {}));
+    return Severity;
+});
+
+define('vs/css!vs/editor/contrib/rename/rename',['vs/css!vs/editor/editor.main'], {});
+
+/// <amd-dependency path="vs/css!./rename" />
+'use strict';
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+define('vs/editor/contrib/rename/rename',["require", "exports", 'vs/base/lib/winjs.base', 'vs/nls!vs/editor/editor.main', 'vs/editor/editorExtensions', 'vs/editor/core/range', 'vs/base/severity', 'vs/editor/core/editorState', 'vs/editor/core/constants', "vs/css!./rename"], function (require, exports, WinJS, nls, EditorExt, Range, Severity, EditorState, Constants) {
+    var LinkedEditingController = (function () {
+        function LinkedEditingController(editor, selections, ranges, handlerService) {
+            var _this = this;
+            this.editor = editor;
+            this.isDisposed = false;
+            // Decorate editing ranges
+            this.editor.changeDecorations(function (changeAccessor) {
+                _this.decorations = [];
+                for (var i = 0, len = selections.length; i < len; i++) {
+                    var className = 'linked-editing-placeholder';
+                    _this.decorations.push(changeAccessor.addDecoration(ranges[i], {
+                        className: className
+                    }));
+                }
+            });
+            // Begin linked editing (multi-cursor)
+            this.editor.setSelections(selections);
+            this.listenersToRemove = [];
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.CursorPositionChanged, function (e) {
+                if (_this.isDisposed) {
+                    return;
+                }
+                var cursorCount = 1 + e.secondaryPositions.length;
+                if (cursorCount !== _this.decorations.length) {
+                    _this.dispose();
+                }
+            }));
+            this.binding = handlerService.bindGroup(function (bind) {
+                bind({ key: 'Enter' }, function () { return _this.onEnterOrEscape(); });
+                bind({ key: 'Escape' }, function () { return _this.onEnterOrEscape(); });
+            });
+        }
+        LinkedEditingController.prototype.onEnterOrEscape = function () {
+            if (this.isDisposed) {
+                return;
+            }
+            // Basically cancel multi-cursor
+            this.editor.setSelection(this.editor.getSelection());
+            this.dispose();
+            return true;
+        };
+        LinkedEditingController.prototype.dispose = function () {
+            if (this.isDisposed) {
+                return;
+            }
+            this.isDisposed = true;
+            this.decorations = this.editor.deltaDecorations(this.decorations, []);
+            this.binding.dispose();
+            this.listenersToRemove.forEach(function (element) {
+                element();
+            });
+            this.listenersToRemove = [];
+        };
+        return LinkedEditingController;
+    })();
+    var LocalProgressService = (function () {
+        function LocalProgressService(_editor) {
+            this._editor = _editor;
+            //
+        }
+        LocalProgressService.prototype.showWhile = function (promise, delay) {
+            var _this = this;
+            var decoration, delayHandle;
+            delayHandle = setTimeout(function () {
+                decoration = _this._addDecoration();
+            }, delay || 0);
+            return promise.then(function (value) {
+                clearTimeout(delayHandle);
+                _this._removeDecoration(decoration);
+                return value;
+            }, function (err) {
+                clearTimeout(delayHandle);
+                _this._removeDecoration(decoration);
+                throw err;
+            });
+        };
+        LocalProgressService.prototype._addDecoration = function () {
+            var position = this._editor.getPosition(), word = this._editor.getModel().getWordAtPosition(position, false, true), decorationId;
+            this._editor.changeDecorations(function (accessor) {
+                decorationId = accessor.addDecoration({
+                    startLineNumber: position.lineNumber,
+                    startColumn: word.startColumn,
+                    endLineNumber: position.lineNumber,
+                    endColumn: word.endColumn
+                }, {
+                    inlineClassName: 'word-level-progress'
+                });
+            });
+            return decorationId;
+        };
+        LocalProgressService.prototype._removeDecoration = function (decorationId) {
+            if (decorationId) {
+                this._editor.changeDecorations(function (accessor) {
+                    accessor.removeDecoration(decorationId);
+                });
+            }
+        };
+        LocalProgressService.prototype.show = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i - 0] = arguments[_i];
+            }
+            throw new Error('not implemented');
+        };
+        return LocalProgressService;
+    })();
+    var LinkedEditing = (function (_super) {
+        __extends(LinkedEditing, _super);
+        function LinkedEditing(ctx, descriptor, editor) {
+            _super.call(this, ctx, descriptor, editor, EditorExt.Behaviour.WidgetFocus | EditorExt.Behaviour.Writeable | EditorExt.Behaviour.ShowInContextMenu | EditorExt.Behaviour.UpdateOnCursorPositionChange);
+            this._idPool = 0;
+            this._messageService = ctx.messageService;
+            this._progressService = new LocalProgressService(this.editor);
+        }
+        LinkedEditing.prototype.computeInfos = function (editor) {
+            return WinJS.Promise.as([]);
+        };
+        LinkedEditing.prototype.run = function () {
+            var _this = this;
+            var myId = ++this._idPool, state = EditorState.capture(this.editor, EditorState.Flag.Position, EditorState.Flag.Value), capturedSelection = this.editor.getSelection(), infoPromise = this.computeInfos(this.editor);
+            if (this._progressService) {
+                this._progressService.showWhile(infoPromise, 500);
+            }
+            return infoPromise.then(function (infos) {
+                if (myId !== _this._idPool) {
+                    return;
+                }
+                if (!state.validate()) {
+                    return;
+                }
+                if (infos.length === 0) {
+                    return;
+                }
+                var ranges = infos.map(function (info) {
+                    return info.range;
+                });
+                _this._beginLinkedEditing(ranges, capturedSelection);
+            }, function (e) {
+                _this._messageService.show(Severity.Info, e);
+            });
+        };
+        LinkedEditing.prototype._indexOf = function (ranges, lineNumber, column) {
+            var pos = {
+                lineNumber: lineNumber,
+                column: column
+            };
+            for (var i = 0; i < ranges.length; i++) {
+                if (ranges[i].startLineNumber !== lineNumber) {
+                    continue;
+                }
+                if (Range.containsPosition(ranges[i], pos)) {
+                    return i;
+                }
+            }
+            return -1;
+        };
+        LinkedEditing.prototype._beginLinkedEditing = function (ranges, capturedSelection) {
+            var editorSelection = this.editor.getSelection();
+            // Try to find a suitable range for the current editor position
+            var foundRangeIndex = this._indexOf(ranges, editorSelection.positionLineNumber, editorSelection.positionColumn);
+            if (foundRangeIndex === -1) {
+                // Current editor position is outside of one of these ranges, try again with the original editor position
+                editorSelection = capturedSelection;
+                foundRangeIndex = this._indexOf(ranges, editorSelection.positionLineNumber, editorSelection.positionColumn);
+                if (foundRangeIndex === -1) {
+                    // These ranges are bogus!
+                    return;
+                }
+            }
+            var hasSelectionInFoundRange = false;
+            if (!editorSelection.isEmpty()) {
+                if (Range.containsPosition(ranges[foundRangeIndex], { lineNumber: editorSelection.selectionStartLineNumber, column: editorSelection.selectionStartColumn })) {
+                    hasSelectionInFoundRange = true;
+                }
+            }
+            var deltaColumnForPosition, deltaColumnForStartSelection;
+            if (hasSelectionInFoundRange) {
+                deltaColumnForPosition = editorSelection.positionColumn - ranges[foundRangeIndex].startColumn;
+                deltaColumnForStartSelection = editorSelection.selectionStartColumn - ranges[foundRangeIndex].startColumn;
+            }
+            else {
+                deltaColumnForPosition = ranges[foundRangeIndex].endColumn - ranges[foundRangeIndex].startColumn;
+                deltaColumnForStartSelection = 0;
+            }
+            var newEditorSelections = [];
+            newEditorSelections.push({
+                selectionStartLineNumber: ranges[foundRangeIndex].startLineNumber,
+                selectionStartColumn: ranges[foundRangeIndex].startColumn + deltaColumnForStartSelection,
+                positionLineNumber: ranges[foundRangeIndex].startLineNumber,
+                positionColumn: ranges[foundRangeIndex].startColumn + deltaColumnForPosition,
+            });
+            for (var i = 0; i < ranges.length; i++) {
+                if (i !== foundRangeIndex) {
+                    newEditorSelections.push({
+                        selectionStartLineNumber: ranges[i].startLineNumber,
+                        selectionStartColumn: ranges[i].startColumn + deltaColumnForStartSelection,
+                        positionLineNumber: ranges[i].startLineNumber,
+                        positionColumn: ranges[i].startColumn + deltaColumnForPosition,
+                    });
+                }
+            }
+            new LinkedEditingController(this.editor, newEditorSelections, ranges, this.handlerService);
+        };
+        return LinkedEditing;
+    })(EditorExt.EditorAction);
+    exports.LinkedEditing = LinkedEditing;
+    var ChangeAllAction = (function (_super) {
+        __extends(ChangeAllAction, _super);
+        function ChangeAllAction(ctx, descriptor, editor) {
+            _super.call(this, ctx, descriptor, editor);
+        }
+        ChangeAllAction.prototype.getGroupId = function () {
+            return '2_change/1_changeAll';
+        };
+        ChangeAllAction.prototype.isSupported = function () {
+            var mode = this.editor.getModel().getMode();
+            return !!mode && !!mode.occurrencesSupport && !mode.referenceSupport && _super.prototype.isSupported.call(this);
+        };
+        ChangeAllAction.prototype.computeInfos = function (editor) {
+            var selection = editor.getSelection();
+            var position = selection.getStartPosition();
+            var model = editor.getModel();
+            return this.editor.getModel().getMode().occurrencesSupport.findOccurrences(model.getAssociatedResource(), position);
+        };
+        ChangeAllAction.ID = 'editor.actions.changeAll';
+        return ChangeAllAction;
+    })(LinkedEditing);
+    exports.ChangeAllAction = ChangeAllAction;
+    var RenameAction = (function (_super) {
+        __extends(RenameAction, _super);
+        function RenameAction(ctx, descriptor, editor) {
+            _super.call(this, ctx, descriptor, editor);
+        }
+        RenameAction.prototype.getGroupId = function () {
+            return '2_change/1_rename';
+        };
+        RenameAction.prototype.isSupported = function () {
+            var mode = this.editor.getModel().getMode();
+            return !!mode && !!mode.referenceSupport && !this.editor.getModel().hasEditableRange() && _super.prototype.isSupported.call(this);
+        };
+        RenameAction.prototype.getEnablementState = function () {
+            var model = this.editor.getModel(), position = this.editor.getSelection().getStartPosition();
+            return model.getMode().referenceSupport.canFindReferences(model.getLineContext(position.lineNumber), position.column - 1);
+        };
+        RenameAction.prototype.computeInfos = function (editor) {
+            var selection = editor.getSelection(), position = selection.getStartPosition(), model = editor.getModel(), mode = model.getMode();
+            // TODO@Alex TODO@Joh Should we do a .then and then Winjs.promise.wrapError() from the then rather than this intricate wrapping?
+            return new WinJS.Promise(function (c, e, p) {
+                mode.referenceSupport.findReferences(model.getAssociatedResource(), position, true).then(function (references) {
+                    var resourceUrl, i, multifile = false, result = [];
+                    for (i = 0; !multifile && i < references.length; i++) {
+                        var reference = references[i];
+                        // ensure all references are in the same file
+                        // TODO@Joh remove that
+                        if (typeof resourceUrl === 'undefined') {
+                            resourceUrl = reference.resourceUrl.toExternal();
+                        }
+                        else if (resourceUrl !== reference.resourceUrl.toExternal()) {
+                            multifile = true;
+                            break;
+                        }
+                        result.push({
+                            kind: null,
+                            range: reference.range
+                        });
+                    }
+                    if (!multifile) {
+                        c(result);
+                    }
+                    else {
+                        e(nls.localize('vs_editor_contrib_rename_rename', 0));
+                    }
+                }, e, p);
+            });
+        };
+        RenameAction.ID = 'editor.actions.rename';
+        return RenameAction;
+    })(LinkedEditing);
+    exports.RenameAction = RenameAction;
+    // register actions
+    EditorExt.registerEditorActionContribution(RenameAction, RenameAction.ID, nls.localize('vs_editor_contrib_rename_rename', 1), { key: 'F2' });
+    EditorExt.registerEditorActionContribution(ChangeAllAction, ChangeAllAction.ID, nls.localize('vs_editor_contrib_rename_rename', 2), { ctrlCmd: true, key: 'F2' });
+});
+
+define('vs/css!vs/editor/contrib/snippet/snippet',['vs/css!vs/editor/editor.main'], {});
+
+/// <amd-dependency path="vs/css!./snippet" />
+'use strict';
+define('vs/editor/contrib/snippet/snippet',["require", "exports", 'vs/base/collections', 'vs/base/strings', 'vs/editor/core/range', 'vs/editor/core/constants', 'vs/editor/core/command/replaceCommand', 'vs/editor/core/selection', 'vs/editor/editor', "vs/css!./snippet"], function (require, exports, Collections, Strings, Range, Constants, ReplaceCommand, Selection, Editor) {
+    var CodeSnippet = (function () {
+        function CodeSnippet(snippetTemplate) {
+            this.lines = [];
+            this.placeHolders = [];
+            this.startPlaceHolderIndex = 0;
+            this.finishPlaceHolderIndex = -1;
+            this.parseTemplate(snippetTemplate);
+        }
+        CodeSnippet.prototype.parseTemplate = function (template) {
+            var placeHoldersMap = {};
+            var i, len, j, lenJ, templateLines = template.split('\n');
+            for (i = 0, len = templateLines.length; i < len; i++) {
+                var parsedLine = this.parseLine(templateLines[i]);
+                for (j = 0, lenJ = parsedLine.placeHolders.length; j < lenJ; j++) {
+                    var linePlaceHolder = parsedLine.placeHolders[j];
+                    var occurence = new Range.Range(i + 1, linePlaceHolder.startColumn, i + 1, linePlaceHolder.endColumn);
+                    var placeHolder;
+                    if (Collections.contains(placeHoldersMap, linePlaceHolder.value)) {
+                        placeHolder = placeHoldersMap[linePlaceHolder.value];
+                    }
+                    else {
+                        placeHolder = {
+                            value: linePlaceHolder.value,
+                            occurences: []
+                        };
+                        this.placeHolders.push(placeHolder);
+                        if (linePlaceHolder.value === '') {
+                            this.finishPlaceHolderIndex = this.placeHolders.length - 1;
+                        }
+                        placeHoldersMap[linePlaceHolder.value] = placeHolder;
+                    }
+                    placeHolder.occurences.push(occurence);
+                }
+                this.lines.push(parsedLine.line);
+            }
+            if (this.placeHolders.length > this.startPlaceHolderIndex && this.placeHolders[this.startPlaceHolderIndex].value === '') {
+                // Do not start at an empty placeholder if possible
+                if (this.placeHolders.length > 1) {
+                    this.startPlaceHolderIndex++;
+                }
+            }
+        };
+        CodeSnippet.prototype.parseLine = function (line) {
+            var placeHolder, resultLine = '', placeHolders = [];
+            var i = 0;
+            var len = line.length;
+            var resultIndex = 0;
+            while (i < len) {
+                // Look for the start of a placeholder {{
+                if (line.charAt(i) === '{' && i + 1 < len && line.charAt(i + 1) === '{') {
+                    i += 2;
+                    placeHolder = '';
+                    while (i < len) {
+                        if (line.charAt(i) === '}' && i + 1 < len && line.charAt(i + 1) === '}') {
+                            i += 2;
+                            break;
+                        }
+                        placeHolder += line.charAt(i);
+                        i++;
+                    }
+                    placeHolders.push({
+                        value: placeHolder,
+                        startColumn: resultIndex + 1,
+                        endColumn: resultIndex + 1 + placeHolder.length
+                    });
+                    resultLine += placeHolder;
+                    resultIndex += placeHolder.length;
+                }
+                else {
+                    resultLine += line.charAt(i);
+                    resultIndex++;
+                    i++;
+                }
+            }
+            return {
+                line: resultLine,
+                placeHolders: placeHolders
+            };
+        };
+        CodeSnippet.prototype.extractLineIndentation = function (str, maxColumn) {
+            if (maxColumn === void 0) { maxColumn = Number.MAX_VALUE; }
+            var fullIndentation = Strings.getLeadingWhitespace(str);
+            if (fullIndentation.length > maxColumn - 1) {
+                return fullIndentation.substring(0, maxColumn - 1);
+            }
+            return fullIndentation;
+        };
+        CodeSnippet.prototype.bind = function (referenceLine, deltaLine, firstLineDeltaColumn, config) {
+            var resultLines = [];
+            var resultPlaceHolders = [];
+            var referenceIndentation = this.extractLineIndentation(referenceLine, firstLineDeltaColumn + 1);
+            var originalLine, originalLineIndentation, remainingLine, indentation;
+            var i, len, j, lenJ;
+            // Compute resultLines & keep deltaColumns as a reference for adjusting placeholders
+            var deltaColumns = [];
+            for (i = 0, len = this.lines.length; i < len; i++) {
+                originalLine = this.lines[i];
+                if (i === 0) {
+                    deltaColumns[i + 1] = firstLineDeltaColumn;
+                    resultLines[i] = originalLine;
+                }
+                else {
+                    originalLineIndentation = this.extractLineIndentation(originalLine);
+                    remainingLine = originalLine.substr(originalLineIndentation.length);
+                    indentation = config.normalizeIndentation(referenceIndentation + originalLineIndentation);
+                    deltaColumns[i + 1] = indentation.length - originalLineIndentation.length;
+                    resultLines[i] = indentation + remainingLine;
+                }
+            }
+            // Compute resultPlaceHolders
+            var originalPlaceHolder, originalOccurence, resultOccurences;
+            for (i = 0, len = this.placeHolders.length; i < len; i++) {
+                originalPlaceHolder = this.placeHolders[i];
+                resultOccurences = [];
+                for (j = 0, lenJ = originalPlaceHolder.occurences.length; j < lenJ; j++) {
+                    originalOccurence = originalPlaceHolder.occurences[j];
+                    resultOccurences.push({
+                        startLineNumber: originalOccurence.startLineNumber + deltaLine,
+                        startColumn: originalOccurence.startColumn + deltaColumns[originalOccurence.startLineNumber],
+                        endLineNumber: originalOccurence.endLineNumber + deltaLine,
+                        endColumn: originalOccurence.endColumn + deltaColumns[originalOccurence.endLineNumber]
+                    });
+                }
+                resultPlaceHolders.push({
+                    value: originalPlaceHolder.value,
+                    occurences: resultOccurences
+                });
+            }
+            return {
+                lines: resultLines,
+                placeHolders: resultPlaceHolders,
+                startPlaceHolderIndex: this.startPlaceHolderIndex,
+                finishPlaceHolderIndex: this.finishPlaceHolderIndex
+            };
+        };
+        return CodeSnippet;
+    })();
+    exports.CodeSnippet = CodeSnippet;
+    var InsertSnippetController = (function () {
+        function InsertSnippetController(editor, handlerService, adaptedSnippet, startLineNumber) {
+            this.editor = editor;
+            this.model = editor.getModel();
+            this.handlerService = handlerService;
+            this.finishPlaceHolderIndex = adaptedSnippet.finishPlaceHolderIndex;
+            this.trackedPlaceHolders = [];
+            this.placeHolderDecorations = [];
+            this.currentPlaceHolderIndex = adaptedSnippet.startPlaceHolderIndex;
+            this.highlightDecorationId = null;
+            this.isFinished = false;
+            this.binding = null;
+            this.initialize(adaptedSnippet, startLineNumber);
+        }
+        InsertSnippetController.prototype.initialize = function (adaptedSnippet, startLineNumber) {
+            var _this = this;
+            var i, len;
+            for (i = 0, len = adaptedSnippet.placeHolders.length; i < len; i++) {
+                var placeHolder = adaptedSnippet.placeHolders[i];
+                var trackedRanges = [];
+                for (var j = 0, lenJ = placeHolder.occurences.length; j < lenJ; j++) {
+                    trackedRanges.push(this.model.addTrackedRange(placeHolder.occurences[j], Editor.TrackedRangeStickiness.AlwaysGrowsWhenTypingAtEdges));
+                }
+                this.trackedPlaceHolders.push({
+                    ranges: trackedRanges
+                });
+            }
+            this.editor.changeDecorations(function (changeAccessor) {
+                var endLineNumber = startLineNumber + adaptedSnippet.lines.length - 1;
+                var endLineNumberMaxColumn = _this.model.getLineMaxColumn(endLineNumber);
+                _this.highlightDecorationId = changeAccessor.addDecoration(new Range.Range(startLineNumber, 1, endLineNumber, endLineNumberMaxColumn), {
+                    className: 'new-snippet',
+                    isWholeLine: true
+                });
+                for (i = 0, len = _this.trackedPlaceHolders.length; i < len; i++) {
+                    var className = (i === _this.finishPlaceHolderIndex) ? 'finish-snippet-placeholder' : 'snippet-placeholder';
+                    _this.placeHolderDecorations.push(changeAccessor.addDecoration(_this.model.getTrackedRange(_this.trackedPlaceHolders[i].ranges[0]), {
+                        className: className
+                    }));
+                }
+            });
+            this.listenersToRemove = [];
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.ModelContentChanged, function (e) {
+                if (_this.isFinished) {
+                    return;
+                }
+                if (e.changeType === Constants.EventType.ModelContentChangedFlush) {
+                    // a model.setValue() was called
+                    _this.stopAll();
+                }
+                else if (e.changeType === Constants.EventType.ModelContentChangedLineChanged) {
+                    var changedLine = e.lineNumber;
+                    var highlightRange = _this.model.getDecorationRange(_this.highlightDecorationId);
+                    if (changedLine < highlightRange.startLineNumber || changedLine > highlightRange.endLineNumber) {
+                        _this.stopAll();
+                    }
+                }
+                else if (e.changeType === Constants.EventType.ModelContentChangedLinesInserted) {
+                    var insertLine = e.fromLineNumber;
+                    var highlightRange = _this.model.getDecorationRange(_this.highlightDecorationId);
+                    if (insertLine < highlightRange.startLineNumber || insertLine > highlightRange.endLineNumber) {
+                        _this.stopAll();
+                    }
+                }
+                else if (e.changeType === Constants.EventType.ModelContentChangedLinesDeleted) {
+                    var deleteLine1 = e.fromLineNumber;
+                    var deleteLine2 = e.toLineNumber;
+                    var highlightRange = _this.model.getDecorationRange(_this.highlightDecorationId);
+                    var deletedLinesAbove = (deleteLine2 < highlightRange.startLineNumber);
+                    var deletedLinesBelow = (deleteLine1 > highlightRange.endLineNumber);
+                    if (deletedLinesAbove || deletedLinesBelow) {
+                        _this.stopAll();
+                    }
+                }
+            }));
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.CursorPositionChanged, function (e) {
+                if (_this.isFinished) {
+                    return;
+                }
+                var highlightRange = _this.model.getDecorationRange(_this.highlightDecorationId);
+                var lineNumber = e.position.lineNumber;
+                if (lineNumber < highlightRange.startLineNumber || lineNumber > highlightRange.endLineNumber) {
+                    _this.stopAll();
+                }
+            }));
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.ModelChanged, function () {
+                _this.stopAll();
+            }));
+            var blurTimeout = -1;
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.EditorBlur, function () {
+                // Blur if within 100ms we do not focus back
+                blurTimeout = setTimeout(function () {
+                    _this.stopAll();
+                }, 100);
+            }));
+            this.listenersToRemove.push(this.editor.addListener(Constants.EventType.EditorFocus, function () {
+                // Cancel the blur timeout (if any)
+                if (blurTimeout !== -1) {
+                    clearTimeout(blurTimeout);
+                    blurTimeout = -1;
+                }
+            }));
+            this.listenersToRemove.push(this.model.addListener(Constants.EventType.ModelDecorationsChanged, function (e) {
+                if (_this.isFinished) {
+                    return;
+                }
+                var modelEditableRange = _this.model.getEditableRange(), allCollapsed = true, allEqualToEditableRange = true;
+                for (var i = 0; (allCollapsed || allEqualToEditableRange) && i < _this.trackedPlaceHolders.length; i++) {
+                    var ranges = _this.trackedPlaceHolders[i].ranges;
+                    for (var j = 0; (allCollapsed || allEqualToEditableRange) && j < ranges.length; j++) {
+                        var range = _this.model.getTrackedRange(ranges[j]);
+                        if (allCollapsed && !range.isEmpty()) {
+                            allCollapsed = false;
+                        }
+                        if (allEqualToEditableRange && !modelEditableRange.equalsRange(range)) {
+                            allEqualToEditableRange = false;
+                        }
+                    }
+                }
+                if (allCollapsed || allEqualToEditableRange) {
+                    _this.stopAll();
+                }
+                else {
+                    if (_this.finishPlaceHolderIndex !== -1) {
+                        var finishPlaceHolderDecorationId = _this.placeHolderDecorations[_this.finishPlaceHolderIndex];
+                        var finishPlaceHolderRange = _this.model.get

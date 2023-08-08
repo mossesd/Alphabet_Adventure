@@ -1,0 +1,139 @@
+80000000, 0xB800C000, 0xC0642000), asuint(h3));
+            TestUtils.AreEqual(uint3(0xC77FE000, 0xFF800000, 0xFF800000), asuint(h4));
+            TestUtils.AreEqual(true, all(isnan(h5)));
+        }
+
+        [TestCompiler]
+        public static void half4_to_float4()
+        {
+            half4 h0; h0.x.value = 0x0000; h0.y.value = 0x0203; h0.z.value = 0x4321; h0.w.value = 0x7BFF;
+            half4 h1; h1.x.value = 0x7C00; h1.y.value = 0x7C00; h1.z.value = 0x7C00; h1.w.value = 0x7C00;
+            half4 h2; h2.x.value = 0x7C01; h2.y.value = 0x7C01; h2.z.value = 0x7C01; h2.w.value = 0x7C01;
+
+            half4 h3; h3.x.value = 0x8000; h3.y.value = 0x8203; h3.z.value = 0xC321; h3.w.value = 0xFBFF;
+            half4 h4; h4.x.value = 0xFC00; h4.y.value = 0xFC00; h4.z.value = 0xFC00; h4.w.value = 0xFC00;
+            half4 h5; h5.x.value = 0xFC01; h5.y.value = 0xFC01; h5.z.value = 0xFC01; h5.w.value = 0xFC01;
+
+            TestUtils.AreEqual(uint4(0x00000000, 0x3800C000, 0x40642000, 0x477FE000), asuint(h0));
+            TestUtils.AreEqual(uint4(0x7F800000, 0x7F800000, 0x7F800000, 0x7F800000), asuint(h1));
+            TestUtils.AreEqual(true, all(isnan(h2)));
+
+            TestUtils.AreEqual(uint4(0x80000000, 0xB800C000, 0xC0642000, 0xC77FE000), asuint(h3));
+            TestUtils.AreEqual(uint4(0xFF800000, 0xFF800000, 0xFF800000, 0xFF800000), asuint(h4));
+            TestUtils.AreEqual(true, all(isnan(h5)));
+        }
+
+
+        [TestCompiler]
+        public static void half_to_double()
+        {
+            TestUtils.AreEqual(0x0000000000000000u, asulong((double)new half { value = 0x0000 }));
+            TestUtils.AreEqual(0x3F00180000000000u, asulong((double)new half { value = 0x0203 }));
+            TestUtils.AreEqual(0x400C840000000000u, asulong((double)new half { value = 0x4321 }));
+            TestUtils.AreEqual(0x40eFFC0000000000u, asulong((double)new half { value = 0x7BFF }));
+            TestUtils.AreEqual(0x7FF0000000000000u, asulong((double)new half { value = 0x7C00 }));
+            TestUtils.AreEqual(true, isnan((double)new half { value = 0x7C01 }));
+
+            TestUtils.AreEqual(0x8000000000000000u, asulong((double)new half { value = 0x8000 }));
+            TestUtils.AreEqual(0xBF00180000000000u, asulong((double)new half { value = 0x8203 }));
+            TestUtils.AreEqual(0xC00C840000000000u, asulong((double)new half { value = 0xC321 }));
+            TestUtils.AreEqual(0xC0eFFC0000000000u, asulong((double)new half { value = 0xFBFF }));
+            TestUtils.AreEqual(0xFFF0000000000000u, asulong((double)new half { value = 0xFC00 }));
+            TestUtils.AreEqual(true, isnan((double)new half { value = 0xFC01 }));
+        }
+
+
+        [TestCompiler]
+        public static void half_from_float_explicit_conversion()
+        {
+            half h = (half)123.4f;
+            TestUtils.AreEqual(0x57B6, h.value);
+        }
+
+        [TestCompiler]
+        public static void half2_from_float2_explicit_conversion()
+        {
+            half2 h = (half2)float2(123.4f, 5.96046448e-08f);
+            TestUtils.AreEqual(0x57B6, h.x.value);
+            TestUtils.AreEqual(0x0001, h.y.value);
+        }
+
+        [TestCompiler]
+        public static void half3_from_float3_explicit_conversion()
+        {
+            half3 h = (half3)float3(123.4f, 5.96046448e-08f, -65504.0f);
+            TestUtils.AreEqual(0x57B6, h.x.value);
+            TestUtils.AreEqual(0x0001, h.y.value);
+            TestUtils.AreEqual(0xFBFF, h.z.value);
+        }
+
+        [TestCompiler]
+        public static void half4_from_float4_explicit_conversion()
+        {
+            half4 h = (half4)float4(123.4f, 5.96046448e-08f, -65504.0f, float.PositiveInfinity);
+            TestUtils.AreEqual(0x57B6, h.x.value);
+            TestUtils.AreEqual(0x0001, h.y.value);
+            TestUtils.AreEqual(0xFBFF, h.z.value);
+            TestUtils.AreEqual(0x7C00, h.w.value);
+        }
+
+        [TestCompiler]
+        public static void half_from_double_explicit_conversion()
+        {
+            half h = (half)123.4;
+            TestUtils.AreEqual(0x57B6, h.value);
+        }
+
+
+        [TestCompiler]
+        public static void half_to_float_implicit_conversion()
+        {
+            half h; h.value = 0x0203;
+            float f = h;
+            TestUtils.AreEqual(0x3800C000, asuint(f));
+        }
+
+        [TestCompiler]
+        public static void half2_to_float2_implicit_conversion()
+        {
+            half2 h; h.x.value = 0x0203;    h.y.value = 0x8203;
+            float2 f = h;
+            TestUtils.AreEqual(0x3800C000, asuint(f.x));
+            TestUtils.AreEqual(0xB800C000, asuint(f.y));
+        }
+
+        [TestCompiler]
+        public static void half3_to_float3_implicit_conversion()
+        {
+            half3 h; h.x.value = 0x0203; h.y.value = 0x8203; h.z.value = 0x7BFF;
+            float3 f = h;
+            TestUtils.AreEqual(0x3800C000, asuint(f.x));
+            TestUtils.AreEqual(0xB800C000, asuint(f.y));
+            TestUtils.AreEqual(0x477FE000, asuint(f.z));
+        }
+
+        [TestCompiler]
+        public static void half4_to_float4_implicit_conversion()
+        {
+            half4 h; h.x.value = 0x0203; h.y.value = 0x8203; h.z.value = 0x7BFF; h.w.value = 0x7C00;
+            float4 f = h;
+            TestUtils.AreEqual(0x3800C000, asuint(f.x));
+            TestUtils.AreEqual(0xB800C000, asuint(f.y));
+            TestUtils.AreEqual(0x477FE000, asuint(f.z));
+            TestUtils.AreEqual(0x7F800000, asuint(f.w));
+        }
+
+        [TestCompiler]
+        public static void half_to_double_implicit_conversion()
+        {
+            half h; h.value = 0x0203;
+            double f = h;
+
+            TestUtils.AreEqual(0x3F00180000000000u, asulong(f));
+        }
+
+        [TestCompiler]
+        public static void half_minvalue()
+        {
+            half min = new half(half.MinValue);
+   

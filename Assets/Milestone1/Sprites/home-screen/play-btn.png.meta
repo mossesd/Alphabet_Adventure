@@ -1,0 +1,59 @@
+ion.ArcMotion}. This must be used
+         within a transition with which the PathMotion should be associated. -->
+    <declare-styleable name="ArcMotion">
+        <!-- The minimum arc angle in degrees between the start and end points when
+             they are close to horizontal. -->
+        <attr name="minimumHorizontalAngle" format="float" />
+        <!-- The minimum arc angle in degrees between the start and end points when
+             they are close to vertical. -->
+        <attr name="minimumVerticalAngle" format="float" />
+        <!-- The maximum arc angle in degrees between the start and end points. -->
+        <attr name="maximumAngle" format="float" />
+    </declare-styleable>
+
+    <!-- Use <code>patternPathMotion</code> as the root tag of the XML resource that
+         describes a {@link android.transition.PatternPathMotion}. This must be used
+         within a transition with which the PathMotion should be associated. -->
+    <declare-styleable name="PatternPathMotion">
+        <!-- The path string describing the pattern to use for the PathPathMotion. -->
+        <attr name="patternPathData" format="string" />
+    </declare-styleable>
+
+    <!-- ========================== -->
+    <!-- ValueAnimator class attributes -->
+    <!-- ========================== -->
+    <eat-comment />
+
+    <declare-styleable name="Animator">
+        <!-- Defines the interpolator used to smooth the animation movement in time. -->
+        <attr name="interpolator" />
+        <!-- Amount of time (in milliseconds) for the animation to run. -->
+        <attr name="duration" />
+        <!-- Delay in milliseconds before the animation runs, once start time is reached. -->
+        <attr name="startOffset"/>
+        <!-- Defines how many times the animation should repeat. The default value is 0. -->
+        <attr name="repeatCount"/>
+        <!-- Defines the animation behavior when it reaches the end and the repeat count is
+             greater than 0 or infinite. The default value is restart. -->
+        <attr name="repeatMode"/>
+        <!-- Value the animation starts from. -->
+        <attr name="valueFrom" format="float|integer|color|dimension|string"/>
+        <!-- Value the animation animates to. -->
+        <attr name="valueTo" format="float|integer|color|dimension|string"/>
+        <!-- The type of valueFrom and valueTo. -->
+        <attr name="valueType">
+            <!-- The given values are floats. This is the default value if valueType is
+                 unspecified. Note that if any value attribute has a color value
+                 (beginning with "#"), then this attribute is ignored and the color values are
+                 interpreted as integers. -->
+            <enum name="floatType" value="0" />
+            <!-- values are integers. -->
+            <enum name="intType"   value="1" />
+            <!-- values are paths defined as strings.
+                 This type is used for path morphing in AnimatedVectorDrawable. -->
+            <enum name="pathType"   value="2" />
+            <!-- values are colors, which are integers starting with "#". -->
+            <enum name="colorType"   value="3" />
+        </attr>
+        <!-- Placeholder for a deleted attribute. This should be removed before M release. -->
+    

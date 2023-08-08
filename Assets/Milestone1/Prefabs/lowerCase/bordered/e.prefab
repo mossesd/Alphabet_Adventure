@@ -1,0 +1,95 @@
+de}
+   */
+  FunctionAssignmentNode.fromJSON = function (json) {
+    return new FunctionAssignmentNode(json.name, json.params, json.expr)
+  }
+
+  /**
+   * get HTML representation
+   * @param {Object} options
+   * @return {string} str
+   */
+  FunctionAssignmentNode.prototype.toHTML = function (options) {
+    const parenthesis = (options && options.parenthesis) ? options.parenthesis : 'keep'
+    const params = []
+    for (let i = 0; i < this.params.length; i++) {
+      params.push('<span class="math-symbol math-parameter">' + escape(this.params[i]) + '</span>')
+    }
+    let expr = this.expr.toHTML(options)
+    if (needParenthesis(this, parenthesis)) {
+      expr = '<span class="math-parenthesis math-round-parenthesis">(</span>' + expr + '<span class="math-parenthesis math-round-parenthesis">)</span>'
+    }
+    return '<span class="math-function">' + escape(this.name) + '</span>' + '<span class="math-parenthesis math-round-parenthesis">(</span>' + params.join('<span class="math-separator">,</span>') + '<span class="math-parenthesis math-round-parenthesis">)</span><span class="math-operator math-assignment-operator math-variable-assignment-operator math-binary-operator">=</span>' + expr
+  }
+
+  /**
+   * get LaTeX representation
+   * @param {Object} options
+   * @return {string} str
+   */
+  FunctionAssignmentNode.prototype._toTex = function (options) {
+    const parenthesis = (options && options.parenthesis) ? options.parenthesis : 'keep'
+    let expr = this.expr.toTex(options)
+    if (needParenthesis(this, parenthesis)) {
+      expr = `\\left(${expr}\\right)`
+    }
+
+    return '\\mathrm{' + this.name +
+        '}\\left(' + this.params.map(latex.toSymbol).join(',') + '\\right):=' + expr
+  }
+
+  return FunctionAssignmentNode
+}
+exports.name = 'FunctionAssignmentNode'
+exports.path = 'expression.node'
+exports.factory = factory
+{"mode":33188,"size":8283,"isFileValue":true,"isDirectoryValue":false}'use strict'
+
+const latex = require('../../utils/latex')
+const escape = require('../../utils/string').escape
+const hasOwnProperty = require('../../utils/object').hasOwnProperty
+const map = require('../../utils/array').map
+const validateSafeMethod = require('../../utils/customs').validateSafeMethod
+const getSafeProperty = require('../../utils/customs').getSafeProperty
+
+function factory (type, config, load, typed, math) {
+  const Node = load(require('./Node'))
+  const SymbolNode = load(require('./SymbolNode'))
+
+  /**
+   * @constructor FunctionNode
+   * @extends {./Node}
+   * invoke a list with arguments on a node
+   * @param {./Node | string} fn Node resolving with a function on which to invoke
+   *                             the arguments, typically a SymboNode or AccessorNode
+   * @param {./Node[]} args
+   */
+  function FunctionNode (fn, args) {
+    if (!(this instanceof FunctionNode)) {
+      throw new SyntaxError('Constructor must be called with the new operator')
+    }
+
+    if (typeof fn === 'string') {
+      fn = new SymbolNode(fn)
+    }
+
+    // validate input
+    if (!type.isNode(fn)) throw new TypeError('Node expected as parameter "fn"')
+    if (!Array.isArray(args) || !args.every(type.isNode)) {
+      throw new TypeError('Array containing Nodes expected for parameter "args"')
+    }
+
+    this.fn = fn
+    this.args = args || []
+
+    // readonly property name
+    Object.defineProperty(this, 'name', {
+      get: function () {
+        return this.fn.name || ''
+      }.bind(this),
+      set: function () {
+        throw new Error('Cannot assign a new name, name is read-only')
+      }
+    })
+
+    // TODO: 

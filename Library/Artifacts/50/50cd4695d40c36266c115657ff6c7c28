@@ -1,0 +1,208 @@
+d code. </summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.ForwardRef">
+      <summary>Specifies that the method is not defined.</summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.PreserveSig">
+      <summary>Specifies that the method signature is exported exactly as declared.</summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.InternalCall">
+      <summary>Specifies an internal call.</summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.Synchronized">
+      <summary>Specifies that the method is single-threaded through the body. Static methods (Shared in Visual Basic) lock on the type, whereas instance methods lock on the instance. You can also use the C# lock statement or the Visual Basic Lock function for this purpose. </summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.NoInlining">
+      <summary>Specifies that the method cannot be inlined.</summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.MaxMethodImplVal">
+      <summary>Specifies a range check value.</summary>
+    </member>
+    <member name="F:System.Reflection.MethodImplAttributes.NoOptimization">
+      <summary>Specifies that the method is not optimized by the just-in-time (JIT) compiler or by native code generation (see Ngen.exe) when debugging possible code generation problems.</summary>
+    </member>
+    <member name="T:System.Reflection.MethodInfo">
+      <summary>Discovers the attributes of a method and provides access to method metadata.</summary>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Reflection.MethodInfo" /> class.</summary>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.ContainsGenericParameters">
+      <summary>Gets a value indicating whether a generic method contains unassigned generic type parameters.</summary>
+      <returns>true if the current <see cref="T:System.Reflection.MethodInfo" /> contains unassigned generic type parameters; otherwise, false.</returns>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.GetBaseDefinition">
+      <summary>When overridden in a derived class, returns the MethodInfo object for the method on the direct or indirect base class in which the method represented by this instance was first declared.</summary>
+      <returns>A MethodInfo object for the first implementation of this method.</returns>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.GetGenericArguments">
+      <summary>Returns an array of <see cref="T:System.Type" /> objects that represent the type arguments of a generic method or the type parameters of a generic method definition.</summary>
+      <returns>An array of <see cref="T:System.Type" /> objects that represent the type arguments of a generic method or the type parameters of a generic method definition. Returns an empty array if the current method is not a generic method.</returns>
+      <exception cref="T:System.NotSupportedException">This method is not supported.</exception>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.GetGenericMethodDefinition">
+      <summary>Returns a <see cref="T:System.Reflection.MethodInfo" /> object that represents a generic method definition from which the current method can be constructed.</summary>
+      <returns>A <see cref="T:System.Reflection.MethodInfo" /> object representing a generic method definition from which the current method can be constructed.</returns>
+      <exception cref="T:System.InvalidOperationException">The current method is not a generic method. That is, <see cref="P:System.Reflection.MethodInfo.IsGenericMethod" /> returns false. </exception>
+      <exception cref="T:System.NotSupportedException">This method is not supported.</exception>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.IsGenericMethod">
+      <summary>Gets a value indicating whether the current method is a generic method.</summary>
+      <returns>true if the current method is a generic method; otherwise, false.</returns>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.IsGenericMethodDefinition">
+      <summary>Gets a value indicating whether the current <see cref="T:System.Reflection.MethodInfo" /> represents the definition of a generic method.</summary>
+      <returns>true if the <see cref="T:System.Reflection.MethodInfo" /> object represents the definition of a generic method; otherwise, false.</returns>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.MakeGenericMethod(System.Type[])">
+      <summary>Substitutes the elements of an array of types for the type parameters of the current generic method definition, and returns a <see cref="T:System.Reflection.MethodInfo" /> object representing the resulting constructed method.</summary>
+      <returns>A <see cref="T:System.Reflection.MethodInfo" /> object that represents the constructed method formed by substituting the elements of <paramref name="typeArguments" /> for the type parameters of the current generic method definition.</returns>
+      <param name="typeArguments">An array of types to be substituted for the type parameters of the current generic method definition.</param>
+      <exception cref="T:System.InvalidOperationException">The current <see cref="T:System.Reflection.MethodInfo" /> does not represent a generic method definition. That is, <see cref="P:System.Reflection.MethodInfo.IsGenericMethodDefinition" /> returns false.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="typeArguments" /> is null.-or- Any element of <paramref name="typeArguments" /> is null. </exception>
+      <exception cref="T:System.ArgumentException">The number of elements in <paramref name="typeArguments" /> is not the same as the number of type parameters of the current generic method definition.-or- An element of <paramref name="typeArguments" /> does not satisfy the constraints specified for the corresponding type parameter of the current generic method definition. </exception>
+      <exception cref="T:System.NotSupportedException">This method is not supported.</exception>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.MemberType">
+      <summary>Gets a <see cref="T:System.Reflection.MemberTypes" /> value indicating that this member is a method.</summary>
+      <returns>A <see cref="T:System.Reflection.MemberTypes" /> value indicating that this member is a method.</returns>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.ReturnParameter">
+      <summary>Gets a <see cref="T:System.Reflection.ParameterInfo" /> object that contains information about the return type of the method, such as whether the return type has custom modifiers. </summary>
+      <returns>A <see cref="T:System.Reflection.ParameterInfo" /> object that contains information about the return type.</returns>
+      <exception cref="T:System.NotImplementedException">This method is not implemented.</exception>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.ReturnType">
+      <summary>Gets the return type of this method.</summary>
+      <returns>The return type of this method.</returns>
+    </member>
+    <member name="P:System.Reflection.MethodInfo.ReturnTypeCustomAttributes">
+      <summary>Gets the custom attributes for the return type.</summary>
+      <returns>An ICustomAttributeProvider object representing the custom attributes for the return type.</returns>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.System#Runtime#InteropServices#_MethodInfo#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)">
+      <summary>Maps a set of names to a corresponding set of dispatch identifiers.</summary>
+      <param name="riid">Reserved for future use. Must be IID_NULL.</param>
+      <param name="rgszNames">Passed-in array of names to be mapped.</param>
+      <param name="cNames">Count of the names to be mapped.</param>
+      <param name="lcid">The locale context in which to interpret the names.</param>
+      <param name="rgDispId">Caller-allocated array that receives the IDs corresponding to the names.</param>
+      <exception cref="T:System.NotImplementedException">Late-bound access using the COM IDispatch interface is not supported.</exception>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.System#Runtime#InteropServices#_MethodInfo#GetType">
+      <summary>Provides access to the <see cref="M:System.Object.GetType" /> method from COM.</summary>
+      <returns>A <see cref="T:System.Type" /> object representing the <see cref="T:System.Reflection.MethodInfo" /> type.</returns>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.System#Runtime#InteropServices#_MethodInfo#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)">
+      <summary>Retrieves the type information for an object, which can be used to get the type information for an interface.</summary>
+      <param name="iTInfo">The type information to return.</param>
+      <param name="lcid">The locale identifier for the type information.</param>
+      <param name="ppTInfo">Receives a pointer to the requested type information object.</param>
+      <exception cref="T:System.NotImplementedException">Late-bound access using the COM IDispatch interface is not supported.</exception>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.System#Runtime#InteropServices#_MethodInfo#GetTypeInfoCount(System.UInt32@)">
+      <summary>Retrieves the number of type information interfaces that an object provides (either 0 or 1).</summary>
+      <param name="pcTInfo">Points to a location that receives the number of type information interfaces provided by the object.</param>
+      <exception cref="T:System.NotImplementedException">Late-bound access using the COM IDispatch interface is not supported.</exception>
+    </member>
+    <member name="M:System.Reflection.MethodInfo.System#Runtime#InteropServices#_MethodInfo#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)">
+      <summary>Provides access to properties and methods exposed by an object.</summary>
+      <param name="dispIdMember">Identifies the member.</param>
+      <param name="riid">Reserved for future use. Must be IID_NULL.</param>
+      <param name="lcid">The locale context in which to interpret arguments.</param>
+      <param name="wFlags">Flags describing the context of the call.</param>
+      <param name="pDispParams">Pointer to a structure containing an array of arguments, an array of argument DISPIDs for named arguments, and counts for the number of elements in the arrays.</param>
+      <param name="pVarResult">Pointer to the location where the result is to be stored.</param>
+      <param name="pExcepInfo">Pointer to a structure that contains exception information.</param>
+      <param name="puArgErr">The index of the first argument that has an error.</param>
+      <exception cref="T:System.NotImplementedException">Late-bound access using the COM IDispatch interface is not supported.</exception>
+    </member>
+    <member name="T:System.Reflection.Missing">
+      <summary>Represents a missing <see cref="T:System.Object" />. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.Reflection.Missing.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Sets a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object with the logical context information needed to recreate the sole instance of the <see cref="T:System.Reflection.Missing" /> object.</summary>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object to be populated with serialization information.</param>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> object representing the destination context of the serialization.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="info" /> is null.</exception>
+    </member>
+    <member name="F:System.Reflection.Missing.Value">
+      <summary>Represents the sole instance of the <see cref="T:System.Reflection.Missing" /> class.</summary>
+    </member>
+    <member name="T:System.Reflection.Module">
+      <summary>Performs reflection on a module.</summary>
+    </member>
+    <member name="P:System.Reflection.Module.Assembly">
+      <summary>Gets the appropriate <see cref="T:System.Reflection.Assembly" /> for this instance of <see cref="T:System.Reflection.Module" />.</summary>
+      <returns>An Assembly object.</returns>
+    </member>
+    <member name="F:System.Reflection.Module.FilterTypeName">
+      <summary>A TypeFilter object that filters the list of types defined in this module based upon the name. This field is case-sensitive and read-only.</summary>
+    </member>
+    <member name="F:System.Reflection.Module.FilterTypeNameIgnoreCase">
+      <summary>A TypeFilter object that filters the list of types defined in this module based upon the name. This field is case-insensitive and read-only.</summary>
+    </member>
+    <member name="M:System.Reflection.Module.FindTypes(System.Reflection.TypeFilter,System.Object)">
+      <summary>Returns an array of classes accepted by the given filter and filter criteria.</summary>
+      <returns>An array of type Type containing classes that were accepted by the filter.</returns>
+      <param name="filter">The delegate used to filter the classes. </param>
+      <param name="filterCriteria">An Object used to filter the classes. </param>
+      <exception cref="T:System.Reflection.ReflectionTypeLoadException">One or more classes in a module could not be loaded. </exception>
+    </member>
+    <member name="P:System.Reflection.Module.FullyQualifiedName">
+      <summary>Gets a string representing the fully qualified name and path to this module.</summary>
+      <returns>The fully qualified module name.</returns>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permissions. </exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Reflection.Module.GetCustomAttributes(System.Boolean)">
+      <summary>Returns all custom attributes.</summary>
+      <returns>An array of type Object containing all custom attributes.</returns>
+      <param name="inherit">This argument is ignored for objects of this type. </param>
+    </member>
+    <member name="M:System.Reflection.Module.GetCustomAttributes(System.Type,System.Boolean)">
+      <summary>Gets custom attributes of the specified type.</summary>
+      <returns>An array of type Object containing all custom attributes of the specified type.</returns>
+      <param name="attributeType">The type of attribute to get. </param>
+      <param name="inherit">This argument is ignored for objects of this type. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="attributeType" /> is null. </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="attributeType" /> is not a <see cref="T:System.Type" /> object supplied by the runtime. For example, <paramref name="attributeType" /> is a <see cref="T:System.Reflection.Emit.TypeBuilder" /> object.</exception>
+    </member>
+    <member name="M:System.Reflection.Module.GetField(System.String)">
+      <summary>Returns a field having the specified name.</summary>
+      <returns>A FieldInfo object having the specified name, or null if the field does not exist.</returns>
+      <param name="name">The field name. </param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> parameter is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Module.GetField(System.String,System.Reflection.BindingFlags)">
+      <summary>Returns a field having the specified name and binding attributes.</summary>
+      <returns>A FieldInfo object having the specified name and binding attributes, or null if the field does not exist.</returns>
+      <param name="name">The field name. </param>
+      <param name="bindingAttr">One of the BindingFlags bit flags used to control the search. </param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> parameter is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Module.GetFields">
+      <summary>Returns the global fields defined on the module.</summary>
+      <returns>An array of <see cref="T:System.Reflection.FieldInfo" /> objects representing the global fields defined on the module; if there are no global fields, an empty array is returned.</returns>
+    </member>
+    <member name="M:System.Reflection.Module.GetFields(System.Reflection.BindingFlags)">
+      <summary>Returns the global fields defined on the module that match the specified binding flags.</summary>
+      <returns>An array of type <see cref="T:System.Reflection.FieldInfo" /> representing the global fields defined on the module that match the specified binding flags; if no global fields match the binding flags, an empty array is returned.</returns>
+      <param name="bindingFlags">A bitwise combination of <see cref="T:System.Reflection.BindingFlags" /> values that limit the search.</param>
+    </member>
+    <member name="M:System.Reflection.Module.GetMethod(System.String)">
+      <summary>Returns a method having the specified name.</summary>
+      <returns>A MethodInfo object having the specified name, or null if the method does not exist.</returns>
+      <param name="name">The method name. </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is null. </exception>
+    </member>
+    <member name="M:System.Reflection.Module.GetMethod(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Reflection.CallingConventions,System.Type[],System.Reflection.ParameterModifier[])">
+      <summary>Returns a method having the specified name, binding information, calling convention, and parameter types and modifiers.</summary>
+      <returns>A MethodInfo object in accordance with the specified criteria, 

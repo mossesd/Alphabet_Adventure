@@ -1,0 +1,113 @@
+catedUsedTileArr[i];
+                if (!oldUsedTiles.Contains(newUsedTile))
+                    return true;
+            }
+
+            return false;
+        }
+
+        static KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>> CachingTilemapNeighborPositions(Tilemap tilemap)
+        {
+            int usedTileCount = tilemap.GetUsedTilesCount();
+            HashSet<TileBase> usedTiles = new HashSet<TileBase>();
+            HashSet<Vector3Int> neighborPositions = new HashSet<Vector3Int>();
+
+            if (m_AllocatedUsedTileArr.Length < usedTileCount)
+                Array.Resize(ref m_AllocatedUsedTileArr, usedTileCount);
+
+            tilemap.GetUsedTilesNonAlloc(m_AllocatedUsedTileArr);
+
+            for (int i = 0; i < usedTileCount; i++)
+            {
+                TileBase tile = m_AllocatedUsedTileArr[i];
+                usedTiles.Add(tile);
+                RuleTile ruleTile = null;
+
+                if (tile is RuleTile rt)
+                    ruleTile = rt;
+                else if (tile is RuleOverrideTile ot)
+                    ruleTile = ot.m_Tile;
+
+                if (ruleTile)
+                    foreach (Vector3Int neighborPosition in ruleTile.neighborPositions)
+                        neighborPositions.Add(neighborPosition);
+            }
+
+            var value = new KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>(usedTiles, neighborPositions);
+            m_CacheTilemapsNeighborPositions[tilemap] = value;
+            return value;
+        }
+
+        static bool NeedRelease()
+        {
+            foreach (var keypair in m_CacheTilemapsNeighborPositions)
+            {
+                if (keypair.Key == null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        static void ReleaseDestroyedTilemapCacheData()
+        {
+            if (!NeedRelease())
+                return;
+
+            var hasCleared = false;
+            var keys = m_CacheTilemapsNeighborPositions.Keys.ToArray();
+            foreach (var key in keys)
+            {
+                if (key == null && m_CacheTilemapsNeighborPositions.Remove(key))
+                    hasCleared = true;
+            }
+            if (hasCleared)
+            {
+                // TrimExcess
+                m_CacheTilemapsNeighborPositions = new Dictionary<Tilemap, KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>>(m_CacheTilemapsNeighborPositions);
+            }
+        }
+
+        /// <summary>
+        /// Retrieves any tile animation data from the scripted tile.
+        /// </summary>
+        /// <param name="position">Position of the Tile on the Tilemap.</param>
+        /// <param name="tilemap">The Tilemap the tile is present on.</param>
+        /// <param name="tileAnimationData">Data to run an animation on the tile.</param>
+        /// <returns>Whether the call was successful.</returns>
+        public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
+        {
+            Matrix4x4 transform = Matrix4x4.identity;
+            foreach (TilingRule rule in m_TilingRules)
+            {
+                if (rule.m_Output == TilingRuleOutput.OutputSprite.Animation)
+                {
+                    if (RuleMatches(rule, position, tilemap, ref transform))
+                    {
+                        tileAnimationData.animatedSprites = rule.m_Sprites;
+                        tileAnimationData.animationSpeed = Random.Range( rule.m_MinAnimationSpeed, rule.m_MaxAnimationSpeed);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when the tile is refreshed.
+        /// </summary>
+        /// <param name="position">Position of the Tile on the Tilemap.</param>
+        /// <param name="tilemap">The Tilemap the tile is present on.</param>
+        public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+        {
+            base.RefreshTile(position, tilemap);
+
+            Tilemap baseTilemap = tilemap.GetComponent<Tilemap>();
+
+            ReleaseDestroyedTilemapCacheData(); // Prevent memory leak
+
+            if (IsTilemapUsedTilesChange(baseTilemap, out var neighborPositionsSet))
+                neighborPositionsSet = CachingTilemapNeighborPositions(baseTilemap);
+
+            var neighborPosit

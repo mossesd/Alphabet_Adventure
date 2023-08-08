@@ -1,0 +1,35 @@
+esolver output using wrapping texture addressing with explicit level-of-detail
+*
+*   @param grCB the Granite Shader Runtime parameter block
+*   @param inputTexCoord The texture coordinate that will be used to sample the texture
+*   @param LOD Specifies the explicit level-of-detail
+*   @param transform The transform to apply. This can be got with [GetTransform](@ref Graphine::Granite::IStreamingTexture::GetTransform).
+*   @return a gra_Float4 containing the packed tile id
+*/
+gra_Float4 Granite_ResolverPixel_UDIM(in GraniteConstantBuffers grCB, in gra_Float2 inputTexCoord, in float LOD);
+
+/**
+*   Calculate the resolver output of a cubemap with explicit level-of-detail
+*
+*   @param grCB the Granite Shader Runtime Cube parameter block
+*   @param inputTexCoord The texture coordinate that will be used to sample the texture
+*   @param LOD Specifies the explicit level-of-detail
+*   @return a gra_Float4 containing the packed tile id
+*/
+gra_Float4 Granite_ResolverPixel_Cube_UDIM(in GraniteCubeConstantBuffers grCB, in gra_Float3 inputTexCoord, in float LOD);
+
+//@IGNORE_END
+//@IGNORE_BEGIN
+
+/**
+*   Calculate the pretransformed resolver output with explicit level-of-detail
+* Caller needs to either already called Granite_Transform in the shader or used [TransformTextureCoordinates](@ref Graphine::Granite::IStreamingTexture::TransformTextureCoordinates) on the vertex data.
+*
+*   @param grCB the Granite Shader Runtime parameter block
+*   @param inputTexCoord The texture coordinate that will be used to sample the texture
+*   @param LOD Specifies the explicit level-of-detail
+*   @return a gra_Float4 containing the packed tile id
+*/
+gra_Float4 Granite_ResolverPixel_PreTransformed_Clamp(in GraniteConstantBuffers grCB, in gra_Float2 inputTexCoord, in float LOD);
+
+/**

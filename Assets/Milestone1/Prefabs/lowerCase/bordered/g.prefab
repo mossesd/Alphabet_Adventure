@@ -1,0 +1,119 @@
+hild nodes of this node
+   * @param {function(child: Node, path: string, parent: Node)} callback
+   */
+  FunctionNode.prototype.forEach = function (callback) {
+    callback(this.fn, 'fn', this)
+
+    for (let i = 0; i < this.args.length; i++) {
+      callback(this.args[i], 'args[' + i + ']', this)
+    }
+  }
+
+  /**
+   * Create a new FunctionNode having it's childs be the results of calling
+   * the provided callback function for each of the childs of the original node.
+   * @param {function(child: Node, path: string, parent: Node): Node} callback
+   * @returns {FunctionNode} Returns a transformed copy of the node
+   */
+  FunctionNode.prototype.map = function (callback) {
+    const fn = this._ifNode(callback(this.fn, 'fn', this))
+    const args = []
+    for (let i = 0; i < this.args.length; i++) {
+      args[i] = this._ifNode(callback(this.args[i], 'args[' + i + ']', this))
+    }
+    return new FunctionNode(fn, args)
+  }
+
+  /**
+   * Create a clone of this node, a shallow copy
+   * @return {FunctionNode}
+   */
+  FunctionNode.prototype.clone = function () {
+    return new FunctionNode(this.fn, this.args.slice(0))
+  }
+
+  // backup Node's toString function
+  // @private
+  const nodeToString = FunctionNode.prototype.toString
+
+  /**
+   * Get string representation. (wrapper function)
+   * This overrides parts of Node's toString function.
+   * If callback is an object containing callbacks, it
+   * calls the correct callback for the current node,
+   * otherwise it falls back to calling Node's toString
+   * function.
+   *
+   * @param {Object} options
+   * @return {string} str
+   * @override
+   */
+  FunctionNode.prototype.toString = function (options) {
+    let customString
+    const name = this.fn.toString(options)
+    if (options && (typeof options.handler === 'object') && hasOwnProperty(options.handler, name)) {
+      // callback is a map of callback functions
+      customString = options.handler[name](this, options)
+    }
+
+    if (typeof customString !== 'undefined') {
+      return customString
+    }
+
+    // fall back to Node's toString
+    return nodeToString.call(this, options)
+  }
+
+  /**
+   * Get string representation
+   * @param {Object} options
+   * @return {string} str
+   */
+  FunctionNode.prototype._toString = function (options) {
+    const args = this.args.map(function (arg) {
+      return arg.toString(options)
+    })
+
+    const fn = type.isFunctionAssignmentNode(this.fn)
+      ? ('(' + this.fn.toString(options) + ')')
+      : this.fn.toString(options)
+
+    // format the arguments like "add(2, 4.2)"
+    return fn + '(' + args.join(', ') + ')'
+  }
+
+  /**
+   * Get a JSON representation of the node
+   * @returns {Object}
+   */
+  FunctionNode.prototype.toJSON = function () {
+    return {
+      mathjs: 'FunctionNode',
+      fn: this.fn,
+      args: this.args
+    }
+  }
+
+  /**
+   * Instantiate an AssignmentNode from its JSON representation
+   * @param {Object} json  An object structured like
+   *                       `{"mathjs": "FunctionNode", fn: ..., args: ...}`,
+   *                       where mathjs is optional
+   * @returns {FunctionNode}
+   */
+  FunctionNode.fromJSON = function (json) {
+    return new FunctionNode(json.fn, json.args)
+  }
+
+  /**
+   * Get HTML representation
+   * @param {Object} options
+   * @return {string} str
+   */
+  FunctionNode.prototype.toHTML = function (options) {
+    const args = this.args.map(function (arg) {
+      return arg.toHTML(options)
+    })
+
+    // format the arguments like "add(2, 4.2)"
+    return '<span class="math-function">' + escape(this.fn) + '</span><span class="m
